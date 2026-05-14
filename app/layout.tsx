@@ -1,0 +1,72 @@
+import type { Metadata } from "next";
+import { Inter, PT_Serif, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const ptSerif = PT_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-pt-serif",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://alex-mikhailovski.example.com"),
+  title: "Push Notifications · Alex Mikhailovski",
+  description:
+    "A case study on designing the Push Notification Manager at Seamm — empowering non-technical admins to send campaigns with confidence and zero code.",
+  openGraph: {
+    title: "Push Notifications · Alex Mikhailovski",
+    description:
+      "Designing for confidence, not speed. The Push Notification Manager I designed for Seamm.",
+    type: "article",
+    url: "https://alex-mikhailovski.example.com/case-study/push-notifications",
+    siteName: "Alex Mikhailovski",
+    images: [
+      {
+        url: "/og-push-notifications.png",
+        width: 1200,
+        height: 630,
+        alt: "Push Notifications case study",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Push Notifications · Alex Mikhailovski",
+    description: "Designing for confidence, not speed.",
+    images: ["/og-push-notifications.png"],
+  },
+};
+
+const themeInitScript = `
+(function(){try{var s=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();
+`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${ptSerif.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="font-sans antialiased">{children}</body>
+    </html>
+  );
+}
