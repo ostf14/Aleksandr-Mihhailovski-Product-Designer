@@ -17,7 +17,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-pt-serif)", "Georgia", "serif"],
+        serif: ["Gambarino", "Georgia", "serif"],
         mono: ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       maxWidth: {

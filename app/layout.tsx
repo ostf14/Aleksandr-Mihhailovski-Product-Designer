@@ -1,18 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, PT_Serif, JetBrains_Mono, Pixelify_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono, Pixelify_Sans } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const ptSerif = PT_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-pt-serif",
   display: "swap",
 });
 
@@ -67,10 +59,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${ptSerif.variable} ${jetbrainsMono.variable} ${pixelifySans.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${pixelifySans.variable}`}
       suppressHydrationWarning
     >
       <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
+          rel="stylesheet"
+        />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="font-sans antialiased">{children}</body>
