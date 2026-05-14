@@ -49,7 +49,7 @@ function Logo() {
       href="/"
       className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
     >
-      <span className="relative size-8 rounded-full overflow-hidden shrink-0 dark:shadow-[0_0_12px_2px_rgba(212,149,106,0.3)]">
+      <span className="relative size-8 rounded-full overflow-hidden shrink-0 dark:border-[1.5px] dark:border-[rgba(212,149,106,0.5)] dark:shadow-[0_0_6px_0_rgba(212,149,106,0.15)]">
         <img
           src="/logo-light.png"
           alt=""
