@@ -1,17 +1,22 @@
 export function SpriteAnimation() {
   return (
     <div
-      role="img"
-      aria-label="Pushok idle animation"
-      className="sprite-pushok"
-      style={{
-        width: 120,
-        height: 120,
-        backgroundImage: "url(/CAT_Player_CUTE_idle.png)",
-        backgroundSize: "120px 1440px",
-        backgroundRepeat: "no-repeat",
-        imageRendering: "pixelated",
-      }}
-    />
+      className="sprite-walk-move"
+      style={{ width: 120, height: 120 }}
+    >
+      <div
+        role="img"
+        aria-label="Pushok walking"
+        className="sprite-walking-cat"
+        style={{
+          width: 120,
+          height: 120,
+          backgroundImage: "url(/CAT_Player_walking.png)",
+          backgroundSize: "120px 960px",
+          backgroundRepeat: "no-repeat",
+          imageRendering: "pixelated",
+        }}
+      />
+    </div>
   );
 }

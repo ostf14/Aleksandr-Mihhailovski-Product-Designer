@@ -48,6 +48,29 @@ body {
   animation: sprite-pushok 1.2s steps(12, end) infinite;
 }
 
+/* Walking cat: 8-frame sprite (assumed) at 30×30, scaled 4× to 120×960 */
+@keyframes sprite-walking-cat {
+  from { background-position-y: 0px; }
+  to { background-position-y: -960px; }
+}
+@keyframes sprite-walk-flip {
+  0% { transform: scaleX(1); }
+  50% { transform: scaleX(-1); }
+  100% { transform: scaleX(1); }
+}
+@keyframes sprite-walk-move {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(200px); }
+}
+.sprite-walking-cat {
+  animation:
+    sprite-walking-cat 0.8s steps(8, end) infinite,
+    sprite-walk-flip 6s step-end infinite;
+}
+.sprite-walk-move {
+  animation: sprite-walk-move 6s ease-in-out infinite;
+}
+
 /* Dark-mode stone overrides — neutral cool greys */
 .dark .bg-stone-200 { background-color: rgb(40 42 42); }              /* #282A2A image placeholder */
 .dark .text-stone-400 { color: rgb(127 127 125); }                    /* faded kicker */
