@@ -4,13 +4,7 @@
 
 @font-face {
   font-family: "Asthetic Pixel";
-  src:
-    url("/fonts/AstheticPixel.otf") format("opentype"),
-    url("/fonts/AstheticPixel.ttf") format("truetype"),
-    url("/fonts/Asthetic-Pixel.otf") format("opentype"),
-    url("/fonts/Asthetic-Pixel.ttf") format("truetype"),
-    url("/fonts/Asthetic Pixel.otf") format("opentype"),
-    url("/fonts/Asthetic Pixel.ttf") format("truetype");
+  src: url("/fonts/AstheticPixel-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
