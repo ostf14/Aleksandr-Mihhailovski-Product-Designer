@@ -12,12 +12,12 @@
 }
 
 .dark {
-  /* Claude-style warm dark palette */
-  --rgb-cream: 42 37 32;          /* #2A2520 — page bg */
-  --rgb-cream-warm: 53 47 41;     /* #352F29 — cards / callouts / pill nav */
-  --rgb-cream-deep: 35 31 27;     /* #231F1B — footer */
-  --rgb-charcoal: 232 224 216;    /* #E8E0D8 — main text */
-  --rgb-terracotta: 212 149 106;  /* #D4956A — accent */
+  /* Claude AI palette */
+  --rgb-cream: 26 23 20;          /* #1a1714 — page bg */
+  --rgb-cream-warm: 38 35 32;     /* #262320 — cards / callouts / pill nav */
+  --rgb-cream-deep: 20 18 16;     /* #141210 — footer */
+  --rgb-charcoal: 236 229 219;    /* #ece5db — main text */
+  --rgb-terracotta: 218 123 74;   /* #da7b4a — accent */
   color-scheme: dark;
 }
 
@@ -40,15 +40,15 @@ body {
 }
 
 /* Dark-mode stone overrides — warm browns */
-.dark .bg-stone-200 { background-color: rgb(61 54 47); }              /* #3D362F image placeholder */
-.dark .text-stone-400 { color: rgb(138 127 115); }                    /* faded kicker */
-.dark .text-stone-500 { color: rgb(166 155 142); }                    /* #A69B8E muted */
-.dark .text-stone-600 { color: rgb(192 181 168); }                    /* slightly stronger muted */
-.dark .border-stone-200 { border-color: rgb(74 64 57 / 0.5); }        /* #4A4039 @50% */
-.dark .border-stone-200\/60 { border-color: rgb(74 64 57 / 0.5); }
-.dark .border-stone-200\/70 { border-color: rgb(74 64 57 / 0.5); }
-.dark .border-stone-200\/80 { border-color: rgb(74 64 57 / 0.5); }
-.dark .border-stone-300 { border-color: rgb(74 64 57 / 0.5); }
-.dark .bg-stone-300\/70 { background-color: rgb(74 64 57 / 0.7); }    /* nav divider */
-.dark .bg-white\/55 { background-color: rgb(53 47 41 / 0.7); }        /* TOC sidebar — uses card color */
-.dark .bg-cream\/80 { background-color: rgb(53 47 41 / 0.8); }        /* pill nav / ScrollToTop — uses card color, not page color */
+.dark .bg-stone-200 { background-color: rgb(48 43 39); }              /* #302b27 image placeholder */
+.dark .text-stone-400 { color: rgb(128 116 102); }                    /* faded kicker */
+.dark .text-stone-500 { color: rgb(155 142 128); }                    /* #9b8e80 muted */
+.dark .text-stone-600 { color: rgb(184 170 154); }                    /* slightly stronger muted */
+.dark .border-stone-200 { border-color: rgb(58 53 48 / 0.5); }        /* #3a3530 @50% */
+.dark .border-stone-200\/60 { border-color: rgb(58 53 48 / 0.5); }
+.dark .border-stone-200\/70 { border-color: rgb(58 53 48 / 0.5); }
+.dark .border-stone-200\/80 { border-color: rgb(58 53 48 / 0.5); }
+.dark .border-stone-300 { border-color: rgb(58 53 48 / 0.5); }
+.dark .bg-stone-300\/70 { background-color: rgb(58 53 48 / 0.7); }    /* nav divider */
+.dark .bg-white\/55 { background-color: rgb(38 35 32 / 0.7); }        /* TOC sidebar — card color */
+.dark .bg-cream\/80 { background-color: rgb(38 35 32 / 0.8); }        /* pill nav / ScrollToTop — card color */
