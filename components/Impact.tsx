@@ -33,7 +33,7 @@ export function Impact() {
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-2">
                     {m.label}
                   </div>
-                  <div className="font-serif text-charcoal tracking-tight text-[2.5rem] leading-none whitespace-nowrap">
+                  <div className="font-serif text-charcoal tracking-tight text-h2 leading-none whitespace-nowrap">
                     <AnimatedNumber value={m.value} />
                   </div>
                 </div>
