@@ -130,7 +130,11 @@ export default function Page() {
             </FadeIn>
 
             <div className="mt-14">
-              <ImagePlaceholder label="Hero: Push notification composer interface" wide />
+              <ImagePlaceholder
+                label="Hero: Push notification composer interface"
+                src="https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png?width=1440&height=1150"
+                wide
+              />
             </div>
           </header>
 
@@ -203,6 +207,7 @@ export default function Page() {
               className="mt-8"
               label="Screenshot: Notification composer with real-time device preview"
               caption="As the admin types, the preview updates instantly. No more mental simulation."
+              src="https://framerusercontent.com/images/m7S3DADdFomddOUvTJSSQYpnn28.jpg?width=1440&height=1100"
             />
 
             <Prose className="mt-8">
@@ -244,6 +249,7 @@ export default function Page() {
               className="mt-8"
               label="Screenshot: Audience targeting modal with user search and metadata table"
               caption="The metadata table lets admins verify they're selecting the right users before sending."
+              src="https://framerusercontent.com/images/7y8x0JDvHSnri716xUnvmd8lY.png?width=1440&height=1150"
             />
 
             <Prose className="mt-8">
@@ -285,6 +291,7 @@ export default function Page() {
                 className="mt-8"
                 label="Screenshot: Zero state — '0 users' indicator with disabled send button"
                 caption="Obvious errors need obvious prevention."
+                src="https://framerusercontent.com/images/hskAnvPWhcAfwEqWmoeYR0gs.png?width=1440&height=1100"
               />
             </div>
           </div>
@@ -313,6 +320,7 @@ export default function Page() {
               className="mt-8"
               label="Screenshot: Confirmation modal — 'Send to 238 users' with preview"
               caption="'Send to 238 users' — no room for interpretation."
+              src="https://framerusercontent.com/images/P24PkByUoqf06mF8LtQSWIudZw.jpg?width=1440&height=1100"
             />
 
             <Callout className="mt-14" label="Key insight">
@@ -367,6 +375,7 @@ export default function Page() {
               <ImagePlaceholder
                 className="mt-8"
                 label="Screenshot: Shared component library and design tokens"
+                src="https://framerusercontent.com/images/36tySRfTZZc2sl6wlPgyod69RA.png?width=1440&height=1150"
                 caption="Same components, same patterns, lower cognitive load."
               />
             </div>
