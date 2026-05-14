@@ -12,11 +12,12 @@
 }
 
 .dark {
-  --rgb-cream: 20 17 13;
-  --rgb-cream-warm: 34 30 24;
-  --rgb-cream-deep: 14 11 7;
-  --rgb-charcoal: 237 233 224;
-  --rgb-terracotta: 224 145 110;
+  /* Claude-style warm dark palette */
+  --rgb-cream: 42 37 32;          /* #2A2520 — page bg */
+  --rgb-cream-warm: 53 47 41;     /* #352F29 — cards / callouts / pill nav */
+  --rgb-cream-deep: 35 31 27;     /* #231F1B — footer */
+  --rgb-charcoal: 232 224 216;    /* #E8E0D8 — main text */
+  --rgb-terracotta: 212 149 106;  /* #D4956A — accent */
   color-scheme: dark;
 }
 
@@ -38,13 +39,16 @@ body {
   color: rgb(var(--rgb-charcoal));
 }
 
-/* Stone utility overrides for dark mode */
-.dark .bg-stone-200 { background-color: rgb(41 37 36); }
-.dark .text-stone-500 { color: rgb(168 162 158); }
-.dark .text-stone-600 { color: rgb(214 211 209); }
-.dark .border-stone-200 { border-color: rgb(58 53 48); }
-.dark .border-stone-200\/70 { border-color: rgb(58 53 48 / 0.7); }
-.dark .border-stone-200\/80 { border-color: rgb(58 53 48 / 0.8); }
-.dark .border-stone-300 { border-color: rgb(68 64 60); }
-.dark .bg-stone-300\/70 { background-color: rgb(68 64 60 / 0.7); }
-.dark .bg-white\/55 { background-color: rgb(34 30 24 / 0.7); }
+/* Dark-mode stone overrides — warm browns */
+.dark .bg-stone-200 { background-color: rgb(61 54 47); }              /* #3D362F image placeholder */
+.dark .text-stone-400 { color: rgb(138 127 115); }                    /* faded kicker */
+.dark .text-stone-500 { color: rgb(166 155 142); }                    /* #A69B8E muted */
+.dark .text-stone-600 { color: rgb(192 181 168); }                    /* slightly stronger muted */
+.dark .border-stone-200 { border-color: rgb(74 64 57 / 0.5); }        /* #4A4039 @50% */
+.dark .border-stone-200\/60 { border-color: rgb(74 64 57 / 0.5); }
+.dark .border-stone-200\/70 { border-color: rgb(74 64 57 / 0.5); }
+.dark .border-stone-200\/80 { border-color: rgb(74 64 57 / 0.5); }
+.dark .border-stone-300 { border-color: rgb(74 64 57 / 0.5); }
+.dark .bg-stone-300\/70 { background-color: rgb(74 64 57 / 0.7); }    /* nav divider */
+.dark .bg-white\/55 { background-color: rgb(53 47 41 / 0.7); }        /* TOC sidebar — uses card color */
+.dark .bg-cream\/80 { background-color: rgb(53 47 41 / 0.8); }        /* pill nav / ScrollToTop — uses card color, not page color */

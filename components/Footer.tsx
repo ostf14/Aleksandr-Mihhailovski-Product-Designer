@@ -18,7 +18,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-cream-warm border-t border-stone-200">
+    <footer className="bg-cream-deep border-t border-stone-200">
       <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-12">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-10 md:gap-12">
           {/* Links */}
