@@ -30,10 +30,10 @@ export function Impact() {
                     i === 0 ? "md:pr-6" : i === 2 ? "md:pl-6" : "md:px-6"
                   }`}
                 >
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-2">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-2">
                     {m.label}
                   </div>
-                  <div className="font-serif text-terracotta tracking-tight text-[clamp(1.375rem,2.4vw,1.625rem)] leading-none whitespace-nowrap">
+                  <div className="font-serif text-charcoal tracking-tight text-[2.5rem] leading-none whitespace-nowrap">
                     <AnimatedNumber value={m.value} />
                   </div>
                 </div>

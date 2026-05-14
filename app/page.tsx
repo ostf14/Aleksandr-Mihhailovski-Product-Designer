@@ -66,7 +66,7 @@ export default function Page() {
             <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
               <div className="border border-stone-200 bg-cream-warm rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                 <div className="md:pr-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     Overview
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
@@ -76,7 +76,7 @@ export default function Page() {
                 </div>
 
                 <div className="md:px-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     My role
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
@@ -85,7 +85,7 @@ export default function Page() {
                 </div>
 
                 <div className="md:px-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     Team
                   </div>
                   <p className="text-[15px] text-stone-500 mb-3">Seamm product team</p>
@@ -108,7 +108,7 @@ export default function Page() {
                 </div>
 
                 <div className="md:pl-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     Impact
                   </div>
                   <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
