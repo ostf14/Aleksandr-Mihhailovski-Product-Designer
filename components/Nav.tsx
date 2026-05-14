@@ -59,8 +59,8 @@ function Logo() {
         />
       </span>
       <span
-        className="text-[30px] leading-none"
-        style={{ fontFamily: '"Asthetic Pixel", system-ui, sans-serif' }}
+        className="text-[18px] font-normal leading-none"
+        style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
       >
         Aleksandr Mihhailovski
       </span>

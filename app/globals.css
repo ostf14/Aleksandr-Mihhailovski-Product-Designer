@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Asthetic Pixel";
-  src: url("/fonts/AstheticPixel-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --rgb-cream: 247 245 236;
   --rgb-cream-warm: 240 237 229;

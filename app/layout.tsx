@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, PT_Serif, JetBrains_Mono } from "next/font/google";
+import { Inter, PT_Serif, JetBrains_Mono, Pixelify_Sans } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,6 +20,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+const pixelifySans = Pixelify_Sans({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pixelify-sans",
   display: "swap",
 });
 
@@ -60,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${ptSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${ptSerif.variable} ${jetbrainsMono.variable} ${pixelifySans.variable}`}
       suppressHydrationWarning
     >
       <head>
