@@ -58,7 +58,10 @@ function Logo() {
           style={{ imageRendering: "pixelated" }}
         />
       </span>
-      <span className="font-serif italic font-normal text-xl leading-none">
+      <span
+        className="text-[18px] leading-none"
+        style={{ fontFamily: '"Asthetic Pixel", system-ui, sans-serif' }}
+      >
         Aleksandr Mihhailovski
       </span>
     </a>
