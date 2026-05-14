@@ -230,7 +230,7 @@ export default function Page() {
               kicker="03 · Targeting"
               heading={
                 <>
-                  Who <em>receives</em> this?
+                  Who <em>receives</em>&nbsp; this?
                 </>
               }
             >
@@ -302,7 +302,7 @@ export default function Page() {
               kicker="04 · Safety"
               heading={
                 <>
-                  The <em>anxiety-free</em> confirmation
+                  The <em>anxiety-free</em>&nbsp; confirmation
                 </>
               }
             >
