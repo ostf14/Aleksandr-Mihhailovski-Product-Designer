@@ -47,7 +47,7 @@ function Logo() {
   return (
     <a
       href="/"
-      className="flex items-center gap-2.5 pl-1 pr-3 py-1 text-sm font-medium tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
+      className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
     >
       <span className="relative size-8 rounded-full overflow-hidden shrink-0">
         <img
@@ -58,7 +58,9 @@ function Logo() {
           style={{ imageRendering: "pixelated" }}
         />
       </span>
-      <span>Alex Mikhailovski</span>
+      <span className="font-serif italic font-normal text-xl leading-none">
+        Aleksandr Mihhailovski
+      </span>
     </a>
   );
 }
