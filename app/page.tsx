@@ -139,6 +139,58 @@ export default function Page() {
             <Impact />
           </div>
 
+          {/* Before / After workflow */}
+          <div className="mt-14 px-6 md:px-10">
+            <FadeIn className="max-w-prose mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                <div>
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-3">
+                    Before
+                  </div>
+                  <div className="text-[13px] leading-[1.4] text-stone-500">
+                    {["Marketers", "Slack message", "Dev team codes", "Wait", "Send"].map(
+                      (step, i, arr) => (
+                        <div key={step}>
+                          <div>{step}</div>
+                          {i < arr.length - 1 && (
+                            <div
+                              aria-hidden
+                              className="text-stone-400 text-xs leading-none my-1"
+                            >
+                              ↓
+                            </div>
+                          )}
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                    After
+                  </div>
+                  <div className="text-[13px] leading-[1.4] text-charcoal">
+                    {["Marketers", "Visual Composer", "Instant Preview", "Send"].map(
+                      (step, i, arr) => (
+                        <div key={step}>
+                          <div>{step}</div>
+                          {i < arr.length - 1 && (
+                            <div
+                              aria-hidden
+                              className="text-terracotta text-xs leading-none my-1"
+                            >
+                              ↓
+                            </div>
+                          )}
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
           {/* Why we started */}
           <div id="why-we-started" className="scroll-mt-20 mt-32 pb-32">
             <Section kicker="01 · Context" heading="Why we started">
