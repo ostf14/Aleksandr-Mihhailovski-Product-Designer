@@ -22,17 +22,10 @@ export function Nav() {
         >
           <span className="relative size-8 rounded-full overflow-hidden shrink-0">
             <img
-              src="/logo-dark.png"
-              alt=""
-              aria-hidden
-              className="absolute inset-0 size-full object-cover dark:hidden"
-              style={{ imageRendering: "pixelated" }}
-            />
-            <img
               src="/logo-light.png"
               alt=""
               aria-hidden
-              className="absolute inset-0 size-full object-cover hidden dark:block"
+              className="absolute inset-0 size-full object-cover"
               style={{ imageRendering: "pixelated" }}
             />
           </span>
