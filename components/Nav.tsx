@@ -46,17 +46,17 @@ export function Nav() {
     <>
       {/* Desktop morphing nav */}
       <motion.div
-        className="hidden md:flex fixed inset-x-0 top-0 z-50 justify-center pointer-events-none"
+        className="hidden md:flex fixed inset-x-0 top-0 z-50 px-6 md:px-10 justify-center pointer-events-none"
         animate={{ y: scrolled ? 16 : 0 }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
       >
         <motion.nav
           layout
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className={`pointer-events-auto flex items-center justify-between border transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[350ms] ease-in-out ${
+          className={`pointer-events-auto flex items-center justify-between gap-1 border transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[350ms] ease-in-out ${
             scrolled
-              ? "gap-1 p-1.5 rounded-full bg-cream/80 backdrop-blur-md border-stone-200/60 shadow-sm"
-              : "w-full max-w-bleed px-6 md:px-10 py-4 rounded-none bg-transparent border-transparent shadow-none"
+              ? "p-1.5 rounded-full bg-cream/80 backdrop-blur-md border-stone-200/60 shadow-sm"
+              : "w-full max-w-bleed py-4 rounded-none bg-transparent border-transparent shadow-none"
           }`}
         >
           <a
