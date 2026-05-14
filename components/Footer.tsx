@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy, Mail } from "lucide-react";
+import { SpriteAnimation } from "./SpriteAnimation";
 
 const EMAIL = "aleksandr@example.com";
 
@@ -71,18 +72,16 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Spotify */}
-          <div className="w-full md:max-w-[280px]">
-            <h3 className="font-serif italic text-[1.25rem] tracking-tight mb-4">Soundtrack</h3>
-            <iframe
-              src="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?theme=0"
-              width="100%"
-              height="80"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              style={{ borderRadius: 12 }}
-              loading="lazy"
-            />
+          {/* Pushok */}
+          <div className="flex flex-col items-start md:items-end">
+            <SpriteAnimation />
+            <p
+              className="mt-2 text-sm leading-none"
+              style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+            >
+              Pushok
+            </p>
+            <p className="mt-1 text-[11px] italic text-stone-400">from my indie game</p>
           </div>
         </div>
 

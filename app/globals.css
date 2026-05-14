@@ -39,6 +39,15 @@ body {
   color: rgb(var(--rgb-charcoal));
 }
 
+/* Sprite-sheet animation: 12 frames × 30px tall, scaled 4× (sheet 120×1440) */
+@keyframes sprite-pushok {
+  from { background-position-y: 0px; }
+  to { background-position-y: -1440px; }
+}
+.sprite-pushok {
+  animation: sprite-pushok 1.2s steps(12, end) infinite;
+}
+
 /* Dark-mode stone overrides — neutral cool greys */
 .dark .bg-stone-200 { background-color: rgb(40 42 42); }              /* #282A2A image placeholder */
 .dark .text-stone-400 { color: rgb(127 127 125); }                    /* faded kicker */
