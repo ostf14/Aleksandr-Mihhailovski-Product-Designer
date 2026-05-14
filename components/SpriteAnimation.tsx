@@ -12,7 +12,7 @@ export function SpriteAnimation() {
           width: 120,
           height: 120,
           backgroundImage: "url(/CAT_Player_walking.png)",
-          backgroundSize: "120px 960px",
+          backgroundSize: "1200px 120px",
           backgroundRepeat: "no-repeat",
           imageRendering: "pixelated",
         }}
