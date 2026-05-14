@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
@@ -47,7 +47,7 @@ function Logo() {
   return (
     <a
       href="/"
-      className="flex items-center gap-2.5 pl-1 pr-3 py-1 text-sm font-medium tracking-tight text-charcoal hover:text-terracotta transition-colors"
+      className="flex items-center gap-2.5 pl-1 pr-3 py-1 text-sm font-medium tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
     >
       <span className="relative size-8 rounded-full overflow-hidden shrink-0">
         <img
@@ -63,30 +63,6 @@ function Logo() {
   );
 }
 
-function FadeShell({
-  visible,
-  delay,
-  children,
-  className,
-}: {
-  visible: boolean;
-  delay: number;
-  children: ReactNode;
-  className: string;
-}) {
-  return (
-    <motion.div
-      className={className}
-      initial={false}
-      animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.2, ease: "easeInOut", delay }}
-      style={{ pointerEvents: visible ? "auto" : "none" }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -98,37 +74,33 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // When switching: outgoing fades first (0s delay), incoming waits (0.2s delay).
-  const fullDelay = scrolled ? 0 : 0.2;
-  const pillDelay = scrolled ? 0.2 : 0;
-
   return (
     <>
-      {/* Desktop: full-width nav at top (scroll = 0) */}
-      <FadeShell
-        visible={!scrolled}
-        delay={fullDelay}
-        className="hidden md:block fixed inset-x-0 top-0 z-50 px-6 md:px-10"
-      >
-        <nav className="max-w-bleed mx-auto flex items-center justify-between py-4">
+      {/* Desktop: single nav, container properties animate, content stays static */}
+      <div className="hidden md:flex fixed inset-x-0 top-0 z-50 px-6 md:px-10 justify-center pointer-events-none">
+        <motion.nav
+          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[400ms] ease-in-out ${
+            scrolled
+              ? "bg-cream/80 backdrop-blur-md border-stone-200/60 shadow-sm"
+              : "bg-transparent border-transparent shadow-none backdrop-blur-0"
+          }`}
+          animate={{
+            maxWidth: scrolled ? 480 : 1080,
+            paddingLeft: scrolled ? 8 : 0,
+            paddingRight: scrolled ? 8 : 0,
+            paddingTop: scrolled ? 6 : 16,
+            paddingBottom: scrolled ? 6 : 16,
+            borderRadius: scrolled ? 9999 : 0,
+            marginTop: scrolled ? 16 : 0,
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
           <Logo />
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 shrink-0">
             <NavContents pathname={pathname} />
           </div>
-        </nav>
-      </FadeShell>
-
-      {/* Desktop: pill nav centered (scrolled) */}
-      <FadeShell
-        visible={scrolled}
-        delay={pillDelay}
-        className="hidden md:flex fixed inset-x-0 top-4 z-50 justify-center px-4"
-      >
-        <nav className="flex items-center gap-1 p-1.5 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm">
-          <Logo />
-          <NavContents pathname={pathname} />
-        </nav>
-      </FadeShell>
+        </motion.nav>
+      </div>
 
       {/* Mobile pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
