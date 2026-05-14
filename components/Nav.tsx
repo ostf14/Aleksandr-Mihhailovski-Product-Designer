@@ -12,8 +12,6 @@ const items: Item[] = [
   { label: "About", href: "/about" },
 ];
 
-const EMAIL = "alex@example.com";
-
 function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   const isActive =
     item.href === "/"
@@ -33,85 +31,13 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   );
 }
 
-function Divider() {
-  return <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />;
-}
-
-function LinkedInLink() {
-  return (
-    <a
-      href="https://www.linkedin.com/in/alexmess/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="LinkedIn"
-      title="LinkedIn"
-      className="size-9 rounded-full flex items-center justify-center text-stone-500 hover:text-terracotta hover:bg-cream-warm transition-colors shrink-0"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        width="16"
-        height="16"
-        aria-hidden
-      >
-        <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z" />
-      </svg>
-    </a>
-  );
-}
-
-function EmailButton() {
-  const [copied, setCopied] = useState(false);
-  const onClick = async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* ignore */
-    }
-  };
-  return (
-    <div className="relative shrink-0">
-      <button
-        type="button"
-        onClick={onClick}
-        className="px-3 py-2 text-sm text-stone-500 hover:text-terracotta transition-colors"
-      >
-        Email
-      </button>
-      <span
-        aria-hidden={!copied}
-        className={`pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded-md bg-charcoal text-cream text-[11px] whitespace-nowrap shadow-sm transition-opacity duration-200 ${
-          copied ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        Copied!
-      </span>
-    </div>
-  );
-}
-
-function NavContents({
-  pathname,
-  showExtras,
-}: {
-  pathname: string | null;
-  showExtras: boolean;
-}) {
+function NavContents({ pathname }: { pathname: string | null }) {
   return (
     <>
       {items.map((item) => (
         <NavLink key={item.href} item={item} pathname={pathname} />
       ))}
-      {showExtras && (
-        <>
-          <Divider />
-          <LinkedInLink />
-          <EmailButton />
-        </>
-      )}
-      <Divider />
+      <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
       <ThemeToggle />
     </>
   );
@@ -176,7 +102,7 @@ export function Nav() {
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">
-            <NavContents pathname={pathname} showExtras={!scrolled} />
+            <NavContents pathname={pathname} />
           </div>
         </motion.nav>
       </div>
@@ -184,7 +110,7 @@ export function Nav() {
       {/* Mobile pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
         <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm">
-          <NavContents pathname={pathname} showExtras={false} />
+          <NavContents pathname={pathname} />
         </nav>
       </header>
     </>
