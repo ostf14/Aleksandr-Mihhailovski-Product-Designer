@@ -11,16 +11,16 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 
 const lessons = [
   {
-    h: "Reducing anxiety is more valuable than saving time.",
-    p: "The confirmation modal, the live preview, the zero-state indicator — these all 'slow down' the workflow by seconds. Users loved them. Preventing errors matters more than raw speed.",
-  },
-  {
-    h: "'Simple by default, powerful when needed' is a principle, not a compromise.",
-    p: "The modal-based targeting could have been a full filter system. But 80% of use cases didn't need it. Designing for the common case — and making the advanced case accessible — created a tool that felt simple without being limited.",
-  },
-  {
     h: "Self-service tools are anxiety products.",
-    p: "The primary emotion isn't 'I want to go fast.' It's 'I'm terrified of making a mistake that reaches thousands of users.' Every design decision should be filtered through that lens.",
+    p: "The primary user emotion isn't 'I want speed.' It's 'I'm terrified of a mistake reaching thousands.' The confirmation modal, live preview, and zero-state guard all address fear, not efficiency — and became the most praised features.",
+  },
+  {
+    h: "Design for the 80%, don't hide the 20%.",
+    p: "Most campaigns targeted a handful of users. A full filter system would have added complexity for everyone to serve rare cases. Modal targeting kept the default path fast without limiting power users.",
+  },
+  {
+    h: "Redirect expensive time, don't just save time.",
+    p: "The real win wasn't '30 min → 2 min.' It was freeing engineering hours that cost 3–5× more than marketing hours, and letting each team focus on what they do best.",
   },
 ];
 
@@ -152,7 +152,7 @@ export default function Page() {
                     {["Marketers", "Slack message", "Dev team codes", "Wait", "Send"].map(
                       (step, i, arr) => (
                         <div key={step} className="contents">
-                          <div className="bg-stone-200 text-stone-500 rounded-lg px-4 py-2 text-sm text-center line-through opacity-50">
+                          <div className="bg-stone-200 text-stone-500 rounded-lg px-4 py-2 text-sm text-center">
                             {step}
                           </div>
                           {i < arr.length - 1 && (
@@ -205,9 +205,12 @@ export default function Page() {
             <Section kicker="01 · Context" heading="Why we started">
               <Prose>
                 <p>
-                  Seamm&rsquo;s marketing team needed to re-engage users and announce new features
-                  through push notifications. Every campaign required a Slack message to
-                  engineering, manual database queries, and developer intervention to send.
+                  Every push notification required marketers to message the engineering team via
+                  Slack, wait for availability, then have a developer manually query the database
+                  and send. Engineers — whose time costs significantly more — were pulled from
+                  product work to handle routine marketing tasks. Marketers had no visibility into
+                  how notifications would appear on users&rsquo; devices, and with no preview or
+                  review step, a single typo could reach thousands of users instantly.
                 </p>
                 <p>
                   But unlike content that can be unpublished, push notifications are irreversible.
@@ -231,7 +234,9 @@ export default function Page() {
               </Callout>
 
               <Callout className="mt-14" label="Key insight">
-                Every change, no matter how small, required an engineer. Marketing was paralyzed.
+                Push notifications sat at an expensive intersection: marketing couldn&rsquo;t send
+                without engineering, engineering had higher-priority work, and neither side had
+                tools to prevent costly mistakes.
               </Callout>
             </Section>
           </div>
@@ -311,8 +316,11 @@ export default function Page() {
             </Prose>
 
             <Callout className="mt-14" label="Design decision">
-              &lsquo;Simple by default, powerful when needed&rsquo; — this approach matched how
-              the team actually worked.
+              80% of campaigns targeted fewer than 50 specific users — not complex segments
+              needing multi-filter dashboards. A modal with search-by-name covers this in two
+              clicks: open, search, select, done. The main composer stays uncluttered for the
+              message itself, and the modal only appears when the admin actively chooses custom
+              targeting.
             </Callout>
 
             {/* Zero-state subblock */}
@@ -394,8 +402,8 @@ export default function Page() {
             </Section>
 
             <Callout className="mt-14" label="Key insight">
-              Marketing wanted confidence over flexibility. Reducing options turned out to be more
-              empowering than adding them.
+              The real win wasn&rsquo;t faster notifications. It was redirecting engineering hours
+              — which cost 3–5× more than marketing hours — back to product work.
             </Callout>
 
             {/* Under the hood — design system subblock */}
