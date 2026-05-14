@@ -1,19 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { Check, Copy, Mail } from "lucide-react";
+
+const EMAIL = "aleksandr@example.com";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
-  const email = "alex@example.com";
 
-  const copyEmail = async (e: React.MouseEvent) => {
-    e.preventDefault();
+  const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(email);
+      await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+      setTimeout(() => setCopied(false), 2000);
     } catch {
-      setCopied(false);
+      /* ignore */
     }
   };
 
@@ -23,7 +24,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-10 md:gap-12">
           {/* Links */}
           <div>
-            <h3 className="font-serif font-medium text-[1.25rem] tracking-tight mb-4">Links</h3>
+            <h3 className="font-serif font-medium text-[1.25rem] tracking-tight mb-1">Links</h3>
+            <p className="text-[13px] text-stone-400 mb-4">Product Designer · Kraków, Poland</p>
             <ul className="space-y-2 text-base">
               <li>
                 <a
@@ -36,18 +38,35 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${email}`}
-                  onClick={copyEmail}
-                  className="text-stone-600 hover:text-charcoal transition-colors"
-                >
-                  {copied ? "Email copied" : "Email"}
-                </a>
-              </li>
-              <li>
                 <a href="#" className="text-stone-600 hover:text-charcoal transition-colors">
                   Resume
                 </a>
+              </li>
+              <li className="pt-2">
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  aria-label={`Copy email ${EMAIL}`}
+                  className="inline-flex items-center gap-2 bg-cream-warm border border-stone-200 rounded-lg px-4 py-2.5 text-[13px] text-charcoal hover:border-terracotta transition-colors"
+                >
+                  <Mail size={14} strokeWidth={1.75} className="text-stone-500" aria-hidden />
+                  <span>{EMAIL}</span>
+                  {copied ? (
+                    <Check
+                      size={14}
+                      strokeWidth={2}
+                      className="text-terracotta"
+                      aria-hidden
+                    />
+                  ) : (
+                    <Copy
+                      size={14}
+                      strokeWidth={1.75}
+                      className="text-stone-400"
+                      aria-hidden
+                    />
+                  )}
+                </button>
               </li>
             </ul>
           </div>
@@ -66,6 +85,9 @@ export function Footer() {
             />
           </div>
         </div>
+
+        <hr className="mt-10 mb-4 border-t border-stone-200" />
+        <p className="text-center text-xs text-stone-400">© 2025 Aleksandr Mihhailovski</p>
       </div>
     </footer>
   );
