@@ -12,12 +12,12 @@
 }
 
 .dark {
-  /* Claude AI palette */
-  --rgb-cream: 26 23 20;          /* #1a1714 — page bg */
-  --rgb-cream-warm: 38 35 32;     /* #262320 — cards / callouts / pill nav */
-  --rgb-cream-deep: 20 18 16;     /* #141210 — footer */
-  --rgb-charcoal: 236 229 219;    /* #ece5db — main text */
-  --rgb-terracotta: 218 123 74;   /* #da7b4a — accent */
+  /* Perplexity-style neutral palette */
+  --rgb-cream: 25 26 26;          /* #191A1A — page bg */
+  --rgb-cream-warm: 36 38 38;     /* #242626 — cards / callouts / pill nav */
+  --rgb-cream-deep: 20 21 21;     /* #141515 — footer */
+  --rgb-charcoal: 232 232 230;    /* #E8E8E6 — main text */
+  --rgb-terracotta: 218 123 74;   /* #da7b4a — terracotta accent (the only warm tone) */
   color-scheme: dark;
 }
 
@@ -39,16 +39,16 @@ body {
   color: rgb(var(--rgb-charcoal));
 }
 
-/* Dark-mode stone overrides — warm browns */
-.dark .bg-stone-200 { background-color: rgb(48 43 39); }              /* #302b27 image placeholder */
-.dark .text-stone-400 { color: rgb(128 116 102); }                    /* faded kicker */
-.dark .text-stone-500 { color: rgb(155 142 128); }                    /* #9b8e80 muted */
-.dark .text-stone-600 { color: rgb(184 170 154); }                    /* slightly stronger muted */
-.dark .border-stone-200 { border-color: rgb(58 53 48 / 0.5); }        /* #3a3530 @50% */
-.dark .border-stone-200\/60 { border-color: rgb(58 53 48 / 0.5); }
-.dark .border-stone-200\/70 { border-color: rgb(58 53 48 / 0.5); }
-.dark .border-stone-200\/80 { border-color: rgb(58 53 48 / 0.5); }
-.dark .border-stone-300 { border-color: rgb(58 53 48 / 0.5); }
-.dark .bg-stone-300\/70 { background-color: rgb(58 53 48 / 0.7); }    /* nav divider */
-.dark .bg-white\/55 { background-color: rgb(38 35 32 / 0.7); }        /* TOC sidebar — card color */
-.dark .bg-cream\/80 { background-color: rgb(38 35 32 / 0.8); }        /* pill nav / ScrollToTop — card color */
+/* Dark-mode stone overrides — neutral cool greys */
+.dark .bg-stone-200 { background-color: rgb(40 42 42); }              /* #282A2A image placeholder */
+.dark .text-stone-400 { color: rgb(127 127 125); }                    /* faded kicker */
+.dark .text-stone-500 { color: rgb(154 154 152); }                    /* #9A9A98 muted */
+.dark .text-stone-600 { color: rgb(186 186 184); }                    /* slightly stronger muted */
+.dark .border-stone-200 { border-color: rgb(46 48 48 / 0.5); }        /* #2E3030 @50% */
+.dark .border-stone-200\/60 { border-color: rgb(46 48 48 / 0.5); }
+.dark .border-stone-200\/70 { border-color: rgb(46 48 48 / 0.5); }
+.dark .border-stone-200\/80 { border-color: rgb(46 48 48 / 0.5); }
+.dark .border-stone-300 { border-color: rgb(46 48 48 / 0.5); }
+.dark .bg-stone-300\/70 { background-color: rgb(46 48 48 / 0.7); }    /* nav divider */
+.dark .bg-white\/55 { background-color: rgb(36 38 38 / 0.7); }        /* TOC sidebar — card color */
+.dark .bg-cream\/80 { background-color: rgb(36 38 38 / 0.8); }        /* pill nav / ScrollToTop — card color */
