@@ -107,7 +107,31 @@ export function Nav() {
         </motion.nav>
       </div>
 
-      {/* Mobile pill (bottom) */}
+      {/* Mobile brand pill (top) */}
+      <div className="md:hidden fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none px-4">
+        <a
+          href="/"
+          className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm text-charcoal hover:text-terracotta transition-colors"
+        >
+          <span className="relative size-7 rounded-full overflow-hidden shrink-0 dark:border-[1.5px] dark:border-[rgba(255,217,152,0.5)] dark:shadow-[0_0_6px_0_rgba(212,149,106,0.15)]">
+            <img
+              src="/logo-light.png"
+              alt=""
+              aria-hidden
+              className="absolute inset-0 size-full object-cover"
+              style={{ imageRendering: "pixelated" }}
+            />
+          </span>
+          <span
+            className="text-[14px] font-normal leading-none"
+            style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+          >
+            Aleksandr Mihhailovski
+          </span>
+        </a>
+      </div>
+
+      {/* Mobile nav pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
         <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm">
           <NavContents pathname={pathname} />
