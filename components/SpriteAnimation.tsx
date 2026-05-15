@@ -1,6 +1,6 @@
 export function SpriteAnimation() {
   return (
-    <div className="relative w-screen overflow-hidden" style={{ height: 120 }}>
+    <div className="relative w-full overflow-hidden" style={{ height: 120 }}>
       <div
         className="sprite-walk-move absolute bottom-0 left-0"
         style={{ width: 120, height: 120 }}
