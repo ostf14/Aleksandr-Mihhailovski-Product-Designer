@@ -52,7 +52,7 @@ export function MoreCases() {
   return (
     <section className="px-6 md:px-10 pb-24">
       <div className="max-w-prose mx-auto">
-        <h2 className="font-serif font-normal text-[40px] leading-tight tracking-tight mb-5">
+        <h2 className="font-serif font-normal text-h2 tracking-tight mb-5">
           More case studies
         </h2>
 
