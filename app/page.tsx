@@ -46,7 +46,7 @@ export default function Page() {
       <TableOfContents />
       <ScrollToTop />
 
-      <main className="pt-6 md:pt-28">
+      <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
           <header id="overview" className="scroll-mt-20 px-6 md:px-10 pt-6 md:pt-10 pb-14">
