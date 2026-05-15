@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Shuffle } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 
 type Case = {
   id: string;
@@ -132,17 +132,17 @@ export function MoreCases() {
             type="button"
             onClick={shuffle}
             disabled={phase !== "idle"}
-            aria-label="Shuffle case studies"
-            className="group flex flex-col items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Show next case"
+            className="group flex flex-col items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Shuffle
-              size={28}
-              strokeWidth={1.5}
+            <ChevronDown
+              size={32}
+              strokeWidth={1.75}
               className="text-stone-400 transition-all duration-200 group-hover:text-charcoal group-hover:scale-110 dark:group-hover:text-cream"
               aria-hidden
             />
             <span className="text-[13px] text-stone-500 group-hover:text-charcoal transition-colors dark:group-hover:text-cream">
-              Shuffle
+              Next case
             </span>
           </button>
         </div>
