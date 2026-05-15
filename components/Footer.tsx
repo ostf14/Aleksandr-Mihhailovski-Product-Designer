@@ -20,7 +20,12 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-cream-deep border-t border-stone-200">
+    <footer className="relative bg-cream-deep border-t border-stone-200">
+      {/* Cat walking strip — sits on the top border, feet on the divider line */}
+      <div className="absolute inset-x-0 top-0 -translate-y-full pointer-events-none">
+        <SpriteAnimation />
+      </div>
+
       <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-10">
         <h3 className="font-serif font-medium text-[1.25rem] tracking-tight mb-1">Links</h3>
         <p className="text-[13px] text-stone-400 mb-4">Product Designer · Kraków, Poland</p>
@@ -58,12 +63,6 @@ export function Footer() {
           </li>
         </ul>
       </div>
-
-      {/* Cat walking strip — full viewport width */}
-      <SpriteAnimation />
-
-      {/* HR divider — full width, stronger color */}
-      <hr className="border-0 border-t border-[#d6d3d1] dark:border-[#44403c] m-0" />
 
       {/* Copyright */}
       <div className="max-w-prose mx-auto px-6 md:px-10 pt-4 pb-12">

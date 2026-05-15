@@ -43,11 +43,14 @@ function NavContents({ pathname }: { pathname: string | null }) {
   );
 }
 
-function Logo() {
+function Logo({ scrolled, pathname }: { scrolled: boolean; pathname: string | null }) {
+  const isCasePage = pathname === "/";
+  const showBreadcrumb = scrolled && isCasePage;
+
   return (
     <a
       href="/"
-      className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
+      className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap min-w-0"
     >
       <span className="relative size-8 rounded-full overflow-hidden shrink-0 dark:border-[1.5px] dark:border-[rgba(255,217,152,0.5)] dark:shadow-[0_0_6px_0_rgba(212,149,106,0.15)]">
         <img
@@ -58,12 +61,22 @@ function Logo() {
           style={{ imageRendering: "pixelated" }}
         />
       </span>
-      <span
-        className="text-[18px] font-normal leading-none"
-        style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
-      >
-        Aleksandr Mihhailovski
-      </span>
+      {showBreadcrumb ? (
+        <span className="flex items-center gap-1.5 text-[13px] leading-none min-w-0">
+          <span className="font-serif font-normal text-charcoal truncate">Push Notifications</span>
+          <span aria-hidden className="text-stone-400">/</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">
+            Cases
+          </span>
+        </span>
+      ) : (
+        <span
+          className="text-[18px] font-normal leading-none"
+          style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+        >
+          Aleksandr Mihhailovski
+        </span>
+      )}
     </a>
   );
 }
@@ -100,7 +113,7 @@ export function Nav() {
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-          <Logo />
+          <Logo scrolled={scrolled} pathname={pathname} />
           <div className="flex items-center gap-1 shrink-0">
             <NavContents pathname={pathname} />
           </div>

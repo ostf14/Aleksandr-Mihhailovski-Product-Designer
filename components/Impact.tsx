@@ -53,7 +53,7 @@ export function Impact() {
                 <div className="flex flex-col items-stretch">
                   {beforeSteps.map((step, i, arr) => (
                     <div key={step} className="contents">
-                      <div className="bg-stone-200 text-stone-500 rounded-lg px-4 py-2 text-sm text-center">
+                      <div className="bg-stone-200 text-stone-500 rounded-lg px-4 py-2 text-sm text-center line-through decoration-stone-400 decoration-[1.5px] underline-offset-2">
                         {step}
                       </div>
                       {i < arr.length - 1 && (
