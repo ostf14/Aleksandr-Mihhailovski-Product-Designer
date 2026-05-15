@@ -29,7 +29,7 @@ export function Footer() {
         <SpriteAnimation />
       </div>
 
-      <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-16">
+      <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-32">
         <h2 className="font-serif font-normal text-[40px] leading-tight tracking-tight mb-4">
           Let&rsquo;s work together
         </h2>
