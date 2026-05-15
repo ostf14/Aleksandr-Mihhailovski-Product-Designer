@@ -55,6 +55,10 @@ const themeInitScript = `
 (function(){try{var s=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();
 `;
 
+const catDurationScript = `
+(function(){function s(){document.documentElement.style.setProperty('--cat-duration',(window.innerWidth/36)+'s');}s();window.addEventListener('resize',s,{passive:true});})();
+`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -68,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: catDurationScript }} />
       </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
