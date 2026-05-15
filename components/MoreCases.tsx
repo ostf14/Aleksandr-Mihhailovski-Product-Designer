@@ -58,7 +58,7 @@ export function MoreCases() {
         </h2>
 
         {/* Card stack */}
-        <div className="relative h-[300px] overflow-hidden">
+        <div className="relative h-[268px] overflow-hidden">
           {cases.map((c, i) => {
             const position = order.indexOf(i);
             const isFront = position === 0;
