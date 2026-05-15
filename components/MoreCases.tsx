@@ -51,7 +51,7 @@ export function MoreCases() {
   };
 
   return (
-    <section className="px-6 md:px-10 pb-24">
+    <section className="px-6 md:px-10 pb-32">
       <div className="max-w-prose mx-auto">
         <h2 className="font-serif font-normal text-h2 tracking-tight mb-5">
           More case studies
@@ -138,11 +138,11 @@ export function MoreCases() {
             <ChevronDown
               size={32}
               strokeWidth={1.75}
-              className="text-stone-400 transition-all duration-200 group-hover:text-charcoal group-hover:scale-110 dark:group-hover:text-cream"
+              className="text-stone-400 transition-all duration-200 group-hover:text-terracotta group-hover:scale-110"
               aria-hidden
             />
-            <span className="text-[13px] text-stone-500 group-hover:text-charcoal transition-colors dark:group-hover:text-cream">
-              Next case
+            <span className="text-[13px] text-stone-500 group-hover:text-terracotta transition-colors">
+              next case
             </span>
           </button>
         </div>
