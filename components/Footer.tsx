@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, Mail } from "lucide-react";
 import { SpriteAnimation } from "./SpriteAnimation";
 
-const EMAIL = "aleksandr@example.com";
+const EMAIL = "ostf14@gmail.com";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
@@ -19,6 +18,8 @@ export function Footer() {
     }
   };
 
+  const linkClass = "text-stone-600 hover:text-charcoal transition-colors";
+
   return (
     <footer className="relative bg-cream-deep border-t border-stone-200">
       {/* Cat walking strip — sits on the top border, feet on the divider line */}
@@ -26,47 +27,46 @@ export function Footer() {
         <SpriteAnimation />
       </div>
 
-      <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-10">
-        <h3 className="font-serif font-medium text-[1.25rem] tracking-tight mb-1">Links</h3>
-        <p className="text-[13px] text-stone-400 mb-4">Product Designer · Kraków, Poland</p>
-        <ul className="space-y-2 text-base">
+      <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-16">
+        <h2 className="font-serif font-normal text-[24px] leading-tight tracking-tight">
+          Let&rsquo;s work together
+        </h2>
+        <p className="mt-2 text-[15px] leading-[1.55] text-stone-500 max-w-[320px]">
+          I&rsquo;m looking for a product design role where I can own complex workflows
+          end-to-end.
+        </p>
+        <div className="mt-4 flex items-center gap-2">
+          <span aria-hidden className="size-2 rounded-full bg-green-500 shrink-0" />
+          <span className="text-[13px] text-stone-400">Available for hire</span>
+        </div>
+
+        <ul className="mt-6 space-y-2 text-base">
+          <li>
+            <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className={linkClass}>
+              CV PDF
+            </a>
+          </li>
           <li>
             <a
               href="https://www.linkedin.com/in/alexmess/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-stone-600 hover:text-charcoal transition-colors"
+              className={linkClass}
             >
               LinkedIn
             </a>
           </li>
           <li>
-            <a href="#" className="text-stone-600 hover:text-charcoal transition-colors">
-              Resume
-            </a>
-          </li>
-          <li className="pt-2">
             <button
               type="button"
               onClick={copyEmail}
               aria-label={`Copy email ${EMAIL}`}
-              className="inline-flex items-center gap-2 bg-cream-warm border border-stone-200 rounded-lg px-4 py-2.5 text-[13px] text-charcoal hover:border-terracotta transition-colors"
+              className={`${linkClass} text-left`}
             >
-              <Mail size={14} strokeWidth={1.75} className="text-stone-500" aria-hidden />
-              <span>{EMAIL}</span>
-              {copied ? (
-                <Check size={14} strokeWidth={2} className="text-terracotta" aria-hidden />
-              ) : (
-                <Copy size={14} strokeWidth={1.75} className="text-stone-400" aria-hidden />
-              )}
+              {copied ? "Copied!" : "Copy my email"}
             </button>
           </li>
         </ul>
-      </div>
-
-      {/* Copyright */}
-      <div className="max-w-prose mx-auto px-6 md:px-10 pt-4 pb-12">
-        <p className="text-center text-xs text-stone-400">© 2025 Aleksandr Mihhailovski</p>
       </div>
     </footer>
   );
