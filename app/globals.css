@@ -67,7 +67,12 @@ body {
   animation: sprite-walking-cat 1s steps(10, end) infinite;
 }
 .sprite-walk-move {
-  animation: sprite-walk-move 22s linear infinite;
+  animation: sprite-walk-move 10s linear infinite;
+}
+@media (min-width: 768px) {
+  .sprite-walk-move {
+    animation-duration: 22s;
+  }
 }
 
 /* Dark-mode stone overrides — neutral cool greys */
