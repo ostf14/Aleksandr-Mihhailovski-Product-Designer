@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Shuffle } from "lucide-react";
 
 type Case = {
   id: string;
@@ -83,14 +84,27 @@ export function MoreCases() {
               transition = { duration: 0 };
             }
 
+            const hoverable = isFront && phase === "idle";
             return (
-              <motion.div
+              <motion.a
                 key={c.id}
-                className="absolute inset-x-0 bottom-0 h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5"
+                href={c.href}
+                className={`group absolute inset-x-0 bottom-0 h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block ${
+                  hoverable ? "" : "pointer-events-none"
+                }`}
                 animate={target}
                 transition={transition}
+                whileHover={hoverable ? { y: 4 } : undefined}
               >
-                <div className="flex flex-row gap-5 h-full">
+                {/* Top-right arrow */}
+                <ArrowUpRight
+                  size={32}
+                  strokeWidth={1.5}
+                  className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta"
+                  aria-hidden
+                />
+
+                <div className="flex flex-row gap-5 h-full pr-10">
                   {/* Image placeholder — desktop only */}
                   <div className="hidden md:block shrink-0 basis-[38%] bg-cream-warm dark:bg-cream-deep rounded-xl h-full" />
 
@@ -105,19 +119,9 @@ export function MoreCases() {
                     <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
                       {c.description}
                     </p>
-                    {isFront && (
-                      <div className="mt-auto pt-4">
-                        <a
-                          href={c.href}
-                          className="inline-flex items-center gap-1 bg-charcoal text-cream rounded-full px-4 h-9 text-sm hover:opacity-75 transition-opacity"
-                        >
-                          Read case study ›
-                        </a>
-                      </div>
-                    )}
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             );
           })}
         </div>
@@ -128,9 +132,18 @@ export function MoreCases() {
             type="button"
             onClick={shuffle}
             disabled={phase !== "idle"}
-            className="bg-charcoal text-cream rounded-lg px-4 h-9 text-sm hover:opacity-75 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Shuffle case studies"
+            className="group flex flex-col items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Shuffle
+            <Shuffle
+              size={28}
+              strokeWidth={1.5}
+              className="text-stone-400 transition-all duration-200 group-hover:text-charcoal group-hover:scale-110 dark:group-hover:text-cream"
+              aria-hidden
+            />
+            <span className="text-[13px] text-stone-500 group-hover:text-charcoal transition-colors dark:group-hover:text-cream">
+              Shuffle
+            </span>
           </button>
         </div>
       </div>
