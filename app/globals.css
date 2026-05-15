@@ -53,24 +53,19 @@ body {
   from { background-position-x: 0; }
   to { background-position-x: -1200px; }
 }
-/* 20s cycle (matches movement's 10s × 2 due to `alternate`):
-   first half facing right, second half facing left */
-@keyframes sprite-walk-flip {
-  0% { transform: scaleX(1); }
-  50% { transform: scaleX(-1); }
-}
-/* Move from off-screen left to off-screen right, linear; alternate flips direction */
+/* Single 12s loop: walk right, flip, walk back, flip — no `alternate` needed */
 @keyframes sprite-walk-move {
-  from { transform: translateX(-120px); }
-  to { transform: translateX(100vw); }
+  0%   { transform: translateX(0) scaleX(1); }
+  45%  { transform: translateX(calc(100vw - 120px)) scaleX(1); }
+  50%  { transform: translateX(calc(100vw - 120px)) scaleX(-1); }
+  95%  { transform: translateX(0) scaleX(-1); }
+  100% { transform: translateX(0) scaleX(1); }
 }
 .sprite-walking-cat {
-  animation:
-    sprite-walking-cat 1s steps(10, end) infinite,
-    sprite-walk-flip 20s step-end infinite;
+  animation: sprite-walking-cat 1s steps(10, end) infinite;
 }
 .sprite-walk-move {
-  animation: sprite-walk-move 10s linear infinite alternate;
+  animation: sprite-walk-move 12s linear infinite;
 }
 
 /* Dark-mode stone overrides — neutral cool greys */
