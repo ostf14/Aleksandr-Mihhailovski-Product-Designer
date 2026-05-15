@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { SpriteAnimation } from "./SpriteAnimation";
 
 const EMAIL = "ostf14@gmail.com";
@@ -20,7 +20,7 @@ export function Footer() {
   };
 
   const linkClass =
-    "text-[14px] text-stone-500 hover:text-terracotta transition-colors";
+    "text-[18px] text-stone-500 hover:text-terracotta transition-colors inline-flex items-center gap-1.5";
 
   return (
     <footer className="relative bg-cream-deep border-t border-stone-200">
@@ -30,7 +30,7 @@ export function Footer() {
       </div>
 
       <div className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-16">
-        <h2 className="font-serif font-normal text-[24px] leading-tight tracking-tight mb-4">
+        <h2 className="font-serif font-normal text-[40px] leading-tight tracking-tight mb-4">
           Let&rsquo;s work together
         </h2>
 
@@ -39,13 +39,13 @@ export function Footer() {
             type="button"
             onClick={copyEmail}
             aria-label={`Copy email ${EMAIL}`}
-            className={`${linkClass} inline-flex items-center gap-1.5`}
+            className={linkClass}
           >
             <span>Email</span>
             {copied ? (
-              <Check size={13} strokeWidth={2} className="text-terracotta" aria-hidden />
+              <Check size={16} strokeWidth={2} className="text-terracotta" aria-hidden />
             ) : (
-              <Copy size={13} strokeWidth={1.75} className="text-stone-400" aria-hidden />
+              <Copy size={16} strokeWidth={1.75} className="text-stone-400" aria-hidden />
             )}
           </button>
           <a
@@ -54,10 +54,12 @@ export function Footer() {
             rel="noopener noreferrer"
             className={linkClass}
           >
-            LinkedIn ↗
+            <span>LinkedIn</span>
+            <ArrowUpRight size={16} strokeWidth={1.75} className="text-stone-400" aria-hidden />
           </a>
           <a href="#" target="_blank" rel="noopener noreferrer" className={linkClass}>
-            CV PDF ↗
+            <span>CV PDF</span>
+            <ArrowUpRight size={16} strokeWidth={1.75} className="text-stone-400" aria-hidden />
           </a>
         </div>
       </div>
