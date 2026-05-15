@@ -1,6 +1,7 @@
 import { Nav } from "@/components/Nav";
 import { Impact } from "@/components/Impact";
 import { Footer } from "@/components/Footer";
+import { MoreCases } from "@/components/MoreCases";
 import { FadeIn } from "@/components/FadeIn";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Callout } from "@/components/Callout";
@@ -416,6 +417,8 @@ export default function Page() {
               </div>
             </Section>
           </div>
+
+          <MoreCases />
         </article>
       </main>
 
