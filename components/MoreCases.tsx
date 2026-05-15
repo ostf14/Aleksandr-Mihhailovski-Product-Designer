@@ -52,7 +52,7 @@ export function MoreCases() {
   return (
     <section className="px-6 md:px-10 pb-24">
       <div className="max-w-prose mx-auto">
-        <h2 className="font-serif font-normal text-[40px] leading-tight tracking-tight mb-6">
+        <h2 className="font-serif font-normal text-[40px] leading-tight tracking-tight mb-5">
           More case studies
         </h2>
 
@@ -86,7 +86,7 @@ export function MoreCases() {
             return (
               <motion.div
                 key={c.id}
-                className="absolute inset-x-0 bottom-0 h-[248px] origin-bottom rounded-t-2xl bg-cream/80 backdrop-blur-md border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5"
+                className="absolute inset-x-0 bottom-0 h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5"
                 animate={target}
                 transition={transition}
               >
