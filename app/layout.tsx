@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Pixelify_Sans } from "next/font/google";
+import { JetBrains_Mono, Pixelify_Sans } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -63,12 +57,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${pixelifySans.variable}`}
+      className={`${jetbrainsMono.variable} ${pixelifySans.variable}`}
       suppressHydrationWarning
     >
       <head>
         <link
           href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap"
           rel="stylesheet"
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

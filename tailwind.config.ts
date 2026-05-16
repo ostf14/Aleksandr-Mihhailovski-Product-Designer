@@ -16,7 +16,7 @@ const config: Config = {
         terracotta: "rgb(var(--rgb-terracotta) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["Switzer", "system-ui", "sans-serif"],
         serif: ["Gambarino", "Georgia", "serif"],
         mono: ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
