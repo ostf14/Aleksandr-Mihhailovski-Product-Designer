@@ -6,16 +6,24 @@ type Metric = {
   label: string;
 };
 
-const metrics: Metric[] = [
+const defaultMetrics: Metric[] = [
   { value: "~30 min → 2 min", label: "Campaign creation time" },
   { value: "3.75×", label: "Campaign velocity" },
   { value: "15+ h/month", label: "Engineering time freed" },
 ];
 
-const beforeSteps = ["Marketers", "Slack message", "Dev team codes", "Wait", "Send"];
-const afterSteps = ["Marketers", "Visual composer", "Send"];
+const defaultBeforeSteps = ["Marketers", "Slack message", "Dev team codes", "Wait", "Send"];
+const defaultAfterSteps = ["Marketers", "Visual composer", "Send"];
 
-export function Impact() {
+export function Impact({
+  metrics = defaultMetrics,
+  beforeSteps = defaultBeforeSteps,
+  afterSteps = defaultAfterSteps,
+}: {
+  metrics?: Metric[];
+  beforeSteps?: string[];
+  afterSteps?: string[];
+} = {}) {
   return (
     <section className="px-6 md:px-10">
       <div className="max-w-bleed mx-auto">

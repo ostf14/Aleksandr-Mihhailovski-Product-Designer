@@ -418,7 +418,7 @@ export default function Page() {
             </Section>
           </div>
 
-          <MoreCases />
+          <MoreCases currentId="push" />
         </article>
       </main>
 

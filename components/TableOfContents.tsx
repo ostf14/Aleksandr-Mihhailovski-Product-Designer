@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-type Item = { id: string; label: string; level?: 1 | 2 };
+export type TocItem = { id: string; label: string; level?: 1 | 2 };
 
-const items: Item[] = [
+const defaultItems: TocItem[] = [
   { id: "why-we-started", label: "Why we started" },
   { id: "blind-sending", label: "Solving ‘blind sending’" },
   { id: "audience", label: "Who receives this?" },
@@ -14,8 +14,8 @@ const items: Item[] = [
   { id: "lessons", label: "What I learned" },
 ];
 
-export function TableOfContents() {
-  const [active, setActive] = useState<string>(items[0].id);
+export function TableOfContents({ items = defaultItems }: { items?: TocItem[] } = {}) {
+  const [active, setActive] = useState<string>(items[0]?.id ?? "");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -39,10 +39,12 @@ export function TableOfContents() {
 
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [items]);
 
   useEffect(() => {
-    const target = document.getElementById("why-we-started");
+    const firstId = items[0]?.id;
+    if (!firstId) return;
+    const target = document.getElementById(firstId);
     if (!target) return;
 
     const check = () => {
@@ -57,7 +59,7 @@ export function TableOfContents() {
       window.removeEventListener("scroll", check);
       window.removeEventListener("resize", check);
     };
-  }, []);
+  }, [items]);
 
   return (
     <aside

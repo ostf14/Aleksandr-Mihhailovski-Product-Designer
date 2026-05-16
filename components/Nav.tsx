@@ -15,7 +15,7 @@ const items: Item[] = [
 function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   const isActive =
     item.href === "/"
-      ? pathname === "/"
+      ? pathname === "/" || (pathname?.startsWith("/case/") ?? false)
       : pathname === item.href || pathname?.startsWith(item.href + "/");
   return (
     <a
