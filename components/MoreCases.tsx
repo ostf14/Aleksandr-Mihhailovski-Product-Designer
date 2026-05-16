@@ -30,6 +30,14 @@ const cases: Case[] = [
     href: "/case/stories-editor",
     image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
   },
+  {
+    id: "chtenye",
+    tag: "Chtenye",
+    title: "Educational Platform Redesign",
+    description: "12 content types, zero navigation logic",
+    href: "/case/chtenye",
+    image: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
+  },
 ];
 
 type Phase = "idle" | "flying" | "snapping";
