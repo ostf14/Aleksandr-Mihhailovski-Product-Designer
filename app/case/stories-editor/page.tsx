@@ -14,8 +14,7 @@ const tocItems: TocItem[] = [
   { id: "blind-publishing", label: "Killing ‘blind publishing’" },
   { id: "constraints", label: "Brand-safe by design" },
   { id: "autonomy", label: "Why templates" },
-  { id: "results", label: "Results & system design" },
-  { id: "under-the-hood", label: "Under the hood", level: 2 },
+  { id: "results", label: "Results" },
   { id: "lessons", label: "What I learned" },
 ];
 
@@ -51,16 +50,16 @@ const results = [
 
 const lessons = [
   {
-    h: "Safety by design beats speed by default.",
-    p: "The template constraints and brand-locked colors initially felt limiting. They became the most-valued features. Marketing wanted confidence over flexibility.",
+    h: "10× velocity comes from removing people, not adding tools.",
+    p: "The bottleneck wasn't slow software. It was a Slack message to an engineer who had other priorities. The editor didn't speed up the process — it removed a step entirely.",
   },
   {
-    h: "Kill the intermediary, keep the guardrails.",
-    p: "Self-service doesn't mean 'do whatever you want.' It means removing the bottleneck (engineering) while preserving quality (brand rules baked into the tool).",
+    h: "Preview kills anxiety.",
+    p: "Every tool that shows 'what you'll get' before you commit reduces fear of mistakes.",
   },
   {
-    h: "Simple on surface, intelligent underneath.",
-    p: "The best tools feel like a basic form. But validation, optimization, and enforcement create a system that just works without breaking.",
+    h: "Constraints are a feature, not a limitation.",
+    p: "Brand-locked colors and template boundaries initially felt restrictive. Turns out, removing decisions that don't matter lets people focus on decisions that do.",
   },
 ];
 
@@ -192,8 +191,11 @@ export default function Page() {
               </Callout>
 
               <Callout className="mt-14" label="Key insight">
-                Content creation sat at the same expensive intersection as push notifications:
-                marketing couldn&rsquo;t publish without engineering, and engineering had
+                Content creation sat at the same expensive intersection as{" "}
+                <a href="/" className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity">
+                  push notifications
+                </a>
+                : marketing couldn&rsquo;t publish without engineering, and engineering had
                 higher-priority work.
               </Callout>
             </Section>
@@ -205,7 +207,7 @@ export default function Page() {
               kicker="02 · Preview"
               heading={
                 <>
-                  How do you kill <em>&lsquo;blind publishing&rsquo;</em>?
+                  How to kill <em>&lsquo;blind publishing&rsquo;</em>?
                 </>
               }
             >
@@ -233,8 +235,8 @@ export default function Page() {
             <Callout className="mt-14" label="Design decision">
               I considered a separate Preview step (Edit → Save → Preview → Publish), but chose
               live preview because it reduces friction, enables rapid iteration (3 variants in 5
-              minutes), and eliminates approval anxiety. <em>Trade-off:</em> more complex frontend
-              state management, but the UX benefit justified the cost.
+              minutes), and eliminates approval anxiety. Trade-off: more complex frontend state
+              management, but the UX benefit justified the cost.
             </Callout>
           </div>
 
@@ -244,16 +246,16 @@ export default function Page() {
               kicker="03 · Constraints"
               heading={
                 <>
-                  How do you prevent <em>brand-breaking</em>&nbsp; mistakes?
+                  How to prevent <em>brand-breaking</em>&nbsp; mistakes?
                 </>
               }
             >
               <Prose>
                 <p>
                   Before the editor, there were multiple incidents of wrong colors, broken links,
-                  and text overflow going live. CTA buttons use a color picker locked to the brand
-                  palette — only approved colors are selectable. Character counters prevent
-                  overflow. Link destinations are validated.
+                  and text overflow going live. To prevent this, CTA buttons use a color picker
+                  locked to the brand palette — only approved colors are selectable. Character
+                  counters prevent overflow. Link destinations are validated.
                 </p>
               </Prose>
             </Section>
@@ -268,8 +270,8 @@ export default function Page() {
             <Callout className="mt-14" label="Design decision">
               I considered inline editing — clicking directly on the preview. But a dedicated side
               panel shows all options at once (character limits, link types, color constraints)
-              without hunting. The small mobile preview makes inline clicking error-prone.{" "}
-              <em>Trade-off:</em> less spatial directness, but dramatically fewer errors.
+              without hunting. The small mobile preview makes inline clicking error-prone.
+              Trade-off: less spatial directness, but dramatically fewer errors.
             </Callout>
           </div>
 
@@ -334,32 +336,6 @@ export default function Page() {
               The real win wasn&rsquo;t just speed. It was giving marketing complete ownership of
               their channel while guaranteeing brand safety through design constraints.
             </Callout>
-
-            {/* Under the hood subblock */}
-            <div id="under-the-hood" className="scroll-mt-20 mt-14">
-              <div className="px-6 md:px-10">
-                <div className="max-w-4xl mx-auto">
-                  <FadeIn>
-                    <h3 className="max-w-prose mx-auto font-serif font-normal text-xl md:text-2xl tracking-tight">
-                      Under the hood
-                    </h3>
-                  </FadeIn>
-                </div>
-              </div>
-              <Prose className="mt-5">
-                <p>
-                  The interface looks straightforward. Underneath: asset optimization and
-                  automatic resizing for mobile delivery, brand validation enforced at API level,
-                  and CDN publishing with app notification triggers.
-                </p>
-              </Prose>
-              <ImagePlaceholder
-                className="mt-8"
-                label="Screenshot: Shared component library and asset pipeline"
-                src="https://framerusercontent.com/images/36tySRfTZZc2sl6wlPgyod69RA.png?width=1440&height=1150"
-                caption="Simple on surface, intelligent underneath."
-              />
-            </div>
           </div>
 
           {/* What I learned */}

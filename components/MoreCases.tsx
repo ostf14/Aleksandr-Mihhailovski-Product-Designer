@@ -10,6 +10,7 @@ type Case = {
   title: string;
   description: string;
   href: string;
+  image?: string;
 };
 
 const cases: Case[] = [
@@ -19,6 +20,7 @@ const cases: Case[] = [
     title: "Push Notifications",
     description: "Designing for confidence, not speed",
     href: "/",
+    image: "https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png",
   },
   {
     id: "stories",
@@ -26,6 +28,7 @@ const cases: Case[] = [
     title: "Stories Editor",
     description: "How I eliminated a 2-day content bottleneck",
     href: "/case/stories-editor",
+    image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
   },
 ];
 
@@ -49,7 +52,16 @@ function CardContent({ c }: { c: Case }) {
         aria-hidden
       />
       <div className="flex flex-row gap-5 h-full pr-10">
-        <div className="hidden md:block shrink-0 basis-[38%] bg-cream-warm dark:bg-cream-deep rounded-xl h-full" />
+        <div className="hidden md:block shrink-0 basis-[38%] rounded-xl h-full overflow-hidden bg-cream-warm dark:bg-cream-deep">
+          {c.image && (
+            <img
+              src={c.image}
+              alt=""
+              aria-hidden
+              className="w-full h-full object-cover object-top"
+            />
+          )}
+        </div>
         <div className="flex-1 min-w-0 flex flex-col h-full">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
             {c.tag}

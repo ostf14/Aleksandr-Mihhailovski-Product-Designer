@@ -220,8 +220,8 @@ export default function Page() {
             </Prose>
 
             <Callout className="mt-14" label="Design decision">
-              <em>Trade-off:</em> More complex state management in code, but the UX benefit
-              justified the engineering cost.
+              Trade-off: More complex state management in code, but the UX benefit justified the
+              engineering cost.
             </Callout>
           </div>
 
