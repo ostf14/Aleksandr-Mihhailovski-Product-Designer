@@ -61,6 +61,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
+        <meta
+          name="format-detection"
+          content="telephone=no, date=no, address=no, email=no"
+        />
         <link
           href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
           rel="stylesheet"
