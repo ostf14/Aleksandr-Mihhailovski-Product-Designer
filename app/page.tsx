@@ -62,6 +62,11 @@ export default function Page() {
                   Push Notifications Manager
                 </h1>
               </FadeIn>
+              <FadeIn delay={0.1}>
+                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
+                  How to kill the send button nobody wanted to press.
+                </p>
+              </FadeIn>
             </div>
 
             <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
