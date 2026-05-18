@@ -290,7 +290,7 @@ export default function Page() {
               className="mt-8"
               label="Diagram: Site map — five entry points"
               caption="Five entry points instead of twelve. Each name tested with real users before implementation."
-              src="https://framerusercontent.com/images/1ADmWIgqswzjNpyDgHKce7KBQ4.png?width=1440&height=1100"
+              src="/Sitemap.png"
             />
 
             <Callout className="mt-14" label="Key insight">
