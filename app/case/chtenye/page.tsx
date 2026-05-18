@@ -11,47 +11,48 @@ import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 const tocItems: TocItem[] = [
-  { id: "why-failing", label: "Why the site was failing" },
-  { id: "validation", label: "Testing before designing" },
+  { id: "context", label: "A menu that works against its users" },
+  { id: "research", label: "Three users were enough" },
+  { id: "iteration", label: "Three rounds, three days" },
   { id: "structure", label: "From 12 silos to one system" },
-  { id: "design", label: "50 iterations" },
+  { id: "design", label: "Balancing density with clarity" },
   { id: "results", label: "Results" },
   { id: "lessons", label: "What I learned" },
 ];
 
 const metrics = [
-  { value: "+80%", label: "Task success rate" },
-  { value: "12 → 5", label: "Top-level categories" },
-  { value: "1 model", label: "For all content types" },
+  { value: "+80% on nav tasks", label: "Task success rate" },
+  { value: "12 → 5 clear entry points", label: "Categories" },
+  { value: "3 users, 15+ tests, 3 iterations", label: "Research" },
 ];
 
 const results = [
   {
     h: "+80% task success rate",
-    p: "Navigation tasks that previously confused the majority of users — finding a specific lecture, distinguishing content types, accessing the library — now completed successfully by 4 out of 5 participants.",
+    p: "Navigation tasks that previously stumped every single participant — finding a video course, distinguishing content types, understanding what a category contains — now completed successfully by 4 out of 5 users.",
   },
   {
     h: "12 → 5 top-level categories",
-    p: "Simplified navigation from 12 overlapping categories to 5 clear entry points. New content types can be added without creating new menu items — they inherit the existing attribute structure.",
+    p: "Each category name validated through testing. Users could predict what's inside before clicking — the primary failure point of the original navigation eliminated entirely.",
   },
   {
-    h: "One data model for everything",
-    p: "Videos, articles, courses, podcasts — all share the same attribute system. One card component, one filter system, one sort mechanism. Adding a new content type is a data entry task, not a redesign.",
+    h: "One filterable system for all content",
+    p: "Replaced category card drill-downs with flat filterable lists. Users see content immediately, can browse freely, and recognize wrong turns in one step instead of three.",
   },
 ];
 
 const lessons = [
   {
-    h: "Fix the data model, not the menu.",
-    p: "Navigation problems that look like UI issues are usually structural. Without rethinking the information architecture, visual reshuffling just moves the confusion to a different place.",
+    h: "Test the words, not the wireframes.",
+    p: "Every navigation problem traced back to a label that meant one thing to the team and another to users. Three tests caught what months of internal discussion missed.",
   },
   {
-    h: "Paper prototypes are underrated.",
-    p: "Fast, cheap, and surprisingly fun for participants. The analog format cuts through screen fatigue — people engage more, speak up more, and give feedback they'd filter out in a polished prototype.",
+    h: "Flat lists beat deep hierarchies.",
+    p: "Users preferred browsing a filterable list over drilling down through category cards. Every extra click before seeing content is a click where they might give up.",
   },
   {
-    h: "Name things for users, not for the org chart.",
-    p: "Categories named after internal content classifications meant nothing to users. Renaming based on what people actually expect to find inside solved half the navigation problems before any visual design began.",
+    h: "Paper prototypes get more honest feedback.",
+    p: "Low fidelity forced participants to react to structure, not aesthetics. They spoke up more, questioned more, and gave feedback they'd filter out in a polished prototype.",
   },
 ];
 
@@ -79,7 +80,7 @@ export default function Page() {
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
-                  12 content types, zero navigation logic.
+                  Users couldn&rsquo;t explain what a single menu item meant.
                 </p>
               </FadeIn>
             </div>
@@ -91,10 +92,11 @@ export default function Page() {
                     Overview
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                    Redesigned the information architecture and UI for a content platform with
-                    12+ fragmented categories. Users couldn&rsquo;t orient themselves in a large
-                    volume of diverse content. Built a unified taxonomy, scalable data model, and
-                    a complete visual redesign.
+                    Redesigned the information architecture and UI for an educational content
+                    platform where users failed basic navigation tasks. Testing with real users
+                    exposed that the problem wasn&rsquo;t visual — every category name was
+                    misleading. Rebuilt the taxonomy, validated it, and designed a scalable UI
+                    system.
                   </p>
                 </div>
 
@@ -103,7 +105,7 @@ export default function Page() {
                     My role
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                    Research, UX Strategy, UI Design, System Architecture
+                    UX Research, IA, UI Design
                   </p>
                 </div>
 
@@ -121,7 +123,7 @@ export default function Page() {
                     Impact
                   </div>
                   <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
-                    {["+80% task success rate", "12 → 5 top-level categories"].map((item) => (
+                    {["+80% task success rate", "12 → 5 categories"].map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <span
                           aria-hidden
@@ -144,33 +146,31 @@ export default function Page() {
             </div>
           </header>
 
-          {/* Impact (metrics only — no before/after) */}
+          {/* Impact (metrics only) */}
           <div>
             <Impact metrics={metrics} beforeSteps={[]} afterSteps={[]} />
           </div>
 
           {/* 01 · Context */}
-          <div id="why-failing" className="scroll-mt-20 mt-32 pb-32">
-            <Section kicker="01 · Context" heading="Why the site was failing its users">
+          <div id="context" className="scroll-mt-20 mt-32 pb-32">
+            <Section kicker="01 · Context" heading="A menu that works against its users">
               <Prose>
                 <p>
                   Chtenye is a content platform for a popular linguistics YouTuber — a curated
-                  library of books, articles, lectures, and courses across linguistics, cultural
-                  studies, and related fields. The content expands and enriches what&rsquo;s
-                  covered on the channel.
+                  library of video courses, lectures, articles, and research papers across
+                  linguistics, cultural studies, and related fields.
                 </p>
                 <p>
-                  The problem: in a large volume of diverse content, users simply couldn&rsquo;t
-                  orient themselves. Over time, every new content type got its own category in the
-                  navigation. 12 categories, many with overlapping or opaque names. Users
-                  didn&rsquo;t know what &lsquo;Modern Russian&rsquo; or &lsquo;Speech
-                  Nuance&rsquo; actually contained. Every new content type made the menu longer
-                  and navigation worse.
+                  The site had 12 content categories in the navigation. On paper, that sounds
+                  organized. In practice, users couldn&rsquo;t find anything. The category
+                  &ldquo;What We Do&rdquo; contained all video content — courses, lectures,
+                  interviews. But not a single test participant guessed that. They all expected a
+                  mission statement or a description of past projects.
                 </p>
                 <p>
                   Competitors like Postnauka and Arzamas scored higher on navigation despite
-                  having similar content volume — they solved discovery through thematic
-                  curation, not category multiplication.
+                  similar content volume — they solved discovery through thematic curation, not
+                  category multiplication.
                 </p>
               </Prose>
             </Section>
@@ -182,36 +182,39 @@ export default function Page() {
               src="https://framerusercontent.com/images/TC8KyY9pfmyC2mxraDlMNZFk.png?width=1440&height=1100"
             />
 
-            <Callout className="mt-14" label="The goal">
-              Rebuild the information architecture from the data model up — not just redesign the
-              menu, but fix the underlying structure that keeps breaking it.
-            </Callout>
-
             <Callout className="mt-14" label="Key insight">
-              The navigation wasn&rsquo;t failing because of bad UI. It was failing because every
-              content type lived in its own silo with its own rules. The problem was structural,
-              not visual.
+              The navigation wasn&rsquo;t broken because of bad visual design. It was broken
+              because every label meant something different to the team than it did to users.
             </Callout>
           </div>
 
-          {/* 02 · Validation */}
-          <div id="validation" className="scroll-mt-20 pb-32">
-            <Section kicker="02 · Validation" heading="Testing before designing a pixel">
+          {/* 02 · Research */}
+          <div id="research" className="scroll-mt-20 pb-32">
+            <Section kicker="02 · Research" heading="Three users were enough">
               <Prose>
                 <p>
-                  Before touching visual design, I tested the new navigation concepts on paper
-                  prototypes with real users of the platform. Quick 10-15 second tasks: find a
-                  lecture, open the library, navigate to donations.
+                  Nielsen Norman Group&rsquo;s research shows that 5 users uncover 85% of
+                  usability problems. I needed only three — the problems were so severe that
+                  every participant hit the same walls.
                 </p>
-                <p>Five participants, three key findings:</p>
+                <p>
+                  I tested three things: the live site on a tablet, a prototype built from the
+                  client&rsquo;s proposed structure, and my own paper prototype with a different
+                  taxonomy. Same tasks across all three: find a Polish language course, locate a
+                  research paper, browse out of curiosity.
+                </p>
+                <p>Key findings:</p>
               </Prose>
 
               <NumberedList
                 className="mt-8"
                 items={[
-                  "Users didn't understand what hides behind category names like 'Modern Russian' or 'Speech Nuance.' The labels were opaque — people couldn't predict what content they'd find inside. Merged into a clearer parent category with transparent naming.",
-                  "Users searched by content format (video/article), not topic. Added format filters to category pages.",
-                  "'Language Learning' label was misleading — users expected language courses, not linguistics theory. Renamed to 'Linguistics & Language' to match the actual content scope.",
+                  "All three users went to 'Library' looking for video content — and found only text materials. One said 'there was nowhere else to go.' Another considered leaving for YouTube entirely.",
+                  "'What We Do' was universally misread as an about page. Users expected mission statements and project descriptions — not the platform's entire video catalog.",
+                  "Category card drill-downs added 3+ steps before users could even tell they were in the wrong section. A flat filterable list would let them see the mistake in one.",
+                  "Users searched by format (video vs article), not by topic — but the navigation was organized by topic only.",
+                  "'FAQ' was interpreted as technical support ('like Gosuslugi or Yandex Taxi'). Users suggested 'Q&A' as a friendlier alternative.",
+                  "Footer with expanded second-level navigation became an unexpected shortcut — multiple users preferred it over the header for finding deep content.",
                 ]}
               />
             </Section>
@@ -219,95 +222,125 @@ export default function Page() {
             <ImagePlaceholder
               className="mt-8"
               label="Photo: Paper prototype testing session"
-              caption="In just two days, I validated the current interface issues and my hypotheses with real users — fast, cheap, and surprisingly engaging for participants."
+              caption="Three users, three test rounds — fast, cheap, and surprisingly engaging for participants."
               src="https://framerusercontent.com/images/8EB2e2lI7evSaeNjL5APSkObOVo.png?width=1440&height=1100"
             />
 
-            <Callout className="mt-14" label="Design decision">
-              Paper prototypes over wireframes. Beyond speed and cost, there&rsquo;s a
-              collaboration bonus: instead of a tedious task at a computer, paper testing feels
-              like an almost analog game in a digital world. Participants were more engaged, more
-              vocal, and gave feedback they&rsquo;d filter out in a polished prototype.
+            <Callout className="mt-14" label="The goal">
+              Fix the taxonomy before designing a single screen. If users can&rsquo;t predict
+              what&rsquo;s behind a menu item, no amount of visual polish will help.
             </Callout>
           </div>
 
-          {/* 03 · Structure */}
-          <div id="structure" className="scroll-mt-20 pb-32">
-            <Section kicker="03 · Structure" heading="How to turn 12 silos into one system">
+          {/* 03 · Iteration */}
+          <div id="iteration" className="scroll-mt-20 pb-32">
+            <Section kicker="03 · Iteration" heading="Three rounds, three days">
               <Prose>
                 <p>
-                  The core architectural move: instead of giving each content type its own
-                  navigation bucket, I defined a shared set of attributes that every content type
-                  has in common.
+                  Three test rounds, each with a different structure. The live site and the
+                  client&rsquo;s proposed prototype reproduced the same navigation failures — the
+                  &ldquo;What We Do&rdquo; label fooled every participant.
                 </p>
                 <p>
-                  Category. Series. Duration. Format. Publication date. These five attributes
-                  became the backbone of the entire system — they drive the UI cards, the
-                  filters, the sort mechanisms, and the content entry workflow.
+                  My prototype renamed it to &ldquo;Our Content.&rdquo; Two out of three users
+                  got it immediately. But putting raw playlists on the homepage blurred the line
+                  with the content page — one user said: &ldquo;I thought this IS the &lsquo;Our
+                  Content&rsquo; page.&rdquo; A quick follow-up round replaced playlists with
+                  preview blocks — thumbnail, description, button to the internal page — and the
+                  confusion disappeared.
+                </p>
+              </Prose>
+            </Section>
+
+            <Callout className="mt-14" label="Design decision">
+              Three rounds in three days. Each cost nothing but paper and 15 minutes per
+              participant — and prevented building the wrong interface in code.
+            </Callout>
+          </div>
+
+          {/* 04 · Structure */}
+          <div id="structure" className="scroll-mt-20 pb-32">
+            <Section kicker="04 · Structure" heading="From 12 silos to one system">
+              <Prose>
+                <p>The research revealed three structural principles:</p>
+                <p>
+                  Users search by format (video/article), not by topic. So format filters became
+                  the primary navigation mechanism on content pages.
                 </p>
                 <p>
-                  The site map went from a flat list of 12 categories to a hierarchical structure
-                  with 5 clear entry points. Each entry point leads to content that can be
-                  filtered by format, series, or topic.
+                  Users want to browse, not drill down. Even when given filters, they preferred
+                  scrolling through a flat list over making sequential category choices. Every
+                  additional click before seeing content delayed their ability to realize they
+                  were in the wrong section.
+                </p>
+                <p>
+                  Labels must describe what&rsquo;s inside, not what the team calls it
+                  internally. &ldquo;Library&rdquo; sounds like books. &ldquo;What We Do&rdquo;
+                  sounds like an about page. Renaming based on user mental models solved half the
+                  navigation problems before any visual design.
+                </p>
+                <p>
+                  The site map went from 12 overlapping categories to 5 clear entry points, each
+                  with a transparent name that users could predict the contents of.
                 </p>
               </Prose>
             </Section>
 
             <ImagePlaceholder
               className="mt-8"
-              label="Diagram: Unified data model"
-              caption="One data model for all content types. Every card, filter, and sort mechanism maps to the same attribute structure."
+              label="Diagram: Site map — five entry points"
+              caption="Five entry points instead of twelve. Each name tested with real users before implementation."
               src="https://framerusercontent.com/images/1ADmWIgqswzjNpyDgHKce7KBQ4.png?width=1440&height=1100"
             />
 
             <Callout className="mt-14" label="Key insight">
-              Data modeling isn&rsquo;t a backend concern — it&rsquo;s the foundation of
-              navigation design. Define the semantic structure before touching visual design.
+              Category cards that force users to choose before seeing any content add steps and
+              delay error recognition. A filterable list lets users see immediately if
+              they&rsquo;re in the wrong place — and costs them only one step instead of three.
             </Callout>
           </div>
 
-          {/* 04 · Design */}
+          {/* 05 · Design */}
           <div id="design" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Design" heading="50 iterations to find the balance">
+            <Section kicker="05 · Design" heading="Balancing density with clarity">
               <Prose>
                 <p>
-                  The visual challenge: how do you display 12 content types that now share a
-                  unified structure without making everything look the same?
+                  With the structure validated, I moved to visual design. The challenge: 12
+                  content types now share a unified architecture — how do you differentiate them
+                  visually without breaking the system?
                 </p>
                 <p>
-                  The solution was a modular card system. Same underlying grid, same attribute
-                  display, but visual markers — color accents, format badges, duration indicators
-                  — differentiate content types at a glance. Users can scan a mixed feed and
-                  immediately know what&rsquo;s a 5-minute article vs. a 2-hour lecture series.
+                  A modular card system. Same grid, same attribute display, but format badges,
+                  duration indicators, and color accents let users distinguish a 5-minute article
+                  from a 2-hour lecture series at a glance.
                 </p>
               </Prose>
             </Section>
 
             <ImagePlaceholder
               className="mt-8"
-              label="Screenshot: Modular card system on main feed"
-              caption="Information density balanced with visual clarity. Format badges and duration indicators let users scan without reading."
+              label="Screenshot: Final UI — main page"
+              caption="Format badges and duration indicators replace the need to click into content to understand what it is."
               src="https://framerusercontent.com/images/aQaozj7Y9nYAvjKnxLHLpLadsgU.jpg?width=1440&height=1100"
             />
 
             <ImagePlaceholder
               className="mt-8"
-              label="Screenshot: Course pages with sequential ordering"
-              caption="Course pages use the same card system but with sequential ordering and progress indicators."
+              label="Screenshot: Course page with sequential ordering"
+              caption="The same card system scales to course pages with sequential ordering."
               src="https://framerusercontent.com/images/sqCCzA1N0SQhmDvS59ZeTCoXazs.jpg?width=1440&height=1100"
             />
 
             <Callout className="mt-14" label="Design decision">
-              I iterated through 50+ versions of the main page to find the right information
-              density. The temptation was to show everything — but each added element diluted
-              scannability. The final version shows less data per card but enables faster
-              decisions.
+              50+ iterations of the main page to find the right information density. Each added
+              element diluted scannability — the final version shows less data per card but
+              enables faster decisions.
             </Callout>
           </div>
 
-          {/* 05 · Results */}
+          {/* 06 · Results */}
           <div id="results" className="scroll-mt-20 pb-32">
-            <Section kicker="05 · Results" heading="Results">
+            <Section kicker="06 · Results" heading="Results">
               <div className="px-6 md:px-10">
                 <div className="max-w-4xl mx-auto">
                   <div className="max-w-prose mx-auto space-y-10">
@@ -325,16 +358,16 @@ export default function Page() {
             </Section>
 
             <Callout className="mt-14" label="Key insight">
-              The scalable structure means growth doesn&rsquo;t break navigation. New content
-              types slot into existing categories and inherit all filtering and sorting
-              automatically.
+              The footer with expanded second-level navigation became an unexpected power
+              feature. Multiple users preferred it over the header menu for deep content —
+              especially on long pages where scrolling back to the top felt costly.
             </Callout>
           </div>
 
-          {/* 06 · Lessons */}
+          {/* 07 · Lessons */}
           <div id="lessons" className="scroll-mt-20 pb-32">
             <Section
-              kicker="06 · Lessons"
+              kicker="07 · Lessons"
               heading={
                 <>
                   What I <em>learned</em>
