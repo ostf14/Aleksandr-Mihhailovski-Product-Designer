@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { MoreCases } from "@/components/MoreCases";
 import { FadeIn } from "@/components/FadeIn";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { CardSlider } from "@/components/CardSlider";
 import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { NumberedList } from "@/components/NumberedList";
@@ -317,18 +318,14 @@ export default function Page() {
               </Prose>
             </Section>
 
-            <ImagePlaceholder
+            <CardSlider
               className="mt-8"
-              label="Screenshot: Final UI — main page"
-              caption="Format badges and duration indicators replace the need to click into content to understand what it is."
-              src="https://framerusercontent.com/images/aQaozj7Y9nYAvjKnxLHLpLadsgU.jpg?width=1440&height=1100"
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              label="Screenshot: Course page with sequential ordering"
-              caption="The same card system scales to course pages with sequential ordering."
-              src="https://framerusercontent.com/images/sqCCzA1N0SQhmDvS59ZeTCoXazs.jpg?width=1440&height=1100"
+              caption="Three content surfaces — Shows, Videos, Library — sharing one card system. Format badges and duration indicators let users scan without reading."
+              slides={[
+                { src: "/cards-shows.png", alt: "Shows page card system" },
+                { src: "/cards-videos.png", alt: "Videos page card system" },
+                { src: "/cards-library.png", alt: "Library page card system" },
+              ]}
             />
 
             <Callout className="mt-14" label="Design decision">
