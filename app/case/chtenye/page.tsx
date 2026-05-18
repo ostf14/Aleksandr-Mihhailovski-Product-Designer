@@ -15,16 +15,16 @@ const tocItems: TocItem[] = [
   { id: "context", label: "A menu that works against its users" },
   { id: "research", label: "Three users were enough" },
   { id: "iteration", label: "Three rounds, three days" },
-  { id: "structure", label: "From 12 silos to one system" },
+  { id: "structure", label: "Three principles that rewrote the navigation" },
   { id: "design", label: "Balancing density with clarity" },
   { id: "results", label: "Results" },
   { id: "lessons", label: "What I learned" },
 ];
 
 const metrics = [
-  { value: "+80% on nav tasks", label: "Task success rate" },
-  { value: "12 → 5 clear entry points", label: "Categories" },
-  { value: "3 users, 15+ tests, 3 iterations", label: "Research" },
+  { value: "+80%", label: "Navigation task success" },
+  { value: "12 → 5 categories", label: "Structure" },
+  { value: "3 users, 3 rounds", label: "Test" },
 ];
 
 const results = [
@@ -93,11 +93,9 @@ export default function Page() {
                     Overview
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                    Redesigned the information architecture and UI for an educational content
-                    platform where users failed basic navigation tasks. Testing with real users
-                    exposed that the problem wasn&rsquo;t visual — every category name was
-                    misleading. Rebuilt the taxonomy, validated it, and designed a scalable UI
-                    system.
+                    Users failed basic navigation — not because of bad design, but because every
+                    label was misleading. Ran user testing, rebuilt the taxonomy based on real
+                    findings, and designed a scalable UI system.
                   </p>
                 </div>
 
@@ -178,9 +176,9 @@ export default function Page() {
 
             <ImagePlaceholder
               className="mt-8"
-              label="Screenshot: Competitive analysis of content navigation"
-              caption="Despite high content quality, Chtenye lagged behind competitors in navigation ease."
-              src="https://framerusercontent.com/images/TC8KyY9pfmyC2mxraDlMNZFk.png?width=1440&height=1100"
+              label="Screenshot: Original Chtenye navigation"
+              caption="Original site navigation — before any changes."
+              src="/Navigation of the original website.png"
             />
 
             <Callout className="mt-14" label="Key insight">
@@ -194,9 +192,17 @@ export default function Page() {
             <Section kicker="02 · Research" heading="Three users were enough">
               <Prose>
                 <p>
-                  Nielsen Norman Group&rsquo;s research shows that 5 users uncover 85% of
-                  usability problems. I needed only three — the problems were so severe that
-                  every participant hit the same walls.
+                  <a
+                    href="https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity"
+                  >
+                    Nielsen Norman Group&rsquo;s research shows that 5 users uncover 85% of
+                    usability problems.
+                  </a>{" "}
+                  I needed only three — the problems were so severe that every participant hit
+                  the same walls.
                 </p>
                 <p>
                   I tested three things: the live site on a tablet, a prototype built from the
@@ -204,20 +210,7 @@ export default function Page() {
                   taxonomy. Same tasks across all three: find a Polish language course, locate a
                   research paper, browse out of curiosity.
                 </p>
-                <p>Key findings:</p>
               </Prose>
-
-              <NumberedList
-                className="mt-8"
-                items={[
-                  "All three users went to 'Library' looking for video content — and found only text materials. One said 'there was nowhere else to go.' Another considered leaving for YouTube entirely.",
-                  "'What We Do' was universally misread as an about page. Users expected mission statements and project descriptions — not the platform's entire video catalog.",
-                  "Category card drill-downs added 3+ steps before users could even tell they were in the wrong section. A flat filterable list would let them see the mistake in one.",
-                  "Users searched by format (video vs article), not by topic — but the navigation was organized by topic only.",
-                  "'FAQ' was interpreted as technical support ('like Gosuslugi or Yandex Taxi'). Users suggested 'Q&A' as a friendlier alternative.",
-                  "Footer with expanded second-level navigation became an unexpected shortcut — multiple users preferred it over the header for finding deep content.",
-                ]}
-              />
             </Section>
 
             <ImagePlaceholder
@@ -225,6 +218,22 @@ export default function Page() {
               label="Video: Paper prototype testing session"
               caption="Three users, three test rounds — fast, cheap, and surprisingly engaging for participants."
               src="https://framerusercontent.com/assets/j3a2YSkcNlW7EuVnCnzgICbfLg.mp4"
+            />
+
+            <Prose className="mt-8">
+              <p>Key findings:</p>
+            </Prose>
+
+            <NumberedList
+              className="mt-8"
+              items={[
+                "All three users went to 'Library' looking for video content — and found only text materials. One said 'there was nowhere else to go.' Another considered leaving for YouTube entirely.",
+                "'What We Do' was universally misread as an about page. Users expected mission statements and project descriptions — not the platform's entire video catalog.",
+                "Category card drill-downs added 3+ steps before users could even tell they were in the wrong section. A flat filterable list would let them see the mistake in one.",
+                "Users searched by format (video vs article), not by topic — but the navigation was organized by topic only.",
+                "'FAQ' was interpreted as technical support ('like Gosuslugi or Yandex Taxi'). Users suggested 'Q&A' as a friendlier alternative.",
+                "Footer with expanded second-level navigation became an unexpected shortcut — multiple users preferred it over the header for finding deep content.",
+              ]}
             />
 
             <Callout className="mt-14" label="The goal">
@@ -253,6 +262,13 @@ export default function Page() {
               </Prose>
             </Section>
 
+            <ImagePlaceholder
+              className="mt-8"
+              label="Photo: Paper prototypes used across the three rounds"
+              caption="The mug cat has seen things. Mostly paper prototypes."
+              src="/Paper prototypes.png"
+            />
+
             <Callout className="mt-14" label="Design decision">
               Three rounds in three days. Each cost nothing but paper and 15 minutes per
               participant — and prevented building the wrong interface in code.
@@ -261,7 +277,10 @@ export default function Page() {
 
           {/* 04 · Structure */}
           <div id="structure" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Structure" heading="From 12 silos to one system">
+            <Section
+              kicker="04 · Structure"
+              heading="Three principles that rewrote the navigation"
+            >
               <Prose>
                 <p>The research revealed three structural principles:</p>
                 <p>
