@@ -221,9 +221,9 @@ export default function Page() {
 
             <ImagePlaceholder
               className="mt-8"
-              label="Photo: Paper prototype testing session"
+              label="Video: Paper prototype testing session"
               caption="Three users, three test rounds — fast, cheap, and surprisingly engaging for participants."
-              src="https://framerusercontent.com/images/8EB2e2lI7evSaeNjL5APSkObOVo.png?width=1440&height=1100"
+              src="https://framerusercontent.com/assets/j3a2YSkcNlW7EuVnCnzgICbfLg.mp4"
             />
 
             <Callout className="mt-14" label="The goal">
