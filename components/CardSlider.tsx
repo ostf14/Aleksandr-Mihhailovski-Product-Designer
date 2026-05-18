@@ -10,7 +10,7 @@ type Phase = "idle" | "flying" | "snapping";
 
 const FRONT = { y: 0, scale: 1, opacity: 1, zIndex: 10 };
 const BACK = { y: -14, scale: 0.96, opacity: 0.65, zIndex: 5 };
-const FLY_OUT = { y: "130%", scale: 1, opacity: 0, zIndex: 10 };
+const FLY_OUT = { y: 600, scale: 1, opacity: 0, zIndex: 10 };
 const RISING = { y: 0, scale: 1, opacity: 1, zIndex: 5 };
 
 export function CardSlider({
