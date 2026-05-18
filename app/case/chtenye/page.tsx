@@ -140,7 +140,7 @@ export default function Page() {
             <div className="mt-14">
               <ImagePlaceholder
                 label="Hero: Chtenye platform redesign"
-                src="https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg?width=1440&height=1150"
+                src="https://framerusercontent.com/assets/YElOuWwbVdkhKyu6y7XKEaeKI.mp4"
                 wide
               />
             </div>

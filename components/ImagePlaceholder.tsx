@@ -9,7 +9,27 @@ type Props = {
   src?: string;
 };
 
+function isVideo(src?: string) {
+  if (!src) return false;
+  const noQuery = src.split("?")[0].toLowerCase();
+  return /\.(mp4|webm|mov|m4v)$/.test(noQuery);
+}
+
 function Media({ src, label, aspect }: { src?: string; label: string; aspect: string }) {
+  if (src && isVideo(src)) {
+    return (
+      <video
+        src={src}
+        aria-label={label}
+        className="w-full h-auto rounded-lg object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+    );
+  }
   if (src) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
