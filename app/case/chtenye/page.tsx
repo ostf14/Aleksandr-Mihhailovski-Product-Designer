@@ -283,22 +283,18 @@ export default function Page() {
             >
               <Prose>
                 <p>The research revealed three structural principles:</p>
-                <p>
-                  Users search by format (video/article), not by topic. So format filters became
-                  the primary navigation mechanism on content pages.
-                </p>
-                <p>
-                  Users want to browse, not drill down. Even when given filters, they preferred
-                  scrolling through a flat list over making sequential category choices. Every
-                  additional click before seeing content delayed their ability to realize they
-                  were in the wrong section.
-                </p>
-                <p>
-                  Labels must describe what&rsquo;s inside, not what the team calls it
-                  internally. &ldquo;Library&rdquo; sounds like books. &ldquo;What We Do&rdquo;
-                  sounds like an about page. Renaming based on user mental models solved half the
-                  navigation problems before any visual design.
-                </p>
+              </Prose>
+
+              <NumberedList
+                className="mt-8"
+                items={[
+                  "Users search by format (video/article), not by topic. So format filters became the primary navigation mechanism on content pages.",
+                  "Users want to browse, not drill down. Even when given filters, they preferred scrolling through a flat list over making sequential category choices. Every additional click before seeing content delayed their ability to realize they were in the wrong section.",
+                  "Labels must describe what's inside, not what the team calls it internally. 'Library' sounds like books. 'What We Do' sounds like an about page. Renaming based on user mental models solved half the navigation problems before any visual design.",
+                ]}
+              />
+
+              <Prose className="mt-8">
                 <p>
                   The site map went from 12 overlapping categories to 5 clear entry points, each
                   with a transparent name that users could predict the contents of.
