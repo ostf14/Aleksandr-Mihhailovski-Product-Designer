@@ -177,12 +177,12 @@ export default function Page() {
                 ]}
               />
 
-              <Callout className="mt-14" label="The goal">
+              <Callout className="mt-10" label="The goal">
                 My goal: design an end-to-end flow that empowers non-technical admins to create,
                 target, and send push notifications with confidence — and zero code.
               </Callout>
 
-              <Callout className="mt-14" label="Key insight">
+              <Callout className="mt-10" label="Key insight">
                 Push notifications sat at an expensive intersection: marketing couldn&rsquo;t send
                 without engineering, engineering had higher-priority work, and neither side had
                 tools to prevent costly mistakes.
@@ -224,7 +224,7 @@ export default function Page() {
               </p>
             </Prose>
 
-            <Callout className="mt-14" label="Design decision">
+            <Callout className="mt-10" label="Design decision">
               Trade-off: More complex state management in code, but the UX benefit justified the
               engineering cost.
             </Callout>
@@ -266,7 +266,7 @@ export default function Page() {
               </p>
             </Prose>
 
-            <Callout className="mt-14" label="Design decision">
+            <Callout className="mt-10" label="Design decision">
               80% of campaigns targeted fewer than 50 specific users — not complex segments
               needing multi-filter dashboards. A modal with search-by-name covers this in two
               clicks: open, search, select, done. The main composer stays uncluttered for the
@@ -329,7 +329,7 @@ export default function Page() {
               src="https://framerusercontent.com/images/P24PkByUoqf06mF8LtQSWIudZw.jpg?width=1440&height=1100"
             />
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               The confirmation modal initially felt like it was slowing users down. It became the
               most-praised feature in the entire project. Users wanted confidence over speed.
             </Callout>
@@ -354,7 +354,7 @@ export default function Page() {
               </div>
             </Section>
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               The real win wasn&rsquo;t faster notifications. It was redirecting engineering hours
               — which cost 3–5× more than marketing hours — back to product work.
             </Callout>

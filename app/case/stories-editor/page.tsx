@@ -184,13 +184,13 @@ export default function Page() {
                 </p>
               </Prose>
 
-              <Callout className="mt-14" label="The goal">
+              <Callout className="mt-10" label="The goal">
                 Design a no-code editor that empowers marketing to create, preview, and publish
                 brand-safe stories independently — transforming a multi-day engineering task into
                 a 5-minute self-service workflow.
               </Callout>
 
-              <Callout className="mt-14" label="Key insight">
+              <Callout className="mt-10" label="Key insight">
                 Content creation sat at the same expensive intersection as{" "}
                 <a href="/" className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity">
                   push notifications
@@ -232,7 +232,7 @@ export default function Page() {
               src="https://framerusercontent.com/images/9HpyD4ysgbGpE8DvVYsWZnkKa6w.png?width=1440&height=1100"
             />
 
-            <Callout className="mt-14" label="Design decision">
+            <Callout className="mt-10" label="Design decision">
               I considered a separate Preview step (Edit → Save → Preview → Publish), but chose
               live preview because it reduces friction, enables rapid iteration (3 variants in 5
               minutes), and eliminates approval anxiety. Trade-off: more complex frontend state
@@ -267,7 +267,7 @@ export default function Page() {
               src="https://framerusercontent.com/images/4yQWw1rPD9dj4ohYM6Jq1lmoPE.png?width=1440&height=1100"
             />
 
-            <Callout className="mt-14" label="Design decision">
+            <Callout className="mt-10" label="Design decision">
               I considered inline editing — clicking directly on the preview. But a dedicated side
               panel shows all options at once (character limits, link types, color constraints)
               without hunting. The small mobile preview makes inline clicking error-prone.
@@ -307,7 +307,7 @@ export default function Page() {
               src="https://framerusercontent.com/images/pkKF2y9RzwluRtga74OqCrPWk.png?width=1440&height=1100"
             />
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               Reducing options turned out to be more empowering than adding them. Templates
               eliminated an entire category of anxiety — &lsquo;did I break the layout?&rsquo;
             </Callout>
@@ -332,7 +332,7 @@ export default function Page() {
               </div>
             </Section>
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               The real win wasn&rsquo;t just speed. It was giving marketing complete ownership of
               their channel while guaranteeing brand safety through design constraints.
             </Callout>

@@ -112,7 +112,7 @@ export default function Page() {
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     Team
                   </div>
-                  <p className="text-[15px] text-stone-500 mb-3">
+                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
                     Solo designer + client stakeholder
                   </p>
                 </div>
@@ -181,7 +181,7 @@ export default function Page() {
               src="/Navigation of the original website.png"
             />
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               The navigation wasn&rsquo;t broken because of bad visual design. It was broken
               because every label meant something different to the team than it did to users.
             </Callout>
@@ -236,7 +236,7 @@ export default function Page() {
               ]}
             />
 
-            <Callout className="mt-14" label="The goal">
+            <Callout className="mt-10" label="The goal">
               Fix the taxonomy before designing a single screen. If users can&rsquo;t predict
               what&rsquo;s behind a menu item, no amount of visual polish will help.
             </Callout>
@@ -269,7 +269,7 @@ export default function Page() {
               src="/Paper prototypes.png"
             />
 
-            <Callout className="mt-14" label="Design decision">
+            <Callout className="mt-10" label="Design decision">
               Three rounds in three days. Each cost nothing but paper and 15 minutes per
               participant — and prevented building the wrong interface in code.
             </Callout>
@@ -309,7 +309,7 @@ export default function Page() {
               src="/Sitemap.png"
             />
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               Category cards that force users to choose before seeing any content add steps and
               delay error recognition. A filterable list lets users see immediately if
               they&rsquo;re in the wrong place — and costs them only one step instead of three.
@@ -343,7 +343,7 @@ export default function Page() {
               ]}
             />
 
-            <Callout className="mt-14" label="Design decision">
+            <Callout className="mt-10" label="Design decision">
               50+ iterations of the main page to find the right information density. Each added
               element diluted scannability — the final version shows less data per card but
               enables faster decisions.
@@ -369,7 +369,7 @@ export default function Page() {
               </div>
             </Section>
 
-            <Callout className="mt-14" label="Key insight">
+            <Callout className="mt-10" label="Key insight">
               The footer with expanded second-level navigation became an unexpected power
               feature. Multiple users preferred it over the header menu for deep content —
               especially on long pages where scrolling back to the top felt costly.
