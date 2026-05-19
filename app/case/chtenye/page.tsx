@@ -5,6 +5,7 @@ import { MoreCases } from "@/components/MoreCases";
 import { FadeIn } from "@/components/FadeIn";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { CardSlider } from "@/components/CardSlider";
+import { BrowserCarousel } from "@/components/BrowserCarousel";
 import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { NumberedList } from "@/components/NumberedList";
@@ -350,6 +351,50 @@ export default function Page() {
                 { src: "/cards-shows.png", alt: "Shows page card system" },
                 { src: "/cards-videos.png", alt: "Videos page card system" },
                 { src: "/cards-library.png", alt: "Library page card system" },
+              ]}
+            />
+
+            <BrowserCarousel
+              className="mt-8"
+              caption="Five redesigned pages. Scroll each to explore the full layout."
+              slides={[
+                {
+                  title: "Главная",
+                  images: [
+                    "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
+                    "https://framerusercontent.com/images/aQaozj7Y9nYAvjKnxLHLpLadsgU.jpg",
+                    "https://framerusercontent.com/images/6q2wYL2PPs5GsZGSx0L2pLB7Lo.jpg",
+                    "https://framerusercontent.com/images/SRJUQKcSWVaQfZ1YzB1opguYx5Y.jpg",
+                  ],
+                },
+                {
+                  title: "Наш контент",
+                  images: [
+                    "https://framerusercontent.com/images/uich7nD0D8u0QPLK3LbZa1Mc.jpg",
+                    "https://framerusercontent.com/images/AUL5lBISojOlF3f2aUVkDWnnk.jpg",
+                  ],
+                },
+                {
+                  title: "Курс",
+                  images: [
+                    "https://framerusercontent.com/images/sqCCzA1N0SQhmDvS59ZeTCoXazs.jpg",
+                    "https://framerusercontent.com/images/D6WquzXAo937ChNo87TY82ZXwDc.jpg",
+                  ],
+                },
+                {
+                  title: "Библиотека",
+                  images: [
+                    "https://framerusercontent.com/images/Cl5VkbIODQ5C07KB3RJ4WSb70.jpg",
+                    "https://framerusercontent.com/images/KPE9BqSicDsjJ8x655RKac6P8.jpg",
+                  ],
+                },
+                {
+                  title: "Q&A",
+                  images: [
+                    "https://framerusercontent.com/images/UHqn3Sta76jIjUEpvO3cpToHQSY.jpg",
+                    "https://framerusercontent.com/images/hsgG3SJBY226btZbbKjfE08bQYU.jpg",
+                  ],
+                },
               ]}
             />
 
