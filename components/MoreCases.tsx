@@ -19,7 +19,7 @@ const cases: Case[] = [
     tag: "Seamm",
     title: "Push Notifications",
     description: "How to kill the send button nobody wanted to press",
-    href: "/",
+    href: "/case/push-notifications",
     image: "https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png",
   },
   {
