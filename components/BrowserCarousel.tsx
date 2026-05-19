@@ -39,15 +39,16 @@ export function BrowserCarousel({
         <div className="max-w-prose mx-auto">
           <div className="relative">
             <BrowserFrame url={current.title}>
-              {/* Stage: shorter on mobile (so short slides don't leave a gap), full prop height on desktop */}
+              {/* Container collapses to slide content height (no dead zone for short slides),
+                  clamped by max-height so long slides scroll inside the frame */}
               <div
-                className="relative h-[420px] md:h-[var(--carousel-h)]"
+                className="relative"
                 style={{ ["--carousel-h" as never]: `${height}px` }}
               >
-                <AnimatePresence mode="wait" initial={false}>
+                <AnimatePresence initial={false} mode="popLayout">
                   <motion.div
                     key={index}
-                    className="absolute inset-0 overflow-y-auto"
+                    className="overflow-y-auto max-h-[420px] md:max-h-[var(--carousel-h)]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
