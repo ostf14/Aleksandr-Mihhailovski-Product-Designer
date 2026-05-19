@@ -21,7 +21,7 @@ export function BrowserCarousel({
   slides,
   caption,
   className = "",
-  height = 420,
+  height = 300,
 }: Props) {
   const [index, setIndex] = useState(0);
 
