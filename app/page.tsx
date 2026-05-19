@@ -67,17 +67,18 @@ export default function Page() {
               </p>
 
               {/* Heading */}
-              <h1 className="relative font-serif font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[1.05] tracking-[-0.03em] text-[28px] md:text-[42px] lg:text-[70px] mt-0 mb-8">
-                <span className="block whitespace-nowrap">Aleksandr Mihhailovski.</span>
+              <h1
+                className="relative font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[1.05] tracking-[-0.03em] text-[28px] md:text-[42px] lg:text-[70px] mt-0 mb-8"
+                style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+              >
+                <span className="block whitespace-nowrap">Hi, I&rsquo;m Aleksandr.</span>
                 <span className="block whitespace-nowrap">Product Designer for complex tools.</span>
               </h1>
 
               {/* Body copy */}
               <div className="relative max-w-3xl text-base md:text-2xl leading-[1.35] text-[#3f3f3f] dark:text-[#B8B8B3] space-y-1">
-                <p>I design B2B SaaS products, internal tools, and design systems.</p>
-                <p>
-                  I prototype in code when the workflow is too complex to fake in static screens.
-                </p>
+                <p>I design B2B SaaS products and design systems.</p>
+                <p>I prototype in code and build frontend with AI-assisted tools.</p>
               </div>
 
               {/* Status row */}
