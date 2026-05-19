@@ -21,7 +21,7 @@ export function BrowserCarousel({
   slides,
   caption,
   className = "",
-  height = 300,
+  height = 500,
 }: Props) {
   const [index, setIndex] = useState(0);
 
@@ -39,8 +39,11 @@ export function BrowserCarousel({
         <div className="max-w-prose mx-auto">
           <div className="relative">
             <BrowserFrame url={current.title}>
-              {/* Fixed stage on every viewport — short slides fill it, long slides scroll inside */}
-              <div className="relative" style={{ height }}>
+              {/* Fixed stage — 300px on mobile, prop height on desktop; long slides scroll inside */}
+              <div
+                className="relative h-[300px] md:h-[var(--carousel-h)]"
+                style={{ ["--carousel-h" as never]: `${height}px` }}
+              >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={index}
