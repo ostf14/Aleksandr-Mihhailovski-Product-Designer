@@ -14,14 +14,14 @@ type Props = {
   slides: Slide[];
   caption?: string;
   className?: string;
-  maxHeight?: number;
+  height?: number;
 };
 
 export function BrowserCarousel({
   slides,
   caption,
   className = "",
-  maxHeight = 500,
+  height = 500,
 }: Props) {
   const [index, setIndex] = useState(0);
 
@@ -39,27 +39,30 @@ export function BrowserCarousel({
         <div className="max-w-prose mx-auto">
           <div className="relative">
             <BrowserFrame url={current.title}>
-              <div className="overflow-y-auto" style={{ maxHeight }}>
+              {/* Fixed-height stage so the layout doesn't jump between slides */}
+              <div className="relative" style={{ height }}>
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={index}
-                    className="flex flex-col gap-0"
+                    className="absolute inset-0 overflow-y-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
                   >
-                    {current.images.map((src, i) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        key={i}
-                        src={src}
-                        alt={`${current.title} — section ${i + 1}`}
-                        className="block w-full"
-                        loading="lazy"
-                        draggable={false}
-                      />
-                    ))}
+                    <div className="flex flex-col gap-0">
+                      {current.images.map((src, i) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          key={i}
+                          src={src}
+                          alt={`${current.title} — section ${i + 1}`}
+                          className="block w-full"
+                          loading="lazy"
+                          draggable={false}
+                        />
+                      ))}
+                    </div>
                   </motion.div>
                 </AnimatePresence>
               </div>
