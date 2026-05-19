@@ -67,10 +67,9 @@ export default function Page() {
               </p>
 
               {/* Heading */}
-              <h1 className="relative font-serif font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[0.92] tracking-[-0.03em] max-w-[11ch] text-[28px] md:text-[42px] lg:text-[70px] mt-0 mb-8">
-                Aleksandr Mihhailovski.
-                <br />
-                Product Designer for complex tools.
+              <h1 className="relative font-serif font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[1.05] tracking-[-0.03em] text-[28px] md:text-[42px] lg:text-[70px] mt-0 mb-8">
+                <span className="block whitespace-nowrap">Aleksandr Mihhailovski.</span>
+                <span className="block whitespace-nowrap">Product Designer for complex tools.</span>
               </h1>
 
               {/* Body copy */}
