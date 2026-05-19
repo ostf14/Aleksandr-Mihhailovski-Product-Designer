@@ -91,17 +91,17 @@ export function BrowserCarousel({
           </div>
 
           {total > 1 && (
-            <div className="mt-4 flex justify-center gap-2">
+            <div className="mt-4 mx-auto flex flex-row gap-1.5 max-w-[200px]">
               {slides.map((s, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setIndex(i)}
                   aria-label={`Go to ${s.title}`}
-                  className={`size-2 rounded-full transition-colors ${
+                  className={`h-[2px] flex-1 rounded-full transition-colors duration-300 ease-out ${
                     i === index
                       ? "bg-terracotta"
-                      : "bg-stone-300 hover:bg-stone-400"
+                      : "bg-stone-300 dark:bg-stone-600 hover:bg-stone-400 dark:hover:bg-stone-500"
                   }`}
                 />
               ))}
