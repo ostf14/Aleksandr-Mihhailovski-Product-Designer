@@ -75,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script dangerouslySetInnerHTML={{ __html: catDurationScript }} />
+        <script src="/mac-cursor.js" defer />
       </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
