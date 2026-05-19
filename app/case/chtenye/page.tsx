@@ -16,7 +16,7 @@ const tocItems: TocItem[] = [
   { id: "research", label: "Three users were enough" },
   { id: "iteration", label: "Three rounds, three days" },
   { id: "structure", label: "Three principles that rewrote the navigation" },
-  { id: "design", label: "Balancing density with clarity" },
+  { id: "design", label: "Three worlds, one site" },
   { id: "results", label: "Results" },
   { id: "lessons", label: "What I learned" },
 ];
@@ -318,24 +318,34 @@ export default function Page() {
 
           {/* 05 · Design */}
           <div id="design" className="scroll-mt-20 pb-32">
-            <Section kicker="05 · Design" heading="Balancing density with clarity">
+            <Section kicker="05 · Design" heading="Three worlds, one site">
               <Prose>
                 <p>
-                  With the structure validated, I moved to visual design. The challenge: 12
-                  content types now share a unified architecture — how do you differentiate them
-                  visually without breaking the system?
+                  Chtenye hosts three fundamentally different content types — each needs to feel
+                  native to its format while living on the same platform.
                 </p>
                 <p>
-                  A modular card system. Same grid, same attribute display, but format badges,
-                  duration indicators, and color accents let users distinguish a 5-minute article
-                  from a 2-hour lecture series at a glance.
+                  Shows get cinematic horizontal cards with stylized illustrations — authored
+                  content.
+                </p>
+                <p>
+                  Videos get raw YouTube energy — blogger in frame, bold text overlays, direct
+                  &ldquo;Watch on YouTube&rdquo; links.
+                </p>
+                <p>
+                  Library gets vertical book covers on a muted background, PDF badges, author
+                  names and publication years. Academic, quiet.
+                </p>
+                <p>
+                  You never confuse a 1977 linguistics paper with a YouTube video about
+                  orthography.
                 </p>
               </Prose>
             </Section>
 
             <CardSlider
               className="mt-8"
-              caption="Three content surfaces — Shows, Videos, Library — sharing one card system. Format badges and duration indicators let users scan without reading."
+              caption="One card system across all content types."
               slides={[
                 { src: "/cards-shows.png", alt: "Shows page card system" },
                 { src: "/cards-videos.png", alt: "Videos page card system" },
