@@ -59,9 +59,9 @@ function CardContent({ c }: { c: Case }) {
         className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta z-10"
         aria-hidden
       />
-      <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full pr-10">
+      <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
         {/* Text — visible first on mobile (top), right on desktop */}
-        <div className="md:flex-1 md:min-w-0 flex flex-col">
+        <div className="md:flex-1 md:min-w-0 flex flex-col pr-10 md:pr-10">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
             {c.tag}
           </div>
@@ -73,8 +73,8 @@ function CardContent({ c }: { c: Case }) {
           </p>
         </div>
 
-        {/* Image — bottom on mobile, left on desktop */}
-        <div className="flex-1 min-h-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-lg md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
+        {/* Image — full-bleed bottom on mobile, fixed 38% on desktop */}
+        <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
           {c.image && (
             <img
               src={c.image}
