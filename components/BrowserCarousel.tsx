@@ -74,37 +74,43 @@ export function BrowserCarousel({
                   type="button"
                   onClick={prev}
                   aria-label="Previous page"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 size-9 rounded-full bg-charcoal/70 text-cream flex items-center justify-center transition-colors hover:bg-charcoal/90 shadow-md z-10"
+                  className="absolute top-1/2 -translate-y-1/2 text-charcoal hover:text-terracotta transition-colors"
+                  style={{ right: "calc(100% + 16px)" }}
                 >
-                  <ChevronLeft size={18} strokeWidth={2} aria-hidden />
+                  <ChevronLeft size={24} strokeWidth={1.75} aria-hidden />
                 </button>
                 <button
                   type="button"
                   onClick={next}
                   aria-label="Next page"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 size-9 rounded-full bg-charcoal/70 text-cream flex items-center justify-center transition-colors hover:bg-charcoal/90 shadow-md z-10"
+                  className="absolute top-1/2 -translate-y-1/2 text-charcoal hover:text-terracotta transition-colors"
+                  style={{ left: "calc(100% + 16px)" }}
                 >
-                  <ChevronRight size={18} strokeWidth={2} aria-hidden />
+                  <ChevronRight size={24} strokeWidth={1.75} aria-hidden />
                 </button>
               </>
             )}
           </div>
 
           {total > 1 && (
-            <div className="mt-4 mx-auto flex flex-row gap-1.5 max-w-[200px]">
-              {slides.map((s, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setIndex(i)}
-                  aria-label={`Go to ${s.title}`}
-                  className={`h-[2px] flex-1 rounded-full transition-colors duration-300 ease-out ${
-                    i === index
-                      ? "bg-terracotta"
-                      : "bg-stone-300 dark:bg-stone-600 hover:bg-stone-400 dark:hover:bg-stone-500"
-                  }`}
-                />
-              ))}
+            <div className="mt-4 flex flex-row gap-0 w-full">
+              {slides.map((s, i) => {
+                const isFirst = i === 0;
+                const isLast = i === total - 1;
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setIndex(i)}
+                    aria-label={`Go to ${s.title}`}
+                    className={`h-[2px] flex-1 transition-colors duration-300 ease-out ${
+                      i === index
+                        ? "bg-terracotta"
+                        : "bg-stone-300 dark:bg-stone-600 hover:bg-stone-400 dark:hover:bg-stone-500"
+                    } ${isFirst ? "rounded-l-full" : ""} ${isLast ? "rounded-r-full" : ""}`}
+                  />
+                );
+              })}
             </div>
           )}
 
