@@ -192,7 +192,7 @@ export default function Page() {
 
               <Callout className="mt-10" label="Key insight">
                 Content creation sat at the same expensive intersection as{" "}
-                <a href="/" className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity">
+                <a href="/case/push-notifications" className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity">
                   push notifications
                 </a>
                 : marketing couldn&rsquo;t publish without engineering, and engineering had
