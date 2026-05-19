@@ -69,7 +69,7 @@ export default function Page() {
               {/* Heading */}
               <h1
                 className="relative font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[1.05] tracking-[-0.03em] text-[28px] md:text-[42px] lg:text-[70px] mt-0 mb-8"
-                style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+                style={{ fontFamily: '"Asthetic Pixel", system-ui, sans-serif' }}
               >
                 <span className="block whitespace-nowrap">Hi, I&rsquo;m Aleksandr.</span>
                 <span className="block whitespace-nowrap">Product Designer for complex tools.</span>
