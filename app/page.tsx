@@ -67,7 +67,7 @@ export default function Page() {
               </p>
 
               {/* Heading */}
-              <h1 className="relative font-serif font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[0.92] tracking-[-0.03em] max-w-[11ch] text-5xl md:text-7xl lg:text-[7.5rem] mt-0 mb-8">
+              <h1 className="relative font-serif font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[0.92] tracking-[-0.03em] max-w-[11ch] text-base md:text-2xl lg:text-[2.5rem] mt-0 mb-8">
                 Aleksandr Mihhailovski.
                 <br />
                 Product Designer for complex tools.
