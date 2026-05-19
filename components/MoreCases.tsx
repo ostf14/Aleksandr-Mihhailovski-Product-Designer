@@ -48,7 +48,7 @@ const FLY_OUT = { y: 300, scale: 1, opacity: 0, zIndex: 10 };
 const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 5 };
 
 const cardClass =
-  "group absolute inset-x-0 bottom-0 h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
+  "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
 
 function CardContent({ c }: { c: Case }) {
   return (
@@ -56,21 +56,12 @@ function CardContent({ c }: { c: Case }) {
       <ArrowUpRight
         size={32}
         strokeWidth={1.5}
-        className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta"
+        className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta z-10"
         aria-hidden
       />
-      <div className="flex flex-row gap-5 h-full pr-10">
-        <div className="hidden md:block shrink-0 basis-[38%] rounded-xl h-full overflow-hidden bg-cream-warm dark:bg-cream-deep">
-          {c.image && (
-            <img
-              src={c.image}
-              alt=""
-              aria-hidden
-              className="w-full h-full object-cover object-top"
-            />
-          )}
-        </div>
-        <div className="flex-1 min-w-0 flex flex-col h-full">
+      <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full pr-10">
+        {/* Text — visible first on mobile (top), right on desktop */}
+        <div className="md:flex-1 md:min-w-0 flex flex-col">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
             {c.tag}
           </div>
@@ -80,6 +71,18 @@ function CardContent({ c }: { c: Case }) {
           <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
             {c.description}
           </p>
+        </div>
+
+        {/* Image — bottom on mobile, left on desktop */}
+        <div className="flex-1 min-h-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-lg md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
+          {c.image && (
+            <img
+              src={c.image}
+              alt=""
+              aria-hidden
+              className="w-full h-full object-cover object-top"
+            />
+          )}
         </div>
       </div>
     </>
@@ -114,7 +117,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
           More case studies
         </h2>
 
-        <div className="relative h-[268px] overflow-hidden">
+        <div className="relative h-[368px] md:h-[268px] overflow-hidden">
           {list.length === 1 ? (
             <a
               href={list[0].href}

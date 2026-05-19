@@ -39,12 +39,15 @@ export function BrowserCarousel({
         <div className="max-w-prose mx-auto">
           <div className="relative">
             <BrowserFrame url={current.title}>
-              {/* Fixed-height stage so the layout doesn't jump between slides */}
-              <div className="relative" style={{ height }}>
+              {/* Stage: 60vh + overflow-hidden on mobile (clip excess); fixed height + scroll on desktop */}
+              <div
+                className="relative h-[60vh] md:h-[var(--carousel-h)]"
+                style={{ ["--carousel-h" as never]: `${height}px` }}
+              >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={index}
-                    className="absolute inset-0 overflow-y-auto"
+                    className="absolute inset-0 overflow-hidden md:overflow-y-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -57,7 +60,7 @@ export function BrowserCarousel({
                           key={i}
                           src={src}
                           alt={`${current.title} — section ${i + 1}`}
-                          className="block w-full"
+                          className="block w-full object-contain"
                           loading="lazy"
                           draggable={false}
                         />
