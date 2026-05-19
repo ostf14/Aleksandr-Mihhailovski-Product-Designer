@@ -8,7 +8,6 @@ type Props = {
   beforeLabel?: string;
   afterLabel?: string;
   className?: string;
-  aspectRatio?: string;
 };
 
 export function BeforeAfterSlider({
@@ -17,7 +16,6 @@ export function BeforeAfterSlider({
   beforeLabel = "Before",
   afterLabel = "After",
   className = "",
-  aspectRatio = "16 / 10",
 }: Props) {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,23 +60,22 @@ export function BeforeAfterSlider({
     <div
       ref={containerRef}
       className={`relative overflow-hidden rounded-xl select-none ${className}`}
-      style={{ aspectRatio }}
       onMouseDown={(e) => startDrag(e.clientX)}
       onTouchStart={(e) => {
         const t = e.touches[0];
         if (t) startDrag(t.clientX);
       }}
     >
-      {/* After (full, sits underneath) */}
+      {/* After sets the natural height of the container */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={afterSrc}
         alt={afterLabel}
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="block w-full h-auto pointer-events-none"
         draggable={false}
       />
 
-      {/* Before (clipped to left of slider) */}
+      {/* Before — absolute overlay clipped to the slider position */}
       <div
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
