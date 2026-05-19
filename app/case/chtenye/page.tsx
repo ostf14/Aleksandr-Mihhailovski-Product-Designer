@@ -16,7 +16,6 @@ const tocItems: TocItem[] = [
   { id: "research", label: "Three users were enough" },
   { id: "iteration", label: "Three rounds, three days" },
   { id: "structure", label: "Three principles that rewrote the navigation" },
-  { id: "design", label: "Three worlds, one site" },
   { id: "results", label: "Results" },
   { id: "lessons", label: "What I learned" },
 ];
@@ -353,43 +352,9 @@ export default function Page() {
             </Callout>
           </div>
 
-          {/* 05 · Design */}
-          <div id="design" className="scroll-mt-20 pb-32">
-            <Section kicker="05 · Design" heading="Three worlds, one site">
-              <Prose>
-                <p>
-                  Chtenye hosts three fundamentally different content types — each needs to feel
-                  native to its format while living on the same platform.
-                </p>
-                <p>
-                  Shows get cinematic horizontal cards with stylized illustrations — authored
-                  content.
-                </p>
-                <p>
-                  Videos get raw YouTube energy — blogger in frame, bold text overlays, direct
-                  &ldquo;Watch on YouTube&rdquo; links.
-                </p>
-                <p>
-                  Library gets vertical book covers on a muted background, PDF badges, author
-                  names and publication years. Academic, quiet.
-                </p>
-                <p>
-                  You never confuse a 1977 linguistics paper with a YouTube video about
-                  orthography.
-                </p>
-              </Prose>
-            </Section>
-
-            <Callout className="mt-10" label="Design decision">
-              50+ iterations of the main page to find the right information density. Each added
-              element diluted scannability — the final version shows less data per card but
-              enables faster decisions.
-            </Callout>
-          </div>
-
-          {/* 06 · Results */}
+          {/* 05 · Results */}
           <div id="results" className="scroll-mt-20 pb-32">
-            <Section kicker="06 · Results" heading="Results">
+            <Section kicker="05 · Results" heading="Results">
               <div className="px-6 md:px-10">
                 <div className="max-w-4xl mx-auto">
                   <div className="max-w-prose mx-auto space-y-10">
@@ -413,10 +378,10 @@ export default function Page() {
             </Callout>
           </div>
 
-          {/* 07 · Lessons */}
+          {/* 06 · Lessons */}
           <div id="lessons" className="scroll-mt-20 pb-32">
             <Section
-              kicker="07 · Lessons"
+              kicker="06 · Lessons"
               heading={
                 <>
                   What I <em>learned</em>
