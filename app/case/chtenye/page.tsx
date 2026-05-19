@@ -5,6 +5,7 @@ import { MoreCases } from "@/components/MoreCases";
 import { FadeIn } from "@/components/FadeIn";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BrowserCarousel } from "@/components/BrowserCarousel";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { NumberedList } from "@/components/NumberedList";
@@ -370,6 +371,19 @@ export default function Page() {
                 </div>
               </div>
             </Section>
+
+            <div className="mt-10 px-6 md:px-10">
+              <div className="max-w-4xl mx-auto">
+                <div className="max-w-prose mx-auto">
+                  <BeforeAfterSlider
+                    beforeSrc="/Before.png"
+                    afterSrc="/After.png"
+                    beforeLabel="Before"
+                    afterLabel="After"
+                  />
+                </div>
+              </div>
+            </div>
 
             <Callout className="mt-10" label="Key insight">
               The footer with expanded second-level navigation became an unexpected power
