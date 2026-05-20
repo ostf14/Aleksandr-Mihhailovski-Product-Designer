@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Copy, Download } from "lucide-react";
+
+const SCALE_FACTOR = 480 / 1080;
 
 const phrases = [
   "complex products feel simple",
@@ -25,12 +27,23 @@ export function BusinessCard() {
   const [deleting, setDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [cardHeight, setCardHeight] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const measure = () => {
+      if (cardRef.current) setCardHeight(cardRef.current.offsetHeight);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   const copyEmail = async () => {
@@ -72,7 +85,11 @@ export function BusinessCard() {
 
   return (
     <motion.div
-      animate={{ scale: scrolled ? 480 / 1080 : 1 }}
+      ref={cardRef}
+      animate={{
+        scale: scrolled ? SCALE_FACTOR : 1,
+        marginBottom: scrolled ? -cardHeight * (1 - SCALE_FACTOR) : 0,
+      }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
       style={{ transformOrigin: "top center" }}
       className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
