@@ -62,7 +62,7 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-[#F0EDE5] dark:bg-[#242626] px-12 pt-12 md:px-16 md:pt-16">
+    <div className="relative overflow-hidden rounded-2xl border border-neutral-300/40 dark:border-neutral-500/10 bg-[#EDE9E0] dark:bg-[#242626] px-12 pt-12 md:px-16 md:pt-16">
       {/* Dot pattern overlay */}
       <div
         aria-hidden
