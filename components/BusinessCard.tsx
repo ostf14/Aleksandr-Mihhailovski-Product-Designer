@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Check, Copy, Download } from "lucide-react";
 
 const SCALE_FACTOR = 480 / 1080;
@@ -40,17 +40,22 @@ export function BusinessCard() {
   }, []);
 
   // Scroll-linked motion values — no React state, no animation timer.
-  // Card scale + sibling pull-up are driven directly by scrollY position.
+  // Spring-smoothed so the card doesn't snap on each chunky scroll event.
   const { scrollY } = useScroll();
-  const scale = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
+  const SPRING = { stiffness: 500, damping: 60, mass: 0.4 } as const;
+
+  const scaleRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
     clamp: true,
   });
-  const marginBottom = useTransform(
+  const scale = useSpring(scaleRaw, SPRING);
+
+  const marginBottomRaw = useTransform(
     scrollY,
     [0, SCROLL_RANGE],
     [0, -cardHeight * (1 - SCALE_FACTOR)],
     { clamp: true },
   );
+  const marginBottom = useSpring(marginBottomRaw, SPRING);
 
   const copyEmail = async () => {
     try {
