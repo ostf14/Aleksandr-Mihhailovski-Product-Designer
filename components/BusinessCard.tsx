@@ -5,7 +5,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Check, Copy, Download } from "lucide-react";
 
 const SCALE_FACTOR = 480 / 1080;
-const SCROLL_RANGE = 100; // pixels of scroll over which the card collapses
+const SCROLL_RANGE = 150; // pixels of scroll over which the card collapses
 
 const phrases = [
   "complex products feel simple",
@@ -42,17 +42,28 @@ export function BusinessCard() {
   // Scroll-linked motion values — no React state, no animation timer.
   // Spring-smoothed so the card doesn't snap on each chunky scroll event.
   const { scrollY } = useScroll();
-  const SPRING = { stiffness: 800, damping: 80, mass: 0.3 } as const;
+  const SPRING = { stiffness: 1000, damping: 100, mass: 0.2 } as const;
 
   const scaleRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
     clamp: true,
   });
   const scale = useSpring(scaleRaw, SPRING);
 
+  // Card fades + blurs as it dissolves; gap closes completely once invisible.
+  const opacityRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, 0], {
+    clamp: true,
+  });
+  const opacity = useSpring(opacityRaw, SPRING);
+
+  const blurRaw = useTransform(scrollY, [0, SCROLL_RANGE], [0, 8], {
+    clamp: true,
+  });
+  const filter = useTransform(blurRaw, (b) => `blur(${b}px)`);
+
   const marginBottomRaw = useTransform(
     scrollY,
     [0, SCROLL_RANGE],
-    [0, -cardHeight * (1 - SCALE_FACTOR)],
+    [0, -cardHeight],
     { clamp: true },
   );
   const marginBottom = useSpring(marginBottomRaw, SPRING);
@@ -99,9 +110,11 @@ export function BusinessCard() {
       ref={cardRef}
       style={{
         scale,
+        opacity,
+        filter,
         marginBottom,
         transformOrigin: "top center",
-        willChange: "transform",
+        willChange: "transform, opacity, filter",
       }}
       className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
     >
