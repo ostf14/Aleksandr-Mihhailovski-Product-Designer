@@ -62,11 +62,11 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-neutral-300/40 dark:border-neutral-500/10 bg-[#EDE9E0] dark:bg-[#242626] px-12 pt-12 md:px-16 md:pt-16">
+    <div className="relative overflow-hidden rounded-2xl border border-[#B5654A]/10 dark:border-neutral-500/10 bg-white/80 dark:bg-[#242626] backdrop-blur-sm px-12 pt-12 md:px-16 md:pt-16">
       {/* Dot pattern overlay */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none text-[#1a1a1a] dark:text-[#E8E8E6] opacity-[0.04] dark:opacity-[0.06]"
+        className="absolute inset-0 pointer-events-none text-[#1a1a1a] dark:text-[#E8E8E6] opacity-[0.02] dark:opacity-[0.06]"
         style={{
           backgroundImage:
             "radial-gradient(circle, currentColor 1px, transparent 1px)",
@@ -75,20 +75,26 @@ export function BusinessCard() {
       />
 
       <div className="relative md:flex md:items-start md:gap-8">
-        {/* Photo — fixed 180px circle */}
-        <div className="hidden md:flex w-[180px] h-[180px] rounded-full shrink-0 overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero-photo.jpg"
-            alt="Aleksandr Mihhailovski"
-            className="w-full h-full object-cover"
+        {/* Photo — fixed 180px circle with warm glow */}
+        <div className="hidden md:block relative shrink-0">
+          <div
+            aria-hidden
+            className="absolute inset-[-12px] rounded-full bg-[#B5654A]/15 blur-xl"
           />
+          <div className="relative z-10 w-[180px] h-[180px] rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 flex items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hero-photo.jpg"
+              alt="Aleksandr Mihhailovski"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         <div className="flex-1 min-w-0">
           {/* Heading */}
           <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
-            <span className="block whitespace-nowrap text-[#3d3d3d] dark:text-[#E8E8E6]">
+            <span className="block whitespace-nowrap text-[#2c2420] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex.{" "}
               <span
                 role="img"
@@ -102,17 +108,17 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#3d3d3d]/35 dark:text-[#E8E8E6]/40">
+            <span className="block text-[#B5654A]/50 dark:text-[#E8E8E6]/40">
               Product Designer &amp; Builder.
             </span>
           </h2>
 
           {/* Typewriter — fixed min-height to prevent card resize between phrases */}
           <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
-            <span className="font-medium text-[#3d3d3d] dark:text-[#E8E8E6]">
+            <span className="font-medium text-[#2c2420] dark:text-[#E8E8E6]">
               I make{" "}
             </span>
-            <span className="font-normal text-neutral-400 dark:text-neutral-500">
+            <span className="font-normal text-[#B5654A]/60 dark:text-neutral-500">
               {text}
             </span>
             <span
@@ -127,12 +133,12 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-neutral-400/30 dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-[#B5654A]/15 dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3d3d3d] dark:text-[#E8E8E6] border-r border-neutral-400/30 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-neutral-500/10"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#2c2420] dark:text-[#E8E8E6] border-r border-[#B5654A]/15 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#B5654A]/5"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -141,7 +147,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3d3d3d] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-neutral-500/10"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#2c2420] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#B5654A]/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>
