@@ -62,7 +62,7 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[#B5654A]/10 dark:border-neutral-500/10 bg-white/80 dark:bg-[#242626] backdrop-blur-sm px-12 pt-12 md:px-16 md:pt-16">
+    <div className="relative overflow-hidden rounded-2xl border border-[#FF6936]/10 dark:border-neutral-500/10 bg-white/80 dark:bg-[#242626] backdrop-blur-sm px-12 pt-12 md:px-16 md:pt-16">
       {/* Dot pattern overlay */}
       <div
         aria-hidden
@@ -79,7 +79,7 @@ export function BusinessCard() {
         <div className="hidden md:block relative shrink-0">
           <div
             aria-hidden
-            className="absolute inset-[-12px] rounded-full bg-[#B5654A]/15 blur-xl"
+            className="absolute inset-[-12px] rounded-full bg-[#FF6936]/15 blur-xl"
           />
           <div className="relative z-10 w-[180px] h-[180px] rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -108,7 +108,7 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#B5654A]/50 dark:text-[#E8E8E6]/40">
+            <span className="block text-[#FF6936]/50 dark:text-[#E8E8E6]/40">
               Product Designer &amp; Builder.
             </span>
           </h2>
@@ -118,7 +118,7 @@ export function BusinessCard() {
             <span className="font-medium text-[#2c2420] dark:text-[#E8E8E6]">
               I make{" "}
             </span>
-            <span className="font-normal text-[#B5654A]/60 dark:text-neutral-500">
+            <span className="font-normal text-[#FF6936]/60 dark:text-neutral-500">
               {text}
             </span>
             <span
@@ -133,12 +133,12 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-[#B5654A]/15 dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-[#FF6936]/15 dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#2c2420] dark:text-[#E8E8E6] border-r border-[#B5654A]/15 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#B5654A]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#2c2420] dark:text-[#E8E8E6] border-r border-[#FF6936]/15 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -147,7 +147,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#2c2420] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#B5654A]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#2c2420] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>

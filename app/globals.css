@@ -15,7 +15,7 @@
   --rgb-cream-warm: 240 237 229;
   --rgb-cream-deep: 237 233 224;
   --rgb-charcoal: 26 26 26;
-  --rgb-terracotta: 181 101 74;
+  --rgb-terracotta: 255 105 54;
   color-scheme: light;
 }
 
@@ -25,7 +25,7 @@
   --rgb-cream-warm: 36 38 38;     /* #242626 — cards / callouts / pill nav */
   --rgb-cream-deep: 20 21 21;     /* #141515 — footer */
   --rgb-charcoal: 232 232 230;    /* #E8E8E6 — main text */
-  --rgb-terracotta: 218 123 74;   /* #da7b4a — terracotta accent (the only warm tone) */
+  --rgb-terracotta: 255 105 54;   /* #FF6936 — single accent across light and dark */
   color-scheme: dark;
 }
 
