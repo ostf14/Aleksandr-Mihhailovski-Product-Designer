@@ -36,11 +36,11 @@ export function Footer() {
         <SpriteAnimation />
       </div>
 
-      {/* Content reveal: clipped at top edge, slides up into view */}
+      {/* Content reveal: clipped at top edge, slides down into view from above */}
       <div className="overflow-hidden">
         <motion.div
-          initial={{ y: 60 }}
-          animate={inView ? { y: 0 } : { y: 60 }}
+          initial={{ y: -60 }}
+          animate={inView ? { y: 0 } : { y: -60 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="max-w-prose mx-auto px-6 md:px-10 pt-16 pb-32"
         >
