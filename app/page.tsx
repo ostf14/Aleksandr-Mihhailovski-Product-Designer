@@ -78,7 +78,8 @@ export default function Page() {
             </div>
 
             <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
-              I design complex systems with simple interfaces
+              <span className="block">I design complex systems</span>
+              <span className="block">with simple interfaces</span>
             </h1>
             <p className="mt-4 font-mono text-xs md:text-sm uppercase tracking-widest text-neutral-400 text-center">
               Prototyping &amp; Frontend with AI · B2B SaaS · User Tests
@@ -99,7 +100,7 @@ export default function Page() {
                       {row.company}
                     </span>
                   </div>
-                  <span className="mt-1 block font-sans text-sm text-neutral-500 dark:text-neutral-400 pl-[7.5rem] md:mt-0 md:pl-0">
+                  <span className="hidden md:block font-sans text-sm font-normal text-neutral-500 dark:text-neutral-400">
                     {row.focus}
                   </span>
                 </div>
