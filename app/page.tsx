@@ -61,7 +61,7 @@ export default function Page() {
         <section className="px-6 md:px-10 pt-[120px] md:pt-[160px] pb-20">
           <div className="max-w-4xl mx-auto">
             {/* Kicker */}
-            <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 text-center">
+            <p className="font-mono text-xs uppercase tracking-widest text-terracotta text-center">
               Product Designer · Kraków
             </p>
 
@@ -77,18 +77,20 @@ export default function Page() {
               />
             </div>
 
-            <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
+            <h1 className="mt-8 font-serif font-normal text-3xl md:text-5xl leading-[1.15] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
               <span className="block">I design complex systems</span>
-              <span className="block">&amp; make them feel simple —</span>
-              <span className="block">then ship frontend with AI tools.</span>
+              <span className="block">&amp; make them feel simple</span>
             </h1>
+            <p className="mt-4 font-sans text-lg md:text-xl leading-snug text-neutral-500 dark:text-neutral-400 text-center">
+              then ship frontend with AI tools.
+            </p>
 
             {/* Experience table */}
-            <div className="mt-8 border border-[#B5654A]/30 rounded-xl p-6 flex flex-col gap-2">
+            <div className="mt-10 border border-[#B5654A]/30 rounded-xl px-6 divide-y divide-stone-200 dark:divide-stone-700/60">
               {experience.map((row) => (
                 <div
                   key={row.year}
-                  className="md:grid md:grid-cols-[120px_180px_1fr] md:gap-x-6"
+                  className="py-3 md:grid md:grid-cols-[110px_1fr_1.6fr] md:items-baseline md:gap-x-6"
                 >
                   <div className="flex items-baseline gap-4 md:contents">
                     <span className="font-mono text-sm text-neutral-400 whitespace-nowrap">
@@ -98,7 +100,7 @@ export default function Page() {
                       {row.company}
                     </span>
                   </div>
-                  <span className="block font-sans text-sm text-neutral-500 dark:text-neutral-400 pl-20 md:pl-0">
+                  <span className="mt-1 block font-sans text-sm text-neutral-500 dark:text-neutral-400 pl-[7.5rem] md:mt-0 md:pl-0">
                     {row.focus}
                   </span>
                 </div>
