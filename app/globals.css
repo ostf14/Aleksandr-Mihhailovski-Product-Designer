@@ -11,11 +11,13 @@
 }
 
 :root {
-  --rgb-cream: 247 245 236;
-  --rgb-cream-warm: 240 237 229;
-  --rgb-cream-deep: 237 233 224;
-  --rgb-charcoal: 26 26 26;
-  --rgb-terracotta: 255 105 54;
+  --rgb-cream: 245 240 235;        /* #F5F0EB — page bg */
+  --rgb-cream-warm: 245 242 237;   /* #F5F2ED — cards / hover surfaces */
+  --rgb-cream-deep: 237 232 227;   /* #EDE8E3 — footer */
+  --rgb-charcoal: 29 22 17;        /* #1D1611 — main text */
+  --rgb-terracotta: 255 105 54;    /* #FF6936 — accent */
+  /* Warm-brown muted scale (replaces cold neutrals in light mode) */
+  --color-warm-rgb: 59 45 33;      /* base RGB for opacity stops */
   color-scheme: light;
 }
 
@@ -51,6 +53,31 @@ body {
 ::selection {
   background-color: rgb(var(--rgb-terracotta) / 0.2);
   color: rgb(var(--rgb-charcoal));
+}
+
+/* ---------------------------------------------------------------
+   Light-mode warm-brown overrides for Tailwind's cold neutrals.
+   Dark mode is untouched (selector excludes .dark).
+   --------------------------------------------------------------- */
+html:not(.dark) .text-neutral-400,
+html:not(.dark) .text-stone-400 {
+  color: rgb(var(--color-warm-rgb) / 0.4);
+}
+html:not(.dark) .text-neutral-500,
+html:not(.dark) .text-stone-500,
+html:not(.dark) .text-stone-600 {
+  color: rgb(var(--color-warm-rgb) / 0.55);
+}
+html:not(.dark) .border-neutral-300,
+html:not(.dark) .border-stone-200,
+html:not(.dark) .border-stone-300 {
+  border-color: rgb(var(--color-warm-rgb) / 0.08);
+}
+html:not(.dark) .border-neutral-400 {
+  border-color: rgb(var(--color-warm-rgb) / 0.15);
+}
+html:not(.dark) .bg-neutral-200 {
+  background-color: rgb(var(--color-warm-rgb) / 0.06);
 }
 
 @keyframes blink {
