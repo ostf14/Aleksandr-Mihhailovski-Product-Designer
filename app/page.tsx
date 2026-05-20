@@ -77,22 +77,14 @@ export default function Page() {
               />
             </div>
 
-            <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center">
-              <span className="block text-[#1a1a1a] dark:text-[#E8E8E6]">
-                Hi, I&rsquo;m Aleksandr.
-              </span>
-              <span className="block italic text-[#1a1a1a]/50 dark:text-[#E8E8E6]/50">
-                Product Designer for complex tools.
-              </span>
+            <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
+              <span className="block">I design complex systems</span>
+              <span className="block">&amp; make them feel simple —</span>
+              <span className="block">then ship frontend with AI tools.</span>
             </h1>
 
-            <div className="mt-6 space-y-1 font-sans text-lg text-neutral-500 dark:text-neutral-400">
-              <p>I design B2B SaaS products and design systems.</p>
-              <p>I prototype in code and build frontend with AI-assisted tools.</p>
-            </div>
-
             {/* Experience table */}
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-8 border border-[#B5654A]/30 rounded-xl p-6 flex flex-col gap-2">
               {experience.map((row) => (
                 <div
                   key={row.year}
@@ -102,7 +94,7 @@ export default function Page() {
                     <span className="font-mono text-sm text-neutral-400 whitespace-nowrap">
                       {row.year}
                     </span>
-                    <span className="font-sans text-sm font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
+                    <span className="font-sans text-sm font-normal text-[#1a1a1a] dark:text-[#E8E8E6]">
                       {row.company}
                     </span>
                   </div>
@@ -112,10 +104,6 @@ export default function Page() {
                 </div>
               ))}
             </div>
-
-            <p className="mt-6 font-mono text-xs uppercase tracking-widest text-terracotta">
-              Open to Opportunities
-            </p>
           </div>
         </section>
 
