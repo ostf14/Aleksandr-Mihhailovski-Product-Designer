@@ -90,8 +90,8 @@ export function BusinessCard() {
         scale: scrolled ? SCALE_FACTOR : 1,
         marginBottom: scrolled ? -cardHeight * (1 - SCALE_FACTOR) : 0,
       }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      style={{ transformOrigin: "top center" }}
+      transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+      style={{ transformOrigin: "top center", willChange: "transform" }}
       className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
     >
 
@@ -123,7 +123,7 @@ export function BusinessCard() {
                 className="inline-block"
                 style={{
                   transformOrigin: "70% 70%",
-                  animation: "wave 2.5s ease-in-out infinite",
+                  animation: "wave 2s ease-in-out 3 forwards",
                 }}
               >
                 👋🏻
@@ -142,11 +142,7 @@ export function BusinessCard() {
             <span className="font-normal text-[#7B7974] dark:text-neutral-500">
               {text}
             </span>
-            <span
-              aria-hidden
-              className="font-normal text-terracotta"
-              style={{ animation: "blink 1s steps(2, start) infinite" }}
-            >
+            <span aria-hidden className="font-normal text-terracotta cursor-blink">
               |
             </span>
           </p>

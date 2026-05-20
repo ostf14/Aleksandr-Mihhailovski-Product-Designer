@@ -408,8 +408,8 @@ export default function Page() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-cream-warm rounded-lg p-5 md:p-6 flex flex-col transition-all duration-300 ease-out md:hover:-translate-y-1 md:hover:bg-cream-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-stone-500 font-medium mb-3 transition-colors duration-300 md:group-hover:text-terracotta">
+                          <div className="group h-full bg-cream-warm rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-cream-deep md:hover:shadow-sm">
+                            <div className="text-xs uppercase tracking-[0.14em] text-stone-500 font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-terracotta">
                               {String(i + 1).padStart(2, "0")}
                             </div>
                             <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">

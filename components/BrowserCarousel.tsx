@@ -106,7 +106,7 @@ export function BrowserCarousel({
                     type="button"
                     onClick={() => setIndex(i)}
                     aria-label={`Go to ${s.title}`}
-                    className={`h-[2px] flex-1 transition-colors duration-300 ease-out ${
+                    className={`h-[2px] flex-1 transition-colors duration-200 ease-out ${
                       i === index
                         ? "bg-terracotta"
                         : "bg-stone-300 dark:bg-stone-600 hover:bg-stone-400 dark:hover:bg-stone-500"

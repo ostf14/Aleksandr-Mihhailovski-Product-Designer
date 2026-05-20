@@ -84,7 +84,7 @@ export function Nav() {
       {/* Desktop: single nav, container properties animate, content stays static */}
       <div className="hidden md:flex fixed inset-x-0 top-0 z-50 px-6 md:px-10 justify-center pointer-events-none">
         <motion.nav
-          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[400ms] ease-in-out ${
+          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[250ms] ease-out ${
             scrolled
               ? "bg-cream/80 backdrop-blur-md border-stone-200/60 shadow-sm"
               : "bg-transparent border-transparent shadow-none backdrop-blur-0"
@@ -98,7 +98,7 @@ export function Nav() {
             borderRadius: scrolled ? 9999 : 0,
             marginTop: scrolled ? 16 : 0,
           }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">

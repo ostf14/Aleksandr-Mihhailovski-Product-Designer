@@ -121,7 +121,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
           {list.length === 1 ? (
             <a
               href={list[0].href}
-              className={`${cardClass} translate-y-3 hover:-translate-y-1 transition-transform duration-300`}
+              className={`${cardClass} translate-y-3 hover:-translate-y-1 transition-transform duration-200 ease-out`}
             >
               <CardContent c={list[0]} />
             </a>
