@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { BusinessCard } from "@/components/BusinessCard";
+import { CaseCardReveal } from "@/components/HomeCases";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -44,40 +45,41 @@ export default function Page() {
         <section className="px-6 md:px-10 mb-32">
           <div className="max-w-[1080px] mx-auto flex flex-col gap-5">
             {cases.map((c) => (
-              <a
-                key={c.href}
-                href={c.href}
-                className="group relative block h-[348px] md:h-[248px] rounded-2xl bg-white dark:bg-cream-warm border border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 transition-transform duration-200 hover:-translate-y-0.5"
-              >
-                <ArrowUpRight
-                  size={32}
-                  strokeWidth={1.5}
-                  className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta z-10"
-                  aria-hidden
-                />
-                <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
-                  <div className="md:flex-1 md:min-w-0 flex flex-col pr-10">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
-                      {c.tag}
+              <CaseCardReveal key={c.href}>
+                <a
+                  href={c.href}
+                  className="group relative block h-[348px] md:h-[248px] rounded-2xl bg-white dark:bg-cream-warm border border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 transition-transform duration-200 hover:-translate-y-0.5"
+                >
+                  <ArrowUpRight
+                    size={32}
+                    strokeWidth={1.5}
+                    className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta z-10"
+                    aria-hidden
+                  />
+                  <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
+                    <div className="md:flex-1 md:min-w-0 flex flex-col pr-10">
+                      <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
+                        {c.tag}
+                      </div>
+                      <h3 className="mt-2 font-serif font-normal text-[22px] leading-tight tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+                        {c.title}
+                      </h3>
+                      <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
+                        {c.description}
+                      </p>
                     </div>
-                    <h3 className="mt-2 font-serif font-normal text-[22px] leading-tight tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
-                      {c.title}
-                    </h3>
-                    <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
-                      {c.description}
-                    </p>
+                    <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={c.image}
+                        alt=""
+                        aria-hidden
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
                   </div>
-                  <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={c.image}
-                      alt=""
-                      aria-hidden
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </CaseCardReveal>
             ))}
           </div>
         </section>

@@ -5,7 +5,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Check, Copy, Download } from "lucide-react";
 
 const SCALE_FACTOR = 480 / 1080;
-const SCROLL_RANGE = 150; // pixels of scroll over which the card collapses
+const SCROLL_RANGE = 200; // pixels of scroll over which the card collapses
 
 const phrases = [
   "complex products feel simple",
