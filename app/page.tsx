@@ -77,12 +77,11 @@ export default function Page() {
               />
             </div>
 
-            <h1 className="mt-8 font-serif font-normal text-3xl md:text-5xl leading-[1.15] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
-              <span className="block">I design complex systems</span>
-              <span className="block">&amp; make them feel simple</span>
+            <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
+              I design complex systems with simple interfaces
             </h1>
-            <p className="mt-4 font-sans text-lg md:text-xl leading-snug text-neutral-500 dark:text-neutral-400 text-center">
-              then ship frontend with AI tools.
+            <p className="mt-4 font-mono text-xs md:text-sm uppercase tracking-widest text-neutral-400 text-center">
+              Prototyping &amp; Frontend with AI · B2B SaaS · User Tests
             </p>
 
             {/* Experience table */}
