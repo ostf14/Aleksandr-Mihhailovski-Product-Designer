@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Check, Copy, Download } from "lucide-react";
 
 const phrases = [
@@ -23,6 +24,14 @@ export function BusinessCard() {
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const copyEmail = async () => {
     try {
@@ -62,7 +71,11 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12">
+    <motion.div
+      animate={{ maxWidth: scrolled ? 480 : 1080 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="relative mx-auto w-full overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
+    >
 
       <div className="relative md:flex md:items-start md:gap-8">
         {/* Photo — fixed 180px circle with warm glow */}
@@ -98,7 +111,7 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#1F1F1E]/30 dark:text-[#E8E8E6]/40">
+            <span className="block text-[#7B7974] dark:text-[#E8E8E6]/40">
               Product Designer &amp; Builder.
             </span>
           </h2>
@@ -143,6 +156,6 @@ export function BusinessCard() {
           <span>{copied ? "Copied!" : "Email"}</span>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

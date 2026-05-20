@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { BusinessCard } from "@/components/BusinessCard";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
@@ -6,25 +6,25 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 
 const cases = [
   {
-    path: "/case/push-notifications",
-    title: "Push Notifications Manager",
-    subtitle: "How to kill the send button nobody wanted to press",
-    tags: "SEAMM · INTERNAL TOOLS · 2024",
-    year: "2024",
+    href: "/case/push-notifications",
+    tag: "Seamm",
+    title: "Push Notifications",
+    description: "How to kill the send button nobody wanted to press",
+    image: "https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png",
   },
   {
-    path: "/case/stories-editor",
+    href: "/case/stories-editor",
+    tag: "Seamm",
     title: "Stories Editor",
-    subtitle: "How I eliminated a 2-day content bottleneck.",
-    tags: "SEAMM · CONTENT TOOL · 2024",
-    year: "2024",
+    description: "How I eliminated a 2-day content bottleneck",
+    image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
   },
   {
-    path: "/case/chtenye",
-    title: "Chtenye",
-    subtitle: "Users couldn't explain what a single menu item meant.",
-    tags: "EDTECH · INFORMATION ARCHITECTURE · 2023",
-    year: "2023",
+    href: "/case/chtenye",
+    tag: "Chtenye",
+    title: "Educational Platform Redesign",
+    description: "Users couldn’t explain what a single menu item meant",
+    image: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
   },
 ];
 
@@ -37,38 +37,47 @@ export default function Page() {
       <main>
         {/* Business card — hero */}
         <section className="px-6 md:px-10 pt-[100px] md:pt-[120px] mb-20">
-          <div className="max-w-[1080px] mx-auto">
-            <BusinessCard />
-          </div>
+          <BusinessCard />
         </section>
 
         {/* Case Studies */}
         <section className="px-6 md:px-10 mb-32">
-          <div className="max-w-4xl mx-auto flex flex-col gap-6">
+          <div className="max-w-[1080px] mx-auto flex flex-col gap-5">
             {cases.map((c) => (
-              <Link
-                key={c.path}
-                href={c.path}
-                className="group block rounded-2xl overflow-hidden cursor-pointer"
+              <a
+                key={c.href}
+                href={c.href}
+                className="group relative block h-[348px] md:h-[248px] rounded-2xl bg-white dark:bg-cream-warm border border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 transition-transform duration-200 hover:-translate-y-0.5"
               >
-                <div className="aspect-[16/9] bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-0.5">
-                  <span className="text-sm text-neutral-400">Preview</span>
-                </div>
-                <div className="p-8">
-                  <div className="flex justify-between items-baseline gap-4">
-                    <h2 className="font-serif font-normal text-2xl tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+                <ArrowUpRight
+                  size={32}
+                  strokeWidth={1.5}
+                  className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta z-10"
+                  aria-hidden
+                />
+                <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
+                  <div className="md:flex-1 md:min-w-0 flex flex-col pr-10">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
+                      {c.tag}
+                    </div>
+                    <h3 className="mt-2 font-serif font-normal text-[22px] leading-tight tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
                       {c.title}
-                    </h2>
-                    <span className="font-mono text-xs text-neutral-400 shrink-0">
-                      {c.year}
-                    </span>
+                    </h3>
+                    <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
+                      {c.description}
+                    </p>
                   </div>
-                  <p className="mt-2 font-sans text-base text-neutral-500">{c.subtitle}</p>
-                  <p className="mt-3 font-mono text-xs uppercase tracking-widest text-neutral-400">
-                    {c.tags}
-                  </p>
+                  <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={c.image}
+                      alt=""
+                      aria-hidden
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </section>
