@@ -7,7 +7,7 @@ const phrases = [
   "prototypes that find friction",
   "design systems that scale",
   "workflows that save hours",
-  "user tests that reveal truth",
+  "user tests & research",
 ];
 
 const TYPE_SPEED = 60;
@@ -62,8 +62,8 @@ export function BusinessCard() {
 
       <div className="relative">
         {/* Heading */}
-        <h2 className="font-serif font-normal text-4xl md:text-6xl leading-[1.05] tracking-tight">
-          <span className="block text-[#1a1a1a] dark:text-[#E8E8E6]">
+        <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
+          <span className="block whitespace-nowrap text-[#1a1a1a] dark:text-[#E8E8E6]">
             Hi, I&rsquo;m Alex.{" "}
             <span
               role="img"
@@ -82,8 +82,8 @@ export function BusinessCard() {
           </span>
         </h2>
 
-        {/* Typewriter */}
-        <p className="mt-6 font-sans text-2xl md:text-[28px] leading-snug">
+        {/* Typewriter — fixed min-height to prevent card resize between phrases */}
+        <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
           <span className="font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
             I make{" "}
           </span>
