@@ -3,31 +3,50 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
-type Case = {
-  path: string;
-  title: string;
-  subtitle: string;
-  kicker: string;
-};
+const experience = [
+  {
+    year: "2024–now",
+    company: "Mess Culture Labs",
+    focus: "Product Design · AI-Assisted Engineering",
+  },
+  {
+    year: "2022–2024",
+    company: "Seamm",
+    focus: "Product Design · Internal Tools · Webflow",
+  },
+  {
+    year: "2020–2022",
+    company: "UPROCK",
+    focus: "UX/UI Design · Design Systems · Webflow",
+  },
+  {
+    year: "2018–2022",
+    company: "Freelance",
+    focus: "UX/UI Design · Webflow",
+  },
+];
 
-const cases: Case[] = [
+const cases = [
   {
     path: "/case/push-notifications",
     title: "Push Notifications Manager",
     subtitle: "How to kill the send button nobody wanted to press",
-    kicker: "B2B SAAS · ADMIN PANEL · 2024",
+    tags: "SEAMM · INTERNAL TOOLS · 2024",
+    year: "2024",
   },
   {
     path: "/case/stories-editor",
     title: "Stories Editor",
     subtitle: "How I eliminated a 2-day content bottleneck.",
-    kicker: "B2B SAAS · CONTENT TOOL · 2024",
+    tags: "SEAMM · CONTENT TOOL · 2024",
+    year: "2024",
   },
   {
     path: "/case/chtenye",
     title: "Chtenye",
     subtitle: "Users couldn't explain what a single menu item meant.",
-    kicker: "EDTECH · PLATFORM REDESIGN · 2023",
+    tags: "EDTECH · INFORMATION ARCHITECTURE · 2023",
+    year: "2023",
   },
 ];
 
@@ -37,78 +56,77 @@ export default function Page() {
       <Nav />
       <ScrollToTop />
 
-      <main className="pt-20 md:pt-28">
-        {/* Hero panel */}
-        <section className="px-6 md:px-10 pt-10 md:pt-14">
-          <div className="max-w-bleed mx-auto">
-            <div className="relative overflow-hidden rounded-[32px] bg-[#F0EDE5] dark:bg-[#242626] px-6 py-8 md:px-10 md:py-12 lg:px-12 lg:py-14">
-              {/* Subtle dotted-grid overlay */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none opacity-[0.08] dark:opacity-[0.12]"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(currentColor 1px, transparent 1px)",
-                  backgroundSize: "20px 20px",
-                  color: "#1a1a1a",
-                }}
-              />
+      <main>
+        {/* Hero */}
+        <section className="px-6 md:px-10 pt-[120px] md:pt-[160px] pb-20">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight">
+              <span className="block text-[#1a1a1a] dark:text-[#E8E8E6]">
+                Hi, I&rsquo;m Aleksandr.
+              </span>
+              <span className="block italic text-[#1a1a1a]/50 dark:text-[#E8E8E6]/50">
+                Product Designer for complex tools.
+              </span>
+            </h1>
 
-              {/* Floating badge top-right */}
-              <div className="absolute top-6 right-6 md:top-8 md:right-8 rounded-full px-4 py-2 bg-[#F7F5EC] dark:bg-[#191A1A] border border-black/10 dark:border-white/10 shadow-sm">
-                <span className="font-sans font-medium text-sm text-[#1a1a1a] dark:text-[#E8E8E6]">
-                  Based in Kraków
-                </span>
-              </div>
-
-              {/* Kicker */}
-              <p className="relative font-mono text-xs uppercase tracking-[0.18em] text-[#B5654A] mb-6">
-                PRODUCT DESIGNER · KRAKÓW
-              </p>
-
-              {/* Heading */}
-              <h1
-                className="relative font-normal text-[#1a1a1a] dark:text-[#E8E8E6] leading-[1.05] tracking-[-0.03em] text-[28px] md:text-[42px] lg:text-[70px] mt-0 mb-8"
-                style={{ fontFamily: '"Asthetic Pixel", system-ui, sans-serif' }}
-              >
-                <span className="block whitespace-nowrap">Hi, I&rsquo;m Aleksandr.</span>
-                <span className="block whitespace-nowrap">Product Designer for complex tools.</span>
-              </h1>
-
-              {/* Body copy */}
-              <div className="relative max-w-3xl text-base md:text-2xl leading-[1.35] text-[#3f3f3f] dark:text-[#B8B8B3] space-y-1">
-                <p>I design B2B SaaS products and design systems.</p>
-                <p>I prototype in code and build frontend with AI-assisted tools.</p>
-              </div>
-
-              {/* Status row */}
-              <p className="relative mt-6 font-mono text-xs uppercase tracking-[0.22em] text-[#B5654A]">
-                OPEN TO OPPORTUNITIES
-              </p>
+            <div className="mt-6 space-y-1 font-sans text-lg text-neutral-500 dark:text-neutral-400">
+              <p>I design B2B SaaS products and design systems.</p>
+              <p>I prototype in code and build frontend with AI-assisted tools.</p>
             </div>
+
+            {/* Experience table */}
+            <div className="mt-8 flex flex-col gap-2">
+              {experience.map((row) => (
+                <div
+                  key={row.year}
+                  className="md:grid md:grid-cols-[120px_180px_1fr] md:gap-x-6"
+                >
+                  <div className="flex items-baseline gap-4 md:contents">
+                    <span className="font-mono text-sm text-neutral-400 whitespace-nowrap">
+                      {row.year}
+                    </span>
+                    <span className="font-sans text-sm font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
+                      {row.company}
+                    </span>
+                  </div>
+                  <span className="block font-sans text-sm text-neutral-500 dark:text-neutral-400 pl-20 md:pl-0">
+                    {row.focus}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-6 font-mono text-xs uppercase tracking-widest text-terracotta">
+              Open to Opportunities
+            </p>
           </div>
         </section>
 
-        {/* Case cards */}
-        <section className="px-6 md:px-10 pb-32 mt-10 md:mt-14">
-          <div className="max-w-3xl mx-auto flex flex-col gap-6">
+        {/* Case Studies */}
+        <section className="px-6 md:px-10 mt-14 mb-32">
+          <div className="max-w-4xl mx-auto flex flex-col gap-6">
             {cases.map((c) => (
               <Link
                 key={c.path}
                 href={c.path}
-                className="block rounded-2xl bg-cream-warm overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                className="group block rounded-2xl overflow-hidden cursor-pointer"
               >
-                <div className="aspect-[16/9] bg-neutral-300 dark:bg-neutral-700 flex items-center justify-center">
-                  <span className="text-neutral-400">Preview — {c.title}</span>
+                <div className="aspect-[16/9] bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-0.5">
+                  <span className="text-sm text-neutral-400">Preview</span>
                 </div>
                 <div className="p-8">
-                  <div className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                    {c.kicker}
+                  <div className="flex justify-between items-baseline gap-4">
+                    <h2 className="font-serif font-normal text-2xl tracking-tight text-[#1a1a1a] dark:text-[#E8E8E6]">
+                      {c.title}
+                    </h2>
+                    <span className="font-mono text-xs text-neutral-400 shrink-0">
+                      {c.year}
+                    </span>
                   </div>
-                  <h3 className="mt-2 font-serif font-normal text-2xl tracking-tight">
-                    {c.title}
-                  </h3>
-                  <p className="mt-1 text-base text-neutral-500">{c.subtitle}</p>
+                  <p className="mt-2 font-sans text-base text-neutral-500">{c.subtitle}</p>
+                  <p className="mt-3 font-mono text-xs uppercase tracking-widest text-neutral-400">
+                    {c.tags}
+                  </p>
                 </div>
               </Link>
             ))}
