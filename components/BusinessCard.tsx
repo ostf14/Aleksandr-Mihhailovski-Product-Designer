@@ -74,11 +74,11 @@ export function BusinessCard() {
         }}
       />
 
-      <div className="relative md:flex md:items-center md:gap-8">
-        {/* Photo — fixed 160px circle */}
+      <div className="relative md:flex md:items-start md:gap-8">
+        {/* Photo — fixed 180px circle */}
         <div
           aria-hidden
-          className="hidden md:flex w-[160px] h-[160px] rounded-full shrink-0 overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center"
+          className="hidden md:flex w-[180px] h-[180px] rounded-full shrink-0 overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center"
         >
           <span className="text-xs text-neutral-400">Photo</span>
         </div>
