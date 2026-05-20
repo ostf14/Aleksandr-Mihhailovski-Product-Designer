@@ -15,10 +15,23 @@ const DELETE_SPEED = 30;
 const PAUSE_FULL = 2000;
 const PAUSE_EMPTY = 500;
 
+const EMAIL = "ostf14@gmail.com";
+
 export function BusinessCard() {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* ignore */
+    }
+  };
 
   useEffect(() => {
     const current = phrases[phraseIdx];
@@ -60,44 +73,74 @@ export function BusinessCard() {
         }}
       />
 
-      <div className="relative">
-        {/* Heading */}
-        <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
-          <span className="block whitespace-nowrap text-[#1a1a1a] dark:text-[#E8E8E6]">
-            Hi, I&rsquo;m Alex.{" "}
-            <span
-              role="img"
-              aria-label="waving hand"
-              className="inline-block"
-              style={{
-                transformOrigin: "70% 70%",
-                animation: "wave 2.5s ease-in-out infinite",
-              }}
-            >
-              👋🏻
-            </span>
-          </span>
-          <span className="block text-[#1a1a1a]/40 dark:text-[#E8E8E6]/40">
-            Product Designer &amp; Builder.
-          </span>
-        </h2>
+      <div className="relative md:flex md:items-start md:gap-8">
+        {/* Photo (desktop only) */}
+        <div
+          aria-hidden
+          className="hidden md:flex shrink-0 w-[120px] h-[120px] rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center"
+        >
+          <span className="text-xs text-neutral-400">Photo</span>
+        </div>
 
-        {/* Typewriter — fixed min-height to prevent card resize between phrases */}
-        <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
-          <span className="font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
-            I make{" "}
-          </span>
-          <span className="font-normal text-neutral-400 dark:text-neutral-500">
-            {text}
-          </span>
-          <span
-            aria-hidden
-            className="font-normal text-terracotta"
-            style={{ animation: "blink 1s steps(2, start) infinite" }}
-          >
-            |
-          </span>
-        </p>
+        <div className="min-w-0 flex-1">
+          {/* Heading */}
+          <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
+            <span className="block whitespace-nowrap text-[#1a1a1a] dark:text-[#E8E8E6]">
+              Hi, I&rsquo;m Alex.{" "}
+              <span
+                role="img"
+                aria-label="waving hand"
+                className="inline-block"
+                style={{
+                  transformOrigin: "70% 70%",
+                  animation: "wave 2.5s ease-in-out infinite",
+                }}
+              >
+                👋🏻
+              </span>
+            </span>
+            <span className="block text-[#1a1a1a]/40 dark:text-[#E8E8E6]/40">
+              Product Designer &amp; Builder.
+            </span>
+          </h2>
+
+          {/* Typewriter — fixed min-height to prevent card resize between phrases */}
+          <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
+            <span className="font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
+              I make{" "}
+            </span>
+            <span className="font-normal text-neutral-400 dark:text-neutral-500">
+              {text}
+            </span>
+            <span
+              aria-hidden
+              className="font-normal text-terracotta"
+              style={{ animation: "blink 1s steps(2, start) infinite" }}
+            >
+              |
+            </span>
+          </p>
+
+          {/* Buttons */}
+          <div className="mt-6 flex flex-row gap-3">
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium bg-[#1a1a1a] dark:bg-[#E8E8E6] text-white dark:text-[#1a1a1a] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+            >
+              Download CV
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
+              className="font-sans inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium bg-transparent border border-neutral-300/30 dark:border-neutral-500/30 text-[#1a1a1a] dark:text-[#E8E8E6] transition-all duration-200 hover:bg-neutral-100/10"
+            >
+              {copied ? "Copied!" : "Copy Email"}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
