@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Check, Copy, Download } from "lucide-react";
 
 const SCALE_FACTOR = 480 / 1080;
+const SCROLL_RANGE = 100; // pixels of scroll over which the card collapses
 
 const phrases = [
   "complex products feel simple",
@@ -26,16 +27,8 @@ export function BusinessCard() {
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const measure = () => {
@@ -45,6 +38,19 @@ export function BusinessCard() {
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
   }, []);
+
+  // Scroll-linked motion values — no React state, no animation timer.
+  // Card scale + sibling pull-up are driven directly by scrollY position.
+  const { scrollY } = useScroll();
+  const scale = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
+    clamp: true,
+  });
+  const marginBottom = useTransform(
+    scrollY,
+    [0, SCROLL_RANGE],
+    [0, -cardHeight * (1 - SCALE_FACTOR)],
+    { clamp: true },
+  );
 
   const copyEmail = async () => {
     try {
@@ -86,12 +92,12 @@ export function BusinessCard() {
   return (
     <motion.div
       ref={cardRef}
-      animate={{
-        scale: scrolled ? SCALE_FACTOR : 1,
-        marginBottom: scrolled ? -cardHeight * (1 - SCALE_FACTOR) : 0,
+      style={{
+        scale,
+        marginBottom,
+        transformOrigin: "top center",
+        willChange: "transform",
       }}
-      transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ transformOrigin: "top center", willChange: "transform" }}
       className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
     >
 
