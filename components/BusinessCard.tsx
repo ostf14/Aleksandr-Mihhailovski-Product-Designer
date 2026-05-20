@@ -7,6 +7,7 @@ const phrases = [
   "prototypes that find friction",
   "design systems that scale",
   "workflows that save hours",
+  "user tests that reveal truth",
 ];
 
 const TYPE_SPEED = 60;
@@ -63,23 +64,26 @@ export function BusinessCard() {
         {/* Heading */}
         <h2 className="font-serif font-normal text-4xl md:text-6xl leading-[1.05] tracking-tight">
           <span className="block text-[#1a1a1a] dark:text-[#E8E8E6]">
-            Hi, I&rsquo;m Alex.
+            Hi, I&rsquo;m Alex.{" "}
+            <span
+              role="img"
+              aria-label="waving hand"
+              className="inline-block"
+              style={{
+                transformOrigin: "70% 70%",
+                animation: "wave 2.5s ease-in-out infinite",
+              }}
+            >
+              👋🏻
+            </span>
           </span>
           <span className="block text-[#1a1a1a]/40 dark:text-[#E8E8E6]/40">
             Product Designer &amp; Builder.
           </span>
         </h2>
 
-        {/* Description */}
-        <div className="mt-6 max-w-2xl font-sans text-lg md:text-xl leading-snug text-neutral-500 dark:text-neutral-400">
-          <p>Product designer with a research background.</p>
-          <p>
-            Specializing in B2B SaaS, internal tools, and data-heavy interfaces.
-          </p>
-        </div>
-
         {/* Typewriter */}
-        <p className="mt-8 font-sans text-base leading-snug">
+        <p className="mt-6 font-sans text-2xl md:text-[28px] leading-snug">
           <span className="font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
             I make{" "}
           </span>
