@@ -56,7 +56,7 @@ export default function Page() {
                 </div>
                 <div className="p-8">
                   <div className="flex justify-between items-baseline gap-4">
-                    <h2 className="font-serif font-normal text-2xl tracking-tight text-[#1D1611] dark:text-[#E8E8E6]">
+                    <h2 className="font-serif font-normal text-2xl tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
                       {c.title}
                     </h2>
                     <span className="font-mono text-xs text-neutral-400 shrink-0">

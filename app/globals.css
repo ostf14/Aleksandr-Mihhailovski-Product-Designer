@@ -11,13 +11,11 @@
 }
 
 :root {
-  --rgb-cream: 245 240 235;        /* #F5F0EB — page bg */
-  --rgb-cream-warm: 245 242 237;   /* #F5F2ED — cards / hover surfaces */
-  --rgb-cream-deep: 237 232 227;   /* #EDE8E3 — footer */
-  --rgb-charcoal: 29 22 17;        /* #1D1611 — main text */
+  --rgb-cream: 248 248 246;        /* #F8F8F6 — page bg (Claude.ai) */
+  --rgb-cream-warm: 239 238 235;   /* #EFEEEB — cards / hover surfaces */
+  --rgb-cream-deep: 244 244 241;   /* #F4F4F1 — footer */
+  --rgb-charcoal: 31 31 30;        /* #1F1F1E — main text */
   --rgb-terracotta: 255 105 54;    /* #FF6936 — accent */
-  /* Warm-brown muted scale (replaces cold neutrals in light mode) */
-  --color-warm-rgb: 59 45 33;      /* base RGB for opacity stops */
   color-scheme: light;
 }
 
@@ -56,28 +54,32 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   Light-mode warm-brown overrides for Tailwind's cold neutrals.
+   Light-mode overrides — Claude.ai-style cool gray palette.
    Dark mode is untouched (selector excludes .dark).
    --------------------------------------------------------------- */
 html:not(.dark) .text-neutral-400,
 html:not(.dark) .text-stone-400 {
-  color: rgb(var(--color-warm-rgb) / 0.4);
+  color: #97958C;
 }
 html:not(.dark) .text-neutral-500,
-html:not(.dark) .text-stone-500,
+html:not(.dark) .text-stone-500 {
+  color: #7B7974;
+}
 html:not(.dark) .text-stone-600 {
-  color: rgb(var(--color-warm-rgb) / 0.55);
+  color: #525150;
 }
 html:not(.dark) .border-neutral-300,
-html:not(.dark) .border-stone-200,
 html:not(.dark) .border-stone-300 {
-  border-color: rgb(var(--color-warm-rgb) / 0.08);
+  border-color: rgba(31, 31, 30, 0.15);
 }
 html:not(.dark) .border-neutral-400 {
-  border-color: rgb(var(--color-warm-rgb) / 0.15);
+  border-color: rgba(31, 31, 30, 0.25);
+}
+html:not(.dark) .border-stone-200 {
+  border-color: rgba(31, 31, 30, 0.10);
 }
 html:not(.dark) .bg-neutral-200 {
-  background-color: rgb(var(--color-warm-rgb) / 0.06);
+  background-color: #EFEEEB;
 }
 
 @keyframes blink {

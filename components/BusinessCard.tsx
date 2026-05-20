@@ -62,11 +62,11 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[rgba(59,45,33,0.08)] dark:border-neutral-500/10 bg-white/80 dark:bg-[#242626] backdrop-blur-sm px-12 pt-12 md:px-16 md:pt-16">
+    <div className="relative overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-12 pt-12 md:px-16 md:pt-16">
       {/* Dot pattern overlay */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none text-[#1D1611] dark:text-[#E8E8E6] opacity-[0.02] dark:opacity-[0.06]"
+        className="absolute inset-0 pointer-events-none text-[#1F1F1E] dark:text-[#E8E8E6] opacity-[0.02] dark:opacity-[0.06]"
         style={{
           backgroundImage:
             "radial-gradient(circle, currentColor 1px, transparent 1px)",
@@ -94,7 +94,7 @@ export function BusinessCard() {
         <div className="flex-1 min-w-0">
           {/* Heading */}
           <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
-            <span className="block whitespace-nowrap text-[#1D1611] dark:text-[#E8E8E6]">
+            <span className="block whitespace-nowrap text-[#1F1F1E] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex.{" "}
               <span
                 role="img"
@@ -108,17 +108,17 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#FF6936]/50 dark:text-[#E8E8E6]/40">
+            <span className="block text-[#FF6936]/45 dark:text-[#E8E8E6]/40">
               Product Designer &amp; Builder.
             </span>
           </h2>
 
           {/* Typewriter — fixed min-height to prevent card resize between phrases */}
           <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
-            <span className="font-medium text-[#1D1611] dark:text-[#E8E8E6]">
+            <span className="font-medium text-[#1F1F1E] dark:text-[#E8E8E6]">
               I make{" "}
             </span>
-            <span className="font-normal text-[rgba(59,45,33,0.45)] dark:text-neutral-500">
+            <span className="font-normal text-[#97958C] dark:text-neutral-500">
               {text}
             </span>
             <span
@@ -133,12 +133,12 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-[rgba(59,45,33,0.08)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#1D1611] dark:text-[#E8E8E6] border-r border-[rgba(59,45,33,0.08)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] border-r border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -147,7 +147,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#1D1611] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>
