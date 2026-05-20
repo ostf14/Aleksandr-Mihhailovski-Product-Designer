@@ -62,26 +62,16 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-12 pt-12 md:px-16 md:pt-16">
-      {/* Dot pattern overlay */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none text-[#1F1F1E] dark:text-[#E8E8E6] opacity-[0.02] dark:opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, currentColor 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-      />
+    <div className="relative overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12">
 
       <div className="relative md:flex md:items-start md:gap-8">
         {/* Photo — fixed 180px circle with warm glow */}
         <div className="hidden md:block relative shrink-0">
           <div
             aria-hidden
-            className="absolute inset-[-12px] rounded-full bg-[#FF6936]/15 blur-xl"
+            className="absolute inset-[-12px] rounded-full bg-[#FF6936]/20 dark:bg-[#FF6936]/15 blur-xl"
           />
-          <div className="relative z-10 w-[180px] h-[180px] rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 flex items-center justify-center">
+          <div className="relative z-10 w-[180px] h-[180px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/hero-photo.jpg"
@@ -108,17 +98,17 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#FF6936]/45 dark:text-[#E8E8E6]/40">
+            <span className="block text-[#1F1F1E]/30 dark:text-[#E8E8E6]/40">
               Product Designer &amp; Builder.
             </span>
           </h2>
 
-          {/* Typewriter — fixed min-height to prevent card resize between phrases */}
-          <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
+          {/* Typewriter */}
+          <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[56px] md:min-h-0">
             <span className="font-medium text-[#1F1F1E] dark:text-[#E8E8E6]">
               I make{" "}
             </span>
-            <span className="font-normal text-[#97958C] dark:text-neutral-500">
+            <span className="font-normal text-[#7B7974] dark:text-neutral-500">
               {text}
             </span>
             <span
@@ -133,7 +123,7 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative -mx-8 md:-mx-12 mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
