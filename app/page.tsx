@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Nav } from "@/components/Nav";
+import { BusinessCard } from "@/components/BusinessCard";
 import { Footer } from "@/components/Footer";
+import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 const experience = [
@@ -97,23 +98,10 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Expertise (placeholder) */}
+        {/* Business card */}
         <section className="px-6 md:px-10 mb-20">
           <div className="max-w-4xl mx-auto">
-            <div
-              className="relative overflow-hidden rounded-2xl bg-[#F0EDE5] dark:bg-[#242626] p-12 md:p-16"
-              style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E\")",
-              }}
-            >
-              <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                Expertise
-              </p>
-              <h2 className="mt-6 font-serif font-normal text-2xl text-[#1a1a1a] dark:text-[#E8E8E6]">
-                Content coming soon
-              </h2>
-            </div>
+            <BusinessCard />
           </div>
         </section>
 
