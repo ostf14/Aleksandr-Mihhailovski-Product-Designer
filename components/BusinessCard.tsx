@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Check, Copy, Download } from "lucide-react";
 
 const phrases = [
   "complex products feel simple",
@@ -73,11 +74,11 @@ export function BusinessCard() {
         }}
       />
 
-      <div className="relative md:flex md:items-start md:gap-8">
+      <div className="relative md:flex md:items-center md:gap-8">
         {/* Photo (desktop only) */}
         <div
           aria-hidden
-          className="hidden md:flex shrink-0 w-[120px] h-[120px] rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center"
+          className="hidden md:flex self-center w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center"
         >
           <span className="text-xs text-neutral-400">Photo</span>
         </div>
@@ -120,27 +121,29 @@ export function BusinessCard() {
               |
             </span>
           </p>
-
-          {/* Buttons */}
-          <div className="mt-6 flex flex-row gap-3">
-            <a
-              href="/cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-sans inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium bg-[#1a1a1a] dark:bg-[#E8E8E6] text-white dark:text-[#1a1a1a] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-            >
-              Download CV
-            </a>
-            <button
-              type="button"
-              onClick={copyEmail}
-              aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-              className="font-sans inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium bg-transparent border border-neutral-300/30 dark:border-neutral-500/30 text-[#1a1a1a] dark:text-[#E8E8E6] transition-all duration-200 hover:bg-neutral-100/10"
-            >
-              {copied ? "Copied!" : "Copy Email"}
-            </button>
-          </div>
         </div>
+      </div>
+
+      {/* Buttons — full-width row, indented past photo column on desktop */}
+      <div className="relative mt-6 flex flex-row gap-3 md:pl-[232px]">
+        <a
+          href="/cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-sans inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium bg-[#1a1a1a] dark:bg-[#E8E8E6] text-white dark:text-[#1a1a1a] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <Download className="w-4 h-4" />
+          <span>My CV</span>
+        </a>
+        <button
+          type="button"
+          onClick={copyEmail}
+          aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
+          className="font-sans inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium bg-transparent border border-neutral-300/30 dark:border-neutral-500/30 text-[#1a1a1a] dark:text-[#E8E8E6] transition-all duration-200 hover:bg-neutral-100/10"
+        >
+          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+          <span>{copied ? "Copied!" : "Email"}</span>
+        </button>
       </div>
     </div>
   );
