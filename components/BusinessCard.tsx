@@ -72,9 +72,10 @@ export function BusinessCard() {
 
   return (
     <motion.div
-      animate={{ maxWidth: scrolled ? 480 : 1080 }}
+      animate={{ scale: scrolled ? 480 / 1080 : 1 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="relative mx-auto w-full overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
+      style={{ transformOrigin: "top center" }}
+      className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
     >
 
       <div className="relative md:flex md:items-start md:gap-8">
