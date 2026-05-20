@@ -88,7 +88,7 @@ export function BusinessCard() {
         <div className="flex-1 min-w-0">
           {/* Heading */}
           <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
-            <span className="block whitespace-nowrap text-[#1a1a1a] dark:text-[#E8E8E6]">
+            <span className="block whitespace-nowrap text-[#3d3d3d] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex.{" "}
               <span
                 role="img"
@@ -102,14 +102,14 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#1a1a1a]/40 dark:text-[#E8E8E6]/40">
+            <span className="block text-[#3d3d3d]/35 dark:text-[#E8E8E6]/40">
               Product Designer &amp; Builder.
             </span>
           </h2>
 
           {/* Typewriter — fixed min-height to prevent card resize between phrases */}
           <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[72px] md:min-h-[80px]">
-            <span className="font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
+            <span className="font-medium text-[#3d3d3d] dark:text-[#E8E8E6]">
               I make{" "}
             </span>
             <span className="font-normal text-neutral-400 dark:text-neutral-500">
@@ -127,12 +127,12 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-neutral-300/20 dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-neutral-400/30 dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#1a1a1a] dark:text-[#E8E8E6] border-r border-neutral-300/20 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-neutral-500/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3d3d3d] dark:text-[#E8E8E6] border-r border-neutral-400/30 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-neutral-500/10"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -141,7 +141,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#1a1a1a] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-neutral-500/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3d3d3d] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-neutral-500/10"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>
