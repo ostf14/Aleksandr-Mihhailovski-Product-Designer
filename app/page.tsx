@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -60,7 +61,30 @@ export default function Page() {
         {/* Hero */}
         <section className="px-6 md:px-10 pt-[120px] md:pt-[160px] pb-20">
           <div className="max-w-4xl mx-auto">
-            <h1 className="font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight">
+            {/* Kicker */}
+            <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 text-center">
+              Product Designer · Kraków
+            </p>
+
+            {/* Skull logo */}
+            <div className="mt-6 mx-auto w-16 h-16 rounded-full border-2 border-neutral-300 dark:border-neutral-600 overflow-hidden flex items-center justify-center bg-[#F0EDE5] dark:bg-[#242626]">
+              <Image
+                src="/logo-light.png"
+                alt=""
+                width={48}
+                height={48}
+                className="object-contain dark:hidden"
+              />
+              <Image
+                src="/logo-dark.png"
+                alt=""
+                width={48}
+                height={48}
+                className="object-contain hidden dark:block"
+              />
+            </div>
+
+            <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center">
               <span className="block text-[#1a1a1a] dark:text-[#E8E8E6]">
                 Hi, I&rsquo;m Aleksandr.
               </span>
