@@ -4,29 +4,6 @@ import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
-const experience = [
-  {
-    year: "2024–now",
-    company: "Mess Culture Labs",
-    focus: "Product Design · AI-Assisted Engineering",
-  },
-  {
-    year: "2022–2024",
-    company: "Seamm",
-    focus: "Product Design · Internal Tools · Webflow",
-  },
-  {
-    year: "2020–2022",
-    company: "UPROCK",
-    focus: "UX/UI Design · Design Systems · Webflow",
-  },
-  {
-    year: "2018–2022",
-    company: "Freelance",
-    focus: "UX/UI Design · Webflow",
-  },
-];
-
 const cases = [
   {
     path: "/case/push-notifications",
@@ -58,48 +35,8 @@ export default function Page() {
       <ScrollToTop />
 
       <main>
-        {/* Hero */}
-        <section className="px-6 md:px-10 pt-[120px] md:pt-[160px] pb-20">
-          <div className="max-w-4xl mx-auto">
-            {/* Kicker */}
-            <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 text-center">
-              Product Designer · Kraków
-            </p>
-
-            <h1 className="mt-4 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
-              <span className="block">I design complex systems</span>
-              <span className="block">with simple interfaces</span>
-            </h1>
-            <p className="mt-4 font-mono text-xs md:text-sm uppercase tracking-widest text-neutral-400 text-center">
-              Prototyping &amp; Frontend with AI · B2B SaaS · User Tests
-            </p>
-
-            {/* Experience table */}
-            <div className="mt-8 border-t border-neutral-300/20 divide-y divide-stone-200 dark:divide-stone-700/60">
-              {experience.map((row) => (
-                <div
-                  key={row.year}
-                  className="py-3 md:grid md:grid-cols-[110px_1fr_1.6fr] md:items-baseline md:gap-x-6"
-                >
-                  <div className="flex items-baseline gap-4 md:contents">
-                    <span className="font-mono text-sm text-neutral-400 whitespace-nowrap">
-                      {row.year}
-                    </span>
-                    <span className="font-sans text-sm font-normal text-[#1a1a1a] dark:text-[#E8E8E6]">
-                      {row.company}
-                    </span>
-                  </div>
-                  <span className="hidden md:block font-sans text-sm font-normal text-neutral-500 dark:text-neutral-400">
-                    {row.focus}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Business card */}
-        <section className="px-6 md:px-10 mb-20">
+        {/* Business card — hero */}
+        <section className="px-6 md:px-10 pt-[100px] md:pt-[120px] mb-20">
           <div className="max-w-4xl mx-auto">
             <BusinessCard />
           </div>
