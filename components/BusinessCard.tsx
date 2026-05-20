@@ -42,7 +42,7 @@ export function BusinessCard() {
   // Scroll-linked motion values — no React state, no animation timer.
   // Spring-smoothed so the card doesn't snap on each chunky scroll event.
   const { scrollY } = useScroll();
-  const SPRING = { stiffness: 500, damping: 60, mass: 0.4 } as const;
+  const SPRING = { stiffness: 800, damping: 80, mass: 0.3 } as const;
 
   const scaleRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
     clamp: true,
