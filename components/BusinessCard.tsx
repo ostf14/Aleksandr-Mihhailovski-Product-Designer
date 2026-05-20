@@ -81,10 +81,12 @@ export function BusinessCard() {
           />
         </span>
         <div className="flex flex-col leading-tight">
-          <span className="font-sans text-base font-medium text-[#1a1a1a] dark:text-[#E8E8E6]">
-            Aleksandr Mihhailovski
+          <span className="font-serif text-base text-[#1a1a1a] dark:text-[#E8E8E6]">
+            Hi, I&rsquo;m Alex.
           </span>
-          <span className="font-sans text-sm text-neutral-400">Product Designer</span>
+          <span className="font-sans text-base text-neutral-400">
+            Product Designer &amp; Builder
+          </span>
         </div>
       </div>
 
