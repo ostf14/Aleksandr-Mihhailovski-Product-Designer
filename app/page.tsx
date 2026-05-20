@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { BusinessCard } from "@/components/BusinessCard";
 import { Footer } from "@/components/Footer";
+import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { StickyIdentityCard } from "@/components/StickyIdentityCard";
 
 const experience = [
   {
@@ -53,6 +54,7 @@ const cases = [
 export default function Page() {
   return (
     <>
+      <Nav />
       <ScrollToTop />
 
       <main>
@@ -96,10 +98,15 @@ export default function Page() {
           </div>
         </section>
 
-        <StickyIdentityCard />
+        {/* Business card */}
+        <section className="px-6 md:px-10 mb-20">
+          <div className="max-w-4xl mx-auto">
+            <BusinessCard />
+          </div>
+        </section>
 
         {/* Case Studies */}
-        <section className="px-6 md:px-10 mt-20 mb-32">
+        <section className="px-6 md:px-10 mb-32">
           <div className="max-w-4xl mx-auto flex flex-col gap-6">
             {cases.map((c) => (
               <Link
