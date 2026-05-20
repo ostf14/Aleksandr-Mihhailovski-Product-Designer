@@ -62,7 +62,7 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-[#F0EDE5] dark:bg-[#242626] p-12 md:p-16">
+    <div className="relative overflow-hidden rounded-2xl bg-[#F0EDE5] dark:bg-[#242626] px-12 pt-12 md:px-16 md:pt-16">
       {/* Dot pattern overlay */}
       <div
         aria-hidden
@@ -124,13 +124,13 @@ export function BusinessCard() {
         </div>
       </div>
 
-      {/* Buttons — full-width row, indented past photo column on desktop */}
-      <div className="relative mt-6 flex flex-row gap-3 md:pl-[232px]">
+      {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
+      <div className="relative -mx-12 md:-mx-16 mt-12 md:mt-16 border-t border-neutral-300/20 dark:border-neutral-500/20 grid grid-cols-2">
         <a
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium bg-[#1a1a1a] dark:bg-[#E8E8E6] text-white dark:text-[#1a1a1a] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#1a1a1a] dark:text-[#E8E8E6] border-r border-neutral-300/20 dark:border-neutral-500/20 transition-colors duration-200 hover:bg-neutral-500/5"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -139,7 +139,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-          className="font-sans inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium bg-transparent border border-neutral-300/30 dark:border-neutral-500/30 text-[#1a1a1a] dark:text-[#E8E8E6] transition-all duration-200 hover:bg-neutral-100/10"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#1a1a1a] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-neutral-500/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>

@@ -37,7 +37,7 @@ export default function Page() {
       <main>
         {/* Business card — hero */}
         <section className="px-6 md:px-10 pt-[100px] md:pt-[120px] mb-20">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-[1080px] mx-auto">
             <BusinessCard />
           </div>
         </section>
