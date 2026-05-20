@@ -74,12 +74,13 @@ export function BusinessCard() {
         }}
       />
 
-      <div className="relative md:flex md:items-stretch md:gap-8">
-        {/* Photo — height matches text column via self-stretch + aspect-square */}
-        <div aria-hidden className="hidden md:flex shrink-0 items-center">
-          <div className="aspect-square h-full rounded-full overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 flex items-center justify-center">
-            <span className="text-xs text-neutral-400">Photo</span>
-          </div>
+      <div className="relative md:flex md:items-center md:gap-8">
+        {/* Photo — fixed 160px circle */}
+        <div
+          aria-hidden
+          className="hidden md:flex w-[160px] h-[160px] rounded-full shrink-0 overflow-hidden border-2 border-neutral-200/20 bg-neutral-300 dark:bg-neutral-600 items-center justify-center"
+        >
+          <span className="text-xs text-neutral-400">Photo</span>
         </div>
 
         <div className="flex-1 min-w-0">
