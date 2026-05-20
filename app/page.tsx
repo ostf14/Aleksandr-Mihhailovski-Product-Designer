@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -66,21 +65,15 @@ export default function Page() {
               Product Designer · Kraków
             </p>
 
-            {/* Skull logo */}
-            <div className="mt-6 mx-auto w-16 h-16 rounded-full border-2 border-neutral-300 dark:border-neutral-600 overflow-hidden flex items-center justify-center bg-[#F0EDE5] dark:bg-[#242626]">
-              <Image
+            {/* Skull logo — same asset/treatment as nav */}
+            <div className="mt-6 mx-auto relative size-16 rounded-full overflow-hidden dark:border-[1.5px] dark:border-[rgba(255,217,152,0.5)] dark:shadow-[0_0_6px_0_rgba(212,149,106,0.15)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/logo-light.png"
                 alt=""
-                width={48}
-                height={48}
-                className="object-contain dark:hidden"
-              />
-              <Image
-                src="/logo-dark.png"
-                alt=""
-                width={48}
-                height={48}
-                className="object-contain hidden dark:block"
+                aria-hidden
+                className="absolute inset-0 size-full object-cover"
+                style={{ imageRendering: "pixelated" }}
               />
             </div>
 
