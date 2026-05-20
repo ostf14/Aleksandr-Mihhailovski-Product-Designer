@@ -61,23 +61,11 @@ export default function Page() {
         <section className="px-6 md:px-10 pt-[120px] md:pt-[160px] pb-20">
           <div className="max-w-4xl mx-auto">
             {/* Kicker */}
-            <p className="font-mono text-xs uppercase tracking-widest text-terracotta text-center">
+            <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 text-center">
               Product Designer · Kraków
             </p>
 
-            {/* Skull logo — same asset/treatment as nav */}
-            <div className="mt-6 mx-auto relative size-16 rounded-full overflow-hidden dark:border-[1.5px] dark:border-[rgba(255,217,152,0.5)] dark:shadow-[0_0_6px_0_rgba(212,149,106,0.15)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo-light.png"
-                alt=""
-                aria-hidden
-                className="absolute inset-0 size-full object-cover"
-                style={{ imageRendering: "pixelated" }}
-              />
-            </div>
-
-            <h1 className="mt-8 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
+            <h1 className="mt-4 font-serif font-normal text-4xl md:text-6xl leading-[1.1] tracking-tight text-center text-[#1a1a1a] dark:text-[#E8E8E6]">
               <span className="block">I design complex systems</span>
               <span className="block">with simple interfaces</span>
             </h1>
@@ -86,7 +74,7 @@ export default function Page() {
             </p>
 
             {/* Experience table */}
-            <div className="mt-10 border border-[#B5654A]/30 rounded-xl px-6 divide-y divide-stone-200 dark:divide-stone-700/60">
+            <div className="mt-8 border-t border-neutral-300/20 divide-y divide-stone-200 dark:divide-stone-700/60">
               {experience.map((row) => (
                 <div
                   key={row.year}
