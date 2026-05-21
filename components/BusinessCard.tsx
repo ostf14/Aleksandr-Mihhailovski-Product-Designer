@@ -122,7 +122,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity, filter",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm shadow-[0_40px_80px_-20px_rgba(255,105,54,0.22)] dark:shadow-[0_40px_80px_-20px_rgba(255,105,54,0.15)] px-8 pt-8 md:px-12 md:pt-12"
     >
       {/* Spotlight dot pattern — only the disc around the cursor is visible */}
       <div
