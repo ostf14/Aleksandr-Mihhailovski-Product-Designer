@@ -117,10 +117,20 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity, filter",
       }}
-      className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[rgba(31,31,30,0.1)] dark:border-neutral-500/10 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm px-8 pt-8 md:px-12 md:pt-12"
     >
+      {/* Hover-reveal terracotta dot pattern (behind content) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500 ease-out z-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #FF6936 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
 
-      <div className="relative md:flex md:items-start md:gap-8">
+      <div className="relative z-10 md:flex md:items-start md:gap-8">
         {/* Photo — fixed 180px circle with warm glow */}
         <div className="hidden md:block relative shrink-0">
           <div
@@ -175,7 +185,7 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative -mx-8 md:-mx-12 mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative z-10 -mx-8 md:-mx-12 mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
