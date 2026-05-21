@@ -148,6 +148,10 @@ export function Nav() {
       setActiveAnchor("cases");
       return () => window.removeEventListener("scroll", onScroll);
     }
+    if (pathname === "/other" || pathname?.startsWith("/other/")) {
+      setActiveAnchor("other");
+      return () => window.removeEventListener("scroll", onScroll);
+    }
     if (!onHome) {
       setActiveAnchor(null);
       return () => window.removeEventListener("scroll", onScroll);
