@@ -196,7 +196,7 @@ export function BusinessCard() {
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
       <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
-          href="/cv.pdf"
+          href="https://drive.google.com/file/d/1BuI4n3mlsFLC1WkC4zqa5WKOKdku0kWK/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] border-r border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
