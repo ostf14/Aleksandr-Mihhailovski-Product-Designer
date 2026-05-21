@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { MoreCases } from "@/components/MoreCases";
@@ -27,7 +28,7 @@ const decisions = [
     p: "These dresses are hand-embroidered. You can’t see that in a 200px thumbnail. Large imagery lets the craft speak. Trade-off: fewer products per screen, but higher perceived quality.",
   },
   {
-    h: "Brand story above the fold",
+    h: "Story before shop",
     p: "‘Sustainability, Heritage, Culture’ — this needed to be the first thing visitors see, not the last. People who don’t care about this will bounce anyway. Better to filter early.",
   },
   {
@@ -130,7 +131,8 @@ export default function Page() {
             </div>
 
             <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
-              <div className="border border-stone-200 bg-cream-warm rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+              <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
+                <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                 <div className="md:pr-6">
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     Role
@@ -182,6 +184,22 @@ export default function Page() {
                     )}
                   </ul>
                 </div>
+              </div>
+
+              <div className="border-t border-stone-200 px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta">
+                  Full case
+                </span>
+                <a
+                  href="https://www.behance.net/gallery/136903757/MY-SLEEPING-GYPSY-redesign-website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[0.95rem] text-charcoal/90 hover:text-terracotta transition-colors"
+                >
+                  View on Behance
+                  <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
+                </a>
+              </div>
               </div>
             </FadeIn>
 
@@ -340,11 +358,10 @@ export default function Page() {
               caption="Product page — mobile."
             />
 
-            <BrowserShot
+            <ImagePlaceholder
               className="mt-8"
               src="/cases/msg/checkout.png"
-              alt="Cart and checkout"
-              url="mysleepinggypsy.com/checkout"
+              label="Cart, checkout, payment"
               caption="Cart, checkout, payment."
             />
 

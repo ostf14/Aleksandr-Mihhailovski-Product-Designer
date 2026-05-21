@@ -68,7 +68,6 @@ function CardContent({ c }: { c: Case }) {
         aria-hidden
       />
       <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
-        {/* Text — visible first on mobile (top), right on desktop */}
         <div className="md:flex-1 md:min-w-0 flex flex-col pr-10 md:pr-10">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
             {c.tag}
@@ -80,10 +79,9 @@ function CardContent({ c }: { c: Case }) {
             {c.description}
           </p>
         </div>
-
-        {/* Image — full-bleed bottom on mobile, fixed 38% on desktop */}
         <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
           {c.image && (
+            /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={c.image}
               alt=""
@@ -106,11 +104,20 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
   const [order, setOrder] = useState<number[]>(list.map((_, i) => i));
   const [phase, setPhase] = useState<Phase>("idle");
 
+  // Rotate the stack so the card that visually rose (the one we just animated
+  // up from BACK position to RISING) becomes the new FRONT in the data, and
+  // the card that flew out moves to the bottom of the stack.
   const shuffle = () => {
     if (phase !== "idle" || list.length < 2) return;
     setPhase("flying");
     window.setTimeout(() => {
-      setOrder((prev) => [...prev.slice(1), prev[0]]);
+      setOrder((prev) => {
+        if (prev.length < 2) return prev;
+        const last = prev[prev.length - 1];
+        const first = prev[0];
+        const middle = prev.slice(1, -1);
+        return [last, ...middle, first];
+      });
       setPhase("snapping");
       requestAnimationFrame(() => setPhase("idle"));
     }, 400);
@@ -154,6 +161,9 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
                   transition = { duration: 0.4, ease: [0, 0, 0.2, 1] };
                 }
               } else if (phase === "snapping" && isBack) {
+                // The card that just flew is now at the back of the stack —
+                // teleport it straight to BACK so it doesn't animate back up
+                // from FLY_OUT.
                 target = BACK;
                 transition = { duration: 0 };
               }
