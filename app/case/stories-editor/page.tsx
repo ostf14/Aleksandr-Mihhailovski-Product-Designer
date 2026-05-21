@@ -87,7 +87,7 @@ export default function Page() {
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
-                  How I eliminated a 2-day content bottleneck.
+                  How I eliminated a 2-day content publishing bottleneck.
                 </p>
               </FadeIn>
             </div>

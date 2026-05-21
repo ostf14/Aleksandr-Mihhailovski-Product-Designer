@@ -17,7 +17,7 @@ const cases = [
     href: "/case/stories-editor",
     tag: "Seamm",
     title: "Stories Editor",
-    description: "How I eliminated a 2-day content bottleneck",
+    description: "How I eliminated a 2-day content publishing bottleneck",
     image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
   },
   {

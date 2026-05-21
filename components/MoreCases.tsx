@@ -26,7 +26,7 @@ const cases: Case[] = [
     id: "stories",
     tag: "Seamm",
     title: "Stories Editor",
-    description: "How I eliminated a 2-day content bottleneck",
+    description: "How I eliminated a 2-day content publishing bottleneck",
     href: "/case/stories-editor",
     image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
   },
