@@ -122,7 +122,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity, filter",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-4 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-none sm:rounded-2xl border-y border-x-0 sm:border-x border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-4 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
       {/* Spotlight dot pattern — only the disc around the cursor is visible */}
       <div
@@ -158,7 +158,7 @@ export function BusinessCard() {
 
         <div className="flex-1 min-w-0">
           {/* Heading */}
-          <h2 className="font-serif font-normal text-[clamp(20px,7.2vw,34px)] sm:text-3xl md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
+          <h2 className="font-serif font-normal text-[clamp(18px,6.5vw,32px)] sm:text-3xl md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
             <span className="block whitespace-nowrap text-[#1F1F1E] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex{" "}
               <span

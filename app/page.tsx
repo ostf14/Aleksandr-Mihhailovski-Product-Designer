@@ -52,7 +52,7 @@ export default function Page() {
 
       <main>
         {/* Business card — hero */}
-        <section className="px-6 md:px-10 pt-[100px] md:pt-[120px] mb-20">
+        <section className="px-0 md:px-10 pt-[100px] md:pt-[120px] mb-20">
           <BusinessCard />
         </section>
 
