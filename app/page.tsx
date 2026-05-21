@@ -27,6 +27,13 @@ const cases = [
     description: "Users couldn’t explain what a single menu item meant",
     image: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
   },
+  {
+    href: "/case/my-sleeping-gypsy",
+    tag: "Freelance",
+    title: "My Sleeping Gypsy",
+    description: "How to sell heritage craftsmanship without looking like fast fashion",
+    image: "/cases/msg/cover.png",
+  },
 ];
 
 export default function Page() {

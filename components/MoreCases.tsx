@@ -38,6 +38,14 @@ const cases: Case[] = [
     href: "/case/chtenye",
     image: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
   },
+  {
+    id: "msg",
+    tag: "Freelance",
+    title: "My Sleeping Gypsy",
+    description: "How to sell heritage craftsmanship without looking like fast fashion",
+    href: "/case/my-sleeping-gypsy",
+    image: "/cases/msg/cover.png",
+  },
 ];
 
 type Phase = "idle" | "flying" | "snapping";
