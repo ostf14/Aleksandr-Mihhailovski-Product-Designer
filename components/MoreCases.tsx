@@ -104,20 +104,14 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
   const [order, setOrder] = useState<number[]>(list.map((_, i) => i));
   const [phase, setPhase] = useState<Phase>("idle");
 
-  // Rotate the stack so the card that visually rose (the one we just animated
-  // up from BACK position to RISING) becomes the new FRONT in the data, and
-  // the card that flew out moves to the bottom of the stack.
+  // Honest forward cycle: front -> back, everyone else shifts up by one.
+  // For [A,B,C] this gives A->B->C->A across consecutive clicks instead of
+  // ping-ponging only between front and back.
   const shuffle = () => {
     if (phase !== "idle" || list.length < 2) return;
     setPhase("flying");
     window.setTimeout(() => {
-      setOrder((prev) => {
-        if (prev.length < 2) return prev;
-        const last = prev[prev.length - 1];
-        const first = prev[0];
-        const middle = prev.slice(1, -1);
-        return [last, ...middle, first];
-      });
+      setOrder((prev) => [...prev.slice(1), prev[0]]);
       setPhase("snapping");
       requestAnimationFrame(() => setPhase("idle"));
     }, 400);
@@ -152,16 +146,21 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
                 ease: [0.4, 0, 0.2, 1],
               };
 
+              // The card at position 1 is the NEXT one in the cycle — it
+              // rises to take the front slot. (Was originally the back card,
+              // which caused a visual/data desync once the shuffle ran.)
+              const isNext = position === 1;
+
               if (phase === "flying") {
                 if (isFront) {
                   target = FLY_OUT;
                   transition = { duration: 0.4, ease: [0.4, 0, 1, 1] };
-                } else if (isBack) {
+                } else if (isNext) {
                   target = RISING;
                   transition = { duration: 0.4, ease: [0, 0, 0.2, 1] };
                 }
               } else if (phase === "snapping" && isBack) {
-                // The card that just flew is now at the back of the stack —
+                // After the shuffle the card that just flew is at the back —
                 // teleport it straight to BACK so it doesn't animate back up
                 // from FLY_OUT.
                 target = BACK;
