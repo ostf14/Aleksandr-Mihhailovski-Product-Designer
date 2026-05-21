@@ -24,9 +24,26 @@ function NavLink({
   const isActive = item.href.startsWith("/#")
     ? casesActive
     : pathname === item.href || pathname?.startsWith(item.href + "/");
+
+  const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Only intercept "/#id" anchors when we're already on the home page.
+    if (!item.href.startsWith("/#") || pathname !== "/") return;
+    const id = item.href.slice(2);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const y =
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      window.innerHeight / 6;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    history.pushState(null, "", item.href);
+  };
+
   return (
     <a
       href={item.href}
+      onClick={onClick}
       className={`px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
         isActive
           ? "bg-charcoal text-cream"
