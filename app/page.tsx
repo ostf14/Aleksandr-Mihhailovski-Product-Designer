@@ -73,7 +73,7 @@ export default function Page() {
                         {c.description}
                       </p>
                     </div>
-                    <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
+                    <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-b-2xl md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={c.image}
