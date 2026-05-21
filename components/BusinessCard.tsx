@@ -140,7 +140,7 @@ export function BusinessCard() {
           {/* Heading */}
           <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
             <span className="block whitespace-nowrap text-[#1F1F1E] dark:text-[#E8E8E6]">
-              Hi, I&rsquo;m Alex.{" "}
+              Hi, I&rsquo;m Alex{" "}
               <span
                 role="img"
                 aria-label="waving hand"
@@ -154,7 +154,7 @@ export function BusinessCard() {
               </span>
             </span>
             <span className="block text-[#7B7974] dark:text-[#E8E8E6]/40">
-              Product Designer &amp; Builder.
+              Product Designer &amp; Builder
             </span>
           </h2>
 
