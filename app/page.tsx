@@ -42,7 +42,7 @@ export default function Page() {
         </section>
 
         {/* Case Studies */}
-        <section id="cases" className="px-6 md:px-10 mb-32 scroll-mt-[16.6667vh] snap-start">
+        <section id="cases" className="px-6 md:px-10 mb-32 scroll-mt-[16.6667vh]">
           <div className="max-w-[1080px] mx-auto">
             <h2 className="mb-8 font-serif font-normal text-4xl md:text-5xl tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
               Cases
