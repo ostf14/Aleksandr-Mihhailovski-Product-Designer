@@ -9,7 +9,6 @@ type Item = { label: string; href: string };
 
 const items: Item[] = [
   { label: "Cases", href: "/#cases" },
-  { label: "About", href: "/about" },
 ];
 
 function NavLink({
