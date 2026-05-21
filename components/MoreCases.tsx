@@ -53,7 +53,10 @@ type Phase = "idle" | "flying" | "snapping";
 const FRONT = { y: 12, scale: 1, opacity: 1, zIndex: 10 };
 const BACK = { y: -16, scale: 0.95, opacity: 0.65, zIndex: 5 };
 const FLY_OUT = { y: 300, scale: 1, opacity: 0, zIndex: 10 };
-const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 5 };
+// RISING lifts above other BACK cards (z:5) while still staying below the
+// flying-out FRONT card (z:10). With equal z-index, DOM-later siblings would
+// otherwise paint on top of the riser and ghost in front of it.
+const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 7 };
 
 const cardClass =
   "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
