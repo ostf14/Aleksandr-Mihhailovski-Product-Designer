@@ -55,7 +55,7 @@ export function BusinessCard() {
   });
   const opacity = useSpring(opacityRaw, SPRING);
 
-  const blurRaw = useTransform(scrollY, [0, SCROLL_RANGE], [0, 8], {
+  const blurRaw = useTransform(scrollY, [0, SCROLL_RANGE], [0, 4], {
     clamp: true,
   });
   const filter = useTransform(blurRaw, (b) => `blur(${b}px)`);
@@ -122,7 +122,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity, filter",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-8 pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-8 pt-8 md:px-12 md:pt-12"
     >
       {/* Spotlight dot pattern — only the disc around the cursor is visible */}
       <div

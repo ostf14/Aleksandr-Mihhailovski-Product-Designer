@@ -20,7 +20,7 @@ export function CaseCardReveal({ children }: { children: ReactNode }) {
     offset: ["start end", "start center"],
   });
 
-  const scaleRaw = useTransform(scrollYProgress, [0, 1], [0.85, 1], {
+  const scaleRaw = useTransform(scrollYProgress, [0, 1], [0.92, 1], {
     clamp: true,
   });
   const scale = useSpring(scaleRaw, SPRING);
@@ -30,10 +30,10 @@ export function CaseCardReveal({ children }: { children: ReactNode }) {
   });
   const opacity = useSpring(opacityRaw, SPRING);
 
-  const blurRaw = useTransform(scrollYProgress, [0, 1], [10, 0], {
+  const yRaw = useTransform(scrollYProgress, [0, 1], [32, 0], {
     clamp: true,
   });
-  const filter = useTransform(blurRaw, (b) => `blur(${b}px)`);
+  const y = useSpring(yRaw, SPRING);
 
   return (
     <motion.div
@@ -41,9 +41,9 @@ export function CaseCardReveal({ children }: { children: ReactNode }) {
       style={{
         scale,
         opacity,
-        filter,
+        y,
         transformOrigin: "center bottom",
-        willChange: "transform, opacity, filter",
+        willChange: "transform, opacity",
       }}
     >
       {children}

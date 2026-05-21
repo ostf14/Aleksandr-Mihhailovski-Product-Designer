@@ -31,7 +31,7 @@ export function Footer() {
         <SpriteAnimation />
       </div>
 
-      <div className="group relative overflow-hidden rounded-t-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB]/90 dark:bg-[#242626] backdrop-blur-sm shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.1)]">
+      <div className="group relative overflow-hidden rounded-t-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.1)]">
         {/* Hover-reveal terracotta dot pattern */}
         <div
           aria-hidden
