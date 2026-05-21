@@ -138,34 +138,39 @@ export function Nav() {
     const onCasePage = pathname?.startsWith("/case/") ?? false;
     const onHome = pathname === "/";
 
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      if (onCasePage) {
-        setCasesActive(true);
-        return;
-      }
-      if (!onHome) {
-        setCasesActive(false);
-        return;
-      }
-      // On home: active once #cases heading crosses the upper-third
-      // sweet spot (≈ viewport-height / 6 from the top).
-      const heading = document.getElementById("cases");
-      if (!heading) {
-        setCasesActive(false);
-        return;
-      }
-      const triggerY = window.innerHeight / 6;
-      setCasesActive(heading.getBoundingClientRect().top <= triggerY);
-    };
-
+    // Lightweight scroll listener — only drives the nav-collapse flag.
+    const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+
+    if (onCasePage) {
+      setCasesActive(true);
+    } else if (!onHome) {
+      setCasesActive(false);
+    }
+
+    // On home, the #cases heading position depends on the hero card's
+    // spring-driven marginBottom collapse, which keeps shifting layout
+    // after scroll events stop firing. Poll on RAF so we catch the spring
+    // settling too. React bails out on identical setState calls, so the
+    // re-render cost is one per actual transition.
+    let raf: number | null = null;
+    if (onHome) {
+      const tick = () => {
+        const heading = document.getElementById("cases");
+        if (heading) {
+          const active =
+            heading.getBoundingClientRect().top <= window.innerHeight / 6;
+          setCasesActive(active);
+        }
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      if (raf !== null) cancelAnimationFrame(raf);
     };
   }, [pathname]);
 
