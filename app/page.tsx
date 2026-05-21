@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { BusinessCard } from "@/components/BusinessCard";
 import { CaseCardReveal } from "@/components/HomeCases";
+import { CasesMagnet } from "@/components/CasesMagnet";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -34,6 +35,7 @@ export default function Page() {
     <>
       <Nav />
       <ScrollToTop />
+      <CasesMagnet />
 
       <main>
         {/* Business card — hero */}
