@@ -12,11 +12,18 @@ const items: Item[] = [
   { label: "About", href: "/about" },
 ];
 
-function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
-  const isActive =
-    item.href.startsWith("/#")
-      ? pathname === "/" || (pathname?.startsWith("/case/") ?? false)
-      : pathname === item.href || pathname?.startsWith(item.href + "/");
+function NavLink({
+  item,
+  pathname,
+  casesActive,
+}: {
+  item: Item;
+  pathname: string | null;
+  casesActive: boolean;
+}) {
+  const isActive = item.href.startsWith("/#")
+    ? casesActive
+    : pathname === item.href || pathname?.startsWith(item.href + "/");
   return (
     <a
       href={item.href}
@@ -31,11 +38,22 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   );
 }
 
-function NavContents({ pathname }: { pathname: string | null }) {
+function NavContents({
+  pathname,
+  casesActive,
+}: {
+  pathname: string | null;
+  casesActive: boolean;
+}) {
   return (
     <>
       {items.map((item) => (
-        <NavLink key={item.href} item={item} pathname={pathname} />
+        <NavLink
+          key={item.href}
+          item={item}
+          pathname={pathname}
+          casesActive={casesActive}
+        />
       ))}
       <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
       <ThemeToggle />
@@ -71,13 +89,42 @@ function Logo() {
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [casesActive, setCasesActive] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onCasePage = pathname?.startsWith("/case/") ?? false;
+    const onHome = pathname === "/";
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      if (onCasePage) {
+        setCasesActive(true);
+        return;
+      }
+      if (!onHome) {
+        setCasesActive(false);
+        return;
+      }
+      // On home: active once #cases heading crosses the upper-third
+      // sweet spot (≈ viewport-height / 6 from the top).
+      const heading = document.getElementById("cases");
+      if (!heading) {
+        setCasesActive(false);
+        return;
+      }
+      const triggerY = window.innerHeight / 6;
+      setCasesActive(heading.getBoundingClientRect().top <= triggerY);
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   return (
     <>
@@ -102,7 +149,7 @@ export function Nav() {
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">
-            <NavContents pathname={pathname} />
+            <NavContents pathname={pathname} casesActive={casesActive} />
           </div>
         </motion.nav>
       </div>
@@ -134,7 +181,7 @@ export function Nav() {
       {/* Mobile nav pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
         <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm">
-          <NavContents pathname={pathname} />
+          <NavContents pathname={pathname} casesActive={casesActive} />
         </nav>
       </header>
     </>
