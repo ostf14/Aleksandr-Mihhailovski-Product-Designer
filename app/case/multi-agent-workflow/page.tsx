@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { MoreCases } from "@/components/MoreCases";
@@ -22,19 +21,22 @@ const agents = [
   {
     name: "Gemini 3 Pro",
     title: "Architect",
+    kind: "AI Agent",
     role: "System design, state machine logic, debugging strategy.",
     output: "Architecture docs, logic flow, refactoring plans.",
   },
   {
     name: "Windsurf IDE",
     title: "Executor",
+    kind: "AI Agent",
     role: "Code generation, C# syntax, Unity API implementation.",
     output: "Functional scripts, component structure.",
   },
   {
     name: "Unity 6",
     title: "Validator",
-    role: "Runtime validation, physics engine feedback, compile errors.",
+    kind: "Runtime environment",
+    role: "Where everything gets tested — physics, compile errors, real-time behaviour.",
     output: "Empirical truth — does it actually work?",
   },
 ];
@@ -173,20 +175,6 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="border-t border-stone-200 px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta">
-                    Full case
-                  </span>
-                  <a
-                    href="https://ostf14.notion.site/Don-t-Tread-on-Cat-Multi-AI-Agent-Orchestration-Designing-AI-Workflows-for-10x-Development-Speed-2f464d13d5f080e098a5ffff120e57af"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-charcoal/90 hover:text-terracotta transition-colors"
-                  >
-                    Read full process
-                    <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
-                  </a>
-                </div>
               </div>
             </FadeIn>
           </header>
@@ -224,12 +212,13 @@ export default function Page() {
           <div id="experiment" className="scroll-mt-20 pb-32">
             <Section
               kicker="02 · The experiment"
-              heading="Three agents, three roles, one pipeline"
+              heading="Two AI agents and a runtime to argue with"
             >
               <Prose>
                 <p>
-                  I designed a three-agent pipeline. Each agent had a distinct role and
-                  clear boundaries — no overlap, no ambiguity about who owns what.
+                  I designed a three-role pipeline: two AI agents and the game engine
+                  itself as the validator. Each had a distinct job and clear
+                  boundaries — no overlap, no ambiguity about who owns what.
                 </p>
               </Prose>
             </Section>
@@ -242,7 +231,7 @@ export default function Page() {
                       <FadeIn key={a.name} delay={i * 0.08} className="h-full">
                         <div className="group h-full bg-cream-warm rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-cream-deep md:hover:shadow-sm">
                           <div className="text-xs uppercase tracking-[0.14em] text-stone-500 font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-terracotta">
-                            Agent {String(i + 1).padStart(2, "0")}
+                            {a.kind}
                           </div>
                           <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-1">
                             {a.name}
@@ -310,7 +299,7 @@ export default function Page() {
               className="mt-8"
               src="/cases/multi-agent-workflow/demo-3.gif"
               label="Iteration cycle in the editor"
-              caption="Iteration cycle: change, validate, repeat."
+              caption="Early prototype."
             />
 
             <ImagePlaceholder
@@ -324,7 +313,7 @@ export default function Page() {
               className="mt-8"
               src="/cases/multi-agent-workflow/blueprint.png"
               label="Unreal Blueprint architecture from the earlier attempt"
-              caption="Blueprint architecture in Unreal — abandoned for Unity."
+              caption="Before convenient code-first with Windsurf, the early version sat on these heavy Unreal Blueprints."
             />
 
             <ImagePlaceholder
