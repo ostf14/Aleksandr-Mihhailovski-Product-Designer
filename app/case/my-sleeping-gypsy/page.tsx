@@ -126,10 +126,17 @@ export default function Page() {
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                     Company
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                    My Sleeping Gypsy
-                    <span className="block text-stone-500 text-xs mt-1">(freelance)</span>
-                  </p>
+                  <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                    {["UPROCK", "My Sleeping Gypsy"].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5">
+                        <span
+                          aria-hidden
+                          className="inline-block size-1.5 rounded-full bg-terracotta shrink-0 mt-[7px]"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 <div className="md:px-6 md:border-l md:border-stone-200">
@@ -144,15 +151,17 @@ export default function Page() {
                     Focus
                   </div>
                   <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
-                    {["E-commerce redesign", "Design system"].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <span
-                          aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-terracotta shrink-0 mt-[7px]"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
+                    {["UX/UI redesign", "E-commerce design", "Design system"].map(
+                      (item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span
+                            aria-hidden
+                            className="inline-block size-1.5 rounded-full bg-terracotta shrink-0 mt-[7px]"
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
               </div>
