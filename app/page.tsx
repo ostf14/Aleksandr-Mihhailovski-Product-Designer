@@ -34,6 +34,14 @@ const cases = [
     description: "How to sell heritage craftsmanship without looking like fast fashion",
     image: "/cases/msg/cover.png",
   },
+  {
+    href: "/case/multi-agent-workflow",
+    tag: "Internal R&D",
+    title: "Multi-Agent AI Workflow",
+    description:
+      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
+    image: "/cases/multi-agent-workflow/cover.jpg",
+  },
 ];
 
 export default function Page() {

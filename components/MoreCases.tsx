@@ -46,6 +46,15 @@ const cases: Case[] = [
     href: "/case/my-sleeping-gypsy",
     image: "/cases/msg/cover.png",
   },
+  {
+    id: "multi-agent",
+    tag: "Internal R&D",
+    title: "Multi-Agent AI Workflow",
+    description:
+      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
+    href: "/case/multi-agent-workflow",
+    image: "/cases/multi-agent-workflow/cover.jpg",
+  },
 ];
 
 type Phase = "idle" | "flying" | "snapping";
