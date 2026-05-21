@@ -158,7 +158,7 @@ export function BusinessCard() {
 
         <div className="flex-1 min-w-0">
           {/* Heading */}
-          <h2 className="font-serif font-normal text-[clamp(22px,7vw,36px)] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
+          <h2 className="font-serif font-normal text-[clamp(22px,7vw,36px)] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight text-center md:text-left">
             <span className="block whitespace-nowrap text-[#1F1F1E] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex{" "}
               <span
