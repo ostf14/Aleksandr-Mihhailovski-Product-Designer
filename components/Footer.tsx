@@ -43,7 +43,44 @@ export function Footer() {
           }}
         />
 
-        {/* Centered content column */}
+        {/* Action bar — top edge of the footer, full viewport width */}
+        <div
+          className={`relative z-10 grid grid-cols-3 border-b ${dividerClass}`}
+        >
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${cell} border-r ${dividerClass}`}
+          >
+            <Download className="w-4 h-4" />
+            <span>My CV</span>
+          </a>
+          <button
+            type="button"
+            onClick={copyEmail}
+            aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
+            className={`${cell} border-r ${dividerClass}`}
+          >
+            {copied ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
+            <span>{copied ? "Copied!" : "Email"}</span>
+          </button>
+          <a
+            href="https://www.linkedin.com/in/alexmess/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cell}
+          >
+            <ArrowUpRight className="w-4 h-4" />
+            <span>LinkedIn</span>
+          </a>
+        </div>
+
+        {/* Centered content column below the action bar */}
         <div className="relative z-10 mx-auto max-w-[1080px] px-6 md:px-10 pt-12 md:pt-16 pb-24 md:pb-12">
           <h2 className="font-serif font-normal italic text-3xl md:text-5xl leading-[1.05] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
             Let&rsquo;s work together
@@ -51,43 +88,6 @@ export function Footer() {
           <p className="mt-3 font-sans text-base text-[#7B7974] dark:text-neutral-400">
             I&rsquo;m open to new opportunities.
           </p>
-
-          {/* Action bar — three equal cells */}
-          <div
-            className={`mt-12 md:mt-16 border-t ${dividerClass} grid grid-cols-3`}
-          >
-            <button
-              type="button"
-              onClick={copyEmail}
-              aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-              className={`${cell} border-r ${dividerClass}`}
-            >
-              {copied ? (
-                <Check className="w-4 h-4" />
-              ) : (
-                <Copy className="w-4 h-4" />
-              )}
-              <span>{copied ? "Copied!" : "Email"}</span>
-            </button>
-            <a
-              href="/cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${cell} border-r ${dividerClass}`}
-            >
-              <Download className="w-4 h-4" />
-              <span>My CV</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/alexmess/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cell}
-            >
-              <ArrowUpRight className="w-4 h-4" />
-              <span>LinkedIn</span>
-            </a>
-          </div>
         </div>
       </div>
     </footer>
