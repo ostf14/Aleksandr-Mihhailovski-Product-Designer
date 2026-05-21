@@ -122,7 +122,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity, filter",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-none sm:rounded-2xl border-y border-x-0 sm:border-x border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-4 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
       {/* Spotlight dot pattern — only the disc around the cursor is visible */}
       <div
@@ -141,7 +141,7 @@ export function BusinessCard() {
 
       <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
         {/* Photo — 80px mobile (above text, left-aligned) / 180px desktop (beside) */}
-        <div className="relative shrink-0 self-start md:self-auto">
+        <div className="relative shrink-0 self-center md:self-auto">
           <div
             aria-hidden
             className="absolute inset-[-6px] md:inset-[-12px] rounded-full bg-[#FF6936]/20 dark:bg-[#FF6936]/15 blur-xl"
@@ -158,7 +158,7 @@ export function BusinessCard() {
 
         <div className="flex-1 min-w-0">
           {/* Heading */}
-          <h2 className="font-serif font-normal text-[clamp(18px,6.5vw,32px)] sm:text-3xl md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
+          <h2 className="font-serif font-normal text-[clamp(22px,7vw,36px)] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
             <span className="block whitespace-nowrap text-[#1F1F1E] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex{" "}
               <span
@@ -194,7 +194,7 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative z-10 -mx-4 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
