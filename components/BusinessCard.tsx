@@ -108,6 +108,7 @@ export function BusinessCard() {
   return (
     <motion.div
       ref={cardRef}
+      data-hero-card="true"
       style={{
         scale,
         opacity,
