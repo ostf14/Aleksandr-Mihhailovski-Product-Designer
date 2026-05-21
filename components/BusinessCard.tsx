@@ -122,7 +122,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity, filter",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-8 pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-6 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
       {/* Spotlight dot pattern — only the disc around the cursor is visible */}
       <div
@@ -139,14 +139,14 @@ export function BusinessCard() {
         }}
       />
 
-      <div className="relative z-10 md:flex md:items-start md:gap-8">
-        {/* Photo — fixed 180px circle with warm glow */}
-        <div className="hidden md:block relative shrink-0">
+      <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
+        {/* Photo — 80px mobile (above text, left-aligned) / 180px desktop (beside) */}
+        <div className="relative shrink-0 self-start md:self-auto">
           <div
             aria-hidden
-            className="absolute inset-[-12px] rounded-full bg-[#FF6936]/20 dark:bg-[#FF6936]/15 blur-xl"
+            className="absolute inset-[-6px] md:inset-[-12px] rounded-full bg-[#FF6936]/20 dark:bg-[#FF6936]/15 blur-xl"
           />
-          <div className="relative z-10 w-[180px] h-[180px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none flex items-center justify-center">
+          <div className="relative z-10 w-20 h-20 md:w-[180px] md:h-[180px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/hero-photo.jpg"
@@ -158,7 +158,7 @@ export function BusinessCard() {
 
         <div className="flex-1 min-w-0">
           {/* Heading */}
-          <h2 className="font-serif font-normal text-[28px] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
+          <h2 className="font-serif font-normal text-2xl sm:text-3xl md:text-4xl lg:text-6xl leading-[1.05] tracking-tight">
             <span className="block whitespace-nowrap text-[#1F1F1E] dark:text-[#E8E8E6]">
               Hi, I&rsquo;m Alex{" "}
               <span
@@ -194,7 +194,7 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, edge-to-edge cells */}
-      <div className="relative z-10 -mx-8 md:-mx-12 mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative z-10 -mx-6 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-2 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="/cv.pdf"
           target="_blank"
