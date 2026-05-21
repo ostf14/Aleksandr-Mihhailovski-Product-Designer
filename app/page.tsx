@@ -42,7 +42,12 @@ export default function Page() {
         </section>
 
         {/* Case Studies */}
-        <section className="px-6 md:px-10 mb-32">
+        <section id="cases" className="px-6 md:px-10 mb-32 scroll-mt-24">
+          <div className="max-w-[1080px] mx-auto">
+            <h2 className="mb-8 font-serif font-normal text-4xl md:text-5xl tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+              Cases
+            </h2>
+          </div>
           <div className="max-w-[1080px] mx-auto flex flex-col gap-5">
             {cases.map((c) => (
               <CaseCardReveal key={c.href}>
@@ -58,13 +63,13 @@ export default function Page() {
                   />
                   <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
                     <div className="md:flex-1 md:min-w-0 flex flex-col pr-10">
-                      <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
+                      <div className="font-mono text-xs uppercase tracking-[0.14em] text-stone-400">
                         {c.tag}
                       </div>
-                      <h3 className="mt-2 font-serif font-normal text-[22px] leading-tight tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+                      <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
                         {c.title}
                       </h3>
-                      <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
+                      <p className="mt-3 text-[15px] leading-[1.5] text-stone-500 line-clamp-2">
                         {c.description}
                       </p>
                     </div>

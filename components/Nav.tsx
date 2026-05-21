@@ -8,14 +8,14 @@ import { ThemeToggle } from "./ThemeToggle";
 type Item = { label: string; href: string };
 
 const items: Item[] = [
-  { label: "Work", href: "/" },
+  { label: "Cases", href: "/#cases" },
   { label: "About", href: "/about" },
 ];
 
 function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   const isActive =
-    item.href === "/"
-      ? pathname?.startsWith("/case/") ?? false
+    item.href.startsWith("/#")
+      ? pathname === "/" || (pathname?.startsWith("/case/") ?? false)
       : pathname === item.href || pathname?.startsWith(item.href + "/");
   return (
     <a
