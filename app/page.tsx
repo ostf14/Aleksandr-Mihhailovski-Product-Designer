@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { BusinessCard } from "@/components/BusinessCard";
 import { CaseCardReveal } from "@/components/HomeCases";
 import { Footer } from "@/components/Footer";
+import { GalleryCard } from "@/components/GalleryCard";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -101,6 +102,18 @@ export default function Page() {
                 </a>
               </CaseCardReveal>
             ))}
+          </div>
+        </section>
+
+        {/* Other */}
+        <section id="other" className="px-6 md:px-10 mb-32 scroll-mt-[16.6667vh]">
+          <div className="max-w-[1080px] mx-auto">
+            <h2 className="mb-8 font-serif font-normal text-4xl md:text-5xl tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+              Other
+            </h2>
+          </div>
+          <div className="max-w-[1080px] mx-auto">
+            <GalleryCard />
           </div>
         </section>
       </main>
