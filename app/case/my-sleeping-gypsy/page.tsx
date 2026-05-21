@@ -5,6 +5,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
+import { NumberedList } from "@/components/NumberedList";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -12,6 +13,9 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 const toc: TocItem[] = [
   { id: "context", label: "Context" },
   { id: "research", label: "Research" },
+  { id: "competitive", label: "Competitive analysis", level: 2 },
+  { id: "audience", label: "Audience", level: 2 },
+  { id: "visual", label: "Visual industry analysis", level: 2 },
   { id: "design", label: "Design" },
   { id: "decisions", label: "Decisions" },
   { id: "lessons", label: "What I learned" },
@@ -20,30 +24,30 @@ const toc: TocItem[] = [
 const decisions = [
   {
     h: "Large hero imagery over product grid",
-    p: "Users need to see embroidery detail to understand value. Thumbnail grids commoditize the product. Trade-off: fewer products per screen, but higher perceived quality.",
+    p: "These dresses are hand-embroidered. You can’t see that in a 200px thumbnail. Large imagery lets the craft speak. Trade-off: fewer products per screen, but higher perceived quality.",
   },
   {
-    h: "‘Sustainability, Heritage, Culture’ above the fold",
-    p: "Brand story must be communicated before price. Users who don’t care about sustainability will bounce anyway — better to filter early.",
+    h: "Brand story above the fold",
+    p: "‘Sustainability, Heritage, Culture’ — this needed to be the first thing visitors see, not the last. People who don’t care about this will bounce anyway. Better to filter early.",
   },
   {
-    h: "Minimal product filtering (by type, not price/discount)",
-    p: "Price filtering encourages comparison shopping. We want users to browse by aesthetic, not by ‘cheapest option.’",
+    h: "Filter by type, not by price",
+    p: "Price filtering turns browsing into comparison shopping. The audience doesn’t want the cheapest option — they want the right dress. Categories by type (long, midi, blouse) match how they actually think.",
   },
   {
-    h: "Typography system: Baskerville + Suisse Intl",
-    p: "Baskerville = editorial, timeless. Suisse Intl = modern usability. The pairing signals ‘heritage meets contemporary.’",
+    h: "No accent colors",
+    p: "The research was clear: forced accent colors on fashion sites looked cheap. Black, white, and warm neutrals let the photography carry the visual weight.",
   },
 ];
 
 const lessons = [
   {
     h: "Strategic friction",
-    p: "Premium e-commerce requires strategic friction. Fast checkout and aggressive CTAs work for fast fashion — but destroy luxury positioning. Editorial pacing forces users to slow down and appreciate craftsmanship.",
+    p: "Fast checkout and aggressive CTAs work for fast fashion but destroy premium positioning. Editorial pacing forces users to slow down and appreciate the craft. Sometimes good e-commerce design means adding friction, not removing it.",
   },
   {
-    h: "The right friction filters",
-    p: "Story-first layout filters out price-comparison shoppers. Generous whitespace signals brand confidence. Sometimes good design isn’t about removing friction — it’s about adding the right kind.",
+    h: "Research before pixels",
+    p: "Running competitive, audience, and visual analysis before designing saved me from copying patterns that don’t fit. Most competitors looked like generic marketplaces. The research made it clear: the site should feel like a brand, not a store.",
   },
 ];
 
@@ -73,6 +77,20 @@ function BrowserShot({
               {caption}
             </figcaption>
           )}
+        </FadeIn>
+      </div>
+    </div>
+  );
+}
+
+function SubHeading({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <div id={id} className="scroll-mt-20 px-6 md:px-10">
+      <div className="max-w-4xl mx-auto">
+        <FadeIn>
+          <h3 className="max-w-prose mx-auto font-serif font-normal text-xl md:text-2xl tracking-tight">
+            {children}
+          </h3>
         </FadeIn>
       </div>
     </div>
@@ -151,7 +169,7 @@ export default function Page() {
                     Focus
                   </div>
                   <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
-                    {["UX/UI redesign", "E-commerce design", "Design system"].map(
+                    {["E-commerce redesign", "Design system", "UX research"].map(
                       (item) => (
                         <li key={item} className="flex items-start gap-2.5">
                           <span
@@ -178,69 +196,99 @@ export default function Page() {
 
           {/* Context */}
           <div id="context" className="scroll-mt-20 mt-16 pb-32">
-            <Section kicker="01 · Context" heading="Heritage at a fast-fashion price tag">
+            <Section kicker="01 · Context" heading="A premium product on a generic-looking site">
               <Prose>
                 <p>
-                  My Sleeping Gypsy is a sustainable fashion brand selling handmade
-                  embroidered linen pieces at €300–800 per item. Each piece is finished by
-                  hand, with embroidery details that can take days to complete.
+                  My Sleeping Gypsy is a women’s clothing brand that makes handmade
+                  embroidered linen pieces — dresses, skirts, blouses, suits — priced at
+                  €300–800. Everything is locally produced, hand-embroidered, made to
+                  order.
                 </p>
                 <p>
-                  The challenge: competing with fast-fashion brands in the same search
-                  results while maintaining premium positioning — and communicating
-                  craftsmanship value before the visitor sees the price.
+                  The existing site worked functionally, but had zero stylistic
+                  integrity. It looked like a generic marketplace, not a premium brand.
+                  The visual gap between the product quality and the site quality was
+                  massive.
                 </p>
               </Prose>
 
               <Callout className="mt-10" label="The goal">
-                How do you design an e-commerce experience that elevates heritage
-                craftsmanship without applying standard conversion patterns that
-                commoditize premium products?
+                Redesign the e-commerce experience so the site feels as premium as the
+                product — without losing existing usability.
               </Callout>
             </Section>
           </div>
 
           {/* Research */}
           <div id="research" className="scroll-mt-20 pb-32">
-            <Section kicker="02 · Research" heading="How luxury differentiates online">
+            <Section kicker="02 · Research" heading="Three parallel analyses before any pixels">
               <Prose>
                 <p>
-                  I analyzed how editorial and luxury fashion brands differentiate through
-                  digital experience — looking at hierarchy, pacing, photography, and the
-                  invitations they extend to first-time visitors.
+                  I ran three streams in parallel — competitive, audience, and visual
+                  industry analysis — before touching the design tool. The goal was to
+                  understand what makes premium fashion sites read as premium, so the
+                  redesign wouldn’t default to standard e-commerce patterns.
                 </p>
               </Prose>
+            </Section>
 
-              <div className="px-6 md:px-10 mt-8">
-                <div className="max-w-4xl mx-auto">
-                  <FadeIn className="max-w-prose mx-auto">
-                    <ul className="space-y-3 text-[1.0625rem] leading-[1.55] text-charcoal/90">
-                      {[
-                        ["Reformation", "Editorial photography, slow scroll pacing."],
-                        ["Jenni Kayne", "Story-first, shop-second hierarchy."],
-                        ["Ganni", "Bold color systems, pattern-forward layouts."],
-                      ].map(([brand, note]) => (
-                        <li key={brand} className="flex items-baseline gap-3">
-                          <span
-                            aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-terracotta shrink-0 translate-y-[-2px]"
-                          />
-                          <span>
-                            <span className="font-medium">{brand}</span>
-                            <span className="text-charcoal/70"> — {note}</span>
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </FadeIn>
-                </div>
-              </div>
+            {/* Competitive analysis */}
+            <div className="mt-14">
+              <SubHeading id="competitive">
+                Competitive analysis (8 direct competitors)
+              </SubHeading>
+              <NumberedList
+                className="mt-5"
+                items={[
+                  "Most competitors had no real brand positioning — their sites were just storefronts with a product grid.",
+                  "The ones that stood out used editorial photography and brand storytelling, not discounts or aggressive CTAs.",
+                  "High-quality photos and thoughtful product descriptions were the strongest purchase motivators — not designer fame or price drops.",
+                  "Navigation was messy across the board: collection names in the main nav that meant nothing to first-time visitors, important pages buried in footers.",
+                ]}
+              />
+            </div>
+
+            {/* Audience */}
+            <div className="mt-14">
+              <SubHeading id="audience">Audience</SubHeading>
+              <NumberedList
+                className="mt-5"
+                items={[
+                  "Women, 25–45, income $2 000+/month.",
+                  "They research before buying. Clothing is treated as an investment, not an impulse purchase.",
+                  "Lifestyle: cultural events, fashion-conscious, values craftsmanship and individuality.",
+                ]}
+              />
 
               <Callout className="mt-10" label="Key insight">
-                Standard e-commerce patterns — aggressive CTAs, price-first layouts,
-                thumbnail grids — work for fast fashion but destroy premium positioning.
+                The audience doesn’t comparison-shop on price. They compare on perceived
+                quality. The site needs to feel like a fashion editorial, not a product
+                catalog.
               </Callout>
-            </Section>
+            </div>
+
+            {/* Visual industry analysis */}
+            <div className="mt-14">
+              <SubHeading id="visual">
+                Visual industry analysis (Awwwards-level fashion sites)
+              </SubHeading>
+              <NumberedList
+                className="mt-5"
+                items={[
+                  "Headings: serif fonts, large sizes referencing print magazine typography.",
+                  "Body: grotesque fonts, Regular weight, sometimes Light or uppercase.",
+                  "Colors: either pure black/white or soft pastels — any forced accent color looked cheap.",
+                  "Photography: emphasis on details and emotional model shoots, not plain product shots.",
+                  "Buttons: rectangular, outlined, minimal — filled buttons looked out of place.",
+                ]}
+              />
+
+              <Callout className="mt-10" label="Design decision">
+                Based on the research: Baskerville for headings (editorial, timeless) +
+                Suisse Intl for body (clean, modern). Light pastel palette.
+                Photography-first layout. No accent colors that compete with the product.
+              </Callout>
+            </div>
           </div>
 
           {/* Design */}
@@ -259,7 +307,7 @@ export default function Page() {
               className="mt-8"
               src="/cases/msg/main-page.png"
               alt="Homepage layout"
-              caption="Homepage: story before shop."
+              caption="Homepage."
             />
 
             <BrowserShot
@@ -267,14 +315,14 @@ export default function Page() {
               src="/cases/msg/catalog.png"
               alt="Catalog page"
               url="mysleepinggypsy.com/shop"
-              caption="Catalog: editorial product grid."
+              caption="Catalog."
             />
 
             <ImagePlaceholder
               className="mt-8"
               src="/cases/msg/catalog-mobile.png"
               label="Catalog mobile layout"
-              caption="Catalog: mobile experience."
+              caption="Catalog — mobile."
             />
 
             <BrowserShot
@@ -282,14 +330,14 @@ export default function Page() {
               src="/cases/msg/item-page.png"
               alt="Product page"
               url="mysleepinggypsy.com/shop/linen-dress"
-              caption="Product page: craftsmanship in focus."
+              caption="Product page."
             />
 
             <ImagePlaceholder
               className="mt-8"
               src="/cases/msg/item-mobile.png"
               label="Product page mobile"
-              caption="Product page: mobile detail."
+              caption="Product page — mobile."
             />
 
             <BrowserShot
@@ -304,7 +352,7 @@ export default function Page() {
               className="mt-8"
               src="/cases/msg/fonts.png"
               label="Typography specimen"
-              caption="Typography system: Baskerville + Suisse Intl."
+              caption="Typography: Baskerville + Suisse Intl."
             />
 
             <ImagePlaceholder
@@ -317,8 +365,8 @@ export default function Page() {
             <ImagePlaceholder
               className="mt-8"
               src="/cases/msg/grid.png"
-              label="Responsive grid system"
-              caption="Responsive grid system."
+              label="12-column grid system"
+              caption="12-column grid system."
             />
           </div>
 
