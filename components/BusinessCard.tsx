@@ -122,7 +122,7 @@ export function BusinessCard() {
       {/* Hover-reveal terracotta dot pattern (behind content) */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500 ease-out z-0"
+        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.14] transition-opacity duration-500 ease-out z-0"
         style={{
           backgroundImage:
             "radial-gradient(circle, #FF6936 1px, transparent 1px)",
