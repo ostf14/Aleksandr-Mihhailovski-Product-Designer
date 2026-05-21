@@ -126,7 +126,7 @@ export function BusinessCard() {
         style={{
           backgroundImage:
             "radial-gradient(circle, #FF6936 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
+          backgroundSize: "16px 16px",
         }}
       />
 
