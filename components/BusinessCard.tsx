@@ -109,11 +109,6 @@ export function BusinessCard() {
     <motion.div
       ref={cardRef}
       data-hero-card="true"
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-        e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
-      }}
       style={{
         scale,
         opacity,
@@ -124,18 +119,14 @@ export function BusinessCard() {
       }}
       className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
-      {/* Spotlight dot pattern — only the disc around the cursor is visible */}
+      {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
       <div
         aria-hidden
-        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.35] transition-opacity duration-300 ease-out z-0"
+        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.06] transition-opacity duration-300 ease-out z-0"
         style={{
           backgroundImage:
             "radial-gradient(circle, #FF6936 1px, transparent 1px)",
           backgroundSize: "24px 24px",
-          maskImage:
-            "radial-gradient(circle 180px at var(--mx, -200px) var(--my, -200px), black 0%, transparent 70%)",
-          WebkitMaskImage:
-            "radial-gradient(circle 180px at var(--mx, -200px) var(--my, -200px), black 0%, transparent 70%)",
         }}
       />
 
