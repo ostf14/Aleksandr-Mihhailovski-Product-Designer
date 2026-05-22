@@ -55,11 +55,6 @@ export function BusinessCard() {
   });
   const opacity = useSpring(opacityRaw, SPRING);
 
-  const blurRaw = useTransform(scrollY, [0, SCROLL_RANGE], [0, 4], {
-    clamp: true,
-  });
-  const filter = useTransform(blurRaw, (b) => `blur(${b}px)`);
-
   const marginBottomRaw = useTransform(
     scrollY,
     [0, SCROLL_RANGE],
@@ -112,10 +107,9 @@ export function BusinessCard() {
       style={{
         scale,
         opacity,
-        filter,
         marginBottom,
         transformOrigin: "top center",
-        willChange: "transform, opacity, filter",
+        willChange: "transform, opacity",
       }}
       className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
