@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Pixelify_Sans } from "next/font/google";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import {
+  ogImagePath,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+} from "@/lib/site";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -30,11 +36,20 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: SITE_NAME,
+    images: [
+      {
+        url: ogImagePath(SITE_TAGLINE),
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
+    images: [ogImagePath(SITE_TAGLINE)],
   },
 };
 

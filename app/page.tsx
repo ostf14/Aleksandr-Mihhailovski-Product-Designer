@@ -13,6 +13,7 @@ export const metadata = pageMetadata({
   path: "/",
   ogType: "website",
   absoluteTitle: true,
+  ogImageTitle: SITE_TAGLINE,
 });
 
 const cases = [
