@@ -58,16 +58,16 @@ const decisions = [
 
 const results = [
   {
-    h: "8× faster mechanic development",
-    p: "What used to take 3–4 days collapsed to a single evening. The architect agent handled state machine design while the executor wrote the scripts, and Unity validated each iteration in seconds.",
+    h: "From days to an evening per mechanic",
+    p: "Mechanics that used to take 3–4 days collapsed to a single evening of work. The architect agent handled state machine design while the executor wrote the scripts, and Unity validated each iteration in seconds. The measurement is informal — my own development time before and after — but consistent across the project.",
   },
   {
-    h: "18× faster bug fixes",
-    p: "A typical 3-hour debugging session became a 10-minute conversation: Gemini diagnoses, Windsurf patches, Unity confirms. The validator agent meant I stopped guessing.",
+    h: "From hour-long debugging to ten-minute conversations",
+    p: "Where a stubborn bug used to mean a 3-hour session, the loop became a short conversation: Gemini diagnoses, Windsurf patches, Unity confirms. The validator stage replaced most of the guessing.",
   },
   {
-    h: "Team-level velocity, solo",
-    p: "Solo project velocity matched what specialised teams produce. Not because AI replaced anyone — because orchestration removed the handoff cost.",
+    h: "Solo velocity without role handoffs",
+    p: "Solo project velocity that previously needed coordination across roles. Not because AI replaced anyone — because orchestration removed the handoff cost.",
   },
 ];
 
@@ -78,7 +78,7 @@ const lessons = [
   },
   {
     h: "The skill isn’t coding — it’s orchestration",
-    p: "Knowing when to let AI run vs when to intervene is the new craft. Most failures happen when humans try to micromanage at the wrong stage, or step back at the wrong moment. The workflow is the product.",
+    p: "Knowing when to let AI run vs when to intervene is the new craft. One concrete example: AI repeatedly suggested over-engineered solutions for the suspicion state machine — abstract base classes, interface hierarchies — when the right move was three plain if-statements. Stepping back at the wrong moment costs hours; stepping in at the right moment saves them.",
   },
 ];
 
@@ -109,7 +109,7 @@ export default function Page() {
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
-                  I built a 10× prototyping workflow using AI agents — and what it taught
+                  I built an AI-orchestrated prototyping pipeline — and what it taught
                   me about product design.
                 </p>
               </FadeIn>
@@ -202,8 +202,8 @@ export default function Page() {
               </Prose>
 
               <Callout className="mt-10" label="The goal">
-                Design a multi-agent AI workflow where each agent plays a specialised
-                engineering role. Prove it works by shipping something hard.
+                Design an AI-orchestrated pipeline where each stage plays a specialised
+                role. Prove it works by shipping something hard.
               </Callout>
             </Section>
           </div>
@@ -212,7 +212,7 @@ export default function Page() {
           <div id="experiment" className="scroll-mt-20 pb-32">
             <Section
               kicker="02 · The experiment"
-              heading="Two AI agents and a runtime to argue with"
+              heading="A pipeline of two AI tools and a runtime"
             >
               <Prose>
                 <p>
@@ -266,7 +266,7 @@ export default function Page() {
             <Section kicker="03 · In practice" heading="What the loop actually looked like">
               <Prose>
                 <p>
-                  In practice the three agents ran in fast cycles: Gemini described a
+                  In practice the three stages ran in fast cycles: Gemini described a
                   state-machine change, Windsurf wrote the C#, Unity ran the build, I
                   watched the result. If the build broke or the behaviour felt wrong,
                   the validator output became the next prompt for the architect.
