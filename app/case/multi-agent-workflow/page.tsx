@@ -215,6 +215,11 @@ export default function Page() {
               heading="A pipeline of two AI tools and a runtime"
             >
               <Prose>
+                <p className="!text-[0.95rem] !leading-[1.6] italic text-charcoal/60">
+                  Note: I use ‘multi-agent’ loosely throughout — a pipeline of distinct
+                  AI tools coordinated by a human, not autonomous agent-to-agent
+                  communication.
+                </p>
                 <p>
                   I designed a three-role pipeline: two AI agents and the game engine
                   itself as the validator. Each had a distinct job and clear
