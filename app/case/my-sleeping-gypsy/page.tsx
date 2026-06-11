@@ -15,7 +15,7 @@ import { pageMetadata } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "My Sleeping Gypsy",
   description:
-    "How to sell heritage craftsmanship without looking like fast fashion — e-commerce redesign for a handmade embroidered linen brand.",
+    "Selling heritage craftsmanship without looking like fast fashion — e-commerce redesign for a linen brand.",
   path: "/case/my-sleeping-gypsy",
 });
 

@@ -16,7 +16,7 @@ import { pageMetadata } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Chtenye — Educational Platform Redesign",
   description:
-    "Users couldn’t explain what a single menu item meant. Information architecture and platform redesign for an edtech product.",
+    "Information architecture and platform redesign for an edtech product users found impossible to navigate.",
   path: "/case/chtenye",
 });
 

@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Push Notifications Manager",
   description:
-    "How to kill the send button nobody wanted to press — designing a push campaign manager at Seamm that gave marketing full autonomy and 3.75× campaign velocity.",
+    "How to kill the send button nobody wanted to press — a self-serve push campaign manager at Seamm.",
   path: "/case/push-notifications",
 });
 import { Footer } from "@/components/Footer";

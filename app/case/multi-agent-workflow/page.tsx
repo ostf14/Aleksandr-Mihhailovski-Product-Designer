@@ -12,7 +12,7 @@ import { pageMetadata } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Multi-Agent AI Workflow",
   description:
-    "I built an AI-orchestrated prototyping pipeline — and what it taught me about product design. Gemini as architect, Windsurf as executor, Unity as validator.",
+    "I built an AI-orchestrated prototyping pipeline — and what it taught me about product design.",
   path: "/case/multi-agent-workflow",
 });
 

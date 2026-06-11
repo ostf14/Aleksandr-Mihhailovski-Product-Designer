@@ -14,7 +14,7 @@ export const SITE_NAME = "Aleksandr Mihhailovski";
 export const SITE_TAGLINE = "Product Designer & Builder";
 
 export const SITE_DESCRIPTION =
-  "Product designer specializing in B2B SaaS, internal tools, and data-heavy interfaces. I prototype in code and build frontend with AI-assisted tools.";
+  "Product designer for B2B SaaS, internal tools, and data-heavy interfaces. I prototype and build in code.";
 
 /**
  * Path to the dynamic OG image for a given title. Resolved against

@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Stories Editor",
   description:
-    "How I eliminated a 2-day content publishing bottleneck — designing a self-service stories editor for the content team at Seamm.",
+    "How I eliminated a 2-day content publishing bottleneck with a self-serve stories editor at Seamm.",
   path: "/case/stories-editor",
 });
 
