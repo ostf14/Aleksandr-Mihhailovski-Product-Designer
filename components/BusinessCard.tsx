@@ -25,7 +25,10 @@ const EMAIL = "ostf14@gmail.com";
 
 export function BusinessCard() {
   const [phraseIdx, setPhraseIdx] = useState(0);
-  const [text, setText] = useState("");
+  // Progressive enhancement: SSR markup contains the complete first phrase so
+  // scrapers see a full hero line. The typewriter effect picks up from the
+  // "phrase complete" state on mount (pause, delete, cycle).
+  const [text, setText] = useState(phrases[0]);
   const [deleting, setDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);

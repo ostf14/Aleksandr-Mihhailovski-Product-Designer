@@ -32,7 +32,11 @@ export function AnimatedNumber({ value, duration = 1.4 }: Props) {
   const reduce = useReducedMotion();
   const segments = parseSegments(value);
 
-  const [progress, setProgress] = useState(reduce ? 1 : 0);
+  // Progressive enhancement: server-rendered markup must contain the FINAL
+  // values (progress = 1) so scrapers and JS-disabled clients see real
+  // numbers. JS resets to 0 and counts up only once the element scrolls
+  // into view.
+  const [progress, setProgress] = useState(1);
 
   useEffect(() => {
     if (!inView || reduce) return;
@@ -45,6 +49,7 @@ export function AnimatedNumber({ value, duration = 1.4 }: Props) {
       setProgress(eased);
       if (p < 1) frame = requestAnimationFrame(step);
     };
+    setProgress(0);
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [inView, duration, reduce]);
