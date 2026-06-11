@@ -8,6 +8,14 @@ import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "Stories Editor",
+  description:
+    "How I eliminated a 2-day content publishing bottleneck — designing a self-service stories editor for the content team at Seamm.",
+  path: "/case/stories-editor",
+});
 
 const tocItems: TocItem[] = [
   { id: "why-we-started", label: "Why we started" },

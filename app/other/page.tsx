@@ -3,6 +3,15 @@ import { Footer } from "@/components/Footer";
 import { FadeIn } from "@/components/FadeIn";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "Other website design works",
+  description:
+    "A selection of websites and landing pages I’ve designed over the years — gallery, 2018–2024.",
+  path: "/other",
+  ogType: "website",
+});
 
 const gallery = [
   { title: "seamm.dev — Homepage", image: "/cases/gallery/seamm-homepage.jpg" },

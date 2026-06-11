@@ -7,6 +7,14 @@ import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "Multi-Agent AI Workflow",
+  description:
+    "I built an AI-orchestrated prototyping pipeline — and what it taught me about product design. Gemini as architect, Windsurf as executor, Unity as validator.",
+  path: "/case/multi-agent-workflow",
+});
 
 const toc: TocItem[] = [
   { id: "context", label: "Context" },

@@ -10,6 +10,14 @@ import { NumberedList } from "@/components/NumberedList";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { BrowserFrame } from "@/components/BrowserFrame";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "My Sleeping Gypsy",
+  description:
+    "How to sell heritage craftsmanship without looking like fast fashion — e-commerce redesign for a handmade embroidered linen brand.",
+  path: "/case/my-sleeping-gypsy",
+});
 
 const toc: TocItem[] = [
   { id: "context", label: "Context" },

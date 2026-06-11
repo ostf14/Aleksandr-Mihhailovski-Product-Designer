@@ -5,6 +5,15 @@ import { Footer } from "@/components/Footer";
 import { GalleryCard } from "@/components/GalleryCard";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { pageMetadata, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  description: SITE_DESCRIPTION,
+  path: "/",
+  ogType: "website",
+  absoluteTitle: true,
+});
 
 const cases = [
   {

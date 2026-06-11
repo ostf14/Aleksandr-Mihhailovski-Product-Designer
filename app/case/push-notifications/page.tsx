@@ -1,5 +1,13 @@
 import { Nav } from "@/components/Nav";
 import { Impact } from "@/components/Impact";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "Push Notifications Manager",
+  description:
+    "How to kill the send button nobody wanted to press — designing a push campaign manager at Seamm that gave marketing full autonomy and 3.75× campaign velocity.",
+  path: "/case/push-notifications",
+});
 import { Footer } from "@/components/Footer";
 import { MoreCases } from "@/components/MoreCases";
 import { FadeIn } from "@/components/FadeIn";

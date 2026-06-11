@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Pixelify_Sans } from "next/font/google";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -17,31 +18,23 @@ const pixelifySans = Pixelify_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alex-mikhailovski.example.com"),
-  title: "Push Notifications · Alex Mikhailovski",
-  description:
-    "A case study on designing the Push Notification Manager at Seamm — empowering non-technical admins to send campaigns with confidence and zero code.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
   openGraph: {
-    title: "Push Notifications · Alex Mikhailovski",
-    description:
-      "Designing for confidence, not speed. The Push Notification Manager I designed for Seamm.",
-    type: "article",
-    url: "https://alex-mikhailovski.example.com/case-study/push-notifications",
-    siteName: "Alex Mikhailovski",
-    images: [
-      {
-        url: "/og-push-notifications.png",
-        width: 1200,
-        height: 630,
-        alt: "Push Notifications case study",
-      },
-    ],
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    type: "website",
+    url: "/",
+    siteName: SITE_NAME,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Push Notifications · Alex Mikhailovski",
-    description: "Designing for confidence, not speed.",
-    images: ["/og-push-notifications.png"],
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
   },
 };
 

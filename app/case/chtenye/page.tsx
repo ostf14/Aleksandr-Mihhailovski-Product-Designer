@@ -11,6 +11,14 @@ import { Section, Prose } from "@/components/Section";
 import { NumberedList } from "@/components/NumberedList";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "Chtenye — Educational Platform Redesign",
+  description:
+    "Users couldn’t explain what a single menu item meant. Information architecture and platform redesign for an edtech product.",
+  path: "/case/chtenye",
+});
 
 const tocItems: TocItem[] = [
   { id: "context", label: "A menu that works against its users" },
