@@ -6,7 +6,8 @@ import type { Metadata } from "next";
  * production deployment.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://alex-mikhailovski.example.com";
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://mihhailovski-product-designer.vercel.app";
 
 export const SITE_NAME = "Alex Mikhailovski";
 
