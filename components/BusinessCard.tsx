@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
+import { GithubIcon } from "./GithubIcon";
 
 const SCALE_FACTOR = 480 / 1080;
 const SCROLL_RANGE = 200; // pixels of scroll over which the card collapses
@@ -178,8 +179,8 @@ export function BusinessCard() {
         </div>
       </div>
 
-      {/* Bottom action bar — flush to card edges, three equal cells */}
-      <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-3 md:rounded-b-2xl md:overflow-hidden">
+      {/* Bottom action bar — flush to card edges, four equal cells */}
+      <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 grid grid-cols-4 md:rounded-b-2xl md:overflow-hidden">
         <a
           href="https://drive.google.com/file/d/1BuI4n3mlsFLC1WkC4zqa5WKOKdku0kWK/view?usp=sharing"
           target="_blank"
@@ -202,10 +203,19 @@ export function BusinessCard() {
           href="https://www.linkedin.com/in/alexmess/"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] border-r border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           <ArrowUpRight className="w-4 h-4" />
           <span>LinkedIn</span>
+        </a>
+        <a
+          href="https://github.com/ostf14"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"
+        >
+          <GithubIcon className="w-4 h-4" />
+          <span>GitHub</span>
         </a>
       </div>
     </motion.div>

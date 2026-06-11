@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
+import { GithubIcon } from "./GithubIcon";
 import { SpriteAnimation } from "./SpriteAnimation";
 
 const EMAIL = "ostf14@gmail.com";
@@ -45,7 +46,7 @@ export function Footer() {
 
         {/* Action bar — top edge of the footer, full viewport width */}
         <div
-          className={`relative z-10 grid grid-cols-3 border-b ${dividerClass}`}
+          className={`relative z-10 grid grid-cols-4 border-b ${dividerClass}`}
         >
           <a
             href="https://drive.google.com/file/d/1BuI4n3mlsFLC1WkC4zqa5WKOKdku0kWK/view?usp=sharing"
@@ -73,10 +74,19 @@ export function Footer() {
             href="https://www.linkedin.com/in/alexmess/"
             target="_blank"
             rel="noopener noreferrer"
-            className={cell}
+            className={`${cell} border-r ${dividerClass}`}
           >
             <ArrowUpRight className="w-4 h-4" />
             <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/ostf14"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cell}
+          >
+            <GithubIcon className="w-4 h-4" />
+            <span>GitHub</span>
           </a>
         </div>
 
