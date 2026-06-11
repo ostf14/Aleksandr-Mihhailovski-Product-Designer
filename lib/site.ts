@@ -9,7 +9,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://mihhailovski-product-designer.vercel.app";
 
-export const SITE_NAME = "Alex Mikhailovski";
+export const SITE_NAME = "Aleksandr Mihhailovski";
 
 export const SITE_TAGLINE = "Product Designer & Builder";
 
