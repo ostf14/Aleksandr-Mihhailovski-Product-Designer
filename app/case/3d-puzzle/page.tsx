@@ -61,8 +61,8 @@ export default function Page() {
 
             <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
               <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
-                <div className="p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                  <div>
+                <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+                  <div className="md:pr-6">
                     <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                       Role
                     </div>
@@ -71,7 +71,7 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div>
+                  <div className="md:px-6 md:border-l md:border-stone-200">
                     <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                       Project
                     </div>
@@ -80,7 +80,7 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div>
+                  <div className="md:px-6 md:border-l md:border-stone-200">
                     <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                       Timeline
                     </div>
@@ -89,22 +89,25 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div>
+                  <div className="md:pl-6 md:border-l md:border-stone-200">
                     <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
                       Focus
                     </div>
-                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                      3D interaction design, procedural UI, content pipeline
-                    </p>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
-                      Stack
-                    </div>
-                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                      Vite · TypeScript · React 18 · React Three Fiber · Blender
-                    </p>
+                    <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                      {[
+                        "3D interaction design",
+                        "Procedural UI",
+                        "Content pipeline",
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span
+                            aria-hidden
+                            className="inline-block size-1.5 rounded-full bg-terracotta shrink-0 mt-[7px]"
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
@@ -137,7 +140,7 @@ export default function Page() {
             <FadeIn delay={0.2} className="max-w-bleed mx-auto">
               {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
               <video
-                src="https://github.com/user-attachments/assets/bae63575-bcbc-45cc-a262-1c34cc592f1f"
+                src="/demo.mp4"
                 controls
                 playsInline
                 className="w-full rounded-xl mt-8"
