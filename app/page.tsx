@@ -110,10 +110,9 @@ export default function Page() {
                         />
                         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
                           {c.role}
+                          <span className="text-stone-400/70"> | </span>
+                          {c.tag}
                         </span>
-                      </div>
-                      <div className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-stone-400">
-                        {c.tag}
                       </div>
                       <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
                         {c.title}
