@@ -106,13 +106,7 @@ export default function Page() {
                       <div className="font-mono text-xs uppercase tracking-[0.14em] text-stone-400">
                         {c.tag}
                       </div>
-                      <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
-                        {c.title}
-                      </h3>
-                      <p className="mt-3 text-[15px] leading-[1.5] text-stone-500 line-clamp-2">
-                        {c.description}
-                      </p>
-                      <div className="mt-4 md:mt-auto md:pt-4 flex items-center gap-2">
+                      <div className="mt-2 flex items-center gap-2">
                         <span
                           aria-hidden
                           className="inline-block size-1.5 rounded-full bg-terracotta shrink-0"
@@ -121,6 +115,12 @@ export default function Page() {
                           {c.role}
                         </span>
                       </div>
+                      <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+                        {c.title}
+                      </h3>
+                      <p className="mt-3 text-[15px] leading-[1.5] text-stone-500 line-clamp-2">
+                        {c.description}
+                      </p>
                     </div>
                     <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-b-2xl md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
