@@ -96,8 +96,8 @@ export default function Page() {
                     <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
                       {[
                         "3D interaction design",
-                        "Procedural UI",
-                        "Content pipeline",
+                        "Real-time WebGL",
+                        "Asset pipeline",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-2.5">
                           <span
@@ -293,14 +293,9 @@ export default function Page() {
                 <p>
                   Working prototype, deployed on Vercel. End-to-end: photogrammetry
                   scan → Blender fragmentation → GLB export → React Three Fiber
-                  runtime → Vercel deployment. Solo — no designer-to-developer handoff
-                  because there was no split.
-                </p>
-                <p>
-                  Built with Windsurf initially, switched to Claude Code mid-project.
-                  Windsurf hallucinated on Three.js-specific APIs (wrong method
-                  signatures for drei hooks, outdated R3F patterns). Claude Code was
-                  more reliable for R3F component structure.
+                  runtime → deployment. Solo — no designer-to-developer handoff
+                  because there was no split. Prototyped with AI code tools (Windsurf,
+                  Claude Code), finished manually where they broke.
                 </p>
               </Prose>
 
