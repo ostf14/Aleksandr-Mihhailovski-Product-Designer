@@ -108,7 +108,7 @@ export default function Page() {
                           aria-hidden
                           className="inline-block size-1.5 rounded-full bg-terracotta shrink-0"
                         />
-                        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
+                        <span className="font-mono whitespace-nowrap text-[clamp(7px,2.6vw,11px)] uppercase tracking-[0.04em] md:tracking-[0.14em] text-stone-500 dark:text-stone-400">
                           {c.role}
                           <span className="text-stone-400/70"> | </span>
                           {c.tag}
