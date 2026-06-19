@@ -103,10 +103,7 @@ export default function Page() {
                   />
                   <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
                     <div className="md:flex-1 md:min-w-0 flex flex-col pr-10">
-                      <div className="font-mono text-xs uppercase tracking-[0.14em] text-stone-400">
-                        {c.tag}
-                      </div>
-                      <div className="mt-2 flex items-center gap-2">
+                      <div className="flex items-center gap-2">
                         <span
                           aria-hidden
                           className="inline-block size-1.5 rounded-full bg-terracotta shrink-0"
@@ -114,6 +111,9 @@ export default function Page() {
                         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
                           {c.role}
                         </span>
+                      </div>
+                      <div className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-stone-400">
+                        {c.tag}
                       </div>
                       <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
                         {c.title}
