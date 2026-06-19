@@ -142,6 +142,9 @@ export default function Page() {
               <video
                 src="/demo.mp4"
                 controls
+                autoPlay
+                muted
+                loop
                 playsInline
                 className="w-full rounded-xl mt-8"
               />
