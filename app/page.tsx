@@ -20,6 +20,7 @@ const cases = [
   {
     href: "/case/push-notifications",
     tag: "Seamm",
+    role: "Product Designer",
     title: "Push Notifications",
     description: "How to kill the send button nobody wanted to press",
     image: "https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png",
@@ -27,6 +28,7 @@ const cases = [
   {
     href: "/case/stories-editor",
     tag: "Seamm",
+    role: "Product Designer",
     title: "Stories Editor",
     description: "How I eliminated a 2-day content publishing bottleneck",
     image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
@@ -34,6 +36,7 @@ const cases = [
   {
     href: "/case/chtenye",
     tag: "Chtenye",
+    role: "Product Designer",
     title: "Educational Platform Redesign",
     description: "Users couldn’t explain what a single menu item meant",
     image: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
@@ -41,6 +44,7 @@ const cases = [
   {
     href: "/case/my-sleeping-gypsy",
     tag: "Freelance",
+    role: "Web Designer",
     title: "My Sleeping Gypsy",
     description: "How to sell heritage craftsmanship without looking like fast fashion",
     image: "/cases/msg/cover.png",
@@ -48,6 +52,7 @@ const cases = [
   {
     href: "/case/multi-agent-workflow",
     tag: "Internal R&D",
+    role: "Solo Builder",
     title: "Multi-Agent AI Workflow",
     description:
       "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
@@ -56,6 +61,7 @@ const cases = [
   {
     href: "/case/3d-puzzle",
     tag: "Self-initiated",
+    role: "Design Engineer",
     title: "3D Museum Puzzle",
     description:
       "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
@@ -106,6 +112,15 @@ export default function Page() {
                       <p className="mt-3 text-[15px] leading-[1.5] text-stone-500 line-clamp-2">
                         {c.description}
                       </p>
+                      <div className="mt-4 md:mt-auto md:pt-4 flex items-center gap-2">
+                        <span
+                          aria-hidden
+                          className="inline-block size-1.5 rounded-full bg-terracotta shrink-0"
+                        />
+                        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
+                          {c.role}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-b-2xl md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
