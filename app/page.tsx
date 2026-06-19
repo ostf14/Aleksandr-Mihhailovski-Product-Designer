@@ -53,6 +53,14 @@ const cases = [
       "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
     image: "/cases/multi-agent-workflow/cover.jpg",
   },
+  {
+    href: "/case/3d-puzzle",
+    tag: "Self-initiated",
+    title: "3D Museum Puzzle",
+    description:
+      "A rejected job application became a working prototype — reassembling a real 18th-century sculpture in the browser",
+    image: "/assembly-mid.png",
+  },
 ];
 
 export default function Page() {

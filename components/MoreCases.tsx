@@ -55,6 +55,15 @@ const cases: Case[] = [
     href: "/case/multi-agent-workflow",
     image: "/cases/multi-agent-workflow/cover.jpg",
   },
+  {
+    id: "3d-puzzle",
+    tag: "Self-initiated",
+    title: "3D Museum Puzzle",
+    description:
+      "A rejected job application became a working prototype — reassembling a real 18th-century sculpture in the browser",
+    href: "/case/3d-puzzle",
+    image: "/assembly-mid.png",
+  },
 ];
 
 type Phase = "idle" | "flying" | "snapping";
