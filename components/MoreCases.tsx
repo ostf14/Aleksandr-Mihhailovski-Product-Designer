@@ -60,7 +60,7 @@ const cases: Case[] = [
     tag: "Self-initiated",
     title: "3D Museum Puzzle",
     description:
-      "A rejected job application became a working prototype — reassembling a real 18th-century sculpture in the browser",
+      "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
     href: "/case/3d-puzzle",
     image: "/assembly-mid.png",
   },
