@@ -18,6 +18,15 @@ export const metadata = pageMetadata({
 
 const cases = [
   {
+    href: "/case/3d-puzzle",
+    tag: "Self-initiated",
+    role: "Design Engineer",
+    title: "3D Museum Puzzle",
+    description:
+      "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
+    image: "/assembly-mid.png",
+  },
+  {
     href: "/case/push-notifications",
     tag: "Seamm",
     role: "Product Designer",
@@ -57,15 +66,6 @@ const cases = [
     description:
       "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
     image: "/cases/multi-agent-workflow/cover.jpg",
-  },
-  {
-    href: "/case/3d-puzzle",
-    tag: "Self-initiated",
-    role: "Design Engineer",
-    title: "3D Museum Puzzle",
-    description:
-      "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
-    image: "/assembly-mid.png",
   },
 ];
 
