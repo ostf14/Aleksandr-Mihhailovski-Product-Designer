@@ -35,6 +35,15 @@ const cases = [
     image: "https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png",
   },
   {
+    href: "/case/multi-agent-workflow",
+    tag: "Internal R&D",
+    role: "Solo Builder",
+    title: "Multi-Agent AI Workflow",
+    description:
+      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
+    image: "/cases/multi-agent-workflow/cover.jpg",
+  },
+  {
     href: "/case/stories-editor",
     tag: "Seamm",
     role: "Product Designer",
@@ -57,15 +66,6 @@ const cases = [
     title: "My Sleeping Gypsy",
     description: "How to sell heritage craftsmanship without looking like fast fashion",
     image: "/cases/msg/cover.png",
-  },
-  {
-    href: "/case/multi-agent-workflow",
-    tag: "Internal R&D",
-    role: "Solo Builder",
-    title: "Multi-Agent AI Workflow",
-    description:
-      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
-    image: "/cases/multi-agent-workflow/cover.jpg",
   },
 ];
 
