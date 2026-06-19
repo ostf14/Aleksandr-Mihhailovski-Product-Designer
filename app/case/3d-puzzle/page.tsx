@@ -61,13 +61,51 @@ export default function Page() {
 
             <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
               <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
-                <div className="p-6 md:p-8">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
-                    Role
+                <div className="p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                  <div>
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                      Role
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                      Design Engineer
+                    </p>
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                    Design Engineer — concept, 3D pipeline, code, UI, deployment
-                  </p>
+
+                  <div>
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                      Project
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                      Self-initiated prototype
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                      Timeline
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                      2025
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                      Focus
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                      3D interaction design, procedural UI, content pipeline
+                    </p>
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                      Stack
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                      Vite · TypeScript · React 18 · React Three Fiber · Blender
+                    </p>
+                  </div>
                 </div>
 
                 <div className="border-t border-stone-200 px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
@@ -247,25 +285,24 @@ export default function Page() {
             <Section kicker="06 · Result" heading="Result">
               <Prose>
                 <p>
-                  Working prototype, deployed on Vercel. The 3D pipeline (scan →
-                  Blender fragmentation → GLB export → React Three Fiber) works end to
-                  end. Adding a new sculpture means dropping a new GLB — the snap
-                  logic, scramble, and UI don’t change.
+                  Working prototype, deployed on Vercel. End-to-end: photogrammetry
+                  scan → Blender fragmentation → GLB export → React Three Fiber
+                  runtime → Vercel deployment. Solo — no designer-to-developer handoff
+                  because there was no split.
                 </p>
                 <p>
-                  Built with Windsurf initially, finished with Claude Code. The switch
-                  happened when Windsurf started hallucinating on Three.js-specific
-                  APIs. Claude Code was more reliable for R3F component structure and
-                  drei hooks.
+                  Built with Windsurf initially, switched to Claude Code mid-project.
+                  Windsurf hallucinated on Three.js-specific APIs (wrong method
+                  signatures for drei hooks, outdated R3F patterns). Claude Code was
+                  more reliable for R3F component structure.
                 </p>
               </Prose>
 
               <Callout className="mt-10" label="Key insight">
-                The useful thing about AI code tools was not generation speed — it was
-                being able to try approaches I wouldn’t have committed to manually.
-                Fibonacci sphere scramble, procedural halo texture, relative snap — I
-                tested each in under an hour. Without AI, I would have picked the
-                simplest option and moved on.
+                AI code tools made it practical to test approaches I wouldn’t have
+                committed to manually — Fibonacci sphere scramble, procedural halo
+                texture, relative snap. Each took under an hour to prototype. Without
+                that, I’d have picked the simplest option.
               </Callout>
             </Section>
           </div>
