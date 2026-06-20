@@ -5,8 +5,13 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
 
-const SCALE_FACTOR = 480 / 1080;
-const SCROLL_RANGE = 200; // pixels of scroll over which the card collapses
+// Gentle shrink only. A big scale-down vacated a lot of its (still
+// layout-reserved) height as it shrank, leaving a visible gap above the Cases
+// block before you scrolled to it. Keeping the shrink subtle means the card
+// dissolves roughly in place — the fast opacity fade still reads as "flies
+// away" — so the sections below sit right under it.
+const SCALE_FACTOR = 0.92;
+const SCROLL_RANGE = 200; // pixels of scroll over which the card dissolves
 
 const phrases = [
   "complex products feel simple",
