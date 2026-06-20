@@ -24,7 +24,7 @@ const cases = [
     title: "3D Museum Puzzle",
     description:
       "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
-    image: "/demo.gif",
+    image: "/demo.mp4",
   },
   {
     href: "/case/push-notifications",
@@ -122,13 +122,25 @@ export default function Page() {
                       </p>
                     </div>
                     <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-b-2xl md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={c.image}
-                        alt=""
-                        aria-hidden
-                        className="w-full h-full object-cover object-top"
-                      />
+                      {c.image.endsWith(".mp4") ? (
+                        <video
+                          src={c.image}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          aria-hidden
+                          className="w-full h-full object-cover object-top"
+                        />
+                      ) : (
+                        /* eslint-disable-next-line @next/next/no-img-element */
+                        <img
+                          src={c.image}
+                          alt=""
+                          aria-hidden
+                          className="w-full h-full object-cover object-top"
+                        />
+                      )}
                     </div>
                   </div>
                 </a>
