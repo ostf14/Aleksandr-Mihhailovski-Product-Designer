@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { BusinessCard } from "@/components/BusinessCard";
+import { CaseCardMedia } from "@/components/CaseCardMedia";
 import { CaseCardReveal } from "@/components/HomeCases";
 import { Footer } from "@/components/Footer";
 import { GalleryCard } from "@/components/GalleryCard";
@@ -122,25 +123,7 @@ export default function Page() {
                       </p>
                     </div>
                     <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-b-2xl md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
-                      {c.image.endsWith(".mp4") ? (
-                        <video
-                          src={c.image}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          aria-hidden
-                          className="w-full h-full object-cover object-top"
-                        />
-                      ) : (
-                        /* eslint-disable-next-line @next/next/no-img-element */
-                        <img
-                          src={c.image}
-                          alt=""
-                          aria-hidden
-                          className="w-full h-full object-cover object-top"
-                        />
-                      )}
+                      <CaseCardMedia src={c.image} />
                     </div>
                   </div>
                 </a>
