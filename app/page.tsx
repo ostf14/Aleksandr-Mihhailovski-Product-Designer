@@ -24,7 +24,7 @@ const cases = [
     title: "3D Museum Puzzle",
     description:
       "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
-    image: "/assembly-mid.png",
+    image: "/demo.gif",
   },
   {
     href: "/case/push-notifications",
