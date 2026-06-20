@@ -14,13 +14,35 @@ export function ThemeToggle() {
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
     const root = document.documentElement;
+
+    // Without this, flipping .dark makes every element with transition-colors /
+    // transition-all (plus the html:not(.dark) override ruleset) animate its
+    // colors at once for 200ms — hundreds of simultaneous transitions repaint
+    // the whole page every frame and the switch lags. Kill transitions for the
+    // duration of the flip, then restore them on the next frame so the change
+    // is a single instant repaint.
+    const killer = document.createElement("style");
+    killer.appendChild(
+      document.createTextNode(
+        "*,*::before,*::after{transition:none !important}",
+      ),
+    );
+    document.head.appendChild(killer);
+
+    setTheme(next);
     if (next === "dark") root.classList.add("dark");
     else root.classList.remove("dark");
     try {
       localStorage.setItem("theme", next);
     } catch {}
+
+    // Force the style to apply, then drop the killer on the next frame.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.head.removeChild(killer);
+      });
+    });
   };
 
   const isDark = theme === "dark";
