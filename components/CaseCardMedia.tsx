@@ -3,12 +3,15 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Card cover media. For .mp4 sources it renders a muted/loop video that only
- * plays while the card is in the viewport — an always-autoplaying video keeps
- * the compositor decoding frames even when off-screen, which shows up as
- * scroll jank. IntersectionObserver play/pause + preload="none" keeps the
- * cost paid only while the card is actually visible. Non-video sources fall
- * back to a plain <img>.
+ * Card cover media. For .mp4 sources it renders a muted/loop video, but the
+ * decode cost is gated two ways so it doesn't drag scroll performance:
+ *   1. IntersectionObserver — only runs while the card is in the viewport.
+ *   2. Scroll-idle gate — paused while the user is actively scrolling, resumed
+ *      ~150ms after scrolling stops. The jank only ever happened *during*
+ *      scroll (compositing video frames while the page moves), so pausing for
+ *      those moments keeps scrolling smooth while the loop still plays at rest
+ *      — there's always motion when you're actually looking at it.
+ * Non-video sources fall back to a plain <img>.
  */
 export function CaseCardMedia({ src }: { src: string }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -19,18 +22,45 @@ export function CaseCardMedia({ src }: { src: string }) {
     const el = ref.current;
     if (!el) return;
 
+    let inView = false;
+    let scrolling = false;
+    let scrollTimer: number | undefined;
+
+    const sync = () => {
+      if (inView && !scrolling) {
+        el.play().catch(() => {});
+      } else {
+        el.pause();
+      }
+    };
+
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
+        inView = entry.isIntersecting;
+        sync();
       },
       { threshold: 0.15 },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    const onScroll = () => {
+      if (!scrolling) {
+        scrolling = true;
+        sync();
+      }
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        scrolling = false;
+        sync();
+      }, 150);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(scrollTimer);
+    };
   }, [isVideo]);
 
   if (isVideo) {
