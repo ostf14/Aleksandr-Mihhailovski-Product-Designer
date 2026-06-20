@@ -17,7 +17,7 @@ export function GalleryCard() {
           <div className="font-mono text-xs uppercase tracking-[0.14em] text-stone-400">
             Gallery · 2018–24
           </div>
-          <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+          <h3 className="mt-3 font-serif font-normal text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#282726] dark:text-[#E8E8E6]">
             Other website design works
           </h3>
           <p className="mt-3 text-[15px] leading-[1.5] text-stone-500 line-clamp-2">

@@ -21,9 +21,9 @@ export function Footer() {
   };
 
   const cell =
-    "font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#373734] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5";
+    "font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5";
   const dividerClass =
-    "border-[rgba(31,31,30,0.1)] dark:border-neutral-500/20";
+    "border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20";
 
   return (
     <footer className="relative mt-32 w-full">
@@ -32,7 +32,7 @@ export function Footer() {
         <SpriteAnimation />
       </div>
 
-      <div className="group relative overflow-hidden rounded-t-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.1)]">
+      <div className="group relative overflow-hidden rounded-t-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FFFEFB] dark:bg-[#242626] shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.1)]">
         {/* Hover-reveal terracotta dot pattern */}
         <div
           aria-hidden
@@ -92,10 +92,10 @@ export function Footer() {
 
         {/* Centered content column below the action bar */}
         <div className="relative z-10 mx-auto max-w-[1080px] px-6 md:px-10 pt-12 md:pt-16 pb-24 md:pb-12">
-          <h2 className="font-serif font-normal italic text-3xl md:text-5xl leading-[1.05] tracking-tight text-[#1F1F1E] dark:text-[#E8E8E6]">
+          <h2 className="font-serif font-normal italic text-3xl md:text-5xl leading-[1.05] tracking-tight text-[#282726] dark:text-[#E8E8E6]">
             Let&rsquo;s work together
           </h2>
-          <p className="mt-3 font-sans text-base text-[#7B7974] dark:text-neutral-400">
+          <p className="mt-3 font-sans text-base text-[#6F6E69] dark:text-neutral-400">
             I&rsquo;m open to new opportunities.
           </p>
         </div>

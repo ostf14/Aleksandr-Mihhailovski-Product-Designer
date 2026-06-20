@@ -50,7 +50,7 @@ function NavLink({
       className={`px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
         isActive
           ? "bg-charcoal text-cream"
-          : "text-[#7B7974] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
+          : "text-[#6F6E69] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
       }`}
     >
       {item.label}

@@ -11,10 +11,10 @@
 }
 
 :root {
-  --rgb-cream: 248 248 246;        /* #F8F8F6 — page bg (Claude.ai) */
-  --rgb-cream-warm: 239 238 235;   /* #EFEEEB — cards / hover surfaces */
-  --rgb-cream-deep: 244 244 241;   /* #F4F4F1 — footer */
-  --rgb-charcoal: 31 31 30;        /* #1F1F1E — main text */
+  --rgb-cream: 255 252 240;        /* #FFFCF0 — warm paper page bg */
+  --rgb-cream-warm: 242 240 229;   /* #F2F0E5 — cards / hover surfaces */
+  --rgb-cream-deep: 230 228 217;   /* #E6E4D9 — footer */
+  --rgb-charcoal: 40 39 38;        /* #282726 — warm near-black text */
   --rgb-terracotta: 255 105 54;    /* #FF6936 — accent */
   color-scheme: light;
 }
@@ -54,32 +54,32 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   Light-mode overrides — Claude.ai-style cool gray palette.
+   Light-mode overrides — warm paper palette.
    Dark mode is untouched (selector excludes .dark).
    --------------------------------------------------------------- */
 html:not(.dark) .text-neutral-400,
 html:not(.dark) .text-stone-400 {
-  color: #97958C;
+  color: #9F9D96;
 }
 html:not(.dark) .text-neutral-500,
 html:not(.dark) .text-stone-500 {
-  color: #7B7974;
+  color: #6F6E69;
 }
 html:not(.dark) .text-stone-600 {
-  color: #525150;
+  color: #555450;
 }
 html:not(.dark) .border-neutral-300,
 html:not(.dark) .border-stone-300 {
-  border-color: rgba(31, 31, 30, 0.15);
+  border-color: rgba(40, 39, 38, 0.15);
 }
 html:not(.dark) .border-neutral-400 {
-  border-color: rgba(31, 31, 30, 0.25);
+  border-color: rgba(40, 39, 38, 0.25);
 }
 html:not(.dark) .border-stone-200 {
-  border-color: rgba(31, 31, 30, 0.10);
+  border-color: rgba(40, 39, 38, 0.10);
 }
 html:not(.dark) .bg-neutral-200 {
-  background-color: #EFEEEB;
+  background-color: #E6E4D9;
 }
 
 @keyframes blink {
