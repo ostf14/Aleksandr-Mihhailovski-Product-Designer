@@ -71,7 +71,7 @@ export function TableOfContents({ items = defaultItems }: { items?: TocItem[] } 
           : "opacity-0 -translate-x-3 pointer-events-none"
       }`}
     >
-      <nav className="bg-white/90 border border-stone-200/80 rounded-2xl p-5 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      <nav className="bg-white/90 dark:bg-[#242626] border border-stone-200/80 rounded-2xl p-5 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <div className="text-[11px] uppercase tracking-[0.14em] text-stone-500 font-medium mb-4">
           On this page
         </div>
