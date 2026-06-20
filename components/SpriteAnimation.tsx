@@ -8,13 +8,22 @@ export function SpriteAnimation() {
 
   // Two infinite CSS animations (sprite stepping + traverse) composite a frame
   // forever otherwise — even with the footer far off-screen. Pause them unless
-  // the strip is actually in view.
+  // the strip is near view.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Warm the sprite-sheet decode so it's ready before the cat first paints —
+    // decoding it on reveal caused a hitch when scrolling to the footer.
+    const warm = new Image();
+    warm.src = "/CAT_Player_walking.png";
+    warm.decode?.().catch(() => {});
+
     const io = new IntersectionObserver(
       ([entry]) => setPlaying(entry.isIntersecting),
-      { threshold: 0 },
+      // Start ~400px early so the image is decoded and the animation warmed up
+      // by the time the footer is actually on screen.
+      { root: null, rootMargin: "400px 0px", threshold: 0 },
     );
     io.observe(el);
     return () => io.disconnect();
