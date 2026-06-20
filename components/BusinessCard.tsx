@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
@@ -37,6 +37,21 @@ export function BusinessCard() {
   const [deleting, setDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Pause the typewriter (and its ~30–60ms re-render loop) while the hero is
+  // scrolled out of view — no point cycling phrases nobody can see.
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // Scroll-linked dissolve — scale + opacity ONLY. Both are GPU-composited, so
   // the hero animates entirely on the compositor with no per-frame layout work
   // (an earlier marginBottom "pull-up" forced a full-page reflow every scroll
@@ -66,6 +81,7 @@ export function BusinessCard() {
   };
 
   useEffect(() => {
+    if (!visible) return;
     const current = phrases[phraseIdx];
 
     if (!deleting && text === current) {
@@ -90,10 +106,11 @@ export function BusinessCard() {
       deleting ? DELETE_SPEED : TYPE_SPEED,
     );
     return () => clearTimeout(t);
-  }, [text, deleting, phraseIdx]);
+  }, [text, deleting, phraseIdx, visible]);
 
   return (
     <motion.div
+      ref={cardRef}
       data-hero-card="true"
       style={{
         scale,

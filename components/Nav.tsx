@@ -176,10 +176,10 @@ export function Nav() {
       {/* Desktop: single nav, container properties animate, content stays static */}
       <div className="hidden md:flex fixed inset-x-0 top-0 z-50 px-6 md:px-10 justify-center pointer-events-none">
         <motion.nav
-          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[250ms] ease-out ${
+          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[background-color,border-color,box-shadow] duration-[250ms] ease-out ${
             scrolled
-              ? "bg-cream/80 backdrop-blur-md border-stone-200/60 shadow-sm"
-              : "bg-transparent border-transparent shadow-none backdrop-blur-0"
+              ? "bg-cream/95 border-stone-200/60 shadow-sm"
+              : "bg-transparent border-transparent shadow-none"
           }`}
           animate={{
             maxWidth: scrolled ? 480 : 1080,
@@ -203,7 +203,7 @@ export function Nav() {
       <div className="md:hidden fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none px-4">
         <a
           href="/"
-          className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm text-charcoal hover:text-terracotta transition-colors"
+          className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm text-charcoal hover:text-terracotta transition-colors"
         >
           <span className="relative size-7 rounded-full overflow-hidden shrink-0 dark:border-[1.5px] dark:border-[rgba(255,217,152,0.5)] dark:shadow-[0_0_6px_0_rgba(212,149,106,0.15)]">
             <img
@@ -225,7 +225,7 @@ export function Nav() {
 
       {/* Mobile nav pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
-        <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/80 backdrop-blur-md border border-stone-200/60 shadow-sm">
+        <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm">
           <NavContents pathname={pathname} activeAnchor={activeAnchor} />
         </nav>
       </header>

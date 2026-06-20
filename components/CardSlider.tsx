@@ -96,7 +96,7 @@ export function CardSlider({
                     type="button"
                     onClick={() => move(-1)}
                     aria-label="Previous slide"
-                    className="size-10 rounded-full bg-charcoal/85 text-cream backdrop-blur-sm flex items-center justify-center transition-all hover:bg-charcoal shadow-md"
+                    className="size-10 rounded-full bg-charcoal/85 text-cream flex items-center justify-center transition-all hover:bg-charcoal shadow-md"
                   >
                     <ChevronLeft size={18} strokeWidth={2} aria-hidden />
                   </button>
@@ -104,13 +104,13 @@ export function CardSlider({
                     type="button"
                     onClick={() => move(1)}
                     aria-label="Next slide"
-                    className="size-10 rounded-full bg-charcoal/85 text-cream backdrop-blur-sm flex items-center justify-center transition-all hover:bg-charcoal shadow-md"
+                    className="size-10 rounded-full bg-charcoal/85 text-cream flex items-center justify-center transition-all hover:bg-charcoal shadow-md"
                   >
                     <ChevronRight size={18} strokeWidth={2} aria-hidden />
                   </button>
                 </div>
 
-                <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 h-10 px-3 rounded-full bg-charcoal/85 backdrop-blur-sm shadow-md">
+                <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 h-10 px-3 rounded-full bg-charcoal/85 shadow-md">
                   {slides.map((_, i) => (
                     <button
                       key={i}
