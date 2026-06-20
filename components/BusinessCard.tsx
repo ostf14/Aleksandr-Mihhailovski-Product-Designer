@@ -109,18 +109,23 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    <motion.div
-      ref={cardRef}
-      data-hero-card="true"
-      style={{
-        scale,
-        opacity,
-        marginBottom,
-        transformOrigin: "top center",
-        willChange: "transform, opacity",
-      }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
-    >
+    // Outer wrapper owns ONLY marginBottom (the layout pull-up). Keeping it off
+    // the transformed card means the per-frame margin reflow doesn't dirty the
+    // card's composited layer, so its scale + big terracotta shadow are
+    // rasterized once and scaled cheaply on the GPU instead of re-painting
+    // every scroll frame.
+    <motion.div style={{ marginBottom }}>
+      <motion.div
+        ref={cardRef}
+        data-hero-card="true"
+        style={{
+          scale,
+          opacity,
+          transformOrigin: "top center",
+          willChange: "transform, opacity",
+        }}
+        className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+      >
       {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
       <div
         aria-hidden
@@ -225,6 +230,7 @@ export function BusinessCard() {
           <span>GitHub</span>
         </a>
       </div>
+      </motion.div>
     </motion.div>
   );
 }
