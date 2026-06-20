@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
@@ -31,20 +31,12 @@ export function BusinessCard() {
   const [text, setText] = useState(phrases[0]);
   const [deleting, setDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [cardHeight, setCardHeight] = useState(0);
 
-  useEffect(() => {
-    const measure = () => {
-      if (cardRef.current) setCardHeight(cardRef.current.offsetHeight);
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
-  // Scroll-linked motion values — no React state, no animation timer.
-  // Spring-smoothed so the card doesn't snap on each chunky scroll event.
+  // Scroll-linked dissolve — scale + opacity ONLY. Both are GPU-composited, so
+  // the hero animates entirely on the compositor with no per-frame layout work
+  // (an earlier marginBottom "pull-up" forced a full-page reflow every scroll
+  // frame and dropped frames). The card just shrinks and fades as it scrolls
+  // away; the sections below follow at natural scroll speed.
   const { scrollY } = useScroll();
   const SPRING = { stiffness: 1000, damping: 100, mass: 0.2 } as const;
 
@@ -53,23 +45,10 @@ export function BusinessCard() {
   });
   const scale = useSpring(scaleRaw, SPRING);
 
-  // Card fades + blurs as it dissolves; gap closes completely once invisible.
   const opacityRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, 0], {
     clamp: true,
   });
   const opacity = useSpring(opacityRaw, SPRING);
-
-  // marginBottom is a LAYOUT property — every change reflows everything below
-  // (case cards, gallery, footer). Bind it straight to scroll (no spring) so it
-  // only updates on actual scroll frames and stops the instant scrolling stops,
-  // instead of a spring that keeps re-flowing the page as it settles. scale and
-  // opacity stay sprung because they're cheap GPU-composited properties.
-  const marginBottom = useTransform(
-    scrollY,
-    [0, SCROLL_RANGE],
-    [0, -cardHeight],
-    { clamp: true },
-  );
 
   const copyEmail = async () => {
     try {
@@ -109,23 +88,16 @@ export function BusinessCard() {
   }, [text, deleting, phraseIdx]);
 
   return (
-    // Outer wrapper owns ONLY marginBottom (the layout pull-up). Keeping it off
-    // the transformed card means the per-frame margin reflow doesn't dirty the
-    // card's composited layer, so its scale + big terracotta shadow are
-    // rasterized once and scaled cheaply on the GPU instead of re-painting
-    // every scroll frame.
-    <motion.div style={{ marginBottom }}>
-      <motion.div
-        ref={cardRef}
-        data-hero-card="true"
-        style={{
-          scale,
-          opacity,
-          transformOrigin: "top center",
-          willChange: "transform, opacity",
-        }}
-        className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
-      >
+    <motion.div
+      data-hero-card="true"
+      style={{
+        scale,
+        opacity,
+        transformOrigin: "top center",
+        willChange: "transform, opacity",
+      }}
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FCFCFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+    >
       {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
       <div
         aria-hidden
@@ -230,7 +202,6 @@ export function BusinessCard() {
           <span>GitHub</span>
         </a>
       </div>
-      </motion.div>
     </motion.div>
   );
 }

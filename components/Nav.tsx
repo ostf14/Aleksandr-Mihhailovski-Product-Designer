@@ -34,34 +34,10 @@ function NavLink({
     if (!target) return;
     e.preventDefault();
 
-    // Account for the hero BusinessCard collapsing on scroll. Its marginBottom
-    // interpolates linearly from 0 to -cardHeight over scrollY [0, HERO_RANGE],
-    // so the target's actual position depends on the final scrollY. Solve
-    // analytically so the smooth-scroll lands at the right place even though
-    // the layout shifts during the animation.
-    const HERO_RANGE = 200; // synced with SCROLL_RANGE in BusinessCard.tsx
-    const vh = window.innerHeight;
-    const desiredY = vh / 6;
-    const currentScrollY = window.scrollY;
-    const targetDocY = target.getBoundingClientRect().top + currentScrollY;
-
-    const heroCard = document.querySelector(
-      "[data-hero-card]",
-    ) as HTMLElement | null;
-    const cardHeight = heroCard?.offsetHeight ?? 0;
-    const collapseFactor =
-      Math.min(currentScrollY, HERO_RANGE) / HERO_RANGE;
-    const baseY = targetDocY + collapseFactor * cardHeight;
-
-    let newScrollY: number;
-    const denom = 1 + cardHeight / HERO_RANGE;
-    const partial = (baseY - desiredY) / denom; // assumes scrollY in [0, HERO_RANGE]
-    if (partial >= HERO_RANGE) {
-      // Past full collapse — layout stable
-      newScrollY = baseY - cardHeight - desiredY;
-    } else {
-      newScrollY = partial;
-    }
+    // The hero only scales/fades now (no layout collapse), so the section's
+    // document position is stable — land its top at the upper-third sweet spot.
+    const newScrollY =
+      target.getBoundingClientRect().top + window.scrollY - window.innerHeight / 6;
 
     window.scrollTo({ top: Math.max(0, newScrollY), behavior: "smooth" });
     history.pushState(null, "", item.href);
