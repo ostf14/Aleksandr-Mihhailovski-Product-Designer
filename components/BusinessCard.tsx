@@ -59,13 +59,17 @@ export function BusinessCard() {
   });
   const opacity = useSpring(opacityRaw, SPRING);
 
-  const marginBottomRaw = useTransform(
+  // marginBottom is a LAYOUT property — every change reflows everything below
+  // (case cards, gallery, footer). Bind it straight to scroll (no spring) so it
+  // only updates on actual scroll frames and stops the instant scrolling stops,
+  // instead of a spring that keeps re-flowing the page as it settles. scale and
+  // opacity stay sprung because they're cheap GPU-composited properties.
+  const marginBottom = useTransform(
     scrollY,
     [0, SCROLL_RANGE],
     [0, -cardHeight],
     { clamp: true },
   );
-  const marginBottom = useSpring(marginBottomRaw, SPRING);
 
   const copyEmail = async () => {
     try {
