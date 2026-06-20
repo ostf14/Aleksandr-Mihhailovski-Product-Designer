@@ -10,12 +10,15 @@ type FadeInProps = {
   as?: "div" | "section" | "article" | "figure" | "li" | "p" | "h1" | "h2" | "h3";
 };
 
+// Opacity-only reveal. Animating translateY as well meant every block that
+// wrapped a full-res image/GIF had its large layer re-composited each frame
+// while scrolling through case pages — janky. A pure alpha fade has no
+// geometry to recompose, so it stays smooth even over heavy media.
 const variants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
