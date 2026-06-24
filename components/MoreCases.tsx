@@ -15,6 +15,15 @@ type Case = {
 
 const cases: Case[] = [
   {
+    id: "remargin",
+    tag: "Self-initiated",
+    title: "ReMargin",
+    description:
+      "I wanted a reader where annotations matter as much as the text. Built one.",
+    href: "/case/remargin",
+    image: "/Hero.png",
+  },
+  {
     id: "push",
     tag: "Seamm",
     title: "Push Notifications",

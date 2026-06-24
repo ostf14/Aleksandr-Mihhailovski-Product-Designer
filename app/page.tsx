@@ -28,6 +28,15 @@ const cases = [
     image: "/demo-card.mp4",
   },
   {
+    href: "/case/remargin",
+    tag: "Self-initiated",
+    role: "Design Engineer",
+    title: "ReMargin",
+    description:
+      "I wanted a reader where annotations matter as much as the text. Built one.",
+    image: "/Hero.png",
+  },
+  {
     href: "/case/push-notifications",
     tag: "Seamm",
     role: "Product Designer",
