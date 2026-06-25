@@ -142,7 +142,7 @@ export function DesignSystemShowcase() {
   return (
     <div className="px-6 md:px-10">
       <div className="max-w-4xl mx-auto">
-        <FadeIn>
+        <FadeIn className="max-w-prose mx-auto">
           <div className="space-y-14">
             <div>
               <SubLabel>Color tokens</SubLabel>
