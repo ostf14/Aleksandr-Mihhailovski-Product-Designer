@@ -166,7 +166,7 @@ export function BusinessCard() {
               </span>
             </span>
             <span className="block text-[#6F6E69] dark:text-[#E8E8E6]/40">
-              Product Designer &amp; Builder
+              Product Design Engineer
             </span>
           </h2>
 
