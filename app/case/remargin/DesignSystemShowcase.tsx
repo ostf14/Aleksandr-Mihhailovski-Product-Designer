@@ -40,9 +40,8 @@ const spacing = [4, 8, 12, 16, 20, 24, 32, 40, 48];
 
 const radii = [
   { label: "sm", value: 4, css: "4px" },
-  { label: "md", value: 6, css: "6px" },
-  { label: "lg", value: 8, css: "8px" },
-  { label: "xl", value: 12, css: "12px" },
+  { label: "md", value: 8, css: "8px" },
+  { label: "lg", value: 12, css: "12px" },
   { label: "full", value: 9999, css: "9999px" },
 ];
 
@@ -90,18 +89,18 @@ function ColorRow({
 }) {
   return (
     <div>
-      <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/50 mb-3">
+      <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/50 mb-1.5">
         {theme}
       </div>
-      <div className="grid grid-cols-4 md:grid-cols-8 gap-2 md:gap-2.5">
+      <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
         {colors.map((c) => (
-          <div key={c.name} className="space-y-1.5">
+          <div key={c.name} className="space-y-1">
             <div
-              className="w-full aspect-square rounded border border-stone-200"
+              className="w-8 h-8 rounded border border-stone-200"
               style={{ background: c.hex }}
             />
-            <div className="space-y-0.5">
-              <div className="text-[10px] font-medium text-charcoal leading-tight truncate">
+            <div className="space-y-0">
+              <div className="text-[9px] font-medium text-charcoal leading-tight truncate">
                 {c.name}
               </div>
               <div className="font-mono text-[9px] text-charcoal/50 leading-tight">
@@ -140,9 +139,8 @@ function TypeSpec({
 
 export function DesignSystemShowcase() {
   return (
-    <div className="px-6 md:px-10">
-      <div className="max-w-prose mx-auto">
-        <FadeIn>
+    <div className="mx-auto max-w-prose px-6 md:px-10 overflow-hidden">
+      <FadeIn>
           <div className="space-y-14">
             <div>
               <SubLabel>Color tokens</SubLabel>
@@ -154,14 +152,14 @@ export function DesignSystemShowcase() {
 
             <div>
               <SubLabel>Highlight palette</SubLabel>
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-5 gap-1">
                 {highlights.map((h) => (
                   <div
                     key={h.idx}
                     className="rounded overflow-hidden border border-stone-200 bg-white"
                   >
                     <div
-                      className="h-10 flex items-center justify-center px-2"
+                      className="h-7 flex items-center justify-center px-2"
                       style={{ background: h.color }}
                     >
                       <span className="font-mono text-[10px] text-[#2b2b2b] text-center leading-tight">
@@ -261,7 +259,7 @@ export function DesignSystemShowcase() {
                     className="flex flex-col items-center gap-2"
                   >
                     <div
-                      className="w-12 h-12 border border-charcoal/40 bg-cream-warm"
+                      className="w-10 h-10 border border-charcoal/40 bg-cream-warm"
                       style={{ borderRadius: r.css }}
                     />
                     <div className="font-mono text-[10px] text-charcoal/60 text-center">
@@ -292,7 +290,6 @@ export function DesignSystemShowcase() {
             </div>
           </div>
         </FadeIn>
-      </div>
     </div>
   );
 }
