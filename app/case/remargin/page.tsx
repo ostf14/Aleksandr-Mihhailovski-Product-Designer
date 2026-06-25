@@ -43,7 +43,7 @@ export default function Page() {
             <div className="max-w-bleed mx-auto">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
-                  Self-initiated · 2025
+                  Self-initiated · 2026
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
@@ -85,7 +85,7 @@ export default function Page() {
                       Timeline
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
-                      2025
+                      2026
                     </p>
                   </div>
 
@@ -277,8 +277,8 @@ export default function Page() {
                   AI-assisted engineering. Built with Claude Code as the primary
                   coding tool. My role: product decisions, design direction,
                   architecture, prompts, QA. Claude Code: implementation, debugging,
-                  iteration. This workflow let me ship a full product solo in one
-                  week — something that would otherwise require a small team.
+                  iteration. This workflow let me ship a full product solo in 10
+                  days — something that would otherwise require a small team.
                 </p>
               </Prose>
             </Section>
