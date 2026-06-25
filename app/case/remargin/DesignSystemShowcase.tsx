@@ -139,8 +139,10 @@ function TypeSpec({
 
 export function DesignSystemShowcase() {
   return (
-    <div className="mx-auto max-w-prose px-6 md:px-10 overflow-hidden">
-      <FadeIn>
+    <div className="px-6 md:px-10">
+      <div className="max-w-4xl mx-auto">
+        <div className="max-w-prose mx-auto overflow-hidden">
+          <FadeIn>
           <div className="space-y-14">
             <div>
               <SubLabel>Color tokens</SubLabel>
@@ -290,6 +292,8 @@ export function DesignSystemShowcase() {
             </div>
           </div>
         </FadeIn>
+        </div>
+      </div>
     </div>
   );
 }
