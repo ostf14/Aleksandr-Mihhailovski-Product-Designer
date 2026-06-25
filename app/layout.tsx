@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Pixelify_Sans } from "next/font/google";
+import {
+  DM_Serif_Display,
+  JetBrains_Mono,
+  Newsreader,
+  Pixelify_Sans,
+  Space_Grotesk,
+} from "next/font/google";
 import {
   ogImagePath,
   SITE_DESCRIPTION,
@@ -20,6 +26,28 @@ const pixelifySans = Pixelify_Sans({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-pixelify-sans",
+  display: "swap",
+});
+
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-dm-serif-display",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
   display: "swap",
 });
 
@@ -65,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${jetbrainsMono.variable} ${pixelifySans.variable}`}
+      className={`${jetbrainsMono.variable} ${pixelifySans.variable} ${dmSerifDisplay.variable} ${spaceGrotesk.variable} ${newsreader.variable}`}
       suppressHydrationWarning
     >
       <head>

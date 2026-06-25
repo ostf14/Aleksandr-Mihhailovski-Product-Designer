@@ -9,6 +9,7 @@ import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { pageMetadata } from "@/lib/site";
+import { DesignSystemShowcase } from "./DesignSystemShowcase";
 
 export const metadata = pageMetadata({
   title: "ReMargin",
@@ -23,6 +24,7 @@ const toc: TocItem[] = [
   { id: "export", label: "Export architecture" },
   { id: "library", label: "Library" },
   { id: "technical", label: "Technical decisions" },
+  { id: "design-system", label: "Design system" },
   { id: "result", label: "Result" },
 ];
 
@@ -284,9 +286,31 @@ export default function Page() {
             </Section>
           </div>
 
+          {/* Design system */}
+          <div id="design-system" className="scroll-mt-20 pb-32">
+            <Section
+              kicker="06 · Design system"
+              heading="Tokens, not magic numbers"
+            >
+              <Prose>
+                <p>
+                  Every color, radius, spacing value, and font-size in the
+                  codebase resolves to a CSS custom property. Two themes (dark
+                  with warm cream light), three type families, a 4px spacing
+                  grid, and five highlight colors — all tokenized and used
+                  consistently across 8 component stylesheets.
+                </p>
+              </Prose>
+            </Section>
+
+            <div className="mt-10">
+              <DesignSystemShowcase />
+            </div>
+          </div>
+
           {/* Result */}
           <div id="result" className="scroll-mt-20 pb-32">
-            <Section kicker="06 · Result" heading="Result">
+            <Section kicker="07 · Result" heading="Result">
               <Prose>
                 <p>
                   Solo build — design, engineering, deployment. PWA installable. Two
