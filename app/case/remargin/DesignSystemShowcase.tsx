@@ -92,18 +92,18 @@ function ColorRow({
       <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/50 mb-1.5">
         {theme}
       </div>
-      <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
+      <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
         {colors.map((c) => (
-          <div key={c.name} className="space-y-1">
+          <div key={c.name} className="space-y-1.5">
             <div
-              className="w-8 h-8 rounded border border-stone-200"
+              className="w-14 h-14 rounded-md border border-stone-200"
               style={{ background: c.hex }}
             />
             <div className="space-y-0">
-              <div className="text-[9px] font-medium text-charcoal leading-tight truncate">
+              <div className="text-[10px] font-medium text-charcoal leading-tight truncate">
                 {c.name}
               </div>
-              <div className="font-mono text-[9px] text-charcoal/50 leading-tight">
+              <div className="font-mono text-[10px] text-charcoal/50 leading-tight">
                 {c.hex}
               </div>
             </div>
@@ -152,17 +152,17 @@ export function DesignSystemShowcase() {
 
             <div>
               <SubLabel>Highlight palette</SubLabel>
-              <div className="grid grid-cols-5 gap-1">
+              <div className="grid grid-cols-5 gap-1.5">
                 {highlights.map((h) => (
                   <div
                     key={h.idx}
-                    className="rounded overflow-hidden border border-stone-200 bg-white"
+                    className="rounded-md overflow-hidden border border-stone-200 bg-white"
                   >
                     <div
-                      className="h-7 flex items-center justify-center px-2"
+                      className="h-9 flex items-center justify-center px-2"
                       style={{ background: h.color }}
                     >
-                      <span className="font-mono text-[10px] text-[#2b2b2b] text-center leading-tight">
+                      <span className="font-mono text-[11px] text-[#2b2b2b] text-center leading-tight">
                         {h.idx} · {h.name}
                       </span>
                     </div>
