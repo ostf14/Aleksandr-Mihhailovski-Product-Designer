@@ -49,7 +49,7 @@ export function Footer() {
           className={`relative z-10 grid grid-cols-4 border-b ${dividerClass}`}
         >
           <a
-            href="https://drive.google.com/file/d/1mwWJrCBq393UyfbbdJvfbMFf7qBx1RFn/view?usp=sharing"
+            href="https://drive.google.com/file/d/1e-etyQ9dIXoa2gv87N1KOUZLMLV6ybD3/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className={`${cell} border-r ${dividerClass}`}
