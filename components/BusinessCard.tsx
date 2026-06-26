@@ -188,7 +188,7 @@ export function BusinessCard() {
       {/* Bottom action bar — flush to card edges, four equal cells */}
       <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 grid grid-cols-4 md:rounded-b-2xl md:overflow-hidden">
         <a
-          href="https://drive.google.com/file/d/1UTmyNfTaXDcSDwWdWjtCwitna6LoZyQn/view?usp=sharing"
+          href="https://drive.google.com/file/d/17Y0QU5JvwHZoSpMojJ7b1rqY3O_Orbbr/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
