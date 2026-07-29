@@ -16,6 +16,21 @@
   --rgb-cream-deep: 230 228 217;   /* #E6E4D9 — footer */
   --rgb-charcoal: 40 39 38;        /* #282726 — warm near-black text */
   --rgb-terracotta: 255 105 54;    /* #FF6936 — accent */
+
+  /* Semantic token layer (portfolio_refactor_spec step 5a).
+     No component reads these yet — they're staged so 5b can migrate
+     class-by-class without a second flip. Values are the ones from the
+     spec (neutral gray palette); mapping onto the existing warm cream
+     palette happens per-class during 5b. */
+  --bg:            250 250 249;
+  --surface:       255 255 255;
+  --surface-hover: 245 245 244;
+  --border:         23  23  23;
+  --fg:             23  23  23;
+  --muted:         115 115 115;
+  --faint:         163 163 163;
+  --accent:        234  88  12;
+
   color-scheme: light;
 }
 
@@ -26,6 +41,17 @@
   --rgb-cream-deep: 20 21 21;     /* #141515 — footer */
   --rgb-charcoal: 232 232 230;    /* #E8E8E6 — main text */
   --rgb-terracotta: 255 105 54;   /* #FF6936 — single accent across light and dark */
+
+  /* Semantic token layer — dark values from portfolio_refactor_spec. */
+  --bg:             10  10  10;
+  --surface:        23  23  23;
+  --surface-hover:  38  38  38;
+  --border:        255 255 255;
+  --fg:            250 250 249;
+  --muted:         163 163 163;
+  --faint:         115 115 115;
+  --accent:        249 115  22;
+
   color-scheme: dark;
 }
 
