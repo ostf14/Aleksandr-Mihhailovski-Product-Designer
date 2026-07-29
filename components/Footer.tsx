@@ -4,15 +4,14 @@ import { useState } from "react";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
 import { SpriteAnimation } from "./SpriteAnimation";
-
-const EMAIL = "ostf14@gmail.com";
+import { links } from "@/lib/site";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(EMAIL);
+      await navigator.clipboard.writeText(links.email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -49,7 +48,7 @@ export function Footer() {
           className={`relative z-10 grid grid-cols-4 border-b ${dividerClass}`}
         >
           <a
-            href="https://drive.google.com/file/d/1pFXxZKMDg1nF-rvsmSL9-eljelmp0y2Q/view?usp=sharing"
+            href={links.cv}
             target="_blank"
             rel="noopener noreferrer"
             className={`${cell} border-r ${dividerClass}`}
@@ -60,7 +59,7 @@ export function Footer() {
           <button
             type="button"
             onClick={copyEmail}
-            aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
+            aria-label={copied ? "Email copied" : `Copy email ${links.email}`}
             className={`${cell} border-r ${dividerClass}`}
           >
             {copied ? (
@@ -71,7 +70,7 @@ export function Footer() {
             <span>{copied ? "Copied!" : "Email"}</span>
           </button>
           <a
-            href="https://www.linkedin.com/in/alexmess/"
+            href={links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className={`${cell} border-r ${dividerClass}`}
@@ -80,7 +79,7 @@ export function Footer() {
             <span>LinkedIn</span>
           </a>
           <a
-            href="https://github.com/ostf14"
+            href={links.github}
             target="_blank"
             rel="noopener noreferrer"
             className={cell}

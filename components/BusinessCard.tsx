@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
+import { links } from "@/lib/site";
 
 // Gentle shrink only. A big scale-down vacated a lot of its (still
 // layout-reserved) height as it shrank, leaving a visible gap above the Cases
@@ -25,8 +26,6 @@ const TYPE_SPEED = 60;
 const DELETE_SPEED = 30;
 const PAUSE_FULL = 2000;
 const PAUSE_EMPTY = 500;
-
-const EMAIL = "ostf14@gmail.com";
 
 export function BusinessCard() {
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -72,7 +71,7 @@ export function BusinessCard() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(EMAIL);
+      await navigator.clipboard.writeText(links.email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -188,7 +187,7 @@ export function BusinessCard() {
       {/* Bottom action bar — flush to card edges, four equal cells */}
       <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 grid grid-cols-4 md:rounded-b-2xl md:overflow-hidden">
         <a
-          href="https://drive.google.com/file/d/1pFXxZKMDg1nF-rvsmSL9-eljelmp0y2Q/view?usp=sharing"
+          href={links.cv}
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
@@ -199,14 +198,14 @@ export function BusinessCard() {
         <button
           type="button"
           onClick={copyEmail}
-          aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
+          aria-label={copied ? "Email copied" : `Copy email ${links.email}`}
           className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>
         </button>
         <a
-          href="https://www.linkedin.com/in/alexmess/"
+          href={links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
@@ -215,7 +214,7 @@ export function BusinessCard() {
           <span>LinkedIn</span>
         </a>
         <a
-          href="https://github.com/ostf14"
+          href={links.github}
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"

@@ -17,6 +17,19 @@ export const SITE_DESCRIPTION =
   "Product designer for B2B SaaS, internal tools, and data-heavy interfaces. I prototype and build in code.";
 
 /**
+ * Single source of truth for the four external contact addresses. Both the
+ * hero business card and the footer read from this object — updating a CV
+ * link, moving to a new email, or swapping the LinkedIn handle is now one
+ * edit instead of the two-file update every string had before.
+ */
+export const links = {
+  cv: "https://drive.google.com/file/d/1pFXxZKMDg1nF-rvsmSL9-eljelmp0y2Q/view?usp=sharing",
+  email: "ostf14@gmail.com",
+  linkedin: "https://www.linkedin.com/in/alexmess/",
+  github: "https://github.com/ostf14",
+} as const;
+
+/**
  * Path to the dynamic OG image for a given title. Resolved against
  * metadataBase into an absolute URL by Next. Generation lives in the
  * /api/og Route Handler (node runtime) rather than the opengraph-image
