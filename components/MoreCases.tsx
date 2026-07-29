@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { cases, workHref, type Work } from "@/lib/works";
+import { CaseCardMedia } from "./CaseCardMedia";
 
 type Phase = "idle" | "flying" | "snapping";
 
@@ -40,13 +41,7 @@ function CardContent({ c }: { c: Work }) {
           </p>
         </div>
         <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={c.cover.src}
-            alt=""
-            aria-hidden
-            className="w-full h-full object-cover object-top"
-          />
+          <CaseCardMedia src={c.cover.src} />
         </div>
       </div>
     </>
