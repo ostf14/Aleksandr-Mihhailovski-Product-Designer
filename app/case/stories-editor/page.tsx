@@ -382,7 +382,7 @@ export default function Page() {
             </Section>
           </div>
 
-          <MoreCases currentId="stories" />
+          <MoreCases currentId="stories-editor" />
         </article>
       </main>
 

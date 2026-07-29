@@ -431,7 +431,7 @@ export default function Page() {
             </Section>
           </div>
 
-          <MoreCases currentId="push" />
+          <MoreCases currentId="push-notifications" />
         </article>
       </main>
 

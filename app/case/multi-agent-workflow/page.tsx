@@ -424,7 +424,7 @@ export default function Page() {
             </Section>
           </div>
 
-          <MoreCases currentId="multi-agent" />
+          <MoreCases currentId="multi-agent-workflow" />
         </article>
       </main>
 

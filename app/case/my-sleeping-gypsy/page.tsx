@@ -455,7 +455,7 @@ export default function Page() {
             </Section>
           </div>
 
-          <MoreCases currentId="msg" />
+          <MoreCases currentId="my-sleeping-gypsy" />
         </article>
       </main>
 

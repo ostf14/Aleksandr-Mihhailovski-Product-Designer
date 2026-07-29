@@ -3,77 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
-
-type Case = {
-  id: string;
-  tag: string;
-  title: string;
-  description: string;
-  href: string;
-  image?: string;
-};
-
-const cases: Case[] = [
-  {
-    id: "remargin",
-    tag: "Self-initiated",
-    title: "ReMargin",
-    description:
-      "I wanted a reader where annotations matter as much as the text. Built one.",
-    href: "/case/remargin",
-    image: "/Hero.png",
-  },
-  {
-    id: "push",
-    tag: "Seamm",
-    title: "Push Notifications",
-    description: "How to kill the send button nobody wanted to press",
-    href: "/case/push-notifications",
-    image: "https://framerusercontent.com/images/SFAsDo6PF9csTgqHwlukYwNxpSQ.png",
-  },
-  {
-    id: "stories",
-    tag: "Seamm",
-    title: "Stories Editor",
-    description: "How I eliminated a 2-day content publishing bottleneck",
-    href: "/case/stories-editor",
-    image: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
-  },
-  {
-    id: "chtenye",
-    tag: "Chtenye",
-    title: "Educational Platform Redesign",
-    description: "Users couldn’t explain what a single menu item meant",
-    href: "/case/chtenye",
-    image: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
-  },
-  {
-    id: "msg",
-    tag: "Freelance",
-    title: "My Sleeping Gypsy",
-    description: "How to sell heritage craftsmanship without looking like fast fashion",
-    href: "/case/my-sleeping-gypsy",
-    image: "/cases/msg/cover.png",
-  },
-  {
-    id: "multi-agent",
-    tag: "Internal R&D",
-    title: "Multi-Agent AI Workflow",
-    description:
-      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
-    href: "/case/multi-agent-workflow",
-    image: "/cases/multi-agent-workflow/cover.jpg",
-  },
-  {
-    id: "3d-puzzle",
-    tag: "Self-initiated",
-    title: "3D Museum Puzzle",
-    description:
-      "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
-    href: "/case/3d-puzzle",
-    image: "/assembly-mid.png",
-  },
-];
+import { cases, workHref, type Work } from "@/lib/works";
 
 type Phase = "idle" | "flying" | "snapping";
 
@@ -88,7 +18,7 @@ const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 7 };
 const cardClass =
   "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
 
-function CardContent({ c }: { c: Case }) {
+function CardContent({ c }: { c: Work }) {
   return (
     <>
       <ArrowUpRight
@@ -100,25 +30,23 @@ function CardContent({ c }: { c: Case }) {
       <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
         <div className="md:flex-1 md:min-w-0 flex flex-col pr-10 md:pr-10">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
-            {c.tag}
+            {c.org}
           </div>
           <h3 className="mt-2 font-serif font-normal text-[22px] leading-tight tracking-tight">
             {c.title}
           </h3>
           <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
-            {c.description}
+            {c.blurb}
           </p>
         </div>
         <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
-          {c.image && (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={c.image}
-              alt=""
-              aria-hidden
-              className="w-full h-full object-cover object-top"
-            />
-          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={c.cover.src}
+            alt=""
+            aria-hidden
+            className="w-full h-full object-cover object-top"
+          />
         </div>
       </div>
     </>
@@ -127,7 +55,7 @@ function CardContent({ c }: { c: Case }) {
 
 export function MoreCases({ currentId }: { currentId?: string } = {}) {
   const list = useMemo(
-    () => (currentId ? cases.filter((c) => c.id !== currentId) : cases),
+    () => (currentId ? cases.filter((c) => c.slug !== currentId) : cases),
     [currentId],
   );
 
@@ -159,7 +87,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
         <div className="relative h-[368px] md:h-[268px] overflow-hidden">
           {list.length === 1 ? (
             <a
-              href={list[0].href}
+              href={workHref(list[0])}
               className={`${cardClass} translate-y-3 hover:-translate-y-1 transition-transform duration-200 ease-out`}
             >
               <CardContent c={list[0]} />
@@ -200,8 +128,8 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
               const hoverable = isFront && phase === "idle";
               return (
                 <motion.a
-                  key={c.id}
-                  href={c.href}
+                  key={c.slug}
+                  href={workHref(c)}
                   className={`${cardClass} ${hoverable ? "" : "pointer-events-none"}`}
                   animate={target}
                   transition={transition}
