@@ -8,14 +8,9 @@ import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { pageMetadata } from "@/lib/site";
+import { workMetadata } from "@/lib/works";
 
-export const metadata = pageMetadata({
-  title: "Stories Editor",
-  description:
-    "How I eliminated a 2-day content publishing bottleneck with a self-serve stories editor at Seamm.",
-  path: "/case/stories-editor",
-});
+export const metadata = workMetadata("stories-editor");
 
 const tocItems: TocItem[] = [
   { id: "why-we-started", label: "Why we started" },

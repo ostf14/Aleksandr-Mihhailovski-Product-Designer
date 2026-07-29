@@ -8,14 +8,9 @@ import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { pageMetadata } from "@/lib/site";
+import { workMetadata } from "@/lib/works";
 
-export const metadata = pageMetadata({
-  title: "3D Museum Puzzle",
-  description:
-    "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
-  path: "/case/3d-puzzle",
-});
+export const metadata = workMetadata("3d-puzzle");
 
 const toc: TocItem[] = [
   { id: "context", label: "Context" },

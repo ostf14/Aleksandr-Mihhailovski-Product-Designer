@@ -1,13 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Impact } from "@/components/Impact";
-import { pageMetadata } from "@/lib/site";
-
-export const metadata = pageMetadata({
-  title: "Push Notifications Manager",
-  description:
-    "How to kill the send button nobody wanted to press — a self-serve push campaign manager at Seamm.",
-  path: "/case/push-notifications",
-});
+import { workMetadata } from "@/lib/works";
 import { Footer } from "@/components/Footer";
 import { MoreCases } from "@/components/MoreCases";
 import { FadeIn } from "@/components/FadeIn";

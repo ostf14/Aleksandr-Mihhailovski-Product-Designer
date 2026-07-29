@@ -8,15 +8,10 @@ import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { pageMetadata } from "@/lib/site";
+import { workMetadata } from "@/lib/works";
 import { DesignSystemShowcase } from "./DesignSystemShowcase";
 
-export const metadata = pageMetadata({
-  title: "ReMargin",
-  description:
-    "I wanted a reader where annotations matter as much as the text. Built one.",
-  path: "/case/remargin",
-});
+export const metadata = workMetadata("remargin");
 
 const toc: TocItem[] = [
   { id: "context", label: "Context" },
