@@ -199,7 +199,7 @@ export default function Page() {
                   Full case
                 </span>
                 <a
-                  href="https://www.behance.net/gallery/136903757/MY-SLEEPING-GYPSY-redesign-website"
+                  href="https://www.behance.net/gallery/136903557/MY-SLEEPING-GYPSY-redesign-website"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-[0.95rem] text-charcoal/90 hover:text-terracotta transition-colors"
