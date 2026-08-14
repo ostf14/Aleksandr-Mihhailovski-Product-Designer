@@ -285,15 +285,39 @@ export default function Page() {
           <div id="design-system" className="scroll-mt-20 pb-32">
             <Section
               kicker="06 · Design system"
-              heading="Tokens, not magic numbers"
+              heading="The scale is a hypothesis"
             >
               <Prose>
                 <p>
-                  Every color, radius, spacing value, and font-size in the
-                  codebase resolves to a CSS custom property. Two themes (dark
-                  with warm cream light), three type families, a 4px spacing
-                  grid, and five highlight colors — all tokenized and used
-                  consistently across 8 component stylesheets.
+                  The token layer came after the interface. Once the reader
+                  worked, I pulled the recurring values into scales and semantic
+                  names, then went back through the code to find what
+                  hadn&rsquo;t been moved over.
+                </p>
+                <p>
+                  Some spacing and type values were still written as raw
+                  numbers, and nearly all of them fell between steps rather than
+                  off the scale entirely: 12px where the type scale jumped from
+                  11 to 13, a 2px gap on a grid that started at 4.
+                </p>
+                <p>
+                  The usual advice is to ban hardcoded values and enforce it
+                  with a linter. That assumes the scale is right. Any scale
+                  written before the interface exists is a hypothesis about
+                  which values it will need — and the interface is what tests
+                  it.
+                </p>
+                <p>
+                  So I sorted the leftover numbers by frequency. Four or five
+                  sizes kept recurring, none of them in the scale: it stepped
+                  too coarsely for a dense reading UI. I added the missing steps
+                  and moved the components onto them. The system ended up with
+                  fewer tokens than before and more references to them.
+                </p>
+                <p>
+                  Hardcoded values here aren&rsquo;t debt. They&rsquo;re data
+                  about where the scale and the interface disagree. The linter
+                  makes sense once they don&rsquo;t.
                 </p>
               </Prose>
             </Section>
