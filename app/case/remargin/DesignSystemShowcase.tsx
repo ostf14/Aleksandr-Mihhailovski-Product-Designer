@@ -117,13 +117,13 @@ function SubLabel({ children }: { children: React.ReactNode }) {
 
 function Note({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-3 text-[12px] leading-[1.5] text-charcoal/50">{children}</p>
+    <p className="mt-3 text-[12px] leading-[1.5] text-charcoal/70">{children}</p>
   );
 }
 
 function TierLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/50 mb-1.5">
+    <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/70 mb-1.5">
       {children}
     </div>
   );
@@ -140,7 +140,7 @@ function Swatch({ name, hex }: { name: string; hex: string }) {
         <div className="text-[10px] font-medium text-charcoal leading-tight truncate">
           {name}
         </div>
-        <div className="font-mono text-[10px] text-charcoal/50 leading-tight">
+        <div className="font-mono text-[10px] text-charcoal/70 leading-tight">
           {hex}
         </div>
       </div>
@@ -272,7 +272,7 @@ export function DesignSystemShowcase() {
                     >
                       Aa
                     </div>
-                    <div className="font-mono text-[10px] text-charcoal/60">
+                    <div className="font-mono text-[10px] text-charcoal/70">
                       {t.size}
                     </div>
                     {/* Half-steps are marked with a rule rather than by fading
@@ -314,7 +314,10 @@ export function DesignSystemShowcase() {
                       The thread on which our thoughts are strung passes
                       through.
                     </p>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.12em] opacity-70">
+                    {/* Inherits each surface's own ink rather than a page
+                        token, so it's muted by opacity. 70% put the sepia
+                        label at 3.5:1 against its own background. */}
+                    <div className="font-mono text-[10px] uppercase tracking-[0.12em] opacity-90">
                       {s.name}
                     </div>
                   </div>
@@ -341,7 +344,7 @@ export function DesignSystemShowcase() {
                           className="bg-terracotta/80 rounded-sm"
                           style={{ width: `${s}px`, height: `${s}px` }}
                         />
-                        <div className="font-mono text-[10px] text-charcoal/60">
+                        <div className="font-mono text-[10px] text-charcoal/70">
                           {s}
                         </div>
                       </div>
@@ -363,7 +366,7 @@ export function DesignSystemShowcase() {
                           className="bg-terracotta/80 rounded-sm"
                           style={{ width: `${s}px`, height: `${s}px` }}
                         />
-                        <div className="font-mono text-[10px] text-charcoal/60">
+                        <div className="font-mono text-[10px] text-charcoal/70">
                           {s}
                         </div>
                       </div>
@@ -385,7 +388,7 @@ export function DesignSystemShowcase() {
                       className="w-10 h-10 border border-charcoal/40 bg-cream-warm"
                       style={{ borderRadius: r.css }}
                     />
-                    <div className="font-mono text-[10px] text-charcoal/60 text-center">
+                    <div className="font-mono text-[10px] text-charcoal/70 text-center">
                       {r.label} · {r.css}
                     </div>
                   </div>
@@ -404,7 +407,7 @@ export function DesignSystemShowcase() {
                     <div className="text-xs font-bold text-charcoal mb-1">
                       {c.name}
                     </div>
-                    <div className="text-[11px] leading-[1.5] text-charcoal/60">
+                    <div className="text-[11px] leading-[1.5] text-charcoal/70">
                       {c.desc}
                     </div>
                   </div>
@@ -412,7 +415,7 @@ export function DesignSystemShowcase() {
               </div>
             </div>
 
-            <div className="border-t border-stone-200 pt-4 font-mono text-[11px] text-charcoal/60">
+            <div className="border-t border-stone-200 pt-4 font-mono text-[11px] text-charcoal/70">
               115 → 87 tokens · 662 → 773 references
             </div>
           </div>
