@@ -262,9 +262,7 @@ export function DesignSystemShowcase() {
                     className="flex flex-col items-center gap-2 shrink-0"
                   >
                     <div
-                      className={
-                        t.half ? "text-charcoal/40" : "text-charcoal"
-                      }
+                      className="text-charcoal"
                       style={{
                         fontFamily:
                           "var(--font-space-grotesk), system-ui, sans-serif",
@@ -274,19 +272,24 @@ export function DesignSystemShowcase() {
                     >
                       Aa
                     </div>
-                    <div
-                      className={`font-mono text-[10px] ${
-                        t.half ? "text-charcoal/40" : "text-charcoal/60"
-                      }`}
-                    >
+                    <div className="font-mono text-[10px] text-charcoal/60">
                       {t.size}
                     </div>
+                    {/* Half-steps are marked with a rule rather than by fading
+                        the label — dimming put them around 2:1 against the
+                        page, well under the WCAG floor. */}
+                    <div
+                      aria-hidden
+                      className={`h-px w-full ${
+                        t.half ? "bg-terracotta" : "bg-transparent"
+                      }`}
+                    />
                   </div>
                 ))}
               </div>
               <Note>
-                Muted steps are the half-steps added after the fact — 12 between
-                11 and 13, 22 between 18 and 24.
+                Steps underlined in terracotta are the half-steps added after
+                the fact — 12 between 11 and 13, 22 between 18 and 24.
               </Note>
             </div>
 
@@ -345,6 +348,9 @@ export function DesignSystemShowcase() {
                     ))}
                   </div>
                 </div>
+                {/* Half-steps read as their own tier from the row label, so
+                    they render at full strength — fading them was redundant
+                    and pushed the labels below the WCAG contrast floor. */}
                 <div>
                   <TierLabel>Half-steps</TierLabel>
                   <div className="flex items-end gap-4 md:gap-5 overflow-x-auto pb-1">
@@ -354,10 +360,10 @@ export function DesignSystemShowcase() {
                         className="flex flex-col items-center gap-2 shrink-0"
                       >
                         <div
-                          className="bg-terracotta/40 rounded-sm"
+                          className="bg-terracotta/80 rounded-sm"
                           style={{ width: `${s}px`, height: `${s}px` }}
                         />
-                        <div className="font-mono text-[10px] text-charcoal/40">
+                        <div className="font-mono text-[10px] text-charcoal/60">
                           {s}
                         </div>
                       </div>
@@ -404,6 +410,10 @@ export function DesignSystemShowcase() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="border-t border-stone-200 pt-4 font-mono text-[11px] text-charcoal/60">
+              115 → 87 tokens · 662 → 773 references
             </div>
           </div>
         </FadeIn>
