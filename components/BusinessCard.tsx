@@ -15,11 +15,11 @@ const SCALE_FACTOR = 0.92;
 const SCROLL_RANGE = 200; // pixels of scroll over which the card dissolves
 
 const phrases = [
-  "complex products feel simple",
   "prototypes that find friction",
   "design systems that scale",
   "workflows that save hours",
   "user tests & research",
+  "complex products feel simple",
 ];
 
 const TYPE_SPEED = 60;
