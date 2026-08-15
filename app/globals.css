@@ -159,6 +159,19 @@ html:not(.dark) .bg-neutral-200 {
   will-change: transform;
 }
 
+/* Construction tape — barber-pole drift.
+   The stripe gradient repeats every 28px along a 45° axis, so one seamless
+   loop is 28 × √2 ≈ 39.6px of horizontal background travel. The
+   prefers-reduced-motion block at the end of this file already neutralises
+   this animation, so it needs no guard of its own. */
+@keyframes wip-tape-scroll {
+  from { background-position: 0 0; }
+  to   { background-position: 39.6px 0; }
+}
+.wip-tape-scroll {
+  animation: wip-tape-scroll 1.4s linear infinite;
+}
+
 /* Dark-mode stone overrides — neutral cool greys */
 .dark .bg-stone-200 { background-color: rgb(40 42 42); }              /* #282A2A image placeholder */
 .dark .text-stone-400 { color: rgb(127 127 125); }                    /* faded kicker */
