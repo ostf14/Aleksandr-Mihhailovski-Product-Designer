@@ -308,11 +308,9 @@ export default function Page() {
                   it.
                 </p>
                 <p>
-                  So I sorted the leftover numbers by frequency. Four or five
-                  sizes kept recurring, none of them in the scale: it stepped
-                  too coarsely for a dense reading UI. I added the missing steps
-                  and moved the components onto them. The system ended up with
-                  fewer tokens than before and more references to them.
+                  So I sorted the leftover numbers by frequency and added the
+                  steps that kept coming up: the scale had been stepping too
+                  coarsely for a dense reading UI.
                 </p>
                 <p>
                   Hardcoded values here aren&rsquo;t debt. They&rsquo;re data

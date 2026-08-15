@@ -70,6 +70,28 @@ const typeScale = [
   { size: 32, half: false },
 ];
 
+/**
+ * The semantic layer sitting on the numeric scale above. `mobile` is the
+ * value the token resolves to under the narrow breakpoint — it lives inside
+ * the token, so components never restate it in a media query.
+ *
+ * --type-control-menu is the one role that grows on mobile instead of
+ * shrinking: menu rows become touch targets there.
+ */
+const typeRoles: { token: string; desktop: number; mobile?: number }[] = [
+  { token: "--type-badge", desktop: 9 },
+  { token: "--type-meta", desktop: 11, mobile: 10 },
+  { token: "--type-control", desktop: 11 },
+  { token: "--type-control-menu", desktop: 12, mobile: 14 },
+  { token: "--type-body", desktop: 13, mobile: 12 },
+  { token: "--type-body-sm", desktop: 12 },
+  { token: "--type-field", desktop: 13 },
+  { token: "--type-field-lg", desktop: 14 },
+  { token: "--type-action", desktop: 13 },
+  { token: "--type-title", desktop: 14, mobile: 13 },
+  { token: "--type-title-lg", desktop: 18 },
+];
+
 const spacingBase = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64];
 const spacingHalf = [2, 6, 10, 14, 18];
 
@@ -291,6 +313,45 @@ export function DesignSystemShowcase() {
                 Steps underlined in terracotta are the half-steps added after
                 the fact — 12 between 11 and 13, 22 between 18 and 24.
               </Note>
+
+              <div className="mt-8">
+                <TierLabel>Roles</TierLabel>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
+                  {typeRoles.map((r) => {
+                    const grows = r.mobile !== undefined && r.mobile > r.desktop;
+                    return (
+                      <div
+                        key={r.token}
+                        className="flex items-baseline justify-between gap-3"
+                      >
+                        <span className="font-mono text-[10px] text-charcoal/70 truncate">
+                          {r.token}
+                        </span>
+                        <span className="font-mono text-[10px] tabular-nums shrink-0 text-charcoal">
+                          {r.desktop}
+                          {r.mobile !== undefined && (
+                            <span
+                              className={`text-charcoal/70 ${grows ? "font-medium" : ""}`}
+                            >
+                              {" "}
+                              {/* The glyph carries the direction, not colour:
+                                  terracotta at this size sits near 2.8:1 on the
+                                  page, which would undo the contrast pass this
+                                  section just had. Shape also survives being
+                                  read without colour vision. */}
+                              {grows ? "↑" : "↓"} {r.mobile}
+                            </span>
+                          )}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <Note>
+                  Roles sit on top of the numeric scale — a component asks for a
+                  role, never a number. The mobile value lives inside the token.
+                </Note>
+              </div>
             </div>
 
             <div>
@@ -416,7 +477,7 @@ export function DesignSystemShowcase() {
             </div>
 
             <div className="border-t border-stone-200 pt-4 font-mono text-[11px] text-charcoal/70">
-              115 → 87 tokens · 662 → 773 references
+              115 → 94 tokens · 662 → 797 references
             </div>
           </div>
         </FadeIn>
