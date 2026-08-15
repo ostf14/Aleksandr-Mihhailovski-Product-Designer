@@ -30,6 +30,37 @@ export const links = {
 } as const;
 
 /**
+ * Routes still being built out.
+ *
+ * One list drives two things: the construction tape rendered in the root
+ * layout, and `robots: noindex, nofollow` in the metadata below. Deleting a
+ * line here therefore both takes the tape down and lets the page be indexed —
+ * there is no second place to remember.
+ *
+ * A trailing `/*` matches everything below that segment, nothing else does.
+ */
+export const WIP_ROUTES = [
+  "/",
+  "/about",
+  "/ru/lectures",
+  "/ru/lectures/*",
+] as const;
+
+export function isWipRoute(path: string | null | undefined): boolean {
+  if (!path) return false;
+
+  const bare = path.split(/[?#]/)[0];
+  const normalized = bare.length > 1 ? bare.replace(/\/+$/, "") : bare;
+
+  return WIP_ROUTES.some((pattern) => {
+    if (pattern.endsWith("/*")) {
+      return normalized.startsWith(`${pattern.slice(0, -2)}/`);
+    }
+    return normalized === pattern;
+  });
+}
+
+/**
  * Path to the dynamic OG image for a given title. Resolved against
  * metadataBase into an absolute URL by Next. Generation lives in the
  * /api/og Route Handler (node runtime) rather than the opengraph-image
@@ -75,6 +106,11 @@ export function pageMetadata({
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
+    // Derived from the path rather than passed per page, so a route can never
+    // lose its tape and keep its noindex (or the other way round).
+    ...(isWipRoute(path)
+      ? { robots: { index: false, follow: false } }
+      : {}),
     openGraph: {
       title,
       description,
