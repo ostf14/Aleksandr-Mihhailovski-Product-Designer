@@ -70,7 +70,14 @@ export function renderOgImage(
               letterSpacing: "-0.01em",
             }}
           >
-            {SITE_NAME} — {subtitle}
+            {/* One interpolated string, not `{SITE_NAME} — {subtitle}`.
+                Satori rejects any element holding more than one child unless
+                it declares display:flex, and in JSX that form is three
+                children — the name, the literal dash, the subtitle. Adding
+                display:flex would instead make each run its own flex item,
+                so joining them into a single text node is the fix that keeps
+                the rendering identical. */}
+            {`${SITE_NAME} — ${subtitle}`}
           </div>
         </div>
       </div>
