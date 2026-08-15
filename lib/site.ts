@@ -38,8 +38,10 @@ export const links = {
  * A force-dynamic route handler is never prerendered, so it builds on
  * Windows and runs on Vercel's Linux node where @vercel/og works.
  */
-export function ogImagePath(title: string): string {
-  return `/api/og?title=${encodeURIComponent(title)}`;
+export function ogImagePath(title: string, subtitle?: string): string {
+  const params = new URLSearchParams({ title });
+  if (subtitle) params.set("subtitle", subtitle);
+  return `/api/og?${params.toString()}`;
 }
 
 /**
@@ -56,6 +58,7 @@ export function pageMetadata({
   ogType = "article",
   absoluteTitle = false,
   ogImageTitle,
+  ogSubtitle,
 }: {
   title: string;
   description: string;
@@ -63,9 +66,11 @@ export function pageMetadata({
   ogType?: "website" | "article";
   absoluteTitle?: boolean;
   ogImageTitle?: string;
+  /** Second line on the OG card. Defaults to "Product Designer". */
+  ogSubtitle?: string;
 }): Metadata {
   const imageTitle = ogImageTitle ?? title;
-  const image = ogImagePath(imageTitle);
+  const image = ogImagePath(imageTitle, ogSubtitle);
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,

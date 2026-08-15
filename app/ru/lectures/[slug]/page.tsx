@@ -30,6 +30,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
     description: entry.description,
     path: entryHref(LECTURES, entry),
     ogType: "article",
+    ogSubtitle: `Лекция ${entry.number}`,
   });
 }
 

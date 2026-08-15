@@ -13,6 +13,7 @@ export const metadata = pageMetadata({
   description: "TODO: описание лекционного курса для поисковой выдачи и превью.",
   path: "/ru/lectures",
   ogType: "website",
+  ogSubtitle: "Лекции",
 });
 
 const formatDate = (iso: string) =>

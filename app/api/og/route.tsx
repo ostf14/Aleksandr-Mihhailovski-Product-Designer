@@ -10,5 +10,6 @@ export const dynamic = "force-dynamic";
 export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get("title")?.slice(0, 120) || SITE_TAGLINE;
-  return renderOgImage(title);
+  const subtitle = searchParams.get("subtitle")?.slice(0, 60) || undefined;
+  return renderOgImage(title, subtitle);
 }
