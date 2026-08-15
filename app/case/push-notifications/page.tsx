@@ -11,6 +11,8 @@ import { NumberedList } from "@/components/NumberedList";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
+export const metadata = workMetadata("push-notifications");
+
 const lessons = [
   {
     h: "Self-service tools are anxiety products.",
