@@ -4,6 +4,9 @@ import { SITE_NAME } from "./site";
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
 
+/** Subtitle used when a page does not supply its own. */
+export const OG_DEFAULT_SUBTITLE = "Product Designer";
+
 /**
  * Shared OpenGraph image generator. Each route's opengraph-image.tsx calls
  * this with its own title, so every page gets a correct, title-specific
@@ -15,8 +18,14 @@ export const OG_CONTENT_TYPE = "image/png";
  *
  * Deliberately system-font-only for v1; brand fonts can be embedded later
  * by passing a `fonts` option to ImageResponse.
+ *
+ * The subtitle is a parameter rather than a constant because "Product
+ * Designer" is wrong on a Russian lecture card — those pass their own.
  */
-export function renderOgImage(title: string) {
+export function renderOgImage(
+  title: string,
+  subtitle: string = OG_DEFAULT_SUBTITLE,
+) {
   return new ImageResponse(
     (
       <div
@@ -61,7 +70,7 @@ export function renderOgImage(title: string) {
               letterSpacing: "-0.01em",
             }}
           >
-            {SITE_NAME} — Product Designer
+            {SITE_NAME} — {subtitle}
           </div>
         </div>
       </div>

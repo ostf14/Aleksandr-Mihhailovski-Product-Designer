@@ -5,75 +5,62 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 
-type Item = { label: string; href: string };
+type Item = { label: string; href: string; badge?: string };
 
 const items: Item[] = [
-  { label: "Cases", href: "/#cases" },
-  { label: "Other", href: "/#other" },
+  { label: "Work", href: "/work" },
+  { label: "Lectures", href: "/ru/lectures", badge: "RU" },
+  { label: "About", href: "/about" },
 ];
 
-function NavLink({
-  item,
-  pathname,
-  activeAnchor,
-}: {
-  item: Item;
-  pathname: string | null;
-  activeAnchor: string | null;
-}) {
-  const hashKey = item.href.startsWith("/#") ? item.href.slice(2) : null;
-  const isActive = hashKey
-    ? activeAnchor === hashKey
-    : pathname === item.href || pathname?.startsWith(item.href + "/");
+// Case pages and the /other gallery are reached from /work, so they keep
+// that tab lit rather than leaving the nav with nothing selected.
+function isItemActive(item: Item, pathname: string | null): boolean {
+  if (!pathname) return false;
+  if (item.href === "/work") {
+    return (
+      pathname === "/work" ||
+      pathname.startsWith("/case/") ||
+      pathname === "/other" ||
+      pathname.startsWith("/other/")
+    );
+  }
+  return pathname === item.href || pathname.startsWith(item.href + "/");
+}
 
-  const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Only intercept "/#id" anchors when we're already on the home page.
-    if (!item.href.startsWith("/#") || pathname !== "/") return;
-    const id = item.href.slice(2);
-    const target = document.getElementById(id);
-    if (!target) return;
-    e.preventDefault();
-
-    // The hero only scales/fades now (no layout collapse), so the section's
-    // document position is stable — land its top at the upper-third sweet spot.
-    const newScrollY =
-      target.getBoundingClientRect().top + window.scrollY - window.innerHeight / 6;
-
-    window.scrollTo({ top: Math.max(0, newScrollY), behavior: "smooth" });
-    history.pushState(null, "", item.href);
-  };
+function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
+  const isActive = isItemActive(item, pathname);
 
   return (
     <a
       href={item.href}
-      onClick={onClick}
-      className={`px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
+      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
         isActive
           ? "bg-charcoal text-cream"
           : "text-[#6F6E69] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
       }`}
     >
       {item.label}
+      {item.badge && (
+        <span
+          className={`font-mono text-[9px] leading-none tracking-[0.08em] px-1 py-0.5 rounded ${
+            isActive
+              ? "bg-cream/20 text-cream"
+              : "bg-cream-warm text-stone-500"
+          }`}
+        >
+          {item.badge}
+        </span>
+      )}
     </a>
   );
 }
 
-function NavContents({
-  pathname,
-  activeAnchor,
-}: {
-  pathname: string | null;
-  activeAnchor: string | null;
-}) {
+function NavContents({ pathname }: { pathname: string | null }) {
   return (
     <>
       {items.map((item) => (
-        <NavLink
-          key={item.href}
-          item={item}
-          pathname={pathname}
-          activeAnchor={activeAnchor}
-        />
+        <NavLink key={item.href} item={item} pathname={pathname} />
       ))}
       <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
       <ThemeToggle />
@@ -109,67 +96,14 @@ function Logo() {
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [activeAnchor, setActiveAnchor] = useState<string | null>(null);
 
   useEffect(() => {
-    const onCasePage = pathname?.startsWith("/case/") ?? false;
-    const onHome = pathname === "/";
-
     // Lightweight scroll listener — only drives the nav-collapse flag.
     const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    if (onCasePage) {
-      setActiveAnchor("cases");
-      return () => window.removeEventListener("scroll", onScroll);
-    }
-    if (pathname === "/other" || pathname?.startsWith("/other/")) {
-      setActiveAnchor("other");
-      return () => window.removeEventListener("scroll", onScroll);
-    }
-    if (!onHome) {
-      setActiveAnchor(null);
-      return () => window.removeEventListener("scroll", onScroll);
-    }
-
-    // Home: IntersectionObserver tracks visibility of the #cases and #other
-    // sections. Active = first section in DOM order whose ratio >= 0.4.
-    const ids = ["cases", "other"];
-    const visibility = new Map<string, number>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          visibility.set(entry.target.id, entry.intersectionRatio);
-        }
-        let active: string | null = null;
-        for (const id of ids) {
-          if ((visibility.get(id) ?? 0) >= 0.4) {
-            active = id;
-            break;
-          }
-        }
-        setActiveAnchor(active);
-      },
-      { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] },
-    );
-
-    const observed: HTMLElement[] = [];
-    for (const id of ids) {
-      const el = document.getElementById(id);
-      if (el) {
-        observer.observe(el);
-        observed.push(el);
-      }
-    }
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      observed.forEach((el) => observer.unobserve(el));
-      observer.disconnect();
-    };
-  }, [pathname]);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
@@ -194,7 +128,7 @@ export function Nav() {
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">
-            <NavContents pathname={pathname} activeAnchor={activeAnchor} />
+            <NavContents pathname={pathname} />
           </div>
         </motion.nav>
       </div>
@@ -226,7 +160,7 @@ export function Nav() {
       {/* Mobile nav pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
         <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm">
-          <NavContents pathname={pathname} activeAnchor={activeAnchor} />
+          <NavContents pathname={pathname} />
         </nav>
       </header>
     </>
