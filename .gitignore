@@ -7,3 +7,7 @@ out
 next-env.d.ts
 .DS_Store
 .claude/
+
+# Artefacts of `npm run check:og`
+og-smoke.png
+og-smoke.headers

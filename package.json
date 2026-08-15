@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:og": "curl -sS --fail -D og-smoke.headers -o og-smoke.png \"https://mihhailovski-product-designer.vercel.app/api/og?title=Smoke+test\" && node -e \"const fs=require('fs');const h=fs.readFileSync('og-smoke.headers','utf8');const s=fs.statSync('og-smoke.png').size;const ct=(h.split('\\n').find(l=>l.toLowerCase().startsWith('content-type:'))||'content-type: ?').trim();const ok=ct.toLowerCase().includes('image/')&&s>1000;console.log((ok?'OG OK':'OG FAILED')+' - '+s+' bytes - '+ct);process.exit(ok?0:1)\""
   },
   "dependencies": {
     "framer-motion": "^11.3.0",
