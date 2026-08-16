@@ -5,7 +5,7 @@ import {
   Pixelify_Sans,
   Space_Grotesk,
 } from "next/font/google";
-import { WipGate } from "@/components/WipGate";
+import { UnderConstruction } from "@/components/UnderConstruction";
 import {
   ogImagePath,
   SITE_DESCRIPTION,
@@ -106,7 +106,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: catDurationScript }} />
       </head>
       <body className="font-sans antialiased">
-        <WipGate>{children}</WipGate>
+        {children}
+        <UnderConstruction />
       </body>
     </html>
   );

@@ -46,6 +46,14 @@ export const WIP_ROUTES = [
   "/ru/lectures/*",
 ] as const;
 
+/**
+ * Set by /underconstr. While present, middleware lets WIP routes through and
+ * the nav shows their links; without it both behave as they do for visitors.
+ * Not httpOnly on purpose — the nav needs to read it, and it guards nothing
+ * more sensitive than a half-finished page.
+ */
+export const WIP_PREVIEW_COOKIE = "wip-preview";
+
 export function isWipRoute(path: string | null | undefined): boolean {
   if (!path) return false;
 

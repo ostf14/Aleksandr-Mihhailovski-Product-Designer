@@ -4,13 +4,17 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
+import { WIP_PREVIEW_COOKIE } from "@/lib/site";
 
-type Item = { label: string; href: string; badge?: string };
+type Item = { label: string; href: string; badge?: string; wip?: boolean };
 
+// Items marked `wip` point at routes middleware still redirects away from, so
+// they only appear once the preview cookie is set — otherwise the nav would
+// advertise links that bounce every visitor straight back to /work.
 const items: Item[] = [
   { label: "Work", href: "/work" },
-  { label: "Lectures", href: "/ru/lectures", badge: "RU" },
-  { label: "About", href: "/about" },
+  { label: "Lectures", href: "/ru/lectures", badge: "RU", wip: true },
+  { label: "About", href: "/about", wip: true },
 ];
 
 // Case pages and the /other gallery are reached from /work, so they keep
@@ -56,12 +60,20 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   );
 }
 
-function NavContents({ pathname }: { pathname: string | null }) {
+function NavContents({
+  pathname,
+  preview,
+}: {
+  pathname: string | null;
+  preview: boolean;
+}) {
   return (
     <>
-      {items.map((item) => (
-        <NavLink key={item.href} item={item} pathname={pathname} />
-      ))}
+      {items
+        .filter((item) => preview || !item.wip)
+        .map((item) => (
+          <NavLink key={item.href} item={item} pathname={pathname} />
+        ))}
       <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
       <ThemeToggle />
     </>
@@ -97,6 +109,17 @@ export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
+  // Read after mount: the server has no way to know, and rendering the extra
+  // links straight away would make the two disagree at hydration.
+  const [preview, setPreview] = useState(false);
+  useEffect(() => {
+    setPreview(
+      document.cookie
+        .split("; ")
+        .some((c) => c === `${WIP_PREVIEW_COOKIE}=1`),
+    );
+  }, [pathname]);
+
   useEffect(() => {
     // Lightweight scroll listener — only drives the nav-collapse flag.
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -128,7 +151,7 @@ export function Nav() {
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">
-            <NavContents pathname={pathname} />
+            <NavContents pathname={pathname} preview={preview} />
           </div>
         </motion.nav>
       </div>
@@ -160,7 +183,7 @@ export function Nav() {
       {/* Mobile nav pill (bottom) */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
         <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm">
-          <NavContents pathname={pathname} />
+          <NavContents pathname={pathname} preview={preview} />
         </nav>
       </header>
     </>
