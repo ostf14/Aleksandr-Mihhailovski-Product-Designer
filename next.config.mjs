@@ -44,7 +44,14 @@ const nextConfig = {
      * a 500. If edge is revisited, it needs its own investigation first.
      */
     outputFileTracingIncludes: {
-      "/api/og": ["./node_modules/next/dist/compiled/@vercel/og/**"],
+      "/api/og": [
+        "./node_modules/next/dist/compiled/@vercel/og/**",
+        // The card's own assets, read off disk in lib/og.tsx. `public/` is
+        // served from the CDN and is not otherwise present in the lambda
+        // filesystem, so the photo has to be named here too.
+        "./lib/fonts/**",
+        "./public/hero-photo.jpg",
+      ],
     },
   },
 
