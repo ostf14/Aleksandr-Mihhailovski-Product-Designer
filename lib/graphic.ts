@@ -7,9 +7,11 @@ export type GraphicItem = {
    * squares take two (three to a row).
    */
   wide?: boolean;
-  title: string;
-  /** Omitted rather than guessed where the date is not known. */
-  year?: string;
+  /**
+   * Optional: a social post is not a named piece of work, and inventing a
+   * title for one only adds a line nobody needs. The caption carries it.
+   */
+  title?: string;
   /** One line: what it is and who it was for. Never a case study. */
   caption: string;
   /** Where it was published — proof, not the way to see the work. */
@@ -20,10 +22,9 @@ export type GraphicItem = {
 /**
  * Loose graphic work: pieces with no story to tell, only a thing to look at.
  *
- * Anything here gets an image, a name, a year and a single line — the format
- * Cory Schmitz's archive uses, and the reason it works is that a caption is
- * not a failed case study. Work with an actual argument behind it belongs in
- * WORKS as a case instead.
+ * Anything here gets an image and a single line, in the shape Cory Schmitz's
+ * archive uses. It works because a caption is not a failed case study — work
+ * with an actual argument behind it belongs in WORKS as a case instead.
  *
  * Ordered so the six-column grid fills whole rows: landscape pieces pair up,
  * squares come in threes. Five of each makes 25 column-units against rows of
@@ -54,7 +55,6 @@ export const GRAPHIC_ITEMS: GraphicItem[] = [
   {
     src: "/graphic/instagram-1.webp",
     alt: "Social post: cosmonaut in a helmet under custom Cyrillic lettering",
-    title: "Kolonizatsiya",
     caption:
       "Social post for the founder of Uprock, the design studio and school.",
     href: "https://www.instagram.com/zhenya.ninja/",
@@ -63,7 +63,6 @@ export const GRAPHIC_ITEMS: GraphicItem[] = [
   {
     src: "/graphic/instagram-2.webp",
     alt: "Social post for a type release",
-    title: "TODO: название",
     caption:
       "Social post for the founder of Uprock, the design studio and school.",
     href: "https://www.instagram.com/zhenya.ninja/",
@@ -72,7 +71,6 @@ export const GRAPHIC_ITEMS: GraphicItem[] = [
   {
     src: "/graphic/instagram-3.webp",
     alt: "Social post for a type release",
-    title: "TODO: название",
     caption:
       "Social post for the founder of Uprock, the design studio and school.",
     href: "https://www.instagram.com/zhenya.ninja/",
@@ -112,7 +110,7 @@ export const GRAPHIC_ITEMS: GraphicItem[] = [
     src: "/graphic/robotmy-logo.webp",
     alt: "Robotmy logo",
     title: "Robotmy",
-    caption: "TODO: одна строка — что это и для кого",
+    caption: "Logo for Robotmy, a chain of robotic car washes.",
   },
   {
     src: "/graphic/pebble-nft.webp",

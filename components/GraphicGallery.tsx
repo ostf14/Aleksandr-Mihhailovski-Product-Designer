@@ -8,14 +8,9 @@ import type { GraphicItem } from "@/lib/graphic";
 function Caption({ item }: { item: GraphicItem }) {
   return (
     <>
-      <div className="flex items-baseline gap-3">
+      {item.title && (
         <span className="text-[0.95rem] text-charcoal">{item.title}</span>
-        {item.year && (
-          <span className="font-mono text-[11px] text-charcoal/70">
-            {item.year}
-          </span>
-        )}
-      </div>
+      )}
       <p className="text-[0.875rem] leading-[1.5] text-charcoal/70">
         {item.caption}
       </p>
@@ -188,14 +183,11 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
             onClick={(event) => event.stopPropagation()}
             className="shrink-0 pt-4 text-center"
           >
-            <div className="text-[0.95rem] text-white/90">
-              {current.title}
-              {current.year && (
-                <span className="ml-3 font-mono text-[11px] text-white/50">
-                  {current.year}
-                </span>
-              )}
-            </div>
+            {current.title && (
+              <div className="text-[0.95rem] text-white/90">
+                {current.title}
+              </div>
+            )}
             <div className="mt-1 text-[0.8125rem] text-white/50">
               {current.caption}
             </div>
