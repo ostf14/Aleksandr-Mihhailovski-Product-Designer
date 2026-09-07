@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap"
           rel="stylesheet"
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

@@ -27,6 +27,14 @@ const DELETE_SPEED = 30;
 const PAUSE_FULL = 2000;
 const PAUSE_EMPTY = 500;
 
+/**
+ * Craft line size as a fraction of the role line above it. 0.6 lands the
+ * tracking at ~0.42em against a gap-to-glyph ratio of 0.75 — airy enough to
+ * read as deliberate, tight enough that the words still hold together.
+ * Raising it tightens the tracking, lowering it opens it up.
+ */
+const CRAFT_SIZE_RATIO = 0.6;
+
 export function BusinessCard() {
   const [phraseIdx, setPhraseIdx] = useState(0);
   // Progressive enhancement: SSR markup contains the complete first phrase so
@@ -68,6 +76,71 @@ export function BusinessCard() {
     clamp: true,
   });
   const opacity = useSpring(opacityRaw, SPRING);
+
+  // Stretch the craft line to exactly the width of the role line above it.
+  // The difference is spent on letter-spacing rather than on type size, so the
+  // two lines stay optically related instead of one being a shrunken copy.
+  const roleRef = useRef<HTMLSpanElement>(null);
+  const craftRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const fitCraftLine = () => {
+      const role = roleRef.current;
+      const craft = craftRef.current;
+      if (!role || !craft) return;
+
+      // The role span is display:block, so its box is the column width, not
+      // the width of its glyphs. A Range measures the text itself.
+      const textWidth = (el: HTMLElement) => {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        return range.getBoundingClientRect().width;
+      };
+
+      // Size the craft line as a fixed fraction of the role line rather than
+      // by breakpoint. Both the target width and the natural width then scale
+      // with the same number, which makes the em-tracking identical at every
+      // viewport — with fixed sizes it drifted from 0.42em on desktop to
+      // 1.3em on a phone, and the line fell apart at the narrow end.
+      const roleSize = parseFloat(getComputedStyle(role).fontSize);
+      if (roleSize > 0) craft.style.fontSize = `${roleSize * CRAFT_SIZE_RATIO}px`;
+
+      craft.style.letterSpacing = "0px";
+      craft.style.marginRight = "0px";
+
+      const target = textWidth(role);
+      const natural = textWidth(craft);
+      const gaps = (craft.textContent?.length ?? 0) - 1;
+      if (gaps < 1 || target <= 0 || natural <= 0) return;
+
+      // Never go negative. If the line above is somehow narrower than this one
+      // laid out naturally — a collapsed container, a font that failed to load,
+      // a future rewrite of the copy — squeezing the glyphs together would look
+      // broken, whereas simply not stretching does not.
+      const spacing = Math.max(0, (target - natural) / gaps);
+      craft.style.letterSpacing = `${spacing}px`;
+      // Letter-spacing also lands after the final glyph, which would push the
+      // line one tracking unit past the one above. Cancel it on the box —
+      // the span is inline-block, so this keeps centring correct on mobile.
+      craft.style.marginRight = `${-spacing}px`;
+    };
+
+    fitCraftLine();
+
+    // The role line's box tracks the column, so this fires whenever the
+    // viewport changes the clamp()-driven size above.
+    const observer = new ResizeObserver(fitCraftLine);
+    if (roleRef.current) observer.observe(roleRef.current);
+    window.addEventListener("resize", fitCraftLine, { passive: true });
+    // Gambarino arrives from a CDN — measuring before it lands would size the
+    // line against the fallback serif and leave it visibly short.
+    document.fonts?.ready.then(fitCraftLine).catch(() => {});
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", fitCraftLine);
+    };
+  }, []);
 
   const copyEmail = async () => {
     try {
@@ -164,8 +237,17 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#6F6E69] dark:text-[#E8E8E6]/40">
+            <span
+              ref={roleRef}
+              className="block text-[#6F6E69] dark:text-[#E8E8E6]/40"
+            >
               Product Design Engineer
+            </span>
+            <span
+              ref={craftRef}
+              className="inline-block whitespace-nowrap font-sans font-light uppercase leading-none mt-2 md:mt-3 text-[clamp(13px,4.2vw,22px)] md:text-[22px] lg:text-[36px] text-[#6F6E69] dark:text-[#E8E8E6]/40"
+            >
+              with visual craft
             </span>
           </h2>
 
