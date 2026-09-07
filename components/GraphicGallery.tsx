@@ -8,9 +8,6 @@ import type { GraphicItem } from "@/lib/graphic";
 function Caption({ item }: { item: GraphicItem }) {
   return (
     <>
-      {item.title && (
-        <span className="text-[0.95rem] text-charcoal">{item.title}</span>
-      )}
       <p className="text-[0.875rem] leading-[1.5] text-charcoal/70">
         {item.caption}
       </p>
@@ -72,14 +69,13 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
 
   return (
     <>
-      {/* Six columns so both shapes tile: landscape spans three (two per
-          row), square spans two (three per row). */}
+      {/* Six columns: a span of 3 puts two to a row, a span of 2 puts three. */}
       <div className="grid grid-cols-2 md:grid-cols-6 gap-x-5 gap-y-10">
         {items.map((item, i) => (
           <FadeIn
             key={item.src}
             delay={(i % 3) * 0.04}
-            className={item.wide ? "md:col-span-3" : "md:col-span-2"}
+            className={item.span === 3 ? "md:col-span-3" : "md:col-span-2"}
           >
             <figure>
               <button
@@ -183,12 +179,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
             onClick={(event) => event.stopPropagation()}
             className="shrink-0 pt-4 text-center"
           >
-            {current.title && (
-              <div className="text-[0.95rem] text-white/90">
-                {current.title}
-              </div>
-            )}
-            <div className="mt-1 text-[0.8125rem] text-white/50">
+            <div className="text-[0.875rem] text-white/70">
               {current.caption}
             </div>
           </div>
