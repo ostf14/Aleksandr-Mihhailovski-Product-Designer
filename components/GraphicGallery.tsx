@@ -10,6 +10,19 @@ function Caption({ item }: { item: GraphicItem }) {
     <>
       <p className="text-[0.875rem] leading-[1.5] text-charcoal/70">
         {item.caption}
+        {item.href && (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            // The arrow shows no text, so the label is the only thing a
+            // screen reader has to go on.
+            aria-label={item.hrefLabel ?? "Open the source"}
+            className="ml-1.5 inline-block align-[-1px] text-terracotta hover:opacity-70 transition-opacity"
+          >
+            <ArrowUpRight size={14} strokeWidth={2} aria-hidden />
+          </a>
+        )}
       </p>
     </>
   );
@@ -97,19 +110,8 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
                 />
               </button>
 
-              <figcaption className="mt-3 flex flex-col gap-1">
+              <figcaption className="mt-3">
                 <Caption item={item} />
-                {item.href && (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 self-start font-mono text-[11px] uppercase tracking-[0.12em] text-terracotta hover:opacity-80 transition-opacity"
-                  >
-                    {item.hrefLabel ?? "See it live"}
-                    <ArrowUpRight size={12} strokeWidth={2} aria-hidden />
-                  </a>
-                )}
               </figcaption>
             </figure>
           </FadeIn>

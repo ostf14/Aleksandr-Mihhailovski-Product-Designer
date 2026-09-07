@@ -2,15 +2,14 @@ import { FadeIn } from "@/components/FadeIn";
 import { Footer } from "@/components/Footer";
 import { GraphicGallery } from "@/components/GraphicGallery";
 import { Nav } from "@/components/Nav";
-import { PlaceholderBlock } from "@/components/Placeholder";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { pageMetadata } from "@/lib/site";
 import { GRAPHIC_ITEMS } from "@/lib/graphic";
 
 export const metadata = pageMetadata({
-  // TODO: собственные title и description раздела
   title: "Graphic",
-  description: "TODO: описание раздела для поисковой выдачи и превью.",
+  description:
+    "Covers, social posts, editorial illustration and logo work.",
   path: "/graphic",
   ogType: "website",
   ogSubtitle: "Graphic",
@@ -35,10 +34,6 @@ export default function Page() {
                 </h1>
               </FadeIn>
 
-              <FadeIn delay={0.05} className="max-w-prose mt-6">
-                {/* TODO: одна строка про раздел */}
-                <PlaceholderBlock label="Одна строка про раздел — что здесь лежит и для кого." />
-              </FadeIn>
             </div>
           </header>
 

@@ -11,6 +11,7 @@ export type GraphicItem = {
   caption: string;
   /** Where it was published — proof, not the way to see the work. */
   href?: string;
+  /** Accessible name for the arrow; it carries no visible text of its own. */
   hrefLabel?: string;
 };
 
@@ -85,12 +86,11 @@ export const GRAPHIC_ITEMS: GraphicItem[] = [
   {
     src: "/graphic/robotmy-logo.webp",
     alt: "Robotmy logo",
-    caption: "Logo for Robotmy, a chain of robotic car washes.",
+    caption: "Logo for РОБОТМОЙ, a chain of robotic car washes.",
   },
   {
-    src: "/graphic/pebble-nft.webp",
-    alt: "Pebble the Koala — the first post, minted as an NFT",
-    caption:
-      "Pebble the Koala's first post, minted as an NFT on the TON network.",
+    src: "/graphic/samurai-card.webp",
+    alt: "Foil card in a sealed pouch: an armoured samurai entangled with a serpent",
+    caption: "Samurai and serpent — a numbered card, one of three.",
   },
 ];
