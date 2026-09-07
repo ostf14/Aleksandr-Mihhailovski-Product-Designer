@@ -27,23 +27,6 @@ const DELETE_SPEED = 30;
 const PAUSE_FULL = 2000;
 const PAUSE_EMPTY = 500;
 
-/**
- * The craft line is a caption, not a third heading, so it is capped small.
- *
- * Size is taken as a fraction of the role line rather than set per breakpoint:
- * the target width and the natural width then scale with the same number, so
- * the em-tracking comes out identical at every viewport. Fixed sizes drifted
- * badly — 0.42em on a desktop against roughly 1.3em on a phone.
- *
- * The floor exists because the ratio alone would put the line under 9px on a
- * narrow phone. Below the floor the tracking is tighter than on desktop, which
- * is the right trade: legibility over consistency at the size where the line
- * is hardest to read.
- */
-const CRAFT_SIZE_RATIO = 0.34;
-const CRAFT_SIZE_MIN = 11;
-const CRAFT_SIZE_MAX = 20;
-
 export function BusinessCard() {
   const [phraseIdx, setPhraseIdx] = useState(0);
   // Progressive enhancement: SSR markup contains the complete first phrase so
@@ -85,77 +68,6 @@ export function BusinessCard() {
     clamp: true,
   });
   const opacity = useSpring(opacityRaw, SPRING);
-
-  // Stretch the craft line to exactly the width of the role line above it.
-  // The difference is spent on letter-spacing rather than on type size, so the
-  // two lines stay optically related instead of one being a shrunken copy.
-  const roleRef = useRef<HTMLSpanElement>(null);
-  const craftRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const fitCraftLine = () => {
-      const role = roleRef.current;
-      const craft = craftRef.current;
-      if (!role || !craft) return;
-
-      // The role span is display:block, so its box is the column width, not
-      // the width of its glyphs. A Range measures the text itself.
-      const textWidth = (el: HTMLElement) => {
-        const range = document.createRange();
-        range.selectNodeContents(el);
-        return range.getBoundingClientRect().width;
-      };
-
-      // Size the craft line as a fixed fraction of the role line rather than
-      // by breakpoint. Both the target width and the natural width then scale
-      // with the same number, which makes the em-tracking identical at every
-      // viewport — with fixed sizes it drifted from 0.42em on desktop to
-      // 1.3em on a phone, and the line fell apart at the narrow end.
-      const roleSize = parseFloat(getComputedStyle(role).fontSize);
-      if (roleSize > 0) {
-        const size = Math.min(
-          CRAFT_SIZE_MAX,
-          Math.max(CRAFT_SIZE_MIN, roleSize * CRAFT_SIZE_RATIO),
-        );
-        craft.style.fontSize = `${size}px`;
-      }
-
-      craft.style.letterSpacing = "0px";
-      craft.style.marginRight = "0px";
-
-      const target = textWidth(role);
-      const natural = textWidth(craft);
-      const gaps = (craft.textContent?.length ?? 0) - 1;
-      if (gaps < 1 || target <= 0 || natural <= 0) return;
-
-      // Never go negative. If the line above is somehow narrower than this one
-      // laid out naturally — a collapsed container, a font that failed to load,
-      // a future rewrite of the copy — squeezing the glyphs together would look
-      // broken, whereas simply not stretching does not.
-      const spacing = Math.max(0, (target - natural) / gaps);
-      craft.style.letterSpacing = `${spacing}px`;
-      // Letter-spacing also lands after the final glyph, which would push the
-      // line one tracking unit past the one above. Cancel it on the box —
-      // the span is inline-block, so this keeps centring correct on mobile.
-      craft.style.marginRight = `${-spacing}px`;
-    };
-
-    fitCraftLine();
-
-    // The role line's box tracks the column, so this fires whenever the
-    // viewport changes the clamp()-driven size above.
-    const observer = new ResizeObserver(fitCraftLine);
-    if (roleRef.current) observer.observe(roleRef.current);
-    window.addEventListener("resize", fitCraftLine, { passive: true });
-    // Gambarino arrives from a CDN — measuring before it lands would size the
-    // line against the fallback serif and leave it visibly short.
-    document.fonts?.ready.then(fitCraftLine).catch(() => {});
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", fitCraftLine);
-    };
-  }, []);
 
   const copyEmail = async () => {
     try {
@@ -252,17 +164,8 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span
-              ref={roleRef}
-              className="block text-[#6F6E69] dark:text-[#E8E8E6]/40"
-            >
+            <span className="block text-[#6F6E69] dark:text-[#E8E8E6]/40">
               Product Design Engineer
-            </span>
-            <span
-              ref={craftRef}
-              className="inline-block whitespace-nowrap font-sans font-light uppercase leading-none mt-3 md:mt-4 text-[11px] md:text-[12px] lg:text-[20px] text-[#6F6E69] dark:text-[#E8E8E6]/40"
-            >
-              with visual craft
             </span>
           </h2>
 
