@@ -28,12 +28,21 @@ const PAUSE_FULL = 2000;
 const PAUSE_EMPTY = 500;
 
 /**
- * Craft line size as a fraction of the role line above it. 0.6 lands the
- * tracking at ~0.42em against a gap-to-glyph ratio of 0.75 — airy enough to
- * read as deliberate, tight enough that the words still hold together.
- * Raising it tightens the tracking, lowering it opens it up.
+ * The craft line is a caption, not a third heading, so it is capped small.
+ *
+ * Size is taken as a fraction of the role line rather than set per breakpoint:
+ * the target width and the natural width then scale with the same number, so
+ * the em-tracking comes out identical at every viewport. Fixed sizes drifted
+ * badly — 0.42em on a desktop against roughly 1.3em on a phone.
+ *
+ * The floor exists because the ratio alone would put the line under 9px on a
+ * narrow phone. Below the floor the tracking is tighter than on desktop, which
+ * is the right trade: legibility over consistency at the size where the line
+ * is hardest to read.
  */
-const CRAFT_SIZE_RATIO = 0.6;
+const CRAFT_SIZE_RATIO = 0.34;
+const CRAFT_SIZE_MIN = 11;
+const CRAFT_SIZE_MAX = 20;
 
 export function BusinessCard() {
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -103,7 +112,13 @@ export function BusinessCard() {
       // viewport — with fixed sizes it drifted from 0.42em on desktop to
       // 1.3em on a phone, and the line fell apart at the narrow end.
       const roleSize = parseFloat(getComputedStyle(role).fontSize);
-      if (roleSize > 0) craft.style.fontSize = `${roleSize * CRAFT_SIZE_RATIO}px`;
+      if (roleSize > 0) {
+        const size = Math.min(
+          CRAFT_SIZE_MAX,
+          Math.max(CRAFT_SIZE_MIN, roleSize * CRAFT_SIZE_RATIO),
+        );
+        craft.style.fontSize = `${size}px`;
+      }
 
       craft.style.letterSpacing = "0px";
       craft.style.marginRight = "0px";
@@ -245,7 +260,7 @@ export function BusinessCard() {
             </span>
             <span
               ref={craftRef}
-              className="inline-block whitespace-nowrap font-sans font-light uppercase leading-none mt-2 md:mt-3 text-[clamp(13px,4.2vw,22px)] md:text-[22px] lg:text-[36px] text-[#6F6E69] dark:text-[#E8E8E6]/40"
+              className="inline-block whitespace-nowrap font-sans font-light uppercase leading-none mt-3 md:mt-4 text-[11px] md:text-[12px] lg:text-[20px] text-[#6F6E69] dark:text-[#E8E8E6]/40"
             >
               with visual craft
             </span>
