@@ -1,6 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { Footer } from "@/components/Footer";
+import { GraphicGallery } from "@/components/GraphicGallery";
 import { Nav } from "@/components/Nav";
 import { PlaceholderBlock } from "@/components/Placeholder";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -47,53 +47,7 @@ export default function Page() {
               picture, a name, a year, one line. */}
           <section className="px-6 md:px-10 pb-32">
             <div className="max-w-bleed mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-12">
-                {GRAPHIC_ITEMS.map((item, i) => (
-                  <FadeIn
-                    key={item.src}
-                    delay={(i % 2) * 0.05}
-                    className={item.wide ? "md:col-span-2" : undefined}
-                  >
-                    <figure>
-                      <div className="overflow-hidden rounded-xl border border-stone-200 bg-cream-warm dark:bg-cream-deep">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          loading={i < 2 ? "eager" : "lazy"}
-                          decoding="async"
-                          className="block w-full h-auto"
-                        />
-                      </div>
-
-                      <figcaption className="mt-3 flex flex-col gap-1">
-                        <div className="flex items-baseline gap-3">
-                          <span className="text-[0.95rem] text-charcoal">
-                            {item.title}
-                          </span>
-                          <span className="font-mono text-[11px] text-charcoal/70">
-                            {item.year}
-                          </span>
-                        </div>
-                        <p className="text-[0.875rem] leading-[1.5] text-charcoal/70">
-                          {item.caption}
-                        </p>
-                        {item.href && (
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 self-start font-mono text-[11px] uppercase tracking-[0.12em] text-terracotta hover:opacity-80 transition-opacity"
-                          >
-                            {item.hrefLabel ?? "See it live"}
-                            <ArrowUpRight size={12} strokeWidth={2} aria-hidden />
-                          </a>
-                        )}
-                      </figcaption>
-                    </figure>
-                  </FadeIn>
-                ))}
-              </div>
+              <GraphicGallery items={GRAPHIC_ITEMS} />
             </div>
           </section>
         </article>
