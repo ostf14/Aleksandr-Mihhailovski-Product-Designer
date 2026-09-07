@@ -13,7 +13,7 @@ type Item = { label: string; href: string; badge?: string; wip?: boolean };
 // advertise links that bounce every visitor straight back to /work.
 const items: Item[] = [
   { label: "Work", href: "/work" },
-  { label: "Graphic", href: "/graphic", wip: true },
+  { label: "Graphic", href: "/graphic" },
   { label: "Lectures", href: "/ru/lectures", badge: "RU", wip: true },
   { label: "About", href: "/about", wip: true },
 ];
