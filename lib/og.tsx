@@ -41,19 +41,21 @@ function photoDataUri(): string {
   return photoCache;
 }
 
-const CREAM = "#FFFCF0";
-const CARD = "#FFFEFB";
-const CHARCOAL = "#282726";
-const MUTED = "#6F6E69";
+// Site's actual dark theme (app/globals.css .dark), not an invented palette.
+const PAGE_BG = "#191A1A";
+const CARD_BG = "#242626";
+const TEXT = "#E8E8E6";
+const MUTED = "#9A9A98";
 const TERRACOTTA = "#FF6936";
 
 /**
- * The link preview: the hero card in miniature.
+ * The link preview: the hero card in miniature, in the site's dark theme.
  *
  * A social platform already prints the page title as text beside the image,
  * so a card that only restates it in white-on-black adds nothing. This one
- * carries the thing the text cannot — the face, the name, the palette — and
- * leaves the page itself as a line along the bottom.
+ * carries the thing the text cannot — the face, the name, the palette.
+ * `title` is unused here (kept as a parameter so every call site doesn't
+ * need to change); the card no longer restates the page title itself.
  */
 export function renderOgImage(
   title: string,
@@ -66,33 +68,22 @@ export function renderOgImage(
           width: "100%",
           height: "100%",
           display: "flex",
-          backgroundColor: CREAM,
+          backgroundColor: PAGE_BG,
           padding: 40,
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
+            alignItems: "center",
             width: "100%",
             height: "100%",
-            backgroundColor: CARD,
-            border: `2px solid rgba(255, 105, 54, 0.4)`,
+            backgroundColor: CARD_BG,
+            border: `2px solid rgba(255, 105, 54, 0.3)`,
             borderRadius: 28,
-            padding: "56px 64px",
+            padding: "0 64px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              width: 120,
-              height: 10,
-              backgroundColor: TERRACOTTA,
-              borderRadius: 9999,
-            }}
-          />
-
           <div style={{ display: "flex", alignItems: "center", gap: 44 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -105,7 +96,7 @@ export function renderOgImage(
                 height: 190,
                 borderRadius: 9999,
                 objectFit: "cover",
-                border: "5px solid #FFFFFF",
+                border: "5px solid rgba(232, 232, 230, 0.15)",
               }}
             />
 
@@ -121,7 +112,7 @@ export function renderOgImage(
                 style={{
                   fontFamily: "Gambarino",
                   fontSize: 70,
-                  color: CHARCOAL,
+                  color: TEXT,
                   lineHeight: 1.05,
                   letterSpacing: "-0.02em",
                 }}
@@ -129,36 +120,6 @@ export function renderOgImage(
                 {SITE_NAME}
               </div>
               <div style={{ fontSize: 32, color: MUTED }}>{subtitle}</div>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 18,
-              borderTop: "1px solid rgba(40, 39, 38, 0.10)",
-              paddingTop: 26,
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                width: 10,
-                height: 10,
-                backgroundColor: TERRACOTTA,
-                borderRadius: 9999,
-              }}
-            />
-            <div
-              style={{
-                fontSize: 27,
-                color: CHARCOAL,
-                letterSpacing: "-0.01em",
-                overflow: "hidden",
-              }}
-            >
-              {title}
             </div>
           </div>
         </div>
