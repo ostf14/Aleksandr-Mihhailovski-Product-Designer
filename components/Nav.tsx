@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
@@ -14,6 +14,7 @@ type Item = { label: string; href: string; badge?: string; wip?: boolean };
 const items: Item[] = [
   { label: "Work", href: "/work" },
   { label: "Graphic", href: "/graphic" },
+  { label: "Testimonials", href: "/testimonials", wip: true },
   { label: "Lectures", href: "/ru/lectures", badge: "RU", wip: true },
   { label: "About", href: "/about", wip: true },
 ];
@@ -39,7 +40,8 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   return (
     <a
       href={item.href}
-      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
+      data-active={isActive || undefined}
+      className={`flex shrink-0 items-center gap-1.5 px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
         isActive
           ? "bg-charcoal text-cream"
           : "text-[#6F6E69] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
@@ -61,7 +63,7 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   );
 }
 
-function NavContents({
+function NavLinks({
   pathname,
   preview,
 }: {
@@ -75,10 +77,43 @@ function NavContents({
         .map((item) => (
           <NavLink key={item.href} item={item} pathname={pathname} />
         ))}
-      <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
-      <ThemeToggle />
     </>
   );
+}
+
+/** Divider plus the theme toggle — never part of the scrollable strip. */
+function NavControls() {
+  return (
+    <>
+      <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
+      <div className="shrink-0">
+        <ThemeToggle />
+      </div>
+    </>
+  );
+}
+
+/**
+ * Keeps the current tab in view inside the mobile pill.
+ *
+ * Five items measure ~509px, so on a 344px screen the strip scrolls. Without
+ * this it would always start at "Work" and the tab you are actually on could
+ * sit off the edge. scrollLeft is set directly rather than with
+ * scrollIntoView, which would also scroll the page behind the fixed pill.
+ */
+function useCenterActiveTab(pathname: string | null, preview: boolean) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const strip = ref.current;
+    const active = strip?.querySelector<HTMLElement>("[data-active]");
+    if (!strip || !active) return;
+
+    strip.scrollLeft =
+      active.offsetLeft - (strip.clientWidth - active.offsetWidth) / 2;
+  }, [pathname, preview]);
+
+  return ref;
 }
 
 function Logo() {
@@ -121,6 +156,8 @@ export function Nav() {
     );
   }, [pathname]);
 
+  const tabStripRef = useCenterActiveTab(pathname, preview);
+
   useEffect(() => {
     // Lightweight scroll listener — only drives the nav-collapse flag.
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -152,7 +189,8 @@ export function Nav() {
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">
-            <NavContents pathname={pathname} preview={preview} />
+            <NavLinks pathname={pathname} preview={preview} />
+            <NavControls />
           </div>
         </motion.nav>
       </div>
@@ -181,10 +219,20 @@ export function Nav() {
         </a>
       </div>
 
-      {/* Mobile nav pill (bottom) */}
+      {/* Mobile nav pill (bottom) — scrolls sideways rather than bleeding off
+          both edges once there are more than three items. */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
-        <nav className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm">
-          <NavContents pathname={pathname} preview={preview} />
+        <nav className="pointer-events-auto flex max-w-full items-center gap-1 p-1.5 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm">
+          {/* Only the links scroll. The theme toggle stays pinned — burying
+              the one control that switches light and dark behind a swipe
+              would be worse than hiding a tab. */}
+          <div
+            ref={tabStripRef}
+            className="flex min-w-0 items-center gap-1 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <NavLinks pathname={pathname} preview={preview} />
+          </div>
+          <NavControls />
         </nav>
       </header>
     </>

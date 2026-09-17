@@ -44,6 +44,7 @@ export const WIP_ROUTES = [
   "/about",
   "/ru/lectures",
   "/ru/lectures/*",
+  "/testimonials",
 ] as const;
 
 /**

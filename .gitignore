@@ -11,3 +11,6 @@ next-env.d.ts
 # Artefacts of `npm run check:og`
 og-smoke.png
 og-smoke.headers
+
+# Raw video/image drops — compressed output goes to public/, sources never ship
+_raw/
