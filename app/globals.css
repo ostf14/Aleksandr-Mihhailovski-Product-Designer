@@ -245,6 +245,57 @@ html:not(.dark) .bg-neutral-200 {
 .dark .border-stone-300 { border-color: rgb(46 48 48 / 0.5); }
 .dark .bg-stone-300\/70 { background-color: rgb(46 48 48 / 0.7); }    /* nav divider */
 
+/* ---------------------------------------------------------------
+   Buttons (visual_refresh_spec step 4).
+
+   Written here rather than as Tailwind utilities because the three
+   transitioned properties run on two different durations, which no single
+   utility expresses. The inset highlight inside --btn*-sh sits on the top
+   edge in both themes — that is the cue that makes them read as physical
+   objects rather than coloured rectangles.
+
+   The prefers-reduced-motion block below already neutralises these
+   transitions, so they need no guard of their own.
+   --------------------------------------------------------------- */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid;
+    border-radius: 9999px;
+    font-weight: 500;
+    letter-spacing: -0.008em;
+    white-space: nowrap;
+    transition:
+      transform var(--t-1) var(--e-out),
+      box-shadow var(--t-2) var(--e-out),
+      filter var(--t-2) var(--e-out);
+  }
+  .btn:hover  { transform: translateY(-1px); }
+  .btn:active { transform: scale(0.975); }
+
+  .btn-sm { height: 36px; padding: 0 16px; font-size: 14px; }
+  .btn-md { height: 42px; padding: 0 22px; font-size: 15px; }
+
+  .btn-primary {
+    background-image: var(--btn1-bg);
+    color: var(--btn1-fg);
+    border-color: var(--btn1-line);
+    box-shadow: var(--btn1-sh);
+  }
+  .btn-primary:hover { filter: brightness(1.12); }
+
+  .btn-secondary {
+    background-image: var(--btn2-bg);
+    color: var(--btn2-fg);
+    border-color: var(--btn2-line);
+    box-shadow: var(--btn2-sh);
+  }
+  .btn-secondary:hover { filter: brightness(0.985); }
+}
+
 /* Respect OS-level reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,

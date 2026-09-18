@@ -1,10 +1,12 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
+import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { FadeIn } from "@/components/FadeIn";
 import { LegacyAnchorRedirect } from "@/components/LegacyAnchorRedirect";
 import { Nav } from "@/components/Nav";
 import { PlaceholderBlock } from "@/components/Placeholder";
 import {
+  links,
   pageMetadata,
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -77,6 +79,16 @@ export default function Page() {
                     className="mt-5 max-w-[42rem]"
                     label="Одна статичная строка позиционирования — идёт прямо под именем, задаёт тон всей главной."
                   />
+
+                  <Button
+                    href={links.cv}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6"
+                  >
+                    <Download className="w-4 h-4" aria-hidden />
+                    Download CV
+                  </Button>
                 </div>
               </div>
             </FadeIn>
