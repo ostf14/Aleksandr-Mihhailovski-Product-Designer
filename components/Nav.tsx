@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { WIP_PREVIEW_COOKIE } from "@/lib/site";
@@ -168,31 +167,32 @@ export function Nav() {
 
   return (
     <>
-      {/* Desktop: single nav, container properties animate, content stays static */}
+      {/* Desktop: single nav, container properties animate, content stays static.
+          Plain CSS transition rather than Framer: every animated property here
+          (max-width, padding, radius, colours) is one the compositor hands back
+          to style/layout anyway, so driving it from JS bought nothing and cost a
+          library on the critical path.
+
+          The frosted fill is the whole point of the collapsed state — 60%
+          opacity plus saturate/blur, not the old near-opaque 95%, which is what
+          makes the pill read as glass instead of a solid chip. backdrop-filter
+          is deliberately absent until `scrolled`: it promotes a compositing
+          layer for as long as it is set, and there is nothing to frost while the
+          bar is transparent. The colour fade covers the switch. */}
       <div className="hidden md:flex fixed inset-x-0 top-0 z-50 px-6 md:px-10 justify-center pointer-events-none">
-        <motion.nav
-          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[background-color,border-color,box-shadow] duration-[250ms] ease-out ${
+        <nav
+          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[max-width,padding,margin,border-radius,background-color,border-color,box-shadow] duration-t5 ease-out-expo ${
             scrolled
-              ? "bg-cream/95 border-stone-200/60 shadow-sm"
-              : "bg-transparent border-transparent shadow-none"
+              ? "max-w-[480px] mt-4 px-2 py-1.5 rounded-full bg-[var(--glass)] backdrop-blur-[20px] backdrop-saturate-[1.8] border-stone-200/60 shadow-pill"
+              : "max-w-bleed mt-0 px-0 py-4 rounded-none bg-transparent border-transparent shadow-none"
           }`}
-          animate={{
-            maxWidth: scrolled ? 480 : 1080,
-            paddingLeft: scrolled ? 8 : 0,
-            paddingRight: scrolled ? 8 : 0,
-            paddingTop: scrolled ? 6 : 16,
-            paddingBottom: scrolled ? 6 : 16,
-            borderRadius: scrolled ? 9999 : 0,
-            marginTop: scrolled ? 16 : 0,
-          }}
-          transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <Logo />
           <div className="flex items-center gap-1 shrink-0">
             <NavLinks pathname={pathname} preview={preview} />
             <NavControls />
           </div>
-        </motion.nav>
+        </nav>
       </div>
 
       {/* Mobile brand pill (top) */}
