@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
+import { ProgressiveBlur } from "./ProgressiveBlur";
 import { SpriteAnimation } from "./SpriteAnimation";
 import { links } from "@/lib/site";
 
@@ -26,6 +27,17 @@ export function Footer() {
 
   return (
     <footer className="relative mt-32 w-full">
+      {/* Softens the page as it runs into the footer's top edge. Sits below the
+          cat (z-0 against its z-10) so the sprite stays crisp: backdrop-filter
+          only blurs what is painted behind it. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 -translate-y-full pointer-events-none z-0"
+        style={{ height: 72 }}
+      >
+        <ProgressiveBlur edge="bottom" height={72} />
+      </div>
+
       {/* Cat — sits just above the card's top edge */}
       <div className="absolute inset-x-0 top-0 -translate-y-full pointer-events-none z-10">
         <SpriteAnimation />

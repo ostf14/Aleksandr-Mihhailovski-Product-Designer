@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { ProgressiveBlur } from "./ProgressiveBlur";
 import { ThemeToggle } from "./ThemeToggle";
 import { WIP_PREVIEW_COOKIE } from "@/lib/site";
 
@@ -167,6 +168,20 @@ export function Nav() {
 
   return (
     <>
+      {/* Dissolves the top edge of the content as it passes under the pill.
+          Sits at z-40: below the nav, above the page. Rendered unconditionally
+          rather than faded in with `scrolled` — main starts at pt-20/pt-28, so
+          at rest there is nothing underneath it to blur, and toggling it would
+          only add a visible pop. Desktop only: the mobile nav is a different
+          arrangement, and this is five compositing layers. */}
+      <div
+        aria-hidden
+        className="hidden md:block fixed inset-x-0 top-0 z-40 pointer-events-none"
+        style={{ height: 90 }}
+      >
+        <ProgressiveBlur edge="top" height={90} />
+      </div>
+
       {/* Desktop: single nav, container properties animate, content stays static.
           Plain CSS transition rather than Framer: every animated property here
           (max-width, padding, radius, colours) is one the compositor hands back
