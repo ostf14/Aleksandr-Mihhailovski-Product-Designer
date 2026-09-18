@@ -31,6 +31,50 @@
   --faint:         163 163 163;
   --accent:        234  88  12;
 
+  /* ---------------------------------------------------------------
+     Motion, elevation and rhythm tokens (visual_refresh_spec step 1).
+     Components still hold these values inline; this layer is the
+     single source they migrate onto step by step.
+     --------------------------------------------------------------- */
+
+  /* Durations */
+  --t-1: 100ms;
+  --t-2: 160ms;
+  --t-3: 240ms;
+  --t-4: 320ms;
+  --t-5: 480ms;
+  --t-6: 640ms;
+
+  /* Easings. --e-out is the default for almost everything. */
+  --e-out:    cubic-bezier(.16, 1, .3, 1);
+  --e-in:     cubic-bezier(.5, 0, .9, .3);
+  --e-both:   cubic-bezier(.65, 0, .35, 1);
+  --e-spring: cubic-bezier(.34, 1.4, .64, 1);
+
+  /* Elevation */
+  --sh-sm:   0 1px 2px rgb(0 0 0 / .05);
+  --sh-pill: 0 1px 1px rgb(0 0 0 / .03), 0 4px 12px rgb(0 0 0 / .05);
+
+  /* Buttons. The inset highlight sits on the TOP edge in both themes —
+     that "light falls from above" cue is what makes them read physical. */
+  --btn1-bg:   linear-gradient(180deg, #2a2a2a 0%, #171717 60%);
+  --btn1-fg:   #ffffff;
+  --btn1-line: #171717;
+  --btn1-sh:   0 1px 1px rgb(0 0 0 / .16), 0 2px 6px rgb(0 0 0 / .14),
+               inset 0 1px 0 rgb(255 255 255 / .14);
+
+  --btn2-bg:   linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  --btn2-fg:   #3d3d3d;
+  --btn2-line: #e2e2e2;
+  --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .06), 0 2px 5px rgb(0 0 0 / .045),
+               inset 0 1px 0 rgb(255 255 255 / .9);
+
+  /* Frosted surface for the nav pill */
+  --glass: rgb(255 255 255 / .6);
+
+  /* Vertical rhythm between major sections */
+  --bay: clamp(80px, 9vw, 132px);
+
   color-scheme: light;
 }
 
@@ -51,6 +95,19 @@
   --muted:         163 163 163;
   --faint:         115 115 115;
   --accent:        249 115  22;
+
+  /* Motion/elevation overrides. Durations and easings are theme-agnostic,
+     so only the surfaces that depend on background luminance are redefined
+     here. --glass is keyed to our #191A1A page bg, not the reference's white. */
+  --glass: rgb(25 26 26 / .6);
+
+  --sh-pill: 0 1px 1px rgb(0 0 0 / .4), 0 4px 12px rgb(0 0 0 / .5);
+
+  --btn2-bg:   linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
+  --btn2-fg:   #ededed;
+  --btn2-line: #3a3a3a;
+  --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .5), 0 2px 5px rgb(0 0 0 / .4),
+               inset 0 1px 0 rgb(255 255 255 / .06);
 
   color-scheme: dark;
 }
