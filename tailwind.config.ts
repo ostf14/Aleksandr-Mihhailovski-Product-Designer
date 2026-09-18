@@ -28,8 +28,12 @@ const config: Config = {
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["Switzer", "system-ui", "sans-serif"],
-        serif: ["Gambarino", "Georgia", "serif"],
+        // One grotesque across the site. `serif` deliberately points at
+        // Satoshi too: it keeps the 35 remaining `font-serif` usages rendering
+        // correctly while they are migrated file by file, so the type system
+        // flips in a single step instead of a half-broken intermediate state.
+        sans: ["Satoshi", "system-ui", "sans-serif"],
+        serif: ["Satoshi", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       maxWidth: {
@@ -37,8 +41,12 @@ const config: Config = {
         bleed: "1080px",
       },
       fontSize: {
-        hero: ["clamp(2.5rem, 6vw, 3.75rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
-        h2: ["clamp(1.875rem, 4vw, 2.5rem)", { lineHeight: "1.15", letterSpacing: "-0.015em" }],
+        // Tighter tracking than the outgoing antiqua needed: a grotesque at
+        // display size opens up, so it has to be pulled back in. Hero caps at
+        // 52px (was 60px) — the weight going 400 -> 600 more than makes up the
+        // difference in presence.
+        hero: ["clamp(2.25rem, 4.6vw, 3.25rem)", { lineHeight: "1.05", letterSpacing: "-0.034em" }],
+        h2: ["clamp(1.875rem, 4vw, 2.5rem)", { lineHeight: "1.15", letterSpacing: "-0.026em" }],
       },
 
       // Motion + elevation scale (visual_refresh_spec step 1). These read the

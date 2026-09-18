@@ -94,12 +94,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="format-detection"
           content="telephone=no, date=no, address=no, email=no"
         />
+        {/* Satoshi carries the whole site — body, headings and UI. Weights:
+            400/500 for text, 600 for headings, 700 for the one bold. The
+            preconnect matters because this is a third-party origin on the
+            critical path: without it the browser pays DNS + TLS before it
+            can even start the stylesheet. */}
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap"
           rel="stylesheet"
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
