@@ -71,32 +71,34 @@ export function TableOfContents({ items = defaultItems }: { items?: TocItem[] } 
           : "opacity-0 -translate-x-3 pointer-events-none"
       }`}
     >
-      <nav className="bg-white/90 dark:bg-[#242626] border border-stone-200/80 rounded-2xl p-5 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-        <div className="text-[11px] uppercase tracking-[0.14em] text-stone-500 font-medium mb-4">
+      {/* A hairline rule instead of a card. The active item is marked by a 2px
+          bar that grows out of 40% height and lies exactly over that rule
+          (left: -1px covers it) — no filled pill, no background, no horizontal
+          shift. That restraint is the whole effect. */}
+      <nav className="border-l border-charcoal/15">
+        <div className="pl-4 mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-charcoal/50">
           On this page
         </div>
-        <ul className="space-y-0.5">
+        <ul>
           {items.map((item) => {
             const isActive = active === item.id;
             return (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className={`flex items-center gap-2 rounded-md px-2.5 py-1.5 text-[13.5px] transition-colors ${
-                    item.level === 2 ? "ml-4" : ""
-                  } ${
-                    isActive
-                      ? "bg-cream-warm text-charcoal font-medium"
-                      : "text-stone-500 hover:text-charcoal"
-                  }`}
-                >
-                  <span
-                    className={`inline-block size-1.5 rounded-full shrink-0 transition-colors ${
-                      isActive ? "bg-terracotta" : "bg-transparent"
+                  aria-current={isActive ? "true" : undefined}
+                  className={`relative block py-1.5 pl-4 text-sm transition-colors duration-t2 ease-out-expo
+                    before:content-[''] before:absolute before:-left-px before:top-[5px] before:bottom-[5px]
+                    before:w-0.5 before:rounded-[1px] before:bg-charcoal
+                    before:transition-[opacity,transform] before:duration-t3 before:ease-out-expo ${
+                      item.level === 2 ? "ml-4" : ""
+                    } ${
+                      isActive
+                        ? "text-charcoal before:opacity-100 before:scale-y-100"
+                        : "text-charcoal/70 hover:text-charcoal before:opacity-0 before:scale-y-[.4]"
                     }`}
-                    aria-hidden
-                  />
-                  <span className="truncate">{item.label}</span>
+                >
+                  <span className="block truncate">{item.label}</span>
                 </a>
               </li>
             );
