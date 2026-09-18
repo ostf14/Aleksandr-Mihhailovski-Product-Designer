@@ -26,9 +26,21 @@ function assetPath(relative: string) {
   return path.join(process.cwd(), relative);
 }
 
-function gambarino(): Buffer {
+/**
+ * Must be a STATIC font. Satori's parser throws on a variable font's `fvar`
+ * table — `Cannot read properties of undefined` inside parseFvarAxis — and the
+ * route answers 500. Pointing this at Satoshi-Variable.ttf is therefore a
+ * silent way to break every link preview on the site.
+ *
+ * Satoshi-600.ttf is that variable file pinned to the heading weight with
+ * `python -m fontTools.varLib.instancer Satoshi-Variable.ttf wght=600`. The
+ * variable original stays beside it as the source to re-cut from; it is not
+ * loadable here. Worth knowing: its wght axis defaults to 900, so a parser
+ * that did accept it would render the card in Black.
+ */
+function satoshi(): Buffer {
   if (!fontCache) {
-    fontCache = fs.readFileSync(assetPath("lib/fonts/Gambarino-Regular.ttf"));
+    fontCache = fs.readFileSync(assetPath("lib/fonts/Satoshi-600.ttf"));
   }
   return fontCache;
 }
@@ -110,11 +122,11 @@ export function renderOgImage(
             >
               <div
                 style={{
-                  fontFamily: "Gambarino",
+                  fontFamily: "Satoshi",
                   fontSize: 70,
                   color: TEXT,
                   lineHeight: 1.05,
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.034em",
                 }}
               >
                 {SITE_NAME}
@@ -129,9 +141,9 @@ export function renderOgImage(
       ...OG_SIZE,
       fonts: [
         {
-          name: "Gambarino",
-          data: gambarino(),
-          weight: 400,
+          name: "Satoshi",
+          data: satoshi(),
+          weight: 600,
           style: "normal",
         },
       ],
