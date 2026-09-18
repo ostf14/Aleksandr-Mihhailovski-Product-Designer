@@ -33,7 +33,7 @@ function CardContent({ c }: { c: Work }) {
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
             {c.org}
           </div>
-          <h3 className="mt-2 font-serif font-normal text-[22px] leading-tight tracking-tight">
+          <h3 className="mt-2 font-sans font-semibold text-[22px] leading-tight tracking-tight">
             {c.title}
           </h3>
           <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
@@ -75,7 +75,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
   return (
     <section className="px-6 md:px-10 pb-32">
       <div className="max-w-prose mx-auto">
-        <h2 className="font-serif font-normal text-h2 tracking-tight mb-5">
+        <h2 className="font-sans font-semibold text-h2 tracking-tight mb-5">
           More case studies
         </h2>
 

@@ -13,15 +13,16 @@ function nodeText(node: React.ReactNode): string {
   return "";
 }
 
-const NEWSREADER = "var(--font-newsreader), Georgia, serif";
 
 /**
  * MDX element map for lecture bodies.
  *
- * Reading text is set in Newsreader — the same face the ReMargin reading
- * surface uses — while headings stay in the site's display serif so a lecture
- * still reads as part of this site. Everything resolves to existing tokens;
- * no new colours or sizes are introduced here.
+ * Everything is Satoshi now, like the rest of the site. Reading text simply
+ * inherits it from <body> instead of naming a family per element — the
+ * previous Newsreader pass was the last antiqua left after the grotesque
+ * switch. Newsreader itself stays registered in the layout: the ReMargin
+ * design-system showcase documents that project's own type and still needs it.
+ * Everything resolves to existing tokens; no new colours or sizes here.
  */
 export const lectureMdxComponents: MDXComponents = {
   h2: ({ children }) => {
@@ -29,7 +30,7 @@ export const lectureMdxComponents: MDXComponents = {
     return (
       <h2
         id={slugifyHeading(text)}
-        className="scroll-mt-28 font-serif font-normal text-[1.75rem] md:text-[2rem] leading-[1.2] tracking-tight text-charcoal mt-14 mb-4 first:mt-0"
+        className="scroll-mt-28 font-sans font-semibold text-[1.75rem] md:text-[2rem] leading-[1.2] tracking-tight text-charcoal mt-14 mb-4 first:mt-0"
       >
         {children}
       </h2>
@@ -41,7 +42,7 @@ export const lectureMdxComponents: MDXComponents = {
     return (
       <h3
         id={slugifyHeading(text)}
-        className="scroll-mt-28 font-serif font-normal text-[1.375rem] md:text-[1.5rem] leading-[1.25] tracking-tight text-charcoal mt-10 mb-3"
+        className="scroll-mt-28 font-sans font-semibold text-[1.375rem] md:text-[1.5rem] leading-[1.25] tracking-tight text-charcoal mt-10 mb-3"
       >
         {children}
       </h3>
@@ -51,7 +52,6 @@ export const lectureMdxComponents: MDXComponents = {
   p: ({ children }) => (
     <p
       className="text-[1.0625rem] md:text-[1.125rem] leading-[1.75] text-charcoal/90 mb-6"
-      style={{ fontFamily: NEWSREADER }}
     >
       {children}
     </p>
@@ -60,7 +60,6 @@ export const lectureMdxComponents: MDXComponents = {
   ul: ({ children }) => (
     <ul
       className="mb-6 space-y-2 list-disc pl-6 marker:text-terracotta text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
-      style={{ fontFamily: NEWSREADER }}
     >
       {children}
     </ul>
@@ -69,7 +68,6 @@ export const lectureMdxComponents: MDXComponents = {
   ol: ({ children }) => (
     <ol
       className="mb-6 space-y-2 list-decimal pl-6 marker:text-terracotta marker:font-mono marker:text-[0.9em] text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
-      style={{ fontFamily: NEWSREADER }}
     >
       {children}
     </ol>
@@ -80,7 +78,6 @@ export const lectureMdxComponents: MDXComponents = {
   blockquote: ({ children }) => (
     <blockquote
       className="my-8 border-l-2 border-terracotta pl-5 italic text-charcoal/80 [&>p]:mb-3 [&>p:last-child]:mb-0"
-      style={{ fontFamily: NEWSREADER }}
     >
       {children}
     </blockquote>
@@ -127,7 +124,6 @@ export const lectureMdxComponents: MDXComponents = {
   td: ({ children }) => (
     <td
       className="border-b border-stone-200 py-3 pr-4 text-[0.95rem] leading-[1.6] text-charcoal/90 align-top"
-      style={{ fontFamily: NEWSREADER }}
     >
       {children}
     </td>

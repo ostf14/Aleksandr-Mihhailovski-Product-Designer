@@ -44,7 +44,7 @@ export default function Page() {
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   ReMargin
                 </h1>
               </FadeIn>

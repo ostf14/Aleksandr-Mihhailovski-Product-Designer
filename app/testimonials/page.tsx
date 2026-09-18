@@ -30,7 +30,7 @@ export default function Page() {
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   In their own words
                 </p>
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   Testimonials
                 </h1>
               </FadeIn>

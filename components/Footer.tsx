@@ -91,7 +91,7 @@ export function Footer() {
 
         {/* Centered content column below the action bar */}
         <div className="relative z-10 mx-auto max-w-[1080px] px-6 md:px-10 pt-12 md:pt-16 pb-24 md:pb-12">
-          <h2 className="font-serif font-normal italic text-3xl md:text-5xl leading-[1.05] tracking-tight text-[#282726] dark:text-[#E8E8E6]">
+          <h2 className="font-sans font-semibold italic text-3xl md:text-5xl leading-[1.05] tracking-tight text-[#282726] dark:text-[#E8E8E6]">
             Let&rsquo;s work together
           </h2>
           <p className="mt-3 font-sans text-base text-[#6F6E69] dark:text-neutral-400">

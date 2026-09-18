@@ -24,7 +24,7 @@ export function Section({
                 </div>
               )}
               {heading && (
-                <h2 className="font-serif font-normal text-h2 tracking-tight">{heading}</h2>
+                <h2 className="font-sans font-semibold text-h2 tracking-tight">{heading}</h2>
               )}
             </FadeIn>
           </div>

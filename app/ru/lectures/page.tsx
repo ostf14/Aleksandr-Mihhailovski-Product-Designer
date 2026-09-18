@@ -72,7 +72,7 @@ export default function Page() {
                         <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-2">
                           Лекция {e.number}
                         </div>
-                        <h2 className="font-serif font-normal text-[20px] md:text-[24px] leading-tight tracking-tight text-charcoal">
+                        <h2 className="font-sans font-semibold text-[20px] md:text-[24px] leading-tight tracking-tight text-charcoal">
                           {e.title}
                         </h2>
                         <p className="mt-2 text-[0.95rem] leading-[1.55] text-charcoal/70">

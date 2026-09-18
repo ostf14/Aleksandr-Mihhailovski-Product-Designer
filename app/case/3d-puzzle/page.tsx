@@ -42,7 +42,7 @@ export default function Page() {
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   3D Museum Puzzle
                 </h1>
               </FadeIn>

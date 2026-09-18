@@ -78,7 +78,7 @@ export default function Page() {
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   Educational Platform Redesign
                 </h1>
               </FadeIn>
@@ -364,7 +364,7 @@ export default function Page() {
                   <div className="max-w-prose mx-auto space-y-10">
                     {results.map((r, i) => (
                       <FadeIn key={r.h} delay={i * 0.05}>
-                        <h3 className="font-serif font-normal text-xl md:text-2xl tracking-tight mb-3">
+                        <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
                           {r.h}
                         </h3>
                         <p className="text-[1.125rem] leading-[1.65] text-charcoal/90">{r.p}</p>

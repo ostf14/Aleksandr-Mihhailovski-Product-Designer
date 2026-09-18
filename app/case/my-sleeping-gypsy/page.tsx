@@ -92,7 +92,7 @@ function SubHeading({ id, children }: { id: string; children: React.ReactNode })
     <div id={id} className="scroll-mt-20 px-6 md:px-10">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
-          <h3 className="max-w-prose mx-auto font-serif font-normal text-xl md:text-2xl tracking-tight">
+          <h3 className="max-w-prose mx-auto font-sans font-semibold text-xl md:text-2xl tracking-tight">
             {children}
           </h3>
         </FadeIn>
@@ -122,7 +122,7 @@ export default function Page() {
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   My Sleeping Gypsy
                 </h1>
               </FadeIn>

@@ -29,7 +29,7 @@ export default function Page() {
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Graphic &amp; brand
                 </p>
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   Graphic
                 </h1>
               </FadeIn>

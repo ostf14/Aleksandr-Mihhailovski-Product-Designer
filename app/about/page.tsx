@@ -54,7 +54,7 @@ export default function Page() {
           <header className="px-6 md:px-10 pt-6 md:pt-10 pb-14">
             <div className="max-w-4xl mx-auto">
               <FadeIn className="max-w-prose mx-auto">
-                <h1 className="font-serif font-normal text-hero tracking-tight">
+                <h1 className="font-sans font-semibold text-hero tracking-tight">
                   About
                 </h1>
               </FadeIn>
