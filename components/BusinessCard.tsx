@@ -201,14 +201,13 @@ export function BusinessCard() {
             The tracking is in em, not the -2.6px it corresponds to, so it
             holds as the clamp scales the type down.
 
-            The slope is steep — 18.5vw — because the old 7.2vw bottomed out on
-            its 30px floor long before a phone got narrow, and the name ended
-            up visibly smaller than the buttons under it. 18.5vw is measured,
-            not guessed: "Hi, I'm Alex" set 215px wide at 46.4px, so reaching
-            the pills' 296px on a folded Fold's 344 needs about 64px, which is
-            18.5vw there. It caps at 72 from roughly 390 up, so every screen
-            wider than a narrow phone gets the same heading as the desktop. */}
-        <h2 className="font-sans font-medium text-[clamp(44px,18.5vw,72px)] leading-[1.04] tracking-[-0.036em]">
+            The two ramps are held apart by a fixed ratio. 16.6vw against the
+            role's 12.8vw puts the name at 1.30x the role at every width where
+            it is not already capped — inside the 1.6x ceiling, and well down
+            from the 18.5vw it ran at before, which matched the pills exactly
+            but read as shouting on a phone. Both reach 72px by about 560, so
+            anything wider than a phone still sees one size. */}
+        <h2 className="font-sans font-medium text-[clamp(38px,16.6vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex
           </span>
