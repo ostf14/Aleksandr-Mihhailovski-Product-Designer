@@ -103,61 +103,66 @@ export function BusinessCard() {
             Mail and LinkedIn stay reachable as the quiet tail; the footer
             carries all four in full on every page.
 
-            No icons anywhere in this row. A download glyph beside the words
+            No icons anywhere here. A download glyph beside the words
             "Download CV" says nothing the words do not, and the GitHub and
             LinkedIn marks at 18px were unreadable mush — a brand glyph drawn
             in lucide's hairline stroke falls apart at that size. */}
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-x-3 gap-y-4">
-          <Button
-            href={links.cv}
-            size="lg"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Download CV
-          </Button>
-          <Button
-            href={links.github}
-            size="lg"
-            variant="secondary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See the code
-          </Button>
-
-          <span
-            aria-hidden
-            className="mx-2 hidden h-5 w-px bg-[#ebebeb] dark:bg-[#292929] sm:block"
-          />
-
-          <button
-            type="button"
-            onClick={copyEmail}
-            aria-label={
-              copied ? "Email address copied" : `Copy email address ${links.email}`
-            }
-            className={`group/mail ${TAIL_LINK}`}
-          >
-            {copied ? "Copied!" : "Email"}
-            {/* Borrowed from the reference's secondary button: the tooltip says
-                what pressing gets you, so the label can stay one word. */}
-            <span
-              aria-hidden
-              className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#171717] px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100 dark:bg-[#ededed] dark:text-[#171717]"
+        <div className="mt-9 flex flex-col items-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button
+              href={links.cv}
+              size="lg"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {copied ? "Copied!" : links.email}
-            </span>
-          </button>
+              Download CV
+            </Button>
+            <Button
+              href={links.github}
+              size="lg"
+              variant="secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              See the code
+            </Button>
+          </div>
 
-          <a
-            href={links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={TAIL_LINK}
-          >
-            LinkedIn
-          </a>
+          {/* Own row under the pills. Beside them they read as a third and
+              fourth option at the same moment of choosing; underneath they
+              read as what they are — what is left once you have passed on
+              both buttons. */}
+          <div className="flex items-center gap-6">
+            <button
+              type="button"
+              onClick={copyEmail}
+              aria-label={
+                copied
+                  ? "Email address copied"
+                  : `Copy email address ${links.email}`
+              }
+              className={`group/mail ${TAIL_LINK}`}
+            >
+              {copied ? "Copied!" : "Copy email"}
+              {/* The label says what the press does; the tooltip says which
+                  address it will put on the clipboard. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#171717] px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100 dark:bg-[#ededed] dark:text-[#171717]"
+              >
+                {copied ? "Copied!" : links.email}
+              </span>
+            </button>
+
+            <a
+              href={links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={TAIL_LINK}
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </motion.div>
     </motion.div>
