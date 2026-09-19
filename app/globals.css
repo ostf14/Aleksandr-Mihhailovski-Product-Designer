@@ -410,7 +410,17 @@ html:not(.dark) .border-neutral-200 {
   object-fit: cover;
   object-position: center;
 }
+/* Sits at partial opacity rather than fully covering the photograph, so the
+   dither reads as a texture ON the colour instead of replacing it with a
+   black-and-white copy. At 1 it was a treatment you had to hover away to get
+   past; at 0.55 the colour shows through and the stipple is the finish.
+
+   This is also what makes it work on a phone. Before, touch got the opaque
+   version and a timed fade that took it away after a beat — so the effect was
+   over before anyone had looked at it. Now the resting state IS the intended
+   look, and hover on a desktop is what takes the texture off. */
 .hero-portrait-dither {
+  opacity: 0.55;
   filter: url(#hero-dither);
   transition: opacity var(--t-5) var(--e-out);
 }
@@ -422,18 +432,12 @@ html:not(.dark) .border-neutral-200 {
 .dark .hero-portrait-dither {
   filter: url(#hero-dither) brightness(0.85);
 }
-/* Touch has no hover to reward, so the reveal happens once on its own — the
-   picture develops rather than waiting for a gesture nobody will make. The
-   reduced-motion block at the end of this file collapses the duration, and
-   `forwards` means it lands on the clean frame immediately rather than
-   stranding the dithered one. */
-@media (hover: none) {
-  .hero-portrait-dither {
-    animation: hero-dither-out var(--t-6) var(--e-out) 700ms forwards;
-  }
-}
-@keyframes hero-dither-out {
-  to {
+/* Hover takes the texture off entirely. This rule had gone missing in an
+   earlier edit, so the lift had quietly stopped working on the desktop too —
+   not only on touch, where it was noticed. Fine pointers only: without a
+   hover there is nothing to end it, and the resting texture is the point. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-portrait:hover .hero-portrait-dither {
     opacity: 0;
   }
 }
@@ -478,7 +482,7 @@ html:not(.dark) .border-neutral-200 {
    The whole turn is one transform on one element, so it composites. */
 .logo-mark {
   display: inline-block;
-  border-radius: 8px;
+  border-radius: 9999px;
   overflow: hidden;
   perspective: 300px;
 }

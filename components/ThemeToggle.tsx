@@ -22,10 +22,18 @@ export function ThemeToggle() {
     // the whole page every frame and the switch lags. Kill transitions for the
     // duration of the flip, then restore them on the next frame so the change
     // is a single instant repaint.
+    // ...with one exception. The two icons in this very button are the thing
+    // the press is supposed to animate, and the blanket rule above was
+    // stopping them dead: the sun and moon swapped instantly while everything
+    // else stayed still. The second rule wins on both specificity and order,
+    // so they keep their transition through the flip while the other few
+    // hundred elements on the page still repaint in one go.
     const killer = document.createElement("style");
     killer.appendChild(
       document.createTextNode(
-        "*,*::before,*::after{transition:none !important}",
+        "*,*::before,*::after{transition:none !important}" +
+          ".theme-toggle svg{transition:opacity var(--t-3) var(--e-out)," +
+          "transform var(--t-4) var(--e-spring) !important}",
       ),
     );
     document.head.appendChild(killer);

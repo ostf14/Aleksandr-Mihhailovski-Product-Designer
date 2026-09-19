@@ -225,11 +225,18 @@ export function BusinessCard() {
             redraw in GithubIcon.tsx — at 17px the hairline version's
             tentacles and face collapse into a squiggle. The footer keeps the
             stroke version, where it sits among other lucide icons. */}
-        <div className="mt-9 flex flex-col items-center gap-5">
-          <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-9 flex w-full flex-col items-center gap-5">
+          {/* Below 480 the two pills stack and stretch to one width. Left to
+              wrap on their own they came out one under another anyway but at
+              two different widths, set by their labels — which is what a
+              narrow phone like a folded Fold shows. The column is capped at
+              320 so the pair matches the brand pill above it rather than
+              running edge to edge. */}
+          <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3 min-[480px]:w-auto min-[480px]:max-w-none min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-center">
             <Button
               href={links.cv}
               size="lg"
+              className="w-full min-[480px]:w-auto"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -240,6 +247,7 @@ export function BusinessCard() {
               href={links.github}
               size="lg"
               variant="secondary"
+              className="w-full min-[480px]:w-auto"
               target="_blank"
               rel="noopener noreferrer"
             >

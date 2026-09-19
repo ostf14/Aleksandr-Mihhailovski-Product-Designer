@@ -1,23 +1,31 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
+import { useTilt } from "./useTilt";
 
 /**
  * The gallery entry, built to the same pattern as a case panel in
  * StickyCases.tsx — cover on top at a fixed height, body underneath, one
- * typeface. It used to be the old landscape card with the image squeezed into
- * a 38% column, which read as a different kind of thing sitting under a
- * section that had moved on.
+ * typeface, and the same tilt and spotlight on hover. It used to be the old
+ * landscape card with the image squeezed into a 38% column, which read as a
+ * different kind of thing sitting under a section that had moved on.
  *
- * Deliberately not sharing a component with Panel: that one carries the tilt,
- * the reveal and a Work record, none of which apply to a single static card,
- * and folding this into it would mean a props object describing which half of
- * the behaviour to switch off.
+ * Deliberately not sharing a component with Panel: that one carries the reveal
+ * and a Work record, neither of which applies to a single static card, and
+ * folding this into it would mean a props object describing which half of the
+ * behaviour to switch off. The tilt they do share lives in useTilt.
  */
 export function GalleryCard() {
+  const tiltRef = useTilt<HTMLAnchorElement>();
+
   return (
     <a
+      ref={tiltRef}
       href="/other"
-      className="group relative block overflow-hidden rounded-2xl border border-stone-200/60 bg-white dark:bg-cream-warm shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] transition-transform duration-t3 ease-out-expo hover:-translate-y-0.5"
+      className="tiltable group relative block overflow-hidden rounded-2xl border border-stone-200/60 bg-white dark:bg-cream-warm shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
     >
+      <span aria-hidden className="spot" />
+
       <div className="relative h-[200px] md:h-[240px] overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
         <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -30,7 +38,7 @@ export function GalleryCard() {
         </div>
       </div>
 
-      <div className="p-5 md:p-6">
+      <div className="relative z-[2] p-5 md:p-6">
         <div className="font-sans text-[11px] uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
           Gallery
           <span className="text-stone-400/70"> · </span>
