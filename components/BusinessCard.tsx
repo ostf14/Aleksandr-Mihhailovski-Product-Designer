@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Copy } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { Button } from "./Button";
+import { GithubMark } from "./GithubMark";
 import { links } from "@/lib/site";
 
 // Gentle shrink only. A big scale-down vacated a lot of its (still
@@ -218,12 +219,12 @@ export function BusinessCard() {
             Mail and LinkedIn stay reachable as the quiet tail; the footer
             carries all four in full on every page.
 
-            The pills stay wordmark-only: a download glyph beside "Download
-            CV" says nothing the words do not. The links below carry icons
-            because theirs do say something the words cannot — a copy sheet
-            and an out-of-page arrow are the difference between "this stays
-            here" and "this takes you away". Both are lucide primitives; the
-            brand marks that sat here before were unreadable at this size. */}
+            Icons sit on the side the eye needs them: the download glyph leads
+            "Download CV", the GitHub mark follows the word it belongs to.
+            That mark is the filled one GitHub itself draws, not the stroke
+            redraw in GithubIcon.tsx — at 17px the hairline version's
+            tentacles and face collapse into a squiggle. The footer keeps the
+            stroke version, where it sits among other lucide icons. */}
         <div className="mt-9 flex flex-col items-center gap-5">
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button
@@ -232,6 +233,7 @@ export function BusinessCard() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              <Download className="h-[17px] w-[17px] shrink-0" aria-hidden />
               Download CV
             </Button>
             <Button
@@ -241,7 +243,8 @@ export function BusinessCard() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              See the code
+              GitHub
+              <GithubMark className="h-[17px] w-[17px] shrink-0" />
             </Button>
           </div>
 
