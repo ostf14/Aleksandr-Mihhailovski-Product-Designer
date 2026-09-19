@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
+import { Check, Download, Mail } from "lucide-react";
+import { Button } from "./Button";
 import { GithubIcon } from "./GithubIcon";
+import { LinkedInIcon } from "./LinkedInIcon";
 import { links } from "@/lib/site";
 
 // Gentle shrink only. A big scale-down vacated a lot of its (still
@@ -117,7 +119,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#ebebeb] dark:border-[#292929] bg-[#ffffff] dark:bg-[#111111] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#ebebeb] dark:border-[#292929] bg-[#ffffff] dark:bg-[#111111] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)] px-6 py-12 sm:px-8 sm:py-14 md:px-12 md:py-20"
     >
       {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
       <div
@@ -130,98 +132,117 @@ export function BusinessCard() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
-        {/* Photo — 80px mobile (above text, left-aligned) / 180px desktop (beside) */}
-        <div className="relative shrink-0 self-center md:self-auto">
+      <div className="relative z-10 flex flex-col items-center text-center">
+        {/* Photo — a small square above the name, the way a profile picture
+            sits above a handle. Round read as an avatar chip beside the text;
+            centred, square and quiet it reads as "this is who is talking". */}
+        <div className="relative">
           <div
             aria-hidden
-            className="absolute inset-[-6px] md:inset-[-12px] rounded-full bg-terracotta/20 dark:bg-terracotta/15 blur-xl"
+            className="absolute inset-[-10px] rounded-3xl bg-terracotta/20 dark:bg-terracotta/15 blur-xl"
           />
-          <div className="relative z-10 w-20 h-20 md:w-[180px] md:h-[180px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none flex items-center justify-center">
+          <div className="relative z-10 size-20 md:size-[88px] overflow-hidden rounded-2xl border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/hero-photo.jpg"
               alt="Aleksandr Mihhailovski"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         </div>
 
-        <div className="flex-1 min-w-0">
-          {/* Heading */}
-          <h2 className="font-sans font-semibold text-[clamp(22px,7vw,36px)] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight text-center md:text-left">
-            <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
-              Hi, I&rsquo;m Alex{" "}
-              <span
-                role="img"
-                aria-label="waving hand"
-                className="inline-block"
-                style={{
-                  transformOrigin: "70% 70%",
-                  animation: "wave 2s ease-in-out 3 forwards",
-                }}
-              >
-                👋🏻
-              </span>
+        <h2 className="mt-7 font-sans font-semibold text-[clamp(26px,7.5vw,40px)] md:text-5xl lg:text-6xl leading-[1.05] tracking-tight">
+          <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
+            Hi, I&rsquo;m Alex{" "}
+            <span
+              role="img"
+              aria-label="waving hand"
+              className="inline-block"
+              style={{
+                transformOrigin: "70% 70%",
+                animation: "wave 2s ease-in-out 3 forwards",
+              }}
+            >
+              👋🏻
             </span>
-            <span className="block text-[#666666] dark:text-[#ededed]/40">
-              Product Design Engineer
-            </span>
-          </h2>
+          </span>
+          <span className="block text-[#666666] dark:text-[#ededed]/40">
+            Product Design Engineer
+          </span>
+        </h2>
 
-          {/* Typewriter */}
-          <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[56px] md:min-h-0">
-            <span className="font-medium text-[#171717] dark:text-[#ededed]">
-              I make{" "}
+        {/* Typewriter */}
+        <p className="mt-5 font-sans text-lg md:text-2xl leading-snug min-h-[56px] md:min-h-0">
+          <span className="font-medium text-[#171717] dark:text-[#ededed]">
+            I make{" "}
+          </span>
+          <span className="font-normal text-[#666666] dark:text-neutral-500">
+            {text}
+          </span>
+          <span aria-hidden className="font-normal text-terracotta cursor-blink">
+            |
+          </span>
+        </p>
+
+        {/* Actions.
+            Two pills, and both earn the weight: almost everyone who opens this
+            link arrives from a conversation that is already running — an
+            application, a forwarded link, a Telegram thread — so "contact me"
+            solves a problem they do not have. What they do instead is take the
+            CV away to forward it, and check whether "engineer" is load-bearing.
+            Mail and LinkedIn stay reachable as the quiet tail; the footer
+            carries all four in full on every page. */}
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <Button href={links.cv} target="_blank" rel="noopener noreferrer">
+            <Download className="h-4 w-4" aria-hidden />
+            Download CV
+          </Button>
+          <Button
+            href={links.github}
+            variant="secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GithubIcon className="h-4 w-4" />
+            See the code
+          </Button>
+
+          <span
+            aria-hidden
+            className="mx-1 hidden h-5 w-px bg-[#ebebeb] dark:bg-[#292929] sm:block"
+          />
+
+          <button
+            type="button"
+            onClick={copyEmail}
+            aria-label={copied ? "Email address copied" : `Copy email address ${links.email}`}
+            className="group/mail relative grid size-[42px] place-items-center rounded-full border border-[#ebebeb] dark:border-[#292929] text-[#666666] dark:text-[#8f8f8f] transition-colors duration-t2 ease-out-expo hover:border-terracotta/40 hover:text-terracotta"
+          >
+            {copied ? (
+              <Check className="h-[18px] w-[18px]" aria-hidden />
+            ) : (
+              <Mail className="h-[18px] w-[18px]" aria-hidden />
+            )}
+            {/* Borrowed from the reference's secondary button: the tooltip says
+                what pressing gets you, so the icon does not have to. */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#171717] px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100 dark:bg-[#ededed] dark:text-[#171717]"
+            >
+              {copied ? "Copied!" : links.email}
             </span>
-            <span className="font-normal text-[#666666] dark:text-neutral-500">
-              {text}
-            </span>
-            <span aria-hidden className="font-normal text-terracotta cursor-blink">
-              |
-            </span>
-          </p>
+          </button>
+
+          <a
+            href={links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            className="grid size-[42px] place-items-center rounded-full border border-[#ebebeb] dark:border-[#292929] text-[#666666] dark:text-[#8f8f8f] transition-colors duration-t2 ease-out-expo hover:border-terracotta/40 hover:text-terracotta"
+          >
+            <LinkedInIcon className="h-[18px] w-[18px]" />
+          </a>
         </div>
-      </div>
-
-      {/* Bottom action bar — flush to card edges, four equal cells */}
-      <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[#ebebeb] dark:border-[#292929] grid grid-cols-4 md:rounded-b-2xl md:overflow-hidden">
-        <a
-          href={links.cv}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-terracotta/5"
-        >
-          <Download className="w-4 h-4" />
-          <span>My CV</span>
-        </a>
-        <button
-          type="button"
-          onClick={copyEmail}
-          aria-label={copied ? "Email copied" : `Copy email ${links.email}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-terracotta/5"
-        >
-          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-          <span>{copied ? "Copied!" : "Email"}</span>
-        </button>
-        <a
-          href={links.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-terracotta/5"
-        >
-          <ArrowUpRight className="w-4 h-4" />
-          <span>LinkedIn</span>
-        </a>
-        <a
-          href={links.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] transition-colors duration-200 hover:bg-terracotta/5"
-        >
-          <GithubIcon className="w-4 h-4" />
-          <span>GitHub</span>
-        </a>
       </div>
     </motion.div>
   );
