@@ -94,15 +94,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="format-detection"
           content="telephone=no, date=no, address=no, email=no"
         />
-        {/* Satoshi carries the whole site — body, headings and UI. Weights:
-            400/500 for text, 600 for headings, 700 for the one bold. The
-            preconnect matters because this is a third-party origin on the
-            critical path: without it the browser pays DNS + TLS before it
-            can even start the stylesheet. */}
-        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
+        {/* Satoshi carries the whole site — body, headings and UI. Self-hosted
+            as the single variable file (wght 300–900) rather than four static
+            cuts off fontshare: the reference this design follows uses the
+            variable, the whole axis is 42 KB against four separate downloads,
+            and it takes a third-party origin off the critical path — the
+            browser no longer pays DNS + TLS + a stylesheet round trip before
+            it can even ask for a font. @font-face lives in globals.css.
+
+            The preload is what keeps that a win: without it the font is only
+            discovered once the CSS has parsed. Not to be confused with
+            lib/fonts/Satoshi-600.ttf, which is a static cut for the OG card —
+            satori cannot parse a variable font. See lib/og.tsx. */}
         <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          href="/fonts/Satoshi-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script dangerouslySetInnerHTML={{ __html: catDurationScript }} />

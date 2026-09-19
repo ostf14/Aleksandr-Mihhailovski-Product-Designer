@@ -78,7 +78,11 @@ export function BusinessCard() {
           />
         </div>
 
-        <h2 className="mt-7 font-sans font-medium text-[clamp(26px,7.5vw,40px)] md:text-5xl lg:text-6xl leading-[1.05] tracking-tight">
+        {/* 72px / -0.036em at full size, matching the reference's own
+            heading. The tracking is written in em, not px, so it holds as the
+            clamp scales the type down on narrow screens — -2.6px is only
+            right at 72px. */}
+        <h2 className="mt-7 font-sans font-medium text-[clamp(30px,7.2vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex{" "}
             <span
@@ -112,11 +116,17 @@ export function BusinessCard() {
             LinkedIn marks at 18px were unreadable mush — a brand glyph drawn
             in lucide's hairline stroke falls apart at that size. */}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-x-3 gap-y-4">
-          <Button href={links.cv} target="_blank" rel="noopener noreferrer">
+          <Button
+            href={links.cv}
+            size="lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Download CV
           </Button>
           <Button
             href={links.github}
+            size="lg"
             variant="secondary"
             target="_blank"
             rel="noopener noreferrer"

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Satoshi, self-hosted as the variable file. One 42 KB download covers the
+   whole 300–900 axis, so any weight is free and the text never reflows
+   between two static cuts. Preloaded from app/layout.tsx.
+
+   Note the axis DEFAULTS to 900: anything that reaches this face without an
+   explicit font-weight would render in Black. Every element gets one, via
+   Tailwind or the UA's own 400 — but that is why the range is declared. */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Variable.woff2") format("woff2-variations");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Asthetic Pixel";
   src: url("/fonts/AstheticPixel-Regular.otf") format("opentype");
@@ -70,8 +85,12 @@
   --btn1-bg:   linear-gradient(180deg, #2a2a2a 0%, #171717 60%);
   --btn1-fg:   #ffffff;
   --btn1-line: #171717;
-  --btn1-sh:   0 1px 1px rgb(0 0 0 / .16), 0 2px 6px rgb(0 0 0 / .14),
-               inset 0 1px 0 rgb(255 255 255 / .14);
+  /* Three drops, not one: a 1px contact shadow to seat the pill, a short
+     ambient one, and a wide soft cast that is what actually reads as depth.
+     A single blurred shadow either looks flat or looks like a halo. */
+  --btn1-sh:   0 1px 1px rgb(0 0 0 / .18), 0 3px 8px rgb(0 0 0 / .16),
+               0 10px 24px -8px rgb(0 0 0 / .24),
+               inset 0 1px 0 rgb(255 255 255 / .16);
 
   --btn2-bg:   linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
   --btn2-fg:   #3d3d3d;
@@ -80,7 +99,8 @@
      highlight in --btn2-sh, the way the reference does it — an outline on
      top of that read as a second, competing edge. */
   --btn2-line: transparent;
-  --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .06), 0 2px 5px rgb(0 0 0 / .045),
+  --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .07), 0 2px 5px rgb(0 0 0 / .05),
+               0 8px 20px -8px rgb(0 0 0 / .14),
                inset 0 1px 0 rgb(255 255 255 / .9);
 
   /* Frosted surface for the nav pill */
@@ -126,14 +146,19 @@
   --btn1-bg:   linear-gradient(180deg, #ffffff 0%, #e8e8e8 100%);
   --btn1-fg:   #171717;
   --btn1-line: transparent;
-  --btn1-sh:   0 1px 1px rgb(0 0 0 / .5), 0 2px 6px rgb(0 0 0 / .45),
+  /* The wide drop is joined by a faint light cast: on near-black, a white
+     pill throws light rather than shadow, and without it the button looks
+     pasted on. */
+  --btn1-sh:   0 1px 1px rgb(0 0 0 / .5), 0 3px 8px rgb(0 0 0 / .45),
+               0 10px 28px -10px rgb(255 255 255 / .16),
                inset 0 1px 0 rgb(255 255 255 / .9);
 
   --btn2-bg:   linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
   --btn2-fg:   #ededed;
   --btn2-line: transparent;
   --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .5), 0 2px 5px rgb(0 0 0 / .4),
-               inset 0 1px 0 rgb(255 255 255 / .06);
+               0 8px 22px -10px rgb(0 0 0 / .6),
+               inset 0 1px 0 rgb(255 255 255 / .08);
 
   color-scheme: dark;
 }
@@ -347,6 +372,10 @@ html:not(.dark) .border-neutral-200 {
 
   .btn-sm { height: 36px; padding: 0 16px; font-size: 14px; }
   .btn-md { height: 42px; padding: 0 22px; font-size: 15px; }
+  /* Hero size. The reference's CTA pills are this much bigger than its
+     in-page buttons, and at 42px ours sat too close to body text to read as
+     the thing to press. */
+  .btn-lg { height: 50px; padding: 0 28px; font-size: 16px; }
 
   .btn-primary {
     background-image: var(--btn1-bg);

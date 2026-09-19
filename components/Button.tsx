@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
 type Variant = "primary" | "secondary";
-type Size = "sm" | "md";
+type Size = "sm" | "md" | "lg";
 
 type CommonProps = {
   variant?: Variant;
@@ -40,6 +40,7 @@ export type ButtonProps = AnchorProps | NativeButtonProps;
 const SIZE_CLASS: Record<Size, string> = {
   sm: "btn-sm",
   md: "btn-md",
+  lg: "btn-lg",
 };
 
 const VARIANT_CLASS: Record<Variant, string> = {
