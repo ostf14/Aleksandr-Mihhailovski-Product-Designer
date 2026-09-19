@@ -158,17 +158,12 @@ export function StickyCases() {
       className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-[minmax(0,300px)_minmax(0,1fr)] md:gap-14 lg:gap-20"
     >
       <div className="self-start md:sticky md:top-[18vh]">
+        {/* Heading alone for now. The standfirst that sat here was cut — the
+            sticky column is the one piece of prose visible for the whole
+            scroll, so a line that only describes the section wastes it. */}
         <h2 className="rv font-sans text-4xl md:text-5xl font-semibold tracking-tight text-[#171717] dark:text-[#ededed]">
           Cases
         </h2>
-        <p
-          className="rv mt-4 max-w-[30ch] text-[15px] leading-[1.6] text-stone-500"
-          style={{ "--d": "80ms" } as CSSProperties}
-        >
-          {cases.length} projects — B2B tooling, editorial products, and
-          prototypes built to find out whether an idea held up. Each one ends
-          with what actually changed.
-        </p>
       </div>
 
       <div className="flex flex-col gap-6 md:gap-8">
