@@ -505,23 +505,51 @@ html:not(.dark) .border-neutral-200 {
 }
 
 /* Spotlight following the cursor — the one place the accent earns its keep
-   here, as direct feedback for where the pointer is. Sits above the cover
-   (which is why it is ::after on the panel, not on the media box) and is
-   click-through. */
-.tiltable::after {
-  content: "";
+   here, as direct feedback for where the pointer is. Dithered by the filter
+   in StickyCases.tsx, so it is not a translucent haze but a field of
+   full-strength accent pixels that thins out towards the edge.
+
+   It is an element rather than a ::after with a moving background-position,
+   and it moves by `transform` alone. That is the whole performance story: a
+   transform is composited, so the filter rasterises once and is then pushed
+   around, where a moving background would repaint — and re-run feTurbulence —
+   on every frame of every pointermove.
+
+   Read the gradient's alpha as coverage, because after thresholding that is
+   exactly what it becomes: 0.16 at the centre leaves about one pixel in six
+   standing, thinning to none at the rim. The first pass ran this at 0.42 and
+   buried the card under orange confetti — a figure that would have been
+   unremarkable as a haze is enormous as a count of pixels. */
+.spot {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 1;
-  border-radius: inherit;
+  width: 340px;
+  height: 340px;
+  margin: -170px 0 0 -170px;
   pointer-events: none;
   opacity: 0;
+  transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0);
   transition: opacity var(--t-3) var(--e-out);
+  /* Extra stops rather than a straight ramp: a linear falloff spreads a thin
+     even sprinkle right out to the rim, which reads as dust over the whole
+     card instead of a cloud gathered at the pointer. */
   background: radial-gradient(
-    420px circle at var(--px, 50%) var(--py, 50%),
-    rgb(var(--rgb-terracotta) / 0.08),
-    transparent 62%
+    closest-side circle,
+    rgb(var(--rgb-terracotta) / 0.22) 0%,
+    rgb(var(--rgb-terracotta) / 0.12) 30%,
+    rgb(var(--rgb-terracotta) / 0.035) 62%,
+    rgb(var(--rgb-terracotta) / 0) 100%
   );
+  filter: url(#spot-dither);
+  will-change: transform;
+}
+/* Set from here, not as an attribute on the primitive, so it follows the
+   accent across themes — #C2410C on light, #FF6936 on dark. */
+#spot-dither feFlood {
+  flood-color: rgb(var(--rgb-terracotta));
+  flood-opacity: 1;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -531,7 +559,7 @@ html:not(.dark) .border-neutral-200 {
       0 18px 40px -24px rgb(0 0 0 / 0.25),
       0 0 0 1px rgb(var(--rgb-terracotta) / 0.08);
   }
-  .tiltable:hover::after {
+  .tiltable:hover .spot {
     opacity: 1;
   }
 }
