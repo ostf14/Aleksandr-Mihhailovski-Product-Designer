@@ -1,18 +1,40 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { CaseCardMedia } from "./CaseCardMedia";
 import { useTilt } from "./useTilt";
 import { cases, workHref, type Work } from "@/lib/works";
 
+/** Delay between two panels that come into view in the same batch. */
+const STAGGER_MS = 70;
+/** A batch never delays anything past this, however many arrive together. */
+const STAGGER_CAP_MS = 210;
+
 /**
  * Reveal-on-enter for the whole grid, from a single observer.
  *
- * The stagger lives in CSS (`--d` per child, read by the `.rv` transition
- * delay) instead of in a chain of timeouts, so a fast scroll past the section
- * cannot leave half the panels mid-flight. `once: true` semantics — the
- * observer unobserves each element the first time it lands.
+ * Two things here were measured going wrong and are fixed deliberately.
+ *
+ * 1. WHEN it fires. This used to ask for threshold 0.15 inside a root shrunk
+ *    12% at the bottom. That was tuned when a panel was ~350px tall; panels are
+ *    now ~500-620px, and 15% of a tall panel is a lot of pixels. Measured at
+ *    1440x900: a panel sitting at top 786 — 114px of it on screen — had not
+ *    fired, so the card sat there blank while visibly in view. Now it is
+ *    threshold 0 against a fixed 48px inset: the moment a sliver clears the
+ *    bottom edge, it goes. A fixed inset rather than a percentage because a
+ *    percentage of a tall window is a large number, which is how the old value
+ *    got away with it on a laptop and failed on a desktop.
+ *
+ * 2. The STAGGER. The delay used to be baked in per index — panel 7 carried
+ *    `--d: 480ms` for its whole life. But these panels come into view one at a
+ *    time as you scroll, not as a group, so the seventh card waited 480ms doing
+ *    nothing and then took another 480ms to fade: a second between "should
+ *    appear" and "has appeared". That is the hang.
+ *
+ *    The delay is now assigned per BATCH, at the moment the observer fires.
+ *    Cards that genuinely arrive together still cascade; a card arriving alone
+ *    — which is what scrolling actually produces — starts immediately.
  */
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -29,13 +51,21 @@ function useReveal<T extends HTMLElement>() {
 
     const io = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("in");
-          io.unobserve(entry.target);
-        }
+        const arriving = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        arriving.forEach((entry, i) => {
+          const el = entry.target as HTMLElement;
+          el.style.setProperty(
+            "--d",
+            `${Math.min(i * STAGGER_MS, STAGGER_CAP_MS)}ms`,
+          );
+          el.classList.add("in");
+          io.unobserve(el);
+        });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.15 },
+      { rootMargin: "0px 0px -48px 0px", threshold: 0 },
     );
 
     targets.forEach((t) => io.observe(t));
@@ -45,14 +75,14 @@ function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
-function Panel({ work, index }: { work: Work; index: number }) {
+function Panel({ work }: { work: Work }) {
   const tiltRef = useTilt<HTMLAnchorElement>();
 
+  // No --d in the markup any more: the observer assigns it per batch, so a
+  // panel scrolled to on its own does not inherit a queue position it is not
+  // in.
   return (
-    <div
-      className="rv rv-scale"
-      style={{ "--d": `${index * 80}ms` } as CSSProperties}
-    >
+    <div className="rv rv-scale">
       <a
         ref={tiltRef}
         href={workHref(work)}
@@ -127,8 +157,8 @@ export function StickyCases() {
       </div>
 
       <div className="flex flex-col gap-6 md:gap-8">
-        {cases.map((c, i) => (
-          <Panel key={c.slug} work={c} index={i} />
+        {cases.map((c) => (
+          <Panel key={c.slug} work={c} />
         ))}
       </div>
     </div>

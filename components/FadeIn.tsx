@@ -48,7 +48,7 @@ export function FadeIn({ children, delay = 0, className, as = "div" }: FadeInPro
 export function FadeStagger({
   children,
   className,
-  stagger = 0.1,
+  stagger = 0.055,
 }: {
   children: ReactNode;
   className?: string;
