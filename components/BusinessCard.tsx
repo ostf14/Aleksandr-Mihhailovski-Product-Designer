@@ -25,10 +25,16 @@ const TAIL_ICON = "h-[15px] w-[15px] shrink-0";
 
 /**
  * Noise dithering, done as an actual filter chain rather than a texture laid
- * on top: flatten to grey, crush the contrast, add a field of noise, then
- * threshold the result to one bit. Adding noise before thresholding is what
- * dithering *is* — it trades a hard posterisation edge for stippling, so the
- * face survives being reduced to black and white.
+ * on top: flatten to grey, set the contrast, add a field of noise, then
+ * quantise. Adding noise before quantising is what dithering *is* — it trades
+ * a hard posterisation edge for stippling, so tone survives being reduced to
+ * a handful of levels.
+ *
+ * Six levels, not two. One bit reduced the face to a stencil with nothing
+ * between the lit and unlit side of it; six leaves the modelling in, and the
+ * grain carries the steps between them. The noise amplitude is matched to one
+ * quantisation step — wider and it is just noise, narrower and the steps show
+ * as bands.
  *
  * feTurbulence has a bad history in this file's neighbourhood: a full-viewport
  * one in globals.css used to re-rasterise on every theme toggle and stalled
@@ -51,15 +57,15 @@ function DitherFilter() {
         <feColorMatrix type="saturate" values="0" result="grey" />
         {/* Fitted to this photograph rather than guessed. Its tonal range is
             narrow — background around 0.68, face around 0.53, hair and the
-            polo neck down at 0.11 — so this line maps 0.68 to 0.82 (near
-            white, lightly grained) and 0.53 to 0.55 (right at the threshold,
-            where the grain does its work). Measure again if the picture is
-            ever replaced; a curve fitted to one photograph does not transfer
-            to the next. */}
+            polo neck down at 0.11 — so this line opens it out across the full
+            0–1 the quantiser expects: the dark end lands on 0, the background
+            near the top, and the face in the middle where there are levels to
+            spend on it. Measure again if the picture is ever replaced; a
+            curve fitted to one photograph does not transfer to the next. */}
         <feComponentTransfer in="grey" result="crushed">
-          <feFuncR type="linear" slope="1.8" intercept="-0.404" />
-          <feFuncG type="linear" slope="1.8" intercept="-0.404" />
-          <feFuncB type="linear" slope="1.8" intercept="-0.404" />
+          <feFuncR type="linear" slope="1.49" intercept="-0.164" />
+          <feFuncG type="linear" slope="1.49" intercept="-0.164" />
+          <feFuncB type="linear" slope="1.49" intercept="-0.164" />
         </feComponentTransfer>
 
         <feTurbulence
@@ -85,31 +91,31 @@ function DitherFilter() {
         />
         {/* And stretch it. One octave of fractalNoise clusters tightly around
             0.5 — a spread of maybe ±0.15 — which after scaling is far too
-            small to flip any pixel the contrast curve has moved away from the
-            threshold. This expands that cluster to very nearly the full 0–1
-            range, which is what finally puts grain in the mid-tones. */}
+            small to carry a pixel across a quantisation step. This expands
+            that cluster to very nearly the full 0–1 range, which is what
+            finally puts grain in the mid-tones. */}
         <feComponentTransfer in="greynoise" result="noiseAmp">
           <feFuncR type="linear" slope="4" intercept="-1.5" />
           <feFuncG type="linear" slope="4" intercept="-1.5" />
           <feFuncB type="linear" slope="4" intercept="-1.5" />
         </feComponentTransfer>
 
-        {/* result = image + (noise - 0.5) * 0.45 */}
+        {/* result = image + (noise - 0.5) * 0.18, one quantisation step */}
         <feComposite
           in="crushed"
           in2="noiseAmp"
           operator="arithmetic"
           k1="0"
           k2="1"
-          k3="0.45"
-          k4="-0.225"
+          k3="0.18"
+          k4="-0.09"
           result="mixed"
         />
 
         <feComponentTransfer in="mixed">
-          <feFuncR type="discrete" tableValues="0 1" />
-          <feFuncG type="discrete" tableValues="0 1" />
-          <feFuncB type="discrete" tableValues="0 1" />
+          <feFuncR type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1" />
+          <feFuncG type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1" />
+          <feFuncB type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1" />
         </feComponentTransfer>
       </filter>
     </svg>
