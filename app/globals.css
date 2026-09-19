@@ -351,6 +351,79 @@ html:not(.dark) .border-neutral-200 {
   .btn-secondary:hover { filter: brightness(0.985); }
 }
 
+/* ---------------------------------------------------------------
+   Sticky-grid case panels (components/StickyCases.tsx).
+
+   Deliberately outside @layer components: these names are only ever written
+   here and read from one TSX file, and a layered rule Tailwind cannot find a
+   literal match for gets purged from the build with the log still green.
+
+   Reveal and tilt are kept on two different elements on purpose — both want
+   `transform`, and on one element the later rule would simply erase the other.
+   --------------------------------------------------------------- */
+
+/* Reveal. The stagger is a per-element --d read by the transition delay, so a
+   fast scroll past the section cannot strand half the panels mid-flight the
+   way a chain of timeouts can. */
+.rv {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--t-5) var(--e-out) var(--d, 0ms),
+    transform var(--t-5) var(--e-out) var(--d, 0ms);
+}
+.rv-scale {
+  transform: translateY(24px) scale(0.985);
+}
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tilt. --mx/--my are the pointer's offset from the panel's centre in
+   [-0.5, 0.5], written by useTilt; they rest at 0, so an untouched panel is
+   flat and the whole expression stays in CSS. */
+.tiltable {
+  transform: perspective(1100px) rotateX(calc(var(--my, 0) * -1 * 5deg))
+    rotateY(calc(var(--mx, 0) * 5deg)) translateZ(0);
+  transition:
+    transform var(--t-3) var(--e-out),
+    box-shadow var(--t-4) var(--e-out),
+    border-color var(--t-3) var(--e-out);
+}
+
+/* Spotlight following the cursor — the one place the accent earns its keep
+   here, as direct feedback for where the pointer is. Sits above the cover
+   (which is why it is ::after on the panel, not on the media box) and is
+   click-through. */
+.tiltable::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--t-3) var(--e-out);
+  background: radial-gradient(
+    420px circle at var(--px, 50%) var(--py, 50%),
+    rgb(var(--rgb-terracotta) / 0.08),
+    transparent 62%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tiltable:hover {
+    border-color: rgb(var(--rgb-terracotta) / 0.35);
+    box-shadow:
+      0 18px 40px -24px rgb(0 0 0 / 0.25),
+      0 0 0 1px rgb(var(--rgb-terracotta) / 0.08);
+  }
+  .tiltable:hover::after {
+    opacity: 1;
+  }
+}
+
 /* Respect OS-level reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -360,5 +433,17 @@ html:not(.dark) .border-neutral-200 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Reveal and tilt are start-state transforms, not animations — zeroing the
+     duration above would otherwise leave a panel sitting at opacity 0 until
+     the observer fires. Land them at their end state outright. */
+  .rv,
+  .rv-scale {
+    opacity: 1;
+    transform: none;
+  }
+  .tiltable {
+    transform: none;
   }
 }
