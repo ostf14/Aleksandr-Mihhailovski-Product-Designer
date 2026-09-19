@@ -117,7 +117,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#FFFEFB] dark:bg-[#242626] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#ffffff] dark:bg-[#111111] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
       {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
       <div
@@ -150,7 +150,7 @@ export function BusinessCard() {
         <div className="flex-1 min-w-0">
           {/* Heading */}
           <h2 className="font-sans font-semibold text-[clamp(22px,7vw,36px)] md:text-4xl lg:text-6xl leading-[1.05] tracking-tight text-center md:text-left">
-            <span className="block whitespace-nowrap text-[#282726] dark:text-[#E8E8E6]">
+            <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
               Hi, I&rsquo;m Alex{" "}
               <span
                 role="img"
@@ -164,17 +164,17 @@ export function BusinessCard() {
                 👋🏻
               </span>
             </span>
-            <span className="block text-[#6F6E69] dark:text-[#E8E8E6]/40">
+            <span className="block text-[#666666] dark:text-[#ededed]/40">
               Product Design Engineer
             </span>
           </h2>
 
           {/* Typewriter */}
           <p className="mt-6 font-sans text-xl md:text-[28px] leading-snug min-h-[56px] md:min-h-0">
-            <span className="font-medium text-[#282726] dark:text-[#E8E8E6]">
+            <span className="font-medium text-[#171717] dark:text-[#ededed]">
               I make{" "}
             </span>
-            <span className="font-normal text-[#6F6E69] dark:text-neutral-500">
+            <span className="font-normal text-[#666666] dark:text-neutral-500">
               {text}
             </span>
             <span aria-hidden className="font-normal text-terracotta cursor-blink">
@@ -185,12 +185,12 @@ export function BusinessCard() {
       </div>
 
       {/* Bottom action bar — flush to card edges, four equal cells */}
-      <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 grid grid-cols-4 md:rounded-b-2xl md:overflow-hidden">
+      <div className="relative z-10 -mx-3 sm:-mx-8 md:-mx-12 mt-6 sm:mt-8 md:mt-12 border-t border-[#ebebeb] dark:border-[#292929] grid grid-cols-4 md:rounded-b-2xl md:overflow-hidden">
         <a
           href={links.cv}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -199,7 +199,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${links.email}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>
@@ -208,7 +208,7 @@ export function BusinessCard() {
           href={links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] border-r border-[rgba(40,39,38,0.1)] dark:border-neutral-500/20 transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           <ArrowUpRight className="w-4 h-4" />
           <span>LinkedIn</span>
@@ -217,7 +217,7 @@ export function BusinessCard() {
           href={links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#3A3833] dark:text-[#E8E8E6] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] transition-colors duration-200 hover:bg-[#FF6936]/5"
         >
           <GithubIcon className="w-4 h-4" />
           <span>GitHub</span>

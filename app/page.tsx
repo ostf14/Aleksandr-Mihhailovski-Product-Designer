@@ -70,7 +70,7 @@ export default function Page() {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <h1 className="font-sans font-semibold text-hero tracking-tight text-[#282726] dark:text-[#E8E8E6]">
+                  <h1 className="font-sans font-semibold text-hero tracking-tight text-[#171717] dark:text-[#ededed]">
                     {SITE_NAME}
                   </h1>
 
@@ -112,7 +112,7 @@ export default function Page() {
                   />
                   <div className="pr-12">
                     <div className="flex items-center gap-2.5">
-                      <h2 className="font-sans font-semibold text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#282726] dark:text-[#E8E8E6]">
+                      <h2 className="font-sans font-semibold text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-[#171717] dark:text-[#ededed]">
                         {s.label}
                       </h2>
                       {s.badge && (

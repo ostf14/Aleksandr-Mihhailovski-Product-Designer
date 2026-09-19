@@ -44,7 +44,7 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
       className={`flex shrink-0 items-center gap-1.5 px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
         isActive
           ? "bg-charcoal text-cream"
-          : "text-[#6F6E69] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
+          : "text-[#666666] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
       }`}
     >
       {item.label}
