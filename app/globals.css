@@ -528,6 +528,19 @@ html:not(.dark) .border-neutral-200 {
   border-bottom-color: #292929;
 }
 
+/* The same band closing the page instead of opening it, so its hairline sits
+   on top. Not `border-t` from Tailwind: that sets a width and leaves the
+   colour at the framework default, which is a light grey — fine against white
+   and a bright white line across a near-black footer, which is exactly how it
+   looked. This puts the rule on the same token the hero's bottom edge uses. */
+.hero-band--top {
+  border-bottom: 0;
+  border-top: 1px solid #ebebeb;
+}
+.dark .hero-band--top {
+  border-top-color: #292929;
+}
+
 /* ---------------------------------------------------------------
    Sticky-grid case panels (components/StickyCases.tsx).
 

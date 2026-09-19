@@ -105,14 +105,13 @@ export function StickyCases() {
   const gridRef = useReveal<HTMLDivElement>();
 
   return (
-    /* Panels sized to about a third of the viewport and pinned to the right of
-       the column, with the heading taking whatever is left. Two equal columns
-       did put the left edge past the middle, but left 500px of nothing beside
-       a one-word heading; a fixed right column keeps the panels narrow without
-       the grid pretending that void is a column of content. */
+    /* Panels take three quarters, the heading the remaining quarter. A third
+       kept the left edge past the middle of the screen but paid for it with a
+       void beside a one-word heading; at three quarters the heading column
+       reads as a margin someone chose rather than as space left over. */
     <div
       ref={gridRef}
-      className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-[1fr_clamp(400px,33vw,520px)] md:gap-14 lg:gap-20"
+      className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-[1fr_3fr] md:gap-14 lg:gap-20"
     >
       <div className="self-start md:sticky md:top-[18vh]">
         {/* Heading alone for now. The standfirst that sat here was cut — the
