@@ -65,34 +65,21 @@ export function BusinessCard() {
         }}
         className="mx-auto flex w-full max-w-[1080px] flex-col items-center text-center"
       >
-        {/* Photo — a plain square above the name, the way a profile picture
-            sits above a handle. No ring and no glow: both were doing the work
-            of separating a round chip from the text beside it, and centred
-            above the heading there is nothing to separate it from. */}
-        <div className="size-20 md:size-[88px] overflow-hidden rounded-2xl">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero-photo.jpg"
-            alt="Aleksandr Mihhailovski"
-            className="h-full w-full object-cover"
-          />
-        </div>
-
         {/* 72px / -0.036em at full size, matching the reference's own
             heading. The tracking is written in em, not px, so it holds as the
             clamp scales the type down on narrow screens — -2.6px is only
             right at 72px. */}
-        <h2 className="mt-7 font-sans font-medium text-[clamp(30px,7.2vw,72px)] leading-[1.04] tracking-[-0.036em]">
+        <h2 className="font-sans font-medium text-[clamp(30px,7.2vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex{" "}
-            {/* Set into the line rather than placed beside it. The span is the
-                frame — it owns the size, the clipping and the stacking
-                context, so a shader layer can go inside it later without
-                touching the type around it. Decorative to a screen reader:
-                the heading already says whose face this is. */}
+            {/* The portrait now lives in the line instead of standing above
+                it. The span is the frame — it owns the clipping and the
+                stacking context, so a shader layer can go inside it later
+                without touching the type around it. Decorative to a screen
+                reader: the heading already says whose face this is. */}
             <span aria-hidden className="hero-inline-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hero-inline.jpg" alt="" />
+              <img src="/hero-photo.jpg" alt="" />
             </span>
           </span>
           <span className="block text-[#666666] dark:text-[#ededed]/40">

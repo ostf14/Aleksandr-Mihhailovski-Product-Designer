@@ -405,17 +405,18 @@ html:not(.dark) .border-neutral-200 {
 .hero-inline-photo {
   position: relative;
   display: inline-block;
-  height: 0.722em;
-  aspect-ratio: 737 / 553;
   vertical-align: baseline;
   overflow: hidden;
   border-radius: 0.06em;
+  line-height: 0;
 }
+/* The height lives on the img, not the span, so the picture's own
+   proportions set the width. Swapping the photo for one of a different
+   shape then needs no second edit here. */
 .hero-inline-photo img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 0.722em;
+  width: auto;
 }
 
 /* ---------------------------------------------------------------
