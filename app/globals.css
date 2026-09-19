@@ -33,13 +33,20 @@
   --rgb-cream-warm: 250 250 250;   /* #fafafa — cards / hover  (ref --surface) */
   --rgb-cream-deep: 242 242 242;   /* #f2f2f2 — footer, deeper (ref --surface-2) */
   --rgb-charcoal: 23 23 23;        /* #171717 — primary text   (ref --fg) */
-  /* The accent is ours — the reference has no chromatic colour at all — so it
-     is the one value with no counterpart to copy. #FF6936 measures 2.87:1 on
-     white, and it carries 11px uppercase kickers, so on light it is darkened
-     to the first step that clears 4.5:1 on all three surfaces (5.18 on the
-     page, 4.96 on cards, 4.63 on the deep surface). Dark keeps #FF6936, which
-     already reads 6.91:1 there. */
-  --rgb-terracotta: 194 65 12;     /* #C2410C — accent, light */
+  /* The accent is now monochrome, like the reference, which has no chromatic
+     colour at all.
+
+     Retired by redefining the token rather than by editing call sites: the
+     orange had 101 of them across 31 files, one of which is
+     app/case/remargin/DesignSystemShowcase.tsx — under instruction not to be
+     touched, not one line. Moving the value moves all of them at once and
+     leaves that file alone.
+
+     It is the foreground colour, so everything that used to warm up on hover
+     now deepens instead: text-terracotta darkens on light and brightens on
+     dark, and the /5 and /35 tints become faint grey washes. The name stays
+     because 101 call sites read it. */
+  --rgb-terracotta: 23 23 23;      /* #171717 — was #C2410C */
 
   /* Semantic token layer (portfolio_refactor_spec step 5a). Still unread by
      every component — 5b migrates the classes — but the values now match the
@@ -54,7 +61,7 @@
   --fg:             23  23  23;   /* #171717  ref --fg        */
   --muted:         102 102 102;   /* #666666  ref --fg-3      */
   --faint:         107 107 107;   /* #6b6b6b  ref --tip-fg-2  */
-  --accent:        194  65  12;   /* #C2410C  ours, darkened  */
+  --accent:         23  23  23;   /* #171717  monochrome now  */
 
   /* ---------------------------------------------------------------
      Motion, elevation and rhythm tokens (visual_refresh_spec step 1).
@@ -120,7 +127,7 @@
   --rgb-cream-warm: 17 17 17;     /* #111111 — cards / pill   (ref --surface) */
   --rgb-cream-deep: 26 26 26;     /* #1a1a1a — footer, deeper (ref --surface-2) */
   --rgb-charcoal: 237 237 237;    /* #ededed — main text      (ref --fg) */
-  --rgb-terracotta: 255 105 54;   /* #FF6936 — accent, dark; 6.91:1 here, no darkening needed */
+  --rgb-terracotta: 237 237 237;  /* #ededed — was #FF6936; the fg, as on light */
 
   /* Semantic token layer — dark values from portfolio_refactor_spec. */
   --bg:             10  10  10;   /* #0a0a0a  ref --bg        */
@@ -130,7 +137,7 @@
   --fg:            237 237 237;   /* #ededed  ref --fg        */
   --muted:         143 143 143;   /* #8f8f8f  ref --fg-3      */
   --faint:         131 131 131;   /* #838383  ref --fg-4, nudged */
-  --accent:        255 105  54;   /* #FF6936  ours            */
+  --accent:        237 237 237;   /* #ededed  monochrome now  */
 
   /* Motion/elevation overrides. Durations and easings are theme-agnostic,
      so only the surfaces that depend on background luminance are redefined
@@ -431,6 +438,60 @@ html:not(.dark) .border-neutral-200 {
   }
 }
 
+/* Theme toggle — the two icons swap by rotating past each other.
+
+   Both are always in the DOM, stacked in the same place, and the state moves
+   opacity, rotation and scale together: the one leaving turns out and shrinks,
+   the one arriving turns in from the other side. A hidden/block swap cannot do
+   this, because half the transition has no element to happen on.
+
+   These have to sit outside the transition killer in ThemeToggle: that style
+   element suppresses every transition for one frame while .dark flips, which
+   is what keeps the page from repainting hundreds of colour transitions at
+   once. The icons are caught by it too and land instantly — a fair trade for
+   the switch not lagging, and the button still animates on hover and focus. */
+.theme-toggle {
+  position: relative;
+}
+.theme-toggle svg {
+  position: absolute;
+  transition:
+    opacity var(--t-3) var(--e-out),
+    transform var(--t-4) var(--e-spring);
+}
+.theme-toggle[data-theme="light"] .i-sun,
+.theme-toggle[data-theme="dark"] .i-moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+.theme-toggle[data-theme="dark"] .i-sun,
+.theme-toggle[data-theme="light"] .i-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Logo mark — flips on hover of the whole brand link.
+
+   A half turn about Y, so it turns edge-on and comes back mirrored. The image
+   is on its own layer inside the frame because `backface-visibility` needs a
+   3D context to have anything to hide, and the frame also owns the rounding.
+   The whole turn is one transform on one element, so it composites. */
+.logo-mark {
+  display: inline-block;
+  border-radius: 8px;
+  overflow: hidden;
+  perspective: 300px;
+}
+.logo-mark img {
+  transform-origin: 50% 50%;
+  transition: transform var(--t-5) var(--e-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  a:hover > .logo-mark img {
+    transform: rotateY(180deg);
+  }
+}
+
 /* ---------------------------------------------------------------
    Hero band (components/BusinessCard.tsx).
 
@@ -515,11 +576,9 @@ html:not(.dark) .border-neutral-200 {
    around, where a moving background would repaint — and re-run feTurbulence —
    on every frame of every pointermove.
 
-   Read the gradient's alpha as coverage, because after thresholding that is
-   exactly what it becomes: 0.16 at the centre leaves about one pixel in six
-   standing, thinning to none at the rim. The first pass ran this at 0.42 and
-   buried the card under orange confetti — a figure that would have been
-   unremarkable as a haze is enormous as a count of pixels. */
+   It was dithered for a while and is not any more: stippling reads as texture
+   over the card rather than as light under the pointer, and on a monochrome
+   palette it lost the one thing that carried it. A plain soft wash again. */
 .spot {
   position: absolute;
   top: 0;
@@ -532,24 +591,13 @@ html:not(.dark) .border-neutral-200 {
   opacity: 0;
   transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0);
   transition: opacity var(--t-3) var(--e-out);
-  /* Extra stops rather than a straight ramp: a linear falloff spreads a thin
-     even sprinkle right out to the rim, which reads as dust over the whole
-     card instead of a cloud gathered at the pointer. */
   background: radial-gradient(
     closest-side circle,
-    rgb(var(--rgb-terracotta) / 0.22) 0%,
-    rgb(var(--rgb-terracotta) / 0.12) 30%,
-    rgb(var(--rgb-terracotta) / 0.035) 62%,
+    rgb(var(--rgb-terracotta) / 0.07) 0%,
+    rgb(var(--rgb-terracotta) / 0.03) 45%,
     rgb(var(--rgb-terracotta) / 0) 100%
   );
-  filter: url(#spot-dither);
   will-change: transform;
-}
-/* Set from here, not as an attribute on the primitive, so it follows the
-   accent across themes — #C2410C on light, #FF6936 on dark. */
-#spot-dither feFlood {
-  flood-color: rgb(var(--rgb-terracotta));
-  flood-opacity: 1;
 }
 
 @media (hover: hover) and (pointer: fine) {

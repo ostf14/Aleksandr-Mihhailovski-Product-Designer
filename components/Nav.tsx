@@ -122,9 +122,9 @@ function Logo() {
       href="/"
       className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
     >
-      <span className="relative size-8 rounded-full overflow-hidden shrink-0 dark:border-[1.5px] dark:border-[#333333]">
+      <span className="logo-mark relative size-8 shrink-0">
         <img
-          src="/logo-light.png"
+          src="/logo-skull.png"
           alt=""
           aria-hidden
           className="absolute inset-0 size-full object-cover"
@@ -216,9 +216,9 @@ export function Nav() {
           href="/"
           className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm text-charcoal hover:text-terracotta transition-colors"
         >
-          <span className="relative size-7 rounded-full overflow-hidden shrink-0 dark:border-[1.5px] dark:border-[#333333]">
+          <span className="logo-mark relative size-7 shrink-0">
             <img
-              src="/logo-light.png"
+              src="/logo-skull.png"
               alt=""
               aria-hidden
               className="absolute inset-0 size-full object-cover"

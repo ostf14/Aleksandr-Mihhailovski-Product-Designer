@@ -20,10 +20,8 @@ const TILT = 5;
  * raw pixels and drive the spotlight.
  *
  * The spotlight takes pixels rather than percentages on purpose. It is a fixed
- * box moved by `transform`, not a background painted at a moving position —
- * a transform is composited, so the expensive dither filter on it rasterises
- * once and is then just pushed around, instead of re-running on every frame of
- * every pointermove.
+ * box moved by `transform`, not a background painted at a moving position — a
+ * transform is composited, so it never repaints as it follows the cursor.
  *
  * Bound only for fine pointers: on touch there is no hover state to follow, and
  * a tilt that never resets reads as a rendering bug.
@@ -101,109 +99,6 @@ function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
-/**
- * The cursor spotlight, dithered.
- *
- * Same idea as the hero portrait's filter, but applied to ALPHA rather than to
- * colour: the source is a soft radial wash of the accent, and this replaces its
- * smooth falloff with a stipple. Pull the source's alpha out into RGB, add a
- * field of noise, threshold to one bit, push the result back into alpha, and
- * fill it with flat accent. So instead of a 10%-opaque orange haze it paints
- * roughly a tenth of the pixels at full strength — which is what a translucent
- * wash *is*, once you are not allowed to be translucent.
- *
- * flood-color is set from CSS (globals.css) rather than hardcoded here, so it
- * follows --rgb-terracotta across themes; the accent is a different value in
- * light and dark.
- */
-function SpotlightFilter() {
-  return (
-    <svg
-      aria-hidden
-      focusable="false"
-      width="0"
-      height="0"
-      className="absolute h-0 w-0 overflow-hidden"
-    >
-      <filter id="spot-dither" colorInterpolationFilters="sRGB">
-        {/* alpha -> RGB, opaque */}
-        <feColorMatrix
-          in="SourceGraphic"
-          type="matrix"
-          values="0 0 0 1 0
-                  0 0 0 1 0
-                  0 0 0 1 0
-                  0 0 0 0 1"
-          result="alphaGrey"
-        />
-
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.9"
-          numOctaves="1"
-          seed="3"
-          result="noise"
-        />
-        {/* Red into RGB, alpha pinned to 1 — feTurbulence writes noise into
-            alpha too, and premultiplied compositing then eats the variation. */}
-        <feColorMatrix
-          in="noise"
-          type="matrix"
-          values="1 0 0 0 0
-                  1 0 0 0 0
-                  1 0 0 0 0
-                  0 0 0 0 1"
-          result="noiseGrey"
-        />
-        {/* One octave clusters tightly around 0.5, so it gets stretched — but
-            only this far. For coverage to track the wash's alpha the noise has
-            to stay spread across the range: threshold(alpha + n - 0.5) leaves
-            a fraction of pixels standing equal to alpha only when n is roughly
-            uniform. Stretched hard enough to clip (slope 4, as in the hero
-            portrait) it collapses towards 0 and 1, the comparison stops
-            involving the image at all, and every pixel under the wash coin
-            flips — which is exactly what the first pass did: a uniform square
-            of confetti with no falloff in it. */}
-        <feComponentTransfer in="noiseGrey" result="noiseAmp">
-          <feFuncR type="linear" slope="2.2" intercept="-0.6" />
-          <feFuncG type="linear" slope="2.2" intercept="-0.6" />
-          <feFuncB type="linear" slope="2.2" intercept="-0.6" />
-        </feComponentTransfer>
-
-        {/* alpha + (noise - 0.5) */}
-        <feComposite
-          in="alphaGrey"
-          in2="noiseAmp"
-          operator="arithmetic"
-          k1="0"
-          k2="1"
-          k3="1"
-          k4="-0.5"
-          result="mixed"
-        />
-        <feComponentTransfer in="mixed" result="stepped">
-          <feFuncR type="discrete" tableValues="0 1" />
-          <feFuncG type="discrete" tableValues="0 1" />
-          <feFuncB type="discrete" tableValues="0 1" />
-        </feComponentTransfer>
-
-        {/* back into alpha, then fill it with flat accent */}
-        <feColorMatrix
-          in="stepped"
-          type="matrix"
-          values="0 0 0 0 0
-                  0 0 0 0 0
-                  0 0 0 0 0
-                  1 0 0 0 0"
-          result="mask"
-        />
-        <feFlood result="accent" />
-        <feComposite in="accent" in2="mask" operator="in" />
-      </filter>
-    </svg>
-  );
-}
-
 function Panel({ work, index }: { work: Work; index: number }) {
   const tiltRef = useTilt<HTMLAnchorElement>();
 
@@ -264,9 +159,14 @@ export function StickyCases() {
   const gridRef = useReveal<HTMLDivElement>();
 
   return (
+    /* Panels sized to about a third of the viewport and pinned to the right of
+       the column, with the heading taking whatever is left. Two equal columns
+       did put the left edge past the middle, but left 500px of nothing beside
+       a one-word heading; a fixed right column keeps the panels narrow without
+       the grid pretending that void is a column of content. */
     <div
       ref={gridRef}
-      className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-2 md:gap-14 lg:gap-20"
+      className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-[1fr_clamp(400px,33vw,520px)] md:gap-14 lg:gap-20"
     >
       <div className="self-start md:sticky md:top-[18vh]">
         {/* Heading alone for now. The standfirst that sat here was cut — the
@@ -282,8 +182,6 @@ export function StickyCases() {
           <Panel key={c.slug} work={c} index={i} />
         ))}
       </div>
-
-      <SpotlightFilter />
     </div>
   );
 }

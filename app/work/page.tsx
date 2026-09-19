@@ -31,14 +31,15 @@ export default function Page() {
           <StickyCases />
         </section>
 
-        {/* Other */}
+        {/* Other — same grid as Cases above it, so the single card lines up
+            with the panels rather than running the full width beneath them. */}
         <section id="other" className="px-6 md:px-10 mb-32 scroll-mt-[16.6667vh]">
-          <div className="max-w-[1080px] mx-auto">
-            <h2 className="mb-8 font-sans font-semibold text-4xl md:text-5xl tracking-tight text-[#171717] dark:text-[#ededed]">
-              Other
-            </h2>
-          </div>
-          <div className="max-w-[1080px] mx-auto">
+          <div className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-[1fr_clamp(400px,33vw,520px)] md:gap-14 lg:gap-20">
+            <div className="self-start">
+              <h2 className="font-sans font-semibold text-4xl md:text-5xl tracking-tight text-[#171717] dark:text-[#ededed]">
+                Other
+              </h2>
+            </div>
             <GalleryCard />
           </div>
         </section>

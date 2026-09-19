@@ -53,9 +53,12 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       title={`Switch to ${isDark ? "light" : "dark"} mode`}
-      className="size-9 rounded-full flex items-center justify-center text-stone-600 hover:text-charcoal hover:bg-cream-warm transition-colors"
+      data-theme={isDark ? "dark" : "light"}
+      className="theme-toggle size-9 rounded-full flex items-center justify-center text-stone-600 hover:text-charcoal hover:bg-cream-warm transition-colors"
     >
-      {/* Sun icon (visible in dark mode) */}
+      {/* Both icons are always rendered and stacked. The old version swapped
+          them with hidden/block, which cannot animate: there is no state to
+          move between when one of the two does not exist. */}
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -63,13 +66,12 @@ export function ThemeToggle() {
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`size-[18px] ${isDark ? "block" : "hidden"}`}
+        className="i-sun size-[18px]"
         aria-hidden
       >
         <circle cx="12" cy="12" r="4" />
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
       </svg>
-      {/* Moon icon (visible in light mode) */}
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -77,7 +79,7 @@ export function ThemeToggle() {
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`size-[18px] ${isDark ? "hidden" : "block"}`}
+        className="i-moon size-[18px]"
         aria-hidden
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
