@@ -75,7 +75,11 @@
 
   --btn2-bg:   linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
   --btn2-fg:   #3d3d3d;
-  --btn2-line: #e2e2e2;
+  /* Transparent, not removed: .btn keeps its 1px border so both variants
+     measure the same. The pill is defined by its fill and the inset top
+     highlight in --btn2-sh, the way the reference does it — an outline on
+     top of that read as a second, competing edge. */
+  --btn2-line: transparent;
   --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .06), 0 2px 5px rgb(0 0 0 / .045),
                inset 0 1px 0 rgb(255 255 255 / .9);
 
@@ -115,9 +119,19 @@
 
   --sh-pill: 0 1px 1px rgb(0 0 0 / .4), 0 4px 12px rgb(0 0 0 / .5);
 
+  /* Primary inverts in dark. Left at the light theme's near-black pill it
+     came out DARKER than the secondary sitting next to it on a near-black
+     page — the hierarchy read backwards. Light pill on dark, dark pill on
+     light: the primary is the one that contrasts most with the page. */
+  --btn1-bg:   linear-gradient(180deg, #ffffff 0%, #e8e8e8 100%);
+  --btn1-fg:   #171717;
+  --btn1-line: transparent;
+  --btn1-sh:   0 1px 1px rgb(0 0 0 / .5), 0 2px 6px rgb(0 0 0 / .45),
+               inset 0 1px 0 rgb(255 255 255 / .9);
+
   --btn2-bg:   linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
   --btn2-fg:   #ededed;
-  --btn2-line: #3a3a3a;
+  --btn2-line: transparent;
   --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .5), 0 2px 5px rgb(0 0 0 / .4),
                inset 0 1px 0 rgb(255 255 255 / .06);
 
@@ -340,7 +354,10 @@ html:not(.dark) .border-neutral-200 {
     border-color: var(--btn1-line);
     box-shadow: var(--btn1-sh);
   }
+  /* Brighten the near-black pill; darken the near-white one. brightness(1.12)
+     on a #ffffff button is a no-op, so dark mode needs its own direction. */
   .btn-primary:hover { filter: brightness(1.12); }
+  .dark .btn-primary:hover { filter: brightness(0.93); }
 
   .btn-secondary {
     background-image: var(--btn2-bg);
@@ -349,6 +366,38 @@ html:not(.dark) .border-neutral-200 {
     box-shadow: var(--btn2-sh);
   }
   .btn-secondary:hover { filter: brightness(0.985); }
+}
+
+/* ---------------------------------------------------------------
+   Hero band (components/BusinessCard.tsx).
+
+   Full-bleed and frameless. The card border was drawing a box around the
+   first thing on the page — a box that has to end somewhere, which is what
+   made it read as a widget rather than as the top of the site. Without it
+   the surface simply runs off both edges.
+
+   The radial lift is the light source behind the photo, taken from the
+   reference's CTA, which does the same on near-black. It is deliberately
+   only a few points away from the page colour in both themes: at higher
+   contrast it stops being light and starts being a shape.
+   --------------------------------------------------------------- */
+.hero-band {
+  background-color: #fafafa;
+  background-image: radial-gradient(
+    88% 72% at 50% 34%,
+    #ffffff 0%,
+    rgb(255 255 255 / 0) 68%
+  );
+  border-bottom: 1px solid #ebebeb;
+}
+.dark .hero-band {
+  background-color: #0d0d0d;
+  background-image: radial-gradient(
+    88% 72% at 50% 34%,
+    #1f1f1f 0%,
+    rgb(31 31 31 / 0) 68%
+  );
+  border-bottom-color: #292929;
 }
 
 /* ---------------------------------------------------------------

@@ -28,6 +28,9 @@ export function BusinessCard() {
   const { scrollY } = useScroll();
   const SPRING = { stiffness: 1000, damping: 100, mass: 0.2 } as const;
 
+  // Scale rides the content column, not the band. A full-bleed surface that
+  // shrinks pulls its own edges in from the viewport and the page colour
+  // shows up either side — the one thing a bleed is there to prevent.
   const scaleRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
     clamp: true,
   });
@@ -51,26 +54,17 @@ export function BusinessCard() {
   return (
     <motion.div
       data-hero-card="true"
-      style={{
-        scale,
-        opacity,
-        transformOrigin: "top center",
-        willChange: "transform, opacity",
-      }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#ebebeb] dark:border-[#292929] bg-[#ffffff] dark:bg-[#111111] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)] px-6 py-12 sm:px-8 sm:py-14 md:px-12 md:py-20"
+      style={{ opacity, willChange: "opacity" }}
+      className="hero-band relative w-full px-6 pt-[104px] pb-14 sm:px-8 md:pt-[136px] md:pb-20"
     >
-      {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
-      <div
-        aria-hidden
-        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.06] transition-opacity duration-300 ease-out z-0"
+      <motion.div
         style={{
-          backgroundImage:
-            "radial-gradient(circle, #767676 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
+          scale,
+          transformOrigin: "top center",
+          willChange: "transform",
         }}
-      />
-
-      <div className="relative z-10 flex flex-col items-center text-center">
+        className="mx-auto flex w-full max-w-[1080px] flex-col items-center text-center"
+      >
         {/* Photo — a plain square above the name, the way a profile picture
             sits above a handle. No ring and no glow: both were doing the work
             of separating a round chip from the text beside it, and centred
@@ -163,7 +157,7 @@ export function BusinessCard() {
             LinkedIn
           </a>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

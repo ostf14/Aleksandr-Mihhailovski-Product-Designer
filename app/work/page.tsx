@@ -20,8 +20,9 @@ export default function Page() {
       <ScrollToTop />
 
       <main>
-        {/* Business card — hero */}
-        <section className="px-0 md:px-10 pt-[100px] md:pt-[120px] mb-20">
+        {/* Hero — full-bleed band, so no horizontal padding here and no top
+            offset either: the band carries its own clearance for the nav. */}
+        <section className="mb-24 md:mb-32">
           <BusinessCard />
         </section>
 
