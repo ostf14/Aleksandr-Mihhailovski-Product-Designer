@@ -65,22 +65,29 @@ export function BusinessCard() {
         }}
         className="mx-auto flex w-full max-w-[1080px] flex-col items-center text-center"
       >
+        {/* Photo back above the name, in a 16:9 frame.
+
+            The source is a 640x640 head-and-shoulders portrait, so 16:9 is a
+            crop, not a reframe — the subject fills the square vertically and
+            a 9-unit-tall band out of 16 has to lose something. object-position
+            spends that loss downwards, on the shoulders and the polo neck,
+            and keeps the eyes where a face is read. */}
+        <div className="mb-8 w-[140px] md:w-[184px] aspect-video overflow-hidden rounded-xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero-photo.jpg"
+            alt="Aleksandr Mihhailovski"
+            className="h-full w-full object-cover object-[center_26%]"
+          />
+        </div>
+
         {/* 72px / -0.036em at full size, matching the reference's own
             heading. The tracking is written in em, not px, so it holds as the
             clamp scales the type down on narrow screens — -2.6px is only
             right at 72px. */}
         <h2 className="font-sans font-medium text-[clamp(30px,7.2vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
-            Hi, I&rsquo;m Alex{" "}
-            {/* The portrait now lives in the line instead of standing above
-                it. The span is the frame — it owns the clipping and the
-                stacking context, so a shader layer can go inside it later
-                without touching the type around it. Decorative to a screen
-                reader: the heading already says whose face this is. */}
-            <span aria-hidden className="hero-inline-photo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hero-photo.jpg" alt="" />
-            </span>
+            Hi, I&rsquo;m Alex
           </span>
           <span className="block text-[#666666] dark:text-[#ededed]/40">
             Product Design Engineer

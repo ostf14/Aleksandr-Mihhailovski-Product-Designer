@@ -386,39 +386,6 @@ html:not(.dark) .border-neutral-200 {
   .btn-secondary:hover { filter: brightness(0.985); }
 }
 
-/* Photo set into the heading.
-
-   Height is the CAP height of the type around it, not the line height — a
-   line box is a good deal taller than the capitals, and matching it would
-   leave the picture standing visibly proud of them.
-
-   0.722em, not the 0.74em Satoshi declares as sCapHeight: that metric is
-   nominal, and the actual inked height of H and A measures 52px at 72px,
-   which is 0.722. Going by the declared figure left the photo 1.3px tall
-   against the letters it is supposed to match. Being an em, it tracks the
-   heading's clamp down to phone sizes.
-
-   vertical-align: baseline then does the rest — the bottom margin edge of an
-   inline-block sits on the baseline, which is where the capitals sit too.
-   overflow: hidden is not only for the rounding: it makes this element the
-   frame a shader layer can live inside later without disturbing the type. */
-.hero-inline-photo {
-  position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-  overflow: hidden;
-  border-radius: 0.06em;
-  line-height: 0;
-}
-/* The height lives on the img, not the span, so the picture's own
-   proportions set the width. Swapping the photo for one of a different
-   shape then needs no second edit here. */
-.hero-inline-photo img {
-  display: block;
-  height: 0.722em;
-  width: auto;
-}
-
 /* ---------------------------------------------------------------
    Hero band (components/BusinessCard.tsx).
 
