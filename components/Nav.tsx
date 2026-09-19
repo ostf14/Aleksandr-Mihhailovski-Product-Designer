@@ -132,8 +132,7 @@ function Logo() {
         />
       </span>
       <span
-        className="text-[18px] font-normal leading-none"
-        style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+        className="font-sans text-[17px] font-medium leading-none tracking-[-0.01em]"
       >
         Aleksandr Mihhailovski
       </span>
@@ -226,8 +225,7 @@ export function Nav() {
             />
           </span>
           <span
-            className="text-[14px] font-normal leading-none"
-            style={{ fontFamily: "var(--font-pixelify-sans), system-ui, sans-serif" }}
+            className="font-sans text-[14px] font-medium leading-none tracking-[-0.01em]"
           >
             Aleksandr Mihhailovski
           </span>

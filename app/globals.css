@@ -486,7 +486,14 @@ html:not(.dark) .border-neutral-200 {
   overflow: hidden;
   perspective: 300px;
 }
+/* The radius has to be on the image as well, not only on the frame. The frame
+   clips with overflow: hidden, but the image carries a transform and a
+   perspective parent, which promotes it to its own compositing layer — and a
+   composited layer is not clipped by an ancestor's rounded corners. Computed
+   style on the frame said 9999px while the mark still rendered as a rounded
+   square, which is exactly that. */
 .logo-mark img {
+  border-radius: inherit;
   transform-origin: 50% 50%;
   transition: transform var(--t-5) var(--e-out);
 }

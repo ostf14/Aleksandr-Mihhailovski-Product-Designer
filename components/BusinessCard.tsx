@@ -197,11 +197,18 @@ export function BusinessCard() {
 
         <DitherFilter />
 
-        {/* 72px / -0.036em at full size, matching the reference's own
-            heading. The tracking is written in em, not px, so it holds as the
-            clamp scales the type down on narrow screens — -2.6px is only
-            right at 72px. */}
-        <h2 className="font-sans font-medium text-[clamp(30px,7.2vw,72px)] leading-[1.04] tracking-[-0.036em]">
+        {/* 72px / -0.036em at full size, matching the reference's own heading.
+            The tracking is in em, not the -2.6px it corresponds to, so it
+            holds as the clamp scales the type down.
+
+            The slope is steep — 18.5vw — because the old 7.2vw bottomed out on
+            its 30px floor long before a phone got narrow, and the name ended
+            up visibly smaller than the buttons under it. 18.5vw is measured,
+            not guessed: "Hi, I'm Alex" set 215px wide at 46.4px, so reaching
+            the pills' 296px on a folded Fold's 344 needs about 64px, which is
+            18.5vw there. It caps at 72 from roughly 390 up, so every screen
+            wider than a narrow phone gets the same heading as the desktop. */}
+        <h2 className="font-sans font-medium text-[clamp(44px,18.5vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex
           </span>

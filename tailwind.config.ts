@@ -28,13 +28,22 @@ const config: Config = {
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        // One grotesque across the site. `serif` deliberately points at
-        // Satoshi too: it keeps the 35 remaining `font-serif` usages rendering
-        // correctly while they are migrated file by file, so the type system
-        // flips in a single step instead of a half-broken intermediate state.
+        // One typeface across the whole site. All three tokens point at
+        // Satoshi on purpose: `font-serif` has 35 call sites and `font-mono`
+        // has 92 across 32 files, and moving the token retires every one of
+        // them in a single step rather than through a long half-migrated
+        // state. It also reaches app/case/remargin/DesignSystemShowcase.tsx,
+        // which is under instruction not to be edited — its `font-mono`
+        // kickers come along without the file being opened.
+        //
+        // The cost is one real monospace usage: the inline <code> in
+        // components/LectureMdx.tsx now sets in a proportional face. It keeps
+        // its background chip, so it still reads as code, but if identifiers
+        // in the lectures need the alignment back that is the one place to
+        // give an explicit stack to.
         sans: ["Satoshi", "system-ui", "sans-serif"],
         serif: ["Satoshi", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
+        mono: ["Satoshi", "system-ui", "sans-serif"],
       },
       maxWidth: {
         prose: "720px",

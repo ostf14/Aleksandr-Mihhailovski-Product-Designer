@@ -64,7 +64,7 @@ function Panel({ work, index }: { work: Work; index: number }) {
 
         {/* viz — the cover, held at a fixed height so seven panels of mixed
             source material still scroll past at one rhythm */}
-        <div className="relative h-[200px] md:h-[240px] overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
+        <div className="relative h-[150px] md:h-[240px] overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
           <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
             <CaseCardMedia src={work.cover.src} />
           </div>

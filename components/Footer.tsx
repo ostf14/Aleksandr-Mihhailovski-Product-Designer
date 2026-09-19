@@ -72,8 +72,7 @@ export function Footer() {
 
           <div className="flex flex-col items-center gap-6 md:items-start">
             <p className="max-w-[46ch] font-sans text-[17px] leading-[1.55] text-[#666666] dark:text-[#8f8f8f]">
-              I&rsquo;m open to new opportunities — full-time, contract, or a
-              single hard screen nobody wants to own.
+              I&rsquo;m open to new opportunities.
             </p>
 
             <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3 min-[480px]:w-auto min-[480px]:max-w-none min-[480px]:flex-row min-[480px]:items-center">
