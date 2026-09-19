@@ -26,8 +26,8 @@ export function Impact({
 } = {}) {
   const showFlow = beforeSteps.length > 0 || afterSteps.length > 0;
   return (
-    <section className="px-6 md:px-10">
-      <div className="max-w-bleed mx-auto">
+    <section className="">
+      <div className="shell">
         <FadeIn>
           <div className="border border-stone-200 bg-cream-warm rounded-2xl p-8 space-y-6">
             {/* Metrics */}

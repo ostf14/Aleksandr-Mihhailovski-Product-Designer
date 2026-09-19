@@ -57,9 +57,9 @@ export function CardSlider({
   };
 
   return (
-    <div className={`px-6 md:px-10 ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <div className="max-w-prose mx-auto">
+    <div className={`${className}`}>
+      <div className="shell">
+        <div className="shell-prose">
           <div
             className="relative overflow-hidden rounded-xl bg-cream-warm dark:bg-cream-deep"
             style={{ aspectRatio }}

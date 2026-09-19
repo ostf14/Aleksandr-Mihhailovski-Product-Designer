@@ -161,7 +161,7 @@ export function BusinessCard() {
     <motion.div
       data-hero-card="true"
       style={{ opacity, willChange: "opacity" }}
-      className="hero-band relative w-full px-6 pt-[104px] pb-14 sm:px-8 md:pt-[136px] md:pb-20"
+      className="hero-band relative w-full pt-[104px] pb-14 md:pt-[136px] md:pb-20"
     >
       <motion.div
         style={{
@@ -169,7 +169,7 @@ export function BusinessCard() {
           transformOrigin: "top center",
           willChange: "transform",
         }}
-        className="mx-auto flex w-full max-w-[1080px] flex-col items-center text-center"
+        className="shell flex flex-col items-center text-center"
       >
         {/* Photo above the name, in a 16:9 frame. The source is 1144x644 —
             1.776 against 16:9's 1.778 — so this is the picture's own shape

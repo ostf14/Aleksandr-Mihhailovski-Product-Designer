@@ -87,10 +87,7 @@ export function TableOfContents({ items = defaultItems }: { items?: TocItem[] } 
                 <a
                   href={`#${item.id}`}
                   aria-current={isActive ? "true" : undefined}
-                  className={`relative block py-1.5 pl-4 text-sm transition-colors duration-t2 ease-out-expo
-                    before:content-[''] before:absolute before:-left-px before:top-[5px] before:bottom-[5px]
-                    before:w-0.5 before:rounded-[1px] before:bg-charcoal
-                    before:transition-[opacity,transform] before:duration-t3 before:ease-out-expo ${
+                  className={`relative block py-1.5 pl-4 text-sm transition-colors duration-t2 ease-out-expo before:content-[''] before:absolute before:-left-px before:top-[5px] before:bottom-[5px] before:w-0.5 before:rounded-[1px] before:bg-charcoal before:transition-[opacity,transform] before:duration-t3 before:ease-out-expo ${
                       item.level === 2 ? "ml-4" : ""
                     } ${
                       isActive

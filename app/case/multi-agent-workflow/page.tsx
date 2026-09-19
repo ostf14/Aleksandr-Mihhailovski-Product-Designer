@@ -97,9 +97,9 @@ export default function Page() {
           {/* Hero */}
           <header
             id="overview"
-            className="scroll-mt-20 px-6 md:px-10 pt-6 md:pt-10 pb-14"
+            className="scroll-mt-20 pt-6 md:pt-10 pb-14"
           >
-            <div className="max-w-bleed mx-auto">
+            <div className="shell">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Process · AI Workflow · 2024–2025
@@ -127,7 +127,7 @@ export default function Page() {
               />
             </div>
 
-            <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-12">
+            <FadeIn delay={0.15} className="shell mt-12">
               <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
                 <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                   <div className="md:pr-6">
@@ -231,9 +231,9 @@ export default function Page() {
               </Prose>
             </Section>
 
-            <div className="px-6 md:px-10 mt-8">
-              <div className="max-w-4xl mx-auto">
-                <div className="max-w-prose mx-auto">
+            <div className="mt-8">
+              <div className="shell">
+                <div className="shell-prose">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
                     {agents.map((a, i) => (
                       <FadeIn key={a.name} delay={i * 0.08} className="h-full">
@@ -364,9 +364,9 @@ export default function Page() {
           {/* Results */}
           <div id="results" className="scroll-mt-20 pb-32">
             <Section kicker="05 · Results" heading="What the orchestration actually bought">
-              <div className="px-6 md:px-10">
-                <div className="max-w-4xl mx-auto">
-                  <div className="max-w-prose mx-auto space-y-10">
+              <div className="">
+                <div className="shell">
+                  <div className="shell-prose space-y-10">
                     {results.map((r, i) => (
                       <FadeIn key={r.h} delay={i * 0.05}>
                         <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
@@ -393,9 +393,9 @@ export default function Page() {
                 </>
               }
             >
-              <div className="px-6 md:px-10">
-                <div className="max-w-4xl mx-auto">
-                  <div className="max-w-prose mx-auto">
+              <div className="">
+                <div className="shell">
+                  <div className="shell-prose">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">

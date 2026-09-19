@@ -33,8 +33,8 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="px-6 md:px-10 pt-6 md:pt-10 pb-14">
-            <div className="max-w-bleed mx-auto">
+          <header className="pt-6 md:pt-10 pb-14">
+            <div className="shell">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Gallery · 2018–24
@@ -54,8 +54,8 @@ export default function Page() {
             </div>
           </header>
 
-          <div className="px-6 md:px-10 pb-32">
-            <div className="max-w-bleed mx-auto space-y-8 md:space-y-12">
+          <div className="pb-32">
+            <div className="shell space-y-8 md:space-y-12">
               {gallery.map((g, i) => (
                 <FadeIn key={g.image} delay={i * 0.04}>
                   <BrowserFrame url={g.title}>

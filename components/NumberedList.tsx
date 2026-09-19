@@ -8,9 +8,9 @@ export function NumberedList({
   className?: string;
 }) {
   return (
-    <div className={`px-6 md:px-10 ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <FadeStagger className="max-w-prose mx-auto">
+    <div className={`${className}`}>
+      <div className="shell">
+        <FadeStagger className="shell-prose">
           <ol className="space-y-6">
             {items.map((text, i) => (
               <FadeChild key={i} as="li" className="flex items-baseline gap-4">

@@ -34,9 +34,9 @@ export function BrowserCarousel({
   const next = () => setIndex((i) => (i + 1) % total);
 
   return (
-    <div className={`px-6 md:px-10 ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <div className="max-w-prose mx-auto">
+    <div className={`${className}`}>
+      <div className="shell">
+        <div className="shell-prose">
           <div className="relative">
             <BrowserFrame url={current.title}>
               {/* Fixed stage — 300px on mobile, prop height on desktop; long slides scroll inside */}
@@ -71,14 +71,19 @@ export function BrowserCarousel({
               </div>
             </BrowserFrame>
 
+            {/* Outside the frame from md up, where there is room for them.
+                On a phone the shell gives the frame the full gutter-to-gutter
+                width, so an arrow sitting 16px beyond it lands off-screen —
+                which is what happened the moment the carousel stopped being
+                double-padded. Below md they tuck just inside the edge, on a
+                frosted chip so they stay legible over whatever is behind. */}
             {total > 1 && (
               <>
                 <button
                   type="button"
                   onClick={prev}
                   aria-label="Previous page"
-                  className="absolute top-1/2 -translate-y-1/2 text-charcoal hover:text-terracotta transition-colors"
-                  style={{ right: "calc(100% + 16px)" }}
+                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-cream/75 backdrop-blur-sm text-charcoal transition-colors hover:text-terracotta left-1.5 md:left-auto md:right-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
                 >
                   <ChevronLeft size={24} strokeWidth={1.75} aria-hidden />
                 </button>
@@ -86,8 +91,7 @@ export function BrowserCarousel({
                   type="button"
                   onClick={next}
                   aria-label="Next page"
-                  className="absolute top-1/2 -translate-y-1/2 text-charcoal hover:text-terracotta transition-colors"
-                  style={{ left: "calc(100% + 16px)" }}
+                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-cream/75 backdrop-blur-sm text-charcoal transition-colors hover:text-terracotta right-1.5 md:right-auto md:left-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
                 >
                   <ChevronRight size={24} strokeWidth={1.75} aria-hidden />
                 </button>

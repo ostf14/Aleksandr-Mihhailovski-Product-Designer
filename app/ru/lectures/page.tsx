@@ -33,9 +33,9 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="px-6 md:px-10 pt-6 md:pt-10 pb-12">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn className="max-w-prose mx-auto">
+          <header className="pt-6 md:pt-10 pb-12">
+            <div className="shell">
+              <FadeIn className="shell-prose">
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Курс · {entries.length}{" "}
                   {entries.length === 1 ? "лекция" : "лекции"}
@@ -53,9 +53,9 @@ export default function Page() {
             </div>
           </header>
 
-          <section className="px-6 md:px-10 pb-20">
-            <div className="max-w-4xl mx-auto">
-              <div className="max-w-prose mx-auto flex flex-col gap-3">
+          <section className="pb-20">
+            <div className="shell">
+              <div className="shell-prose flex flex-col gap-3">
                 {entries.map((e, i) => (
                   <FadeIn key={e.slug} delay={i * 0.05}>
                     <a
@@ -91,9 +91,9 @@ export default function Page() {
             </div>
           </section>
 
-          <section className="px-6 md:px-10 pb-32">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn className="max-w-prose mx-auto">
+          <section className="pb-32">
+            <div className="shell">
+              <FadeIn className="shell-prose">
                 <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-5">
                   Кто читает
                 </div>

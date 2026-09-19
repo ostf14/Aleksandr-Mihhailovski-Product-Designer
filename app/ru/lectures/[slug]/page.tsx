@@ -57,9 +57,9 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="px-6 md:px-10 pt-6 md:pt-10 pb-10">
-            <div className="max-w-4xl mx-auto">
-              <div className="max-w-prose mx-auto">
+          <header className="pt-6 md:pt-10 pb-10">
+            <div className="shell">
+              <div className="shell-prose">
                 <a
                   href={LECTURES.basePath}
                   className="inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3 hover:opacity-80 transition-opacity"
@@ -78,8 +78,8 @@ export default function Page({ params }: { params: { slug: string } }) {
             </div>
           </header>
 
-          <div className="px-6 md:px-10 pb-24">
-            <div className="max-w-4xl mx-auto lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-10">
+          <div className="pb-24">
+            <div className="shell lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-10">
               <LectureToc headings={headings} />
 
               <div className="min-w-0 max-w-prose">
@@ -89,9 +89,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
 
           {next && (
-            <div className="px-6 md:px-10 pb-32">
-              <div className="max-w-4xl mx-auto">
-                <div className="max-w-prose mx-auto">
+            <div className="pb-32">
+              <div className="shell">
+                <div className="shell-prose">
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-4">
                     Читать дальше
                   </div>

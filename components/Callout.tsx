@@ -20,9 +20,9 @@ export function Callout({
   const Icon = label ? iconMap[label.toLowerCase()] : null;
 
   return (
-    <div className={`px-6 md:px-10 ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <FadeIn className="max-w-prose mx-auto">
+    <div className={`${className}`}>
+      <div className="shell">
+        <FadeIn className="shell-prose">
           <div className="bg-cream-warm rounded-lg px-7 py-7 md:px-9 md:py-8">
             {label && (
               <div className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">

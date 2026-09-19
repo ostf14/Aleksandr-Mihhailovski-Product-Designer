@@ -58,11 +58,11 @@ export function Footer() {
       {/* --top puts the band's hairline on its leading edge. See globals.css:
           a Tailwind border-t here left the colour at the framework default and
           drew a bright line across the dark footer. */}
-      <div className="hero-band hero-band--top px-6 py-20 sm:px-8 md:py-28">
+      <div className="hero-band hero-band--top py-20 md:py-28">
         {/* Centred until the grid splits in two. On one column the heading, the
             line and both rows of actions read as a stack, and a stack that is
             left-aligned against nothing looks like it lost its second column. */}
-        <div className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 text-center md:grid-cols-[1fr_3fr] md:gap-14 md:text-left lg:gap-20">
+        <div className="shell grid grid-cols-1 gap-10 text-center md:grid-cols-[1fr_3fr] md:gap-14 md:text-left lg:gap-20">
           <div className="self-start">
             <h2 className="font-sans font-medium text-[clamp(30px,5vw,52px)] leading-[1.04] tracking-[-0.036em] text-[#171717] dark:text-[#ededed]">
               Let&rsquo;s work

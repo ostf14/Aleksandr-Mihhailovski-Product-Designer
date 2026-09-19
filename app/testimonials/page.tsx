@@ -24,8 +24,8 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="px-6 md:px-10 pt-6 md:pt-10 pb-12">
-            <div className="max-w-4xl mx-auto">
+          <header className="pt-6 md:pt-10 pb-12">
+            <div className="shell">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   In their own words
@@ -37,8 +37,8 @@ export default function Page() {
             </div>
           </header>
 
-          <section className="px-6 md:px-10 pb-32">
-            <div className="max-w-4xl mx-auto">
+          <section className="pb-32">
+            <div className="shell">
               {TESTIMONIALS.length === 0 ? (
                 <PlaceholderBlock label="Видео-отзывы. Ждут файлов: Оксана Станевич и Павел, плюс третий позже. Регистр — lib/testimonials.ts." />
               ) : (

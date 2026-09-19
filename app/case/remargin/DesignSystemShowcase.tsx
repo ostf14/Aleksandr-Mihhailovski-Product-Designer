@@ -224,9 +224,9 @@ function HighlightRow({
 
 export function DesignSystemShowcase() {
   return (
-    <div className="px-6 md:px-10">
-      <div className="max-w-4xl mx-auto">
-        <div className="max-w-prose mx-auto overflow-hidden">
+    <div className="">
+      <div className="shell">
+        <div className="shell-prose overflow-hidden">
           <FadeIn>
           <div className="space-y-14">
             <div>

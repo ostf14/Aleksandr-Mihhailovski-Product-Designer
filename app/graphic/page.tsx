@@ -23,8 +23,8 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="px-6 md:px-10 pt-6 md:pt-10 pb-12">
-            <div className="max-w-bleed mx-auto">
+          <header className="pt-6 md:pt-10 pb-12">
+            <div className="shell">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Graphic &amp; brand
@@ -40,8 +40,8 @@ export default function Page() {
           {/* Cases go above this once they exist — Morgenshtern, Genesis,
               Med consultations. The gallery below is the archive tier: a
               picture, a name, a year, one line. */}
-          <section className="px-6 md:px-10 pb-32">
-            <div className="max-w-bleed mx-auto">
+          <section className="pb-32">
+            <div className="shell">
               <GraphicGallery items={GRAPHIC_ITEMS} />
             </div>
           </section>

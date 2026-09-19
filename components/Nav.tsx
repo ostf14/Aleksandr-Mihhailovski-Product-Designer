@@ -198,7 +198,7 @@ export function Nav() {
           className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[max-width,padding,margin,border-radius,background-color,border-color,box-shadow] duration-t5 ease-out-expo ${
             scrolled
               ? "max-w-[480px] mt-4 px-2 py-1.5 rounded-full bg-[var(--glass)] backdrop-blur-[20px] backdrop-saturate-[1.8] border-stone-200/60 shadow-pill"
-              : "max-w-bleed mt-0 px-0 py-4 rounded-none bg-transparent border-transparent shadow-none"
+              : "max-w-[var(--shell)] mt-0 px-0 py-4 rounded-none bg-transparent border-transparent shadow-none"
           }`}
         >
           <Logo />

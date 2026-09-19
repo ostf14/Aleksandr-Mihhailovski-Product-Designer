@@ -73,8 +73,8 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
   if (list.length === 0) return null;
 
   return (
-    <section className="px-6 md:px-10 pb-32">
-      <div className="max-w-prose mx-auto">
+    <section className="pb-32">
+      <div className="shell-prose">
         <h2 className="font-sans font-semibold text-h2 tracking-tight mb-5">
           More case studies
         </h2>

@@ -33,9 +33,9 @@ export default function Page() {
           {/* Hero */}
           <header
             id="overview"
-            className="scroll-mt-20 px-6 md:px-10 pt-6 md:pt-10 pb-14"
+            className="scroll-mt-20 pt-6 md:pt-10 pb-14"
           >
-            <div className="max-w-bleed mx-auto">
+            <div className="shell">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Self-initiated · 2025
@@ -54,7 +54,7 @@ export default function Page() {
               </FadeIn>
             </div>
 
-            <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
+            <FadeIn delay={0.15} className="shell mt-10">
               <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
                 <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                   <div className="md:pr-6">
@@ -132,7 +132,7 @@ export default function Page() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="max-w-bleed mx-auto">
+            <FadeIn delay={0.2} className="shell">
               {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
               <video
                 src="/demo.mp4"

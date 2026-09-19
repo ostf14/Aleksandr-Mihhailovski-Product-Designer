@@ -115,7 +115,7 @@ export function StickyCases() {
        reads as a margin someone chose rather than as space left over. */
     <div
       ref={gridRef}
-      className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 md:grid-cols-[1fr_3fr] md:gap-14 lg:gap-20"
+      className="shell grid grid-cols-1 gap-10 md:grid-cols-[1fr_3fr] md:gap-14 lg:gap-20"
     >
       <div className="self-start md:sticky md:top-[18vh]">
         {/* Heading alone for now. The standfirst that sat here was cut — the

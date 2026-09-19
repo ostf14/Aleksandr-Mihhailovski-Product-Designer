@@ -15,9 +15,9 @@ export function Section({
   return (
     <section id={id}>
       {(heading || kicker) && (
-        <div className="px-6 md:px-10 mb-5">
-          <div className="max-w-4xl mx-auto">
-            <FadeIn className="max-w-prose mx-auto">
+        <div className="mb-5">
+          <div className="shell">
+            <FadeIn className="shell-prose">
               {kicker && (
                 <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400 mb-3">
                   {kicker}
@@ -43,9 +43,9 @@ export function Prose({
   className?: string;
 }) {
   return (
-    <div className={`px-6 md:px-10 ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <FadeIn className="max-w-prose mx-auto">
+    <div className={`${className}`}>
+      <div className="shell">
+        <FadeIn className="shell-prose">
           <div className="text-[1.125rem] leading-[1.7] text-charcoal/90 space-y-6">{children}</div>
         </FadeIn>
       </div>

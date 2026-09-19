@@ -63,10 +63,10 @@ export function ImagePlaceholder({
 }: Props) {
   if (wide) {
     return (
-      <FadeIn as="figure" className={`max-w-bleed mx-auto ${className}`}>
+      <FadeIn as="figure" className={`shell ${className}`}>
         <Media src={src} label={label} aspect={aspect} />
         {caption && (
-          <figcaption className="mt-2.5 font-mono text-xs text-stone-500 text-left max-w-prose mx-auto">
+          <figcaption className="shell-prose mt-2.5 font-mono text-xs text-stone-500 text-left">
             {caption}
           </figcaption>
         )}
@@ -75,9 +75,9 @@ export function ImagePlaceholder({
   }
 
   return (
-    <div className={`px-6 md:px-10 ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <FadeIn as="figure" className="max-w-prose mx-auto">
+    <div className={`${className}`}>
+      <div className="shell">
+        <FadeIn as="figure" className="shell-prose">
           <Media src={src} label={label} aspect={aspect} />
           {caption && (
             <figcaption className="mt-2.5 font-mono text-xs text-stone-500 text-left">

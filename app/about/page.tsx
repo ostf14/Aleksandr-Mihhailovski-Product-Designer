@@ -30,9 +30,9 @@ function Block({
   children: React.ReactNode;
 }) {
   return (
-    <section className="px-6 md:px-10 pb-20">
-      <div className="max-w-4xl mx-auto">
-        <FadeIn className="max-w-prose mx-auto">
+    <section className="pb-20">
+      <div className="shell">
+        <FadeIn className="shell-prose">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-5">
             {kicker}
           </div>
@@ -51,9 +51,9 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="px-6 md:px-10 pt-6 md:pt-10 pb-14">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn className="max-w-prose mx-auto">
+          <header className="pt-6 md:pt-10 pb-14">
+            <div className="shell">
+              <FadeIn className="shell-prose">
                 <h1 className="font-sans font-semibold text-hero tracking-tight">
                   About
                 </h1>

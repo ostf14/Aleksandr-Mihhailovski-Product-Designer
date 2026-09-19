@@ -70,8 +70,8 @@ export default function Page() {
       <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
-          <header id="overview" className="scroll-mt-20 px-6 md:px-10 pt-6 md:pt-10 pb-14">
-            <div className="max-w-bleed mx-auto">
+          <header id="overview" className="scroll-mt-20 pt-6 md:pt-10 pb-14">
+            <div className="shell">
               <FadeIn>
                 <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
                   Chtenye · 2023
@@ -89,7 +89,7 @@ export default function Page() {
               </FadeIn>
             </div>
 
-            <FadeIn delay={0.15} className="max-w-bleed mx-auto mt-10">
+            <FadeIn delay={0.15} className="shell mt-10">
               <div className="border border-stone-200 bg-cream-warm rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                 <div className="md:pr-6">
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
@@ -359,9 +359,9 @@ export default function Page() {
           {/* 05 · Results */}
           <div id="results" className="scroll-mt-20 pb-32">
             <Section kicker="05 · Results" heading="Results">
-              <div className="px-6 md:px-10">
-                <div className="max-w-4xl mx-auto">
-                  <div className="max-w-prose mx-auto space-y-10">
+              <div className="">
+                <div className="shell">
+                  <div className="shell-prose space-y-10">
                     {results.map((r, i) => (
                       <FadeIn key={r.h} delay={i * 0.05}>
                         <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
@@ -375,9 +375,9 @@ export default function Page() {
               </div>
             </Section>
 
-            <div className="mt-10 px-6 md:px-10">
-              <div className="max-w-4xl mx-auto">
-                <div className="max-w-prose mx-auto">
+            <div className="mt-10">
+              <div className="shell">
+                <div className="shell-prose">
                   <BeforeAfterSlider
                     beforeSrc="/Before.png"
                     afterSrc="/After.png"
@@ -405,9 +405,9 @@ export default function Page() {
                 </>
               }
             >
-              <div className="px-6 md:px-10">
-                <div className="max-w-4xl mx-auto">
-                  <div className="max-w-prose mx-auto">
+              <div className="">
+                <div className="shell">
+                  <div className="shell-prose">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
