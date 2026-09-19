@@ -23,7 +23,7 @@ export const SITE_DESCRIPTION =
  * edit instead of the two-file update every string had before.
  */
 export const links = {
-  cv: "https://drive.google.com/file/d/1pFXxZKMDg1nF-rvsmSL9-eljelmp0y2Q/view?usp=sharing",
+  cv: "https://drive.google.com/file/d/1FLTGKatoPK152ViuN8d5XLB7mk2niY3c/view?usp=sharing",
   email: "ostf14@gmail.com",
   linkedin: "https://www.linkedin.com/in/alexmess/",
   github: "https://github.com/ostf14",
