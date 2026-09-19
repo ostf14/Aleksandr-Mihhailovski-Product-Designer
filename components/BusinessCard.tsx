@@ -201,24 +201,17 @@ export function BusinessCard() {
             The tracking is in em, not the -2.6px it corresponds to, so it
             holds as the clamp scales the type down.
 
-            The two ramps are held apart by a fixed ratio. 16.6vw against the
-            role's 12.8vw puts the name at 1.30x the role at every width where
-            it is not already capped — inside the 1.6x ceiling, and well down
-            from the 18.5vw it ran at before, which matched the pills exactly
-            but read as shouting on a phone. Both reach 72px by about 560, so
-            anything wider than a phone still sees one size. */}
-        <h2 className="font-sans font-medium text-[clamp(38px,16.6vw,72px)] leading-[1.04] tracking-[-0.036em]">
+            The name now runs on the ramp the role used to have, and the role
+            sits exactly 1.6x below it: 12.8vw against 8vw, 72px against 45px.
+            Being the same ratio at both ends, the pair holds its proportion at
+            every width instead of collapsing to one size on wide screens the
+            way the previous pair did. */}
+        <h2 className="font-sans font-medium text-[clamp(30px,12.8vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex
           </span>
-          {/* The role line carries its own size. At 344 the column is 296px:
-              "Hi, I'm Alex" wants 64px to reach the width of the pills, and
-              "Product Design" needs 44px or less to stay on one line. One
-              shared size cannot do both, so the name keeps the display size
-              and the role sits a step under it. The two ramps meet at 72px
-              from about 560 up, so on anything wider the heading reads as one
-              size again. */}
-          <span className="block text-[clamp(30px,12.8vw,72px)] text-[#666666] dark:text-[#ededed]/40">
+          {/* Exactly 1.6x under the name — see the ramp on the h2. */}
+          <span className="block text-[clamp(19px,8vw,45px)] text-[#666666] dark:text-[#ededed]/40">
             Product Design Engineer
           </span>
         </h2>

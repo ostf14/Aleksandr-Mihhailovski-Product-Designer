@@ -26,7 +26,7 @@ export function GalleryCard() {
     >
       <span aria-hidden className="spot" />
 
-      <div className="relative h-[150px] md:h-[240px] overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
+      <div className="relative h-[150px] md:h-auto md:aspect-video overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
         <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

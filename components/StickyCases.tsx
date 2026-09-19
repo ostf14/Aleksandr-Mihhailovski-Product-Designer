@@ -62,9 +62,13 @@ function Panel({ work, index }: { work: Work; index: number }) {
             transform alone — see useTilt for why that matters. */}
         <span aria-hidden className="spot" />
 
-        {/* viz — the cover, held at a fixed height so seven panels of mixed
-            source material still scroll past at one rhythm */}
-        <div className="relative h-[150px] md:h-[240px] overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
+        {/* viz — a ratio on the desktop, not a height. 240px was chosen when
+            the panel was 475 wide, which made the cover a reasonable 1.98:1;
+            the panel then grew to 750 and the height stayed, so the cover
+            drifted to 3.12:1 — wider than any cinema format, which is what
+            made these read as stretched. 16:9 is also the native shape of the
+            screenshots most of them are. Mobile keeps its fixed 150. */}
+        <div className="relative h-[150px] md:h-auto md:aspect-video overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
           <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
             <CaseCardMedia src={work.cover.src} />
           </div>
