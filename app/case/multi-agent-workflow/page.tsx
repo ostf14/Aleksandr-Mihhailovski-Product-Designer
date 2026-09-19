@@ -169,7 +169,7 @@ export default function Page() {
                         <li key={item} className="flex items-start gap-2.5">
                           <span
                             aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-terracotta shrink-0 mt-[7px]"
+                            className="inline-block size-1.5 rounded-full bg-stone-400 shrink-0 mt-[7px]"
                           />
                           <span>{item}</span>
                         </li>

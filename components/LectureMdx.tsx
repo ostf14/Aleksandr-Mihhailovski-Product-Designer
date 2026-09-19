@@ -59,7 +59,7 @@ export const lectureMdxComponents: MDXComponents = {
 
   ul: ({ children }) => (
     <ul
-      className="mb-6 space-y-2 list-disc pl-6 marker:text-terracotta text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
+      className="mb-6 space-y-2 list-disc pl-6 marker:text-stone-400 text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
     >
       {children}
     </ul>
@@ -67,7 +67,7 @@ export const lectureMdxComponents: MDXComponents = {
 
   ol: ({ children }) => (
     <ol
-      className="mb-6 space-y-2 list-decimal pl-6 marker:text-terracotta marker:font-mono marker:text-[0.9em] text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
+      className="mb-6 space-y-2 list-decimal pl-6 marker:text-stone-400 marker:font-mono marker:text-[0.9em] text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
     >
       {children}
     </ol>

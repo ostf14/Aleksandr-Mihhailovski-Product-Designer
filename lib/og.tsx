@@ -54,10 +54,10 @@ function photoDataUri(): string {
 }
 
 // Site's actual dark theme (app/globals.css .dark), not an invented palette.
-const PAGE_BG = "#191A1A";
-const CARD_BG = "#242626";
-const TEXT = "#E8E8E6";
-const MUTED = "#9A9A98";
+const PAGE_BG = "#0a0a0a";
+const CARD_BG = "#111111";
+const TEXT = "#ededed";
+const MUTED = "#8f8f8f";
 const TERRACOTTA = "#FF6936";
 
 /**

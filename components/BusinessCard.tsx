@@ -117,7 +117,7 @@ export function BusinessCard() {
         transformOrigin: "top center",
         willChange: "transform, opacity",
       }}
-      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#ffffff] dark:bg-[#111111] shadow-[0_20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_20px_60px_-20px_rgba(255,105,54,0.1)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
+      className="group relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-2xl border border-[#ebebeb] dark:border-[#292929] bg-[#ffffff] dark:bg-[#111111] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)] px-3 pt-6 sm:px-8 sm:pt-8 md:px-12 md:pt-12"
     >
       {/* Hover-reveal terracotta dot pattern (full card, no per-frame mask) */}
       <div
@@ -125,7 +125,7 @@ export function BusinessCard() {
         className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-[0.06] transition-opacity duration-300 ease-out z-0"
         style={{
           backgroundImage:
-            "radial-gradient(circle, #FF6936 1px, transparent 1px)",
+            "radial-gradient(circle, #767676 1px, transparent 1px)",
           backgroundSize: "24px 24px",
         }}
       />

@@ -43,14 +43,14 @@ export function Footer() {
         <SpriteAnimation />
       </div>
 
-      <div className="group relative overflow-hidden rounded-t-2xl border border-[#FF6936]/40 dark:border-[#FF6936]/30 bg-[#ffffff] dark:bg-[#111111] shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.14)] dark:shadow-[0_-20px_60px_-20px_rgba(255,105,54,0.1)]">
+      <div className="group relative overflow-hidden rounded-t-2xl border border-[#ebebeb] dark:border-[#292929] bg-[#ffffff] dark:bg-[#111111] shadow-[0_-20px_60px_-20px_rgba(0,0,0,0.06)] dark:shadow-[0_-20px_60px_-20px_rgba(0,0,0,0.4)]">
         {/* Hover-reveal terracotta dot pattern */}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500 ease-out z-0"
           style={{
             backgroundImage:
-              "radial-gradient(circle, #FF6936 1px, transparent 1px)",
+              "radial-gradient(circle, #767676 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         />

@@ -78,7 +78,7 @@ export function Impact({
                   {/* Arrow between columns */}
                   <div
                     aria-hidden
-                    className="hidden md:flex items-center justify-center text-2xl text-terracotta self-center"
+                    className="hidden md:flex items-center justify-center text-2xl text-stone-400 self-center"
                   >
                     →
                   </div>
@@ -95,7 +95,7 @@ export function Impact({
                             {step}
                           </div>
                           {i < arr.length - 1 && (
-                            <div aria-hidden className="self-center w-px h-4 bg-terracotta/40" />
+                            <div aria-hidden className="self-center w-px h-4 bg-stone-300" />
                           )}
                         </div>
                       ))}
