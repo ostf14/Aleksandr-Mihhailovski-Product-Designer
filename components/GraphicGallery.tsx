@@ -174,7 +174,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
           // 100dvh rather than inset-0: on a phone the browser chrome eats the
           // bottom of the layout viewport, which would hide the caption and
           // the arrows sitting under it.
-          className="fixed inset-x-0 top-0 z-[60] flex h-[100dvh] flex-col bg-[#0F0F0F]/95 px-4 py-4 md:px-10 md:py-8"
+          className="fixed inset-x-0 top-0 z-[60] flex h-[100dvh] flex-col bg-[#0a0a0a]/95 px-4 py-4 md:px-10 md:py-8"
         >
           <div className="flex items-center justify-between gap-4 shrink-0">
             <span className="font-mono text-[11px] text-white/50">

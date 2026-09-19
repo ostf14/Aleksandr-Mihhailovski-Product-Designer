@@ -135,7 +135,7 @@ export function BusinessCard() {
         <div className="relative shrink-0 self-center md:self-auto">
           <div
             aria-hidden
-            className="absolute inset-[-6px] md:inset-[-12px] rounded-full bg-[#FF6936]/20 dark:bg-[#FF6936]/15 blur-xl"
+            className="absolute inset-[-6px] md:inset-[-12px] rounded-full bg-terracotta/20 dark:bg-terracotta/15 blur-xl"
           />
           <div className="relative z-10 w-20 h-20 md:w-[180px] md:h-[180px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -190,7 +190,7 @@ export function BusinessCard() {
           href={links.cv}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-terracotta/5"
         >
           <Download className="w-4 h-4" />
           <span>My CV</span>
@@ -199,7 +199,7 @@ export function BusinessCard() {
           type="button"
           onClick={copyEmail}
           aria-label={copied ? "Email copied" : `Copy email ${links.email}`}
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-terracotta/5"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           <span>{copied ? "Copied!" : "Email"}</span>
@@ -208,7 +208,7 @@ export function BusinessCard() {
           href={links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] border-r border-[#ebebeb] dark:border-[#292929] transition-colors duration-200 hover:bg-terracotta/5"
         >
           <ArrowUpRight className="w-4 h-4" />
           <span>LinkedIn</span>
@@ -217,7 +217,7 @@ export function BusinessCard() {
           href={links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] transition-colors duration-200 hover:bg-[#FF6936]/5"
+          className="font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] transition-colors duration-200 hover:bg-terracotta/5"
         >
           <GithubIcon className="w-4 h-4" />
           <span>GitHub</span>

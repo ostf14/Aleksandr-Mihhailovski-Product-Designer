@@ -21,7 +21,7 @@ export function Footer() {
   };
 
   const cell =
-    "font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] transition-colors duration-200 hover:bg-[#FF6936]/5";
+    "font-sans flex items-center justify-center gap-2 py-4 text-sm font-medium text-[#4d4d4d] dark:text-[#ededed] transition-colors duration-200 hover:bg-terracotta/5";
   const dividerClass =
     "border-[#ebebeb] dark:border-[#292929]";
 

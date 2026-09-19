@@ -18,21 +18,28 @@
   --rgb-cream-warm: 250 250 250;   /* #fafafa — cards / hover  (ref --surface) */
   --rgb-cream-deep: 242 242 242;   /* #f2f2f2 — footer, deeper (ref --surface-2) */
   --rgb-charcoal: 23 23 23;        /* #171717 — primary text   (ref --fg) */
-  --rgb-terracotta: 255 105 54;    /* #FF6936 — accent, ours; the reference has none */
+  /* The accent is ours — the reference has no chromatic colour at all — so it
+     is the one value with no counterpart to copy. #FF6936 measures 2.87:1 on
+     white, and it carries 11px uppercase kickers, so on light it is darkened
+     to the first step that clears 4.5:1 on all three surfaces (5.18 on the
+     page, 4.96 on cards, 4.63 on the deep surface). Dark keeps #FF6936, which
+     already reads 6.91:1 there. */
+  --rgb-terracotta: 194 65 12;     /* #C2410C — accent, light */
 
-  /* Semantic token layer (portfolio_refactor_spec step 5a).
-     No component reads these yet — they're staged so 5b can migrate
-     class-by-class without a second flip. Values are the ones from the
-     spec (neutral gray palette); mapping onto the existing warm cream
-     palette happens per-class during 5b. */
-  --bg:            250 250 249;
-  --surface:       255 255 255;
-  --surface-hover: 245 245 244;
-  --border:         23  23  23;
-  --fg:             23  23  23;
-  --muted:         115 115 115;
-  --faint:         163 163 163;
-  --accent:        234  88  12;
+  /* Semantic token layer (portfolio_refactor_spec step 5a). Still unread by
+     every component — 5b migrates the classes — but the values now match the
+     reference and the legacy tokens above, so whenever that migration happens
+     it lands on the palette the site actually uses. They were left holding an
+     older staged set, which would have quietly repainted anything that started
+     reading them. */
+  --bg:            255 255 255;   /* #ffffff  ref --bg        */
+  --surface:       250 250 250;   /* #fafafa  ref --surface   */
+  --surface-hover: 242 242 242;   /* #f2f2f2  ref --surface-2 */
+  --border:        235 235 235;   /* #ebebeb  ref --line      */
+  --fg:             23  23  23;   /* #171717  ref --fg        */
+  --muted:         102 102 102;   /* #666666  ref --fg-3      */
+  --faint:         107 107 107;   /* #6b6b6b  ref --tip-fg-2  */
+  --accent:        194  65  12;   /* #C2410C  ours, darkened  */
 
   /* ---------------------------------------------------------------
      Motion, elevation and rhythm tokens (visual_refresh_spec step 1).
@@ -89,17 +96,17 @@
   --rgb-cream-warm: 17 17 17;     /* #111111 — cards / pill   (ref --surface) */
   --rgb-cream-deep: 26 26 26;     /* #1a1a1a — footer, deeper (ref --surface-2) */
   --rgb-charcoal: 237 237 237;    /* #ededed — main text      (ref --fg) */
-  --rgb-terracotta: 255 105 54;   /* #FF6936 — single accent across light and dark */
+  --rgb-terracotta: 255 105 54;   /* #FF6936 — accent, dark; 6.91:1 here, no darkening needed */
 
   /* Semantic token layer — dark values from portfolio_refactor_spec. */
-  --bg:             10  10  10;
-  --surface:        23  23  23;
-  --surface-hover:  38  38  38;
-  --border:        255 255 255;
-  --fg:            250 250 249;
-  --muted:         163 163 163;
-  --faint:         115 115 115;
-  --accent:        249 115  22;
+  --bg:             10  10  10;   /* #0a0a0a  ref --bg        */
+  --surface:        17  17  17;   /* #111111  ref --surface   */
+  --surface-hover:  26  26  26;   /* #1a1a1a  ref --surface-2 */
+  --border:         41  41  41;   /* #292929  ref --line      */
+  --fg:            237 237 237;   /* #ededed  ref --fg        */
+  --muted:         143 143 143;   /* #8f8f8f  ref --fg-3      */
+  --faint:         131 131 131;   /* #838383  ref --fg-4, nudged */
+  --accent:        255 105  54;   /* #FF6936  ours            */
 
   /* Motion/elevation overrides. Durations and easings are theme-agnostic,
      so only the surfaces that depend on background luminance are redefined
@@ -154,7 +161,16 @@ body {
    --------------------------------------------------------------- */
 html:not(.dark) .text-neutral-400,
 html:not(.dark) .text-stone-400 {
-  color: #767676; /* ref --fg-4 */
+  /* The reference's own --fg-4 (#767676) clears 4.5:1 on white but only
+     reaches 4.35 on our cards and 4.06 on the deep surface, and this tier
+     carries 11px kickers. Its --tip-fg-2 is the next step down and clears
+     every surface. */
+  color: #6b6b6b; /* ref --tip-fg-2 */
+}
+/* ::marker is its own selector — the rule above never reached it, so lecture
+   list bullets were still painting Tailwind's warm stone. */
+html:not(.dark) .marker\:text-stone-400::marker {
+  color: #6b6b6b;
 }
 html:not(.dark) .text-neutral-500,
 html:not(.dark) .text-stone-500 {
@@ -173,8 +189,22 @@ html:not(.dark) .border-neutral-400 {
 html:not(.dark) .border-stone-200 {
   border-color: #ebebeb; /* ref --line */
 }
-html:not(.dark) .bg-neutral-200 {
+html:not(.dark) .bg-neutral-200,
+html:not(.dark) .bg-stone-200 {
   background-color: #f2f2f2; /* ref --surface-2 */
+}
+/* These four were never remapped and were still painting Tailwind's stone,
+   which is a WARM grey — the most visible thing left over from the cream
+   palette, sitting next to surfaces that are now neutral. */
+html:not(.dark) .bg-stone-300 {
+  background-color: #e0e0e0; /* ref --line-2 */
+}
+html:not(.dark) .bg-stone-400,
+html:not(.dark) .bg-stone-500 {
+  background-color: #8f8f8f; /* ref --line-3 */
+}
+html:not(.dark) .border-neutral-200 {
+  border-color: #ebebeb; /* ref --line */
 }
 
 @keyframes blink {
@@ -245,7 +275,7 @@ html:not(.dark) .bg-neutral-200 {
    These were already near-neutral, so the shift here is small — the old
    values sat within a point or two of the reference's. */
 .dark .bg-stone-200 { background-color: #1a1a1a; }                    /* ref --surface-2, image placeholder */
-.dark .text-stone-400 { color: #7d7d7d; }                             /* ref --fg-4, faded kicker */
+.dark .text-stone-400 { color: #838383; }                             /* ref --fg-4, nudged from #7d7d7d so it clears 4.5:1 on the deep surface too */
 .dark .text-stone-500 { color: #8f8f8f; }                             /* ref --fg-3, muted */
 .dark .text-stone-600 { color: #a1a1a1; }                             /* ref --fg-2, stronger muted */
 .dark .border-stone-200 { border-color: #292929; }                    /* ref --line */
@@ -255,6 +285,20 @@ html:not(.dark) .bg-neutral-200 {
 .dark .border-stone-200\/80 { border-color: #292929; }
 .dark .border-stone-300 { border-color: #333333; }                    /* ref --line-2 */
 .dark .bg-stone-300\/70 { background-color: #333333; }                /* ref --line-2, nav divider */
+
+/* Same gap as in light: shades nothing had remapped, still painting warm
+   stone against neutral surfaces. */
+.dark .bg-stone-300,
+.dark .bg-stone-600 { background-color: #333333; }                    /* ref --line-2 */
+.dark .bg-stone-400,
+.dark .bg-stone-500 { background-color: #6f6f6f; }                    /* ref --line-3 */
+.dark .bg-stone-700 { background-color: #1a1a1a; }                    /* ref --surface-2, browser chrome */
+.dark .bg-neutral-600 { background-color: #1a1a1a; }                  /* ref --surface-2, photo fallback */
+.dark .border-neutral-200\/20 { border-color: #333333; }              /* ref --line-2, photo ring */
+.dark .border-stone-200\/40 { border-color: #292929; }                /* ref --line */
+.dark .text-neutral-400 { color: #838383; }                           /* ref --fg-4, nudged */
+.dark .text-neutral-500 { color: #8f8f8f; }                           /* ref --fg-3 */
+.dark .marker\:text-stone-400::marker { color: #838383; }             /* ref --fg-4, nudged */
 
 /* ---------------------------------------------------------------
    Buttons (visual_refresh_spec step 4).

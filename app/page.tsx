@@ -57,7 +57,7 @@ export default function Page() {
                 <div className="relative shrink-0 self-start md:self-auto">
                   <div
                     aria-hidden
-                    className="absolute inset-[-6px] md:inset-[-10px] rounded-full bg-[#FF6936]/20 dark:bg-[#FF6936]/15 blur-xl"
+                    className="absolute inset-[-6px] md:inset-[-10px] rounded-full bg-terracotta/20 dark:bg-terracotta/15 blur-xl"
                   />
                   <div className="relative z-10 size-16 md:size-[120px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-neutral-200/20 dark:bg-neutral-600 dark:shadow-none">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -102,7 +102,7 @@ export default function Page() {
               <FadeIn key={s.href} delay={i * 0.05}>
                 <a
                   href={s.href}
-                  className="group relative block rounded-2xl bg-white dark:bg-cream-warm border border-stone-200/60 shadow-[0_-2px_24px_rgba(16,24,40,0.07)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-6 md:p-8 transition-transform duration-200 hover:-translate-y-0.5"
+                  className="group relative block rounded-2xl bg-white dark:bg-cream-warm border border-stone-200/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-6 md:p-8 transition-transform duration-200 hover:-translate-y-0.5"
                 >
                   <ArrowUpRight
                     size={32}

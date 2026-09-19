@@ -108,7 +108,7 @@ export function renderOgImage(
                 height: 190,
                 borderRadius: 9999,
                 objectFit: "cover",
-                border: "5px solid rgba(232, 232, 230, 0.15)",
+                border: "5px solid rgba(237, 237, 237, 0.15)",
               }}
             />
 
