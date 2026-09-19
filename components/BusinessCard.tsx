@@ -212,7 +212,14 @@ export function BusinessCard() {
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex
           </span>
-          <span className="block text-[#666666] dark:text-[#ededed]/40">
+          {/* The role line carries its own size. At 344 the column is 296px:
+              "Hi, I'm Alex" wants 64px to reach the width of the pills, and
+              "Product Design" needs 44px or less to stay on one line. One
+              shared size cannot do both, so the name keeps the display size
+              and the role sits a step under it. The two ramps meet at 72px
+              from about 560 up, so on anything wider the heading reads as one
+              size again. */}
+          <span className="block text-[clamp(30px,12.8vw,72px)] text-[#666666] dark:text-[#ededed]/40">
             Product Design Engineer
           </span>
         </h2>
