@@ -23,6 +23,99 @@ const TAIL_LINK =
  *  glyph in the same hairline stroke turns to mush. */
 const TAIL_ICON = "h-[15px] w-[15px] shrink-0";
 
+/**
+ * Noise dithering, done as an actual filter chain rather than a texture laid
+ * on top: flatten to grey, crush the contrast, add a field of noise, then
+ * threshold the result to one bit. Adding noise before thresholding is what
+ * dithering *is* — it trades a hard posterisation edge for stippling, so the
+ * face survives being reduced to black and white.
+ *
+ * feTurbulence has a bad history in this file's neighbourhood: a full-viewport
+ * one in globals.css used to re-rasterise on every theme toggle and stalled
+ * the page. This one covers a 208x117 box and never animates, so it rasterises
+ * once and is cached from then on.
+ *
+ * color-interpolation-filters="sRGB" is not optional — the default is
+ * linearRGB, and the threshold then lands somewhere other than mid-grey.
+ */
+function DitherFilter() {
+  return (
+    <svg
+      aria-hidden
+      focusable="false"
+      width="0"
+      height="0"
+      className="absolute h-0 w-0 overflow-hidden"
+    >
+      <filter id="hero-dither" colorInterpolationFilters="sRGB">
+        <feColorMatrix type="saturate" values="0" result="grey" />
+        {/* Fitted to this photograph rather than guessed. Its tonal range is
+            narrow — background around 0.68, face around 0.53, hair and the
+            polo neck down at 0.11 — so this line maps 0.68 to 0.82 (near
+            white, lightly grained) and 0.53 to 0.55 (right at the threshold,
+            where the grain does its work). Measure again if the picture is
+            ever replaced; a curve fitted to one photograph does not transfer
+            to the next. */}
+        <feComponentTransfer in="grey" result="crushed">
+          <feFuncR type="linear" slope="1.8" intercept="-0.404" />
+          <feFuncG type="linear" slope="1.8" intercept="-0.404" />
+          <feFuncB type="linear" slope="1.8" intercept="-0.404" />
+        </feComponentTransfer>
+
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.85"
+          numOctaves="1"
+          seed="7"
+          result="noise"
+        />
+        {/* saturate="0" is not enough here: feTurbulence writes noise into
+            ALPHA as well, and compositing is premultiplied, so a noisy alpha
+            eats the very variation this step exists to add — which is why the
+            first two attempts came out as a flat stencil. This matrix copies
+            the red channel into RGB and pins alpha to 1. */}
+        <feColorMatrix
+          in="noise"
+          type="matrix"
+          values="1 0 0 0 0
+                  1 0 0 0 0
+                  1 0 0 0 0
+                  0 0 0 0 1"
+          result="greynoise"
+        />
+        {/* And stretch it. One octave of fractalNoise clusters tightly around
+            0.5 — a spread of maybe ±0.15 — which after scaling is far too
+            small to flip any pixel the contrast curve has moved away from the
+            threshold. This expands that cluster to very nearly the full 0–1
+            range, which is what finally puts grain in the mid-tones. */}
+        <feComponentTransfer in="greynoise" result="noiseAmp">
+          <feFuncR type="linear" slope="4" intercept="-1.5" />
+          <feFuncG type="linear" slope="4" intercept="-1.5" />
+          <feFuncB type="linear" slope="4" intercept="-1.5" />
+        </feComponentTransfer>
+
+        {/* result = image + (noise - 0.5) * 0.45 */}
+        <feComposite
+          in="crushed"
+          in2="noiseAmp"
+          operator="arithmetic"
+          k1="0"
+          k2="1"
+          k3="0.45"
+          k4="-0.225"
+          result="mixed"
+        />
+
+        <feComponentTransfer in="mixed">
+          <feFuncR type="discrete" tableValues="0 1" />
+          <feFuncG type="discrete" tableValues="0 1" />
+          <feFuncB type="discrete" tableValues="0 1" />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+  );
+}
+
 export function BusinessCard() {
   const [copied, setCopied] = useState(false);
 
@@ -79,14 +172,23 @@ export function BusinessCard() {
             /hero-photo.jpg, the square head-and-shoulders shot, is still what
             the homepage avatar and the OG card use: both are circular, and a
             circle cut out of a wide frame is a different decision. */}
-        <div className="mb-8 w-[160px] md:w-[208px] aspect-video overflow-hidden rounded-xl">
+        <div className="hero-portrait mb-8 w-[160px] md:w-[208px] aspect-video overflow-hidden rounded-xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/portrait-wide.jpg" alt="Aleksandr Mihhailovski" />
+          {/* The same frame again, dithered, stacked on top. Two copies
+              because CSS cannot interpolate a url() filter to none — fading
+              the treated layer's opacity is both the simplest way to get
+              there and the only one that stays on the compositor. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/portrait-wide.jpg"
-            alt="Aleksandr Mihhailovski"
-            className="h-full w-full object-cover object-center"
+            alt=""
+            aria-hidden
+            className="hero-portrait-dither"
           />
         </div>
+
+        <DitherFilter />
 
         {/* 72px / -0.036em at full size, matching the reference's own
             heading. The tracking is written in em, not px, so it holds as the

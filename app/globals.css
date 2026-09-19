@@ -386,6 +386,54 @@ html:not(.dark) .border-neutral-200 {
   .btn-secondary:hover { filter: brightness(0.985); }
 }
 
+/* Hero portrait, dithered, with the treatment lifting on hover.
+
+   Two stacked copies of the same file: the browser fetches it once, and the
+   fade runs on opacity alone, which the compositor handles without repainting
+   the filter. Transitioning `filter` itself is not an option — CSS cannot
+   interpolate a url() reference to none. */
+.hero-portrait {
+  position: relative;
+}
+.hero-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-portrait-dither {
+  filter: url(#hero-dither);
+  transition: opacity var(--t-5) var(--e-out);
+}
+/* One bit has no theme of its own: the filter always resolves to black on
+   white, which on the dark band was a lit rectangle punched into the page.
+   Inverting puts the picture's field back at the band's own colour and
+   leaves only the face lit. */
+.dark .hero-portrait-dither {
+  filter: url(#hero-dither) invert(1);
+}
+.hero-portrait:hover .hero-portrait-dither {
+  opacity: 0;
+}
+
+/* Touch has no hover to reward, so the reveal happens once on its own — the
+   picture develops rather than waiting for a gesture nobody will make. The
+   reduced-motion block at the end of this file collapses the duration, and
+   `forwards` means it lands on the clean frame immediately rather than
+   stranding the dithered one. */
+@media (hover: none) {
+  .hero-portrait-dither {
+    animation: hero-dither-out var(--t-6) var(--e-out) 700ms forwards;
+  }
+}
+@keyframes hero-dither-out {
+  to {
+    opacity: 0;
+  }
+}
+
 /* ---------------------------------------------------------------
    Hero band (components/BusinessCard.tsx).
 
