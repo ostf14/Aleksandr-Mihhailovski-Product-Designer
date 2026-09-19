@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { Button } from "./Button";
 import { links } from "@/lib/site";
 
@@ -13,9 +14,14 @@ import { links } from "@/lib/site";
 const SCALE_FACTOR = 0.92;
 const SCROLL_RANGE = 200; // pixels of scroll over which the card dissolves
 
-/** Shared look for the two quiet links after the pills. */
+/** Shared look for the two quiet links under the pills. */
 const TAIL_LINK =
-  "relative font-sans text-sm font-medium text-[#666666] dark:text-[#8f8f8f] transition-colors duration-t2 ease-out-expo hover:text-terracotta";
+  "relative inline-flex items-center gap-1.5 font-sans text-sm font-medium text-[#666666] dark:text-[#8f8f8f] transition-colors duration-t2 ease-out-expo hover:text-terracotta";
+
+/** Icons here are lucide primitives at text size, not brand marks: a copy
+ *  sheet and an out-of-page arrow read at 15px where a GitHub or LinkedIn
+ *  glyph in the same hairline stroke turns to mush. */
+const TAIL_ICON = "h-[15px] w-[15px] shrink-0";
 
 export function BusinessCard() {
   const [copied, setCopied] = useState(false);
@@ -103,10 +109,12 @@ export function BusinessCard() {
             Mail and LinkedIn stay reachable as the quiet tail; the footer
             carries all four in full on every page.
 
-            No icons anywhere here. A download glyph beside the words
-            "Download CV" says nothing the words do not, and the GitHub and
-            LinkedIn marks at 18px were unreadable mush — a brand glyph drawn
-            in lucide's hairline stroke falls apart at that size. */}
+            The pills stay wordmark-only: a download glyph beside "Download
+            CV" says nothing the words do not. The links below carry icons
+            because theirs do say something the words cannot — a copy sheet
+            and an out-of-page arrow are the difference between "this stays
+            here" and "this takes you away". Both are lucide primitives; the
+            brand marks that sat here before were unreadable at this size. */}
         <div className="mt-9 flex flex-col items-center gap-5">
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Button
@@ -143,14 +151,21 @@ export function BusinessCard() {
               }
               className={`group/mail ${TAIL_LINK}`}
             >
+              {copied ? (
+                <Check className={TAIL_ICON} aria-hidden />
+              ) : (
+                <Copy className={TAIL_ICON} aria-hidden />
+              )}
               {copied ? "Copied!" : "Copy email"}
               {/* The label says what the press does; the tooltip says which
-                  address it will put on the clipboard. */}
+                  address. It keeps saying it after the copy rather than
+                  echoing "Copied!" a second time — the useful thing to show
+                  someone who has just copied is what they now have. */}
               <span
                 aria-hidden
                 className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#171717] px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100 dark:bg-[#ededed] dark:text-[#171717]"
               >
-                {copied ? "Copied!" : links.email}
+                {links.email}
               </span>
             </button>
 
@@ -161,6 +176,7 @@ export function BusinessCard() {
               className={TAIL_LINK}
             >
               LinkedIn
+              <ArrowUpRight className={TAIL_ICON} aria-hidden />
             </a>
           </div>
         </div>
