@@ -71,19 +71,20 @@ export function BusinessCard() {
         }}
         className="mx-auto flex w-full max-w-[1080px] flex-col items-center text-center"
       >
-        {/* Photo back above the name, in a 16:9 frame.
+        {/* Photo above the name, in a 16:9 frame. The source is 1144x644 —
+            1.776 against 16:9's 1.778 — so this is the picture's own shape
+            rather than a crop of a square, and it needs no object-position
+            correction the way the previous one did.
 
-            The source is a 640x640 head-and-shoulders portrait, so 16:9 is a
-            crop, not a reframe — the subject fills the square vertically and
-            a 9-unit-tall band out of 16 has to lose something. object-position
-            spends that loss downwards, on the shoulders and the polo neck,
-            and keeps the eyes where a face is read. */}
-        <div className="mb-8 w-[140px] md:w-[184px] aspect-video overflow-hidden rounded-xl">
+            /hero-photo.jpg, the square head-and-shoulders shot, is still what
+            the homepage avatar and the OG card use: both are circular, and a
+            circle cut out of a wide frame is a different decision. */}
+        <div className="mb-8 w-[160px] md:w-[208px] aspect-video overflow-hidden rounded-xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/hero-photo.jpg"
+            src="/portrait-wide.jpg"
             alt="Aleksandr Mihhailovski"
-            className="h-full w-full object-cover object-[center_26%]"
+            className="h-full w-full object-cover object-center"
           />
         </div>
 
