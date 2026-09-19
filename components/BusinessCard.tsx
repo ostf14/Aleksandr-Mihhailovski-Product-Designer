@@ -85,16 +85,14 @@ export function BusinessCard() {
         <h2 className="mt-7 font-sans font-medium text-[clamp(30px,7.2vw,72px)] leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
             Hi, I&rsquo;m Alex{" "}
-            <span
-              role="img"
-              aria-label="waving hand"
-              className="inline-block"
-              style={{
-                transformOrigin: "70% 70%",
-                animation: "wave 2s ease-in-out 3 forwards",
-              }}
-            >
-              👋🏻
+            {/* Set into the line rather than placed beside it. The span is the
+                frame — it owns the size, the clipping and the stacking
+                context, so a shader layer can go inside it later without
+                touching the type around it. Decorative to a screen reader:
+                the heading already says whose face this is. */}
+            <span aria-hidden className="hero-inline-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hero-inline.jpg" alt="" />
             </span>
           </span>
           <span className="block text-[#666666] dark:text-[#ededed]/40">

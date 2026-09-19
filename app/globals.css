@@ -254,17 +254,6 @@ html:not(.dark) .border-neutral-200 {
   animation: blink 0.8s ease-in-out infinite;
 }
 
-@keyframes wave {
-  0%   { transform: rotate(0deg); }
-  15%  { transform: rotate(14deg); }
-  30%  { transform: rotate(-8deg); }
-  40%  { transform: rotate(14deg); }
-  50%  { transform: rotate(-4deg); }
-  60%  { transform: rotate(10deg); }
-  70%  { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
-}
-
 /* Sprite-sheet animation: 12 frames × 30px tall, scaled 4× (sheet 120×1440) */
 @keyframes sprite-pushok {
   from { background-position-y: 0px; }
@@ -395,6 +384,38 @@ html:not(.dark) .border-neutral-200 {
     box-shadow: var(--btn2-sh);
   }
   .btn-secondary:hover { filter: brightness(0.985); }
+}
+
+/* Photo set into the heading.
+
+   Height is the CAP height of the type around it, not the line height — a
+   line box is a good deal taller than the capitals, and matching it would
+   leave the picture standing visibly proud of them.
+
+   0.722em, not the 0.74em Satoshi declares as sCapHeight: that metric is
+   nominal, and the actual inked height of H and A measures 52px at 72px,
+   which is 0.722. Going by the declared figure left the photo 1.3px tall
+   against the letters it is supposed to match. Being an em, it tracks the
+   heading's clamp down to phone sizes.
+
+   vertical-align: baseline then does the rest — the bottom margin edge of an
+   inline-block sits on the baseline, which is where the capitals sit too.
+   overflow: hidden is not only for the rounding: it makes this element the
+   frame a shader layer can live inside later without disturbing the type. */
+.hero-inline-photo {
+  position: relative;
+  display: inline-block;
+  height: 0.722em;
+  aspect-ratio: 737 / 553;
+  vertical-align: baseline;
+  overflow: hidden;
+  border-radius: 0.06em;
+}
+.hero-inline-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------------------------------------------------------------
