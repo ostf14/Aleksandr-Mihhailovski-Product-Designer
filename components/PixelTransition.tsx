@@ -29,7 +29,7 @@ const MAX_CELLS = 480;
 /** How long one square takes to grow or shrink. Mirrors --t-3 in globals.css,
  *  which is what the transition on .px-cell actually uses. */
 const CELL_MS = 240;
-/** Spread across the diagonal, first square to last. */
+/** Spread from the outermost square to the innermost. */
 const STAGGER_MS = 150;
 /** Per-square scatter on top of that — this is what makes it read as pixels. */
 const JITTER_MS = 60;
@@ -100,15 +100,33 @@ export function PixelTransition() {
     timers.current.push(window.setTimeout(fn, ms));
   };
 
+  /**
+   * A delay pair per cell, keyed on how far it is from the middle of the
+   * screen.
+   *
+   * The distance is measured in viewport-relative units — each axis mapped to
+   * [-1, 1] before the hypotenuse — so the shape that closes is the shape of
+   * the window. On a wide screen the last thing left is a wide band across the
+   * middle, not a circle.
+   *
+   * `in` runs edge first, so the picture is eaten from the outside. `out` runs
+   * middle first, so the next page opens from the centre. The jitter on top is
+   * the same number for both, and it is the whole reason this reads as pixels
+   * rather than as an aperture: without it the front is a clean curve.
+   */
   const cells = useMemo(() => {
-    const out: number[] = [];
-    const span = Math.max(1, cols + rows - 2);
+    const out: { in: number; out: number }[] = [];
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const i = r * cols + c;
-        out.push(
-          Math.round(((c + r) / span) * STAGGER_MS + jitter(i) * JITTER_MS),
-        );
+        const nx = cols > 1 ? ((c + 0.5) / cols) * 2 - 1 : 0;
+        const ny = rows > 1 ? ((r + 0.5) / rows) * 2 - 1 : 0;
+        const d = Math.min(1, Math.hypot(nx, ny) / Math.SQRT2);
+        const scatter = jitter(i) * JITTER_MS;
+        out.push({
+          in: Math.round((1 - d) * STAGGER_MS + scatter),
+          out: Math.round(d * STAGGER_MS + scatter),
+        });
       }
     }
     return out;
@@ -224,7 +242,12 @@ export function PixelTransition() {
         <span
           key={i}
           className="px-cell"
-          style={{ "--d": `${d}ms` } as React.CSSProperties}
+          style={
+            {
+              "--d-in": `${d.in}ms`,
+              "--d-out": `${d.out}ms`,
+            } as React.CSSProperties
+          }
         />
       ))}
     </div>

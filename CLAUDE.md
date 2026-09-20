@@ -177,9 +177,18 @@ curtain — but it also means a click on an internal link never reaches anything
 else. External links, hash links, modified clicks and downloads are all let
 through by name; anything new that needs a click on an anchor is not.
 
-`--curtain` is not `--fg`. In dark mode `--fg` is `#ededed`, and a full-screen
-sheet of it two or three times a visit is a white flash on a near-black page.
-The dark value is a grey that still reads as squares.
+`--curtain` is the page background, in both themes. It was `--fg` for a moment,
+which in dark mode is `#ededed` — a full-screen white flash two or three times
+a visit — and then a mid grey, which just looked like a grey sheet. Only the
+background reads as the content dissolving rather than as something arriving on
+top of it, and only the background cannot flash.
+
+Each cell carries two delays. `--d-in` is keyed on distance from the middle of
+the screen so the picture is eaten from the edges inward; `--d-out` is the
+inverse so the next page opens from the centre. A transition takes its timing
+from the state it is going to, which is how one rule per direction works. The
+per-cell jitter on top is what makes it read as pixels — without it the front
+is a clean curve and the whole thing looks like an aperture.
 
 The reveal waits for `pathname` to actually change, not for a timer. A timer
 reveals a page that has not rendered yet on any route Link did not prefetch.
