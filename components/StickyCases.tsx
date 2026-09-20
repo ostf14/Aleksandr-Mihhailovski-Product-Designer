@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CaseCardMedia } from "./CaseCardMedia";
 import { useTilt } from "./useTilt";
@@ -75,7 +76,7 @@ function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
-function Panel({ work }: { work: Work }) {
+function Panel({ work, index }: { work: Work; index: number }) {
   const tiltRef = useTilt<HTMLAnchorElement>();
 
   // No --d in the markup any more: the observer assigns it per batch, so a
@@ -83,7 +84,7 @@ function Panel({ work }: { work: Work }) {
   // in.
   return (
     <div className="rv rv-scale">
-      <a
+      <Link
         ref={tiltRef}
         href={workHref(work)}
         className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
@@ -100,7 +101,11 @@ function Panel({ work }: { work: Work }) {
             screenshots most of them are. Mobile keeps its fixed 150. */}
         <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep md:aspect-video md:h-auto">
           <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
-            <CaseCardMedia src={work.cover.src} />
+            {/* Only the first two covers load with the document. They are the
+                heaviest thing on the page and there are seven of them; a card
+                four screens down that fetches its cover immediately is just
+                bandwidth taken from the one you are looking at. */}
+            <CaseCardMedia src={work.cover.src} eager={index < 2} />
           </div>
         </div>
 
@@ -130,7 +135,7 @@ function Panel({ work }: { work: Work }) {
             {work.blurb}
           </p>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
@@ -169,8 +174,8 @@ export function StickyCases({
       </div>
 
       <div className="flex flex-col gap-6 md:gap-8">
-        {works.map((c) => (
-          <Panel key={c.slug} work={c} />
+        {works.map((c, i) => (
+          <Panel key={c.slug} work={c} index={i} />
         ))}
       </div>
     </div>

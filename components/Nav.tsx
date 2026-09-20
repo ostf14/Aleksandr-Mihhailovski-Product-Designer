@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ProgressiveBlur } from "./ProgressiveBlur";
 import { ThemeToggle } from "./ThemeToggle";
@@ -48,7 +49,13 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
   const isActive = isItemActive(item, pathname);
 
   return (
-    <a
+    /* Link, not a bare anchor. Every tab used to be a full document load: the
+       browser threw the page away, re-parsed the CSS, re-ran the boot script
+       and re-fetched the font, to arrive at a page whose only difference is
+       which cards are in the grid. Next now swaps the route in place and
+       prefetches the other tabs while the pill sits idle, so a tab opens in
+       one frame instead of a second. */
+    <Link
       href={item.href}
       data-active={isActive || undefined}
       className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-[13px] transition-colors md:text-sm ${
@@ -67,7 +74,7 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
           {item.badge}
         </span>
       )}
-    </a>
+    </Link>
   );
 }
 
@@ -168,7 +175,7 @@ function usePillWidth(deps: unknown[]) {
 
 function Logo() {
   return (
-    <a
+    <Link
       href="/"
       className="flex items-center gap-2.5 whitespace-nowrap py-1 pl-1 pr-3 tracking-tight text-fg transition-colors hover:text-accent"
     >
@@ -188,7 +195,7 @@ function Logo() {
       <span className="font-sans text-[17px] font-medium leading-none tracking-[-0.01em]">
         Aleksandr Mihhailovski
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -270,7 +277,7 @@ export function Nav() {
 
       {/* Mobile brand pill (top) */}
       <div className="pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:hidden">
-        <a
+        <Link
           href="/"
           className="pointer-events-auto flex items-center gap-2 rounded-full border border-line/60 bg-bg/95 p-1.5 pr-3 text-fg shadow-sm transition-colors hover:text-accent"
         >
@@ -287,7 +294,7 @@ export function Nav() {
           <span className="font-sans text-[14px] font-medium leading-none tracking-[-0.01em]">
             Aleksandr Mihhailovski
           </span>
-        </a>
+        </Link>
       </div>
 
       {/* Mobile nav pill (bottom) — scrolls sideways rather than bleeding off

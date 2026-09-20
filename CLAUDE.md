@@ -106,6 +106,15 @@ hit-tests and still takes focus, so the gate is `visibility`, not
 also seeded from the real `scrollY` in a layout effect, or a reload into a
 scrolled page flashes the hero in at full opacity.
 
+The band is `min-h-svh`, and the distance over which it dissolves is a fraction
+of its measured height, not a fixed number of pixels. It was a flat 200px when
+the band was 614 tall; at full viewport height that would have emptied the hero
+after a fifth of a screen and left you looking at blank surface. `min-` and
+`svh` both matter: `min-` means a landscape phone, where the card is already
+taller than the screen, is untouched, and `svh` is the viewport with the mobile
+address bar showing — sized to `vh`, the hero's own buttons start below the
+fold on iOS.
+
 ### Reveal timing is tuned to card height
 
 `useReveal` in `components/StickyCases.tsx` uses `threshold: 0` against a fixed
@@ -132,6 +141,36 @@ rule for this. Case pages nest three deep.
 The `data:` URI on `body` must stay **identical** across themes. A dark-only
 variant made a full-viewport `feTurbulence` re-rasterise on every theme toggle
 and stalled the page.
+
+### Page weight is not visible in review
+
+There is no `next/image` here — covers are plain `<img>`, so nothing resizes a
+source you drop in `public/`. That is how the nav logo came to be a 603px,
+236 KB PNG drawn at 32px on every page of the site, and how `/product` came to
+weigh 3.5 MB. Both looked perfect.
+
+Before adding an image, check what width it is actually drawn at and size it to
+twice that. `scripts/` has nothing for this; measuring in a browser is the only
+honest way — `document.querySelectorAll("img")` and read `getBoundingClientRect`
+across 390, 1440 and 1920.
+
+Only the first two case covers load eagerly (`CaseCardMedia`'s `eager` prop).
+Anything further down the page must stay lazy.
+
+### Three case covers are hotlinked to framerusercontent.com
+
+`lib/works.ts` and three case pages still point at 23 assets on the old Framer
+site's CDN. They are a third-party origin on the critical path and they vanish
+the day that Framer project does. They want downloading into `public/` — it has
+not been done because the host is unreachable from the sandbox these changes
+were made in.
+
+### Internal navigation goes through `next/link`
+
+Every internal link used to be a bare `<a href>`, so switching tabs threw the
+document away and re-parsed everything to change which cards were in the grid.
+A new internal link should be a `Link`; a `motion.a` becomes
+`motion.create(Link)`, as in `MoreCases.tsx`. External links stay `<a>`.
 
 ---
 

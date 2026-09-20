@@ -1,10 +1,4 @@
 import type { Metadata } from "next";
-import {
-  JetBrains_Mono,
-  Newsreader,
-  Pixelify_Sans,
-  Space_Grotesk,
-} from "next/font/google";
 import { UnderConstruction } from "@/components/UnderConstruction";
 import {
   ogImagePath,
@@ -14,35 +8,6 @@ import {
   SITE_URL,
 } from "@/lib/site";
 import "./globals.css";
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
-
-const pixelifySans = Pixelify_Sans({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-pixelify-sans",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -88,11 +53,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${jetbrainsMono.variable} ${pixelifySans.variable} ${spaceGrotesk.variable} ${newsreader.variable}`}
-      suppressHydrationWarning
-    >
+    /* No font variables here. Satoshi is self-hosted and declared in
+       globals.css, and the two Google faces the remargin showcase needs are
+       declared in that route's own layout — four families registered here had
+       every page downloading five font files for one case page, and two of the
+       four (JetBrains Mono, Pixelify Sans) were read by nothing at all once
+       `font-mono` was pointed at Satoshi. */
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta
           name="format-detection"

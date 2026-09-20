@@ -71,7 +71,7 @@ export const WORKS: Work[] = [
     disciplines: ["engineering", "product"],
     cover: {
       type: "image",
-      src: "/Hero.png",
+      src: "/Hero.webp",
       alt: "ReMargin reader — margin notes connected to highlighted text",
     },
   },
@@ -153,7 +153,7 @@ export const WORKS: Work[] = [
     disciplines: ["product", "graphic"],
     cover: {
       type: "image",
-      src: "/cases/msg/cover.png",
+      src: "/cases/msg/cover.webp",
       alt: "My Sleeping Gypsy — heritage linen brand e-commerce",
     },
     metaDescription:
@@ -171,7 +171,7 @@ export const WORKS: Work[] = [
     disciplines: ["product"],
     cover: {
       type: "image",
-      src: "/cases/gallery/seamm-homepage.jpg",
+      src: "/cases/gallery/seamm-cover.webp",
       alt: "Website design works gallery cover",
     },
     href: "/other",

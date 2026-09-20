@@ -222,7 +222,7 @@ export default function Page() {
             <div className="mt-14">
               <ImagePlaceholder
                 label="My Sleeping Gypsy — brand identity meets digital"
-                src="/cases/msg/cover.png"
+                src="/cases/msg/cover.webp"
                 wide
               />
             </div>

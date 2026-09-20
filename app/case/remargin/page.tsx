@@ -134,7 +134,7 @@ export default function Page() {
             <div className="mt-8">
               <ImagePlaceholder
                 label="ReMargin — a reader where annotations matter as much as the text"
-                src="/Hero.png"
+                src="/Hero.webp"
                 wide
               />
             </div>

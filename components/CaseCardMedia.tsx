@@ -13,7 +13,14 @@ import { useEffect, useRef } from "react";
  *      — there's always motion when you're actually looking at it.
  * Non-video sources fall back to a plain <img>.
  */
-export function CaseCardMedia({ src }: { src: string }) {
+export function CaseCardMedia({
+  src,
+  eager = false,
+}: {
+  src: string;
+  /** Load this cover with the document instead of when it scrolls into view. */
+  eager?: boolean;
+}) {
   const ref = useRef<HTMLVideoElement>(null);
   const isVideo = src.endsWith(".mp4");
 
@@ -84,6 +91,8 @@ export function CaseCardMedia({ src }: { src: string }) {
       src={src}
       alt=""
       aria-hidden
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
       className="h-full w-full object-cover object-top"
     />
   );

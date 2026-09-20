@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useTilt } from "./useTilt";
 
@@ -19,7 +20,7 @@ export function GalleryCard() {
   const tiltRef = useTilt<HTMLAnchorElement>();
 
   return (
-    <a
+    <Link
       ref={tiltRef}
       href="/other"
       className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
@@ -36,7 +37,7 @@ export function GalleryCard() {
               the sides with it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/cases/gallery/seamm-homepage.jpg"
+            src="/cases/gallery/seamm-cover.webp"
             alt=""
             aria-hidden
             className="h-full w-full origin-top scale-[1.08] object-cover object-top"
@@ -68,6 +69,6 @@ export function GalleryCard() {
           years.
         </p>
       </div>
-    </a>
+    </Link>
   );
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { FadeIn } from "@/components/FadeIn";
@@ -59,7 +60,7 @@ export default function Page() {
               <div className="shell-prose flex flex-col gap-3">
                 {entries.map((e, i) => (
                   <FadeIn key={e.slug} delay={i * 0.05}>
-                    <a
+                    <Link
                       href={entryHref(LECTURES, e)}
                       className="group relative block rounded-xl border border-line bg-surface p-5 transition-transform duration-200 hover:-translate-y-0.5 md:p-6"
                     >
@@ -85,7 +86,7 @@ export default function Page() {
                           <span>{e.readingTime}</span>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </FadeIn>
                 ))}
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { Button } from "./Button";
@@ -13,7 +13,20 @@ import { links } from "@/lib/site";
 // dissolves roughly in place — the fast opacity fade still reads as "flies
 // away" — so the sections below sit right under it.
 const SCALE_FACTOR = 0.92;
-const SCROLL_RANGE = 200; // pixels of scroll over which the card dissolves
+
+/**
+ * How much of the band's own height you scroll before the card has gone.
+ *
+ * It used to be a flat 200px, which was a third of a 614px band. The band now
+ * fills the viewport, so a flat 200 would have emptied the hero after a fifth
+ * of a screen and left you looking at most of a screen of blank surface. Tied
+ * to the band instead, the card dissolves at the same point in its own exit
+ * whatever the screen is — and on a short landscape phone, where the band is
+ * its natural height again, it behaves exactly as it always did.
+ */
+const DISSOLVE_FRACTION = 0.35;
+/** Floor, for the landscape-phone case where the band is barely 390 tall. */
+const MIN_SCROLL_RANGE = 200;
 
 /** Shared look for the two quiet links under the pills. */
 const TAIL_LINK =
@@ -134,17 +147,24 @@ export function BusinessCard() {
   const { scrollY } = useScroll();
   const SPRING = { stiffness: 1000, damping: 100, mass: 0.2 } as const;
 
+  // The range is measured from the band, so it is not known at first render.
+  // Held in a ref and read inside the transform rather than kept in state: a
+  // state change would rebuild both transforms and the springs feeding off
+  // them, and this value only ever changes on resize.
+  const bandRef = useRef<HTMLDivElement>(null);
+  const rangeRef = useRef(MIN_SCROLL_RANGE);
+  const progress = (y: number) => Math.min(y / rangeRef.current, 1);
+
   // Scale rides the content column, not the band. A full-bleed surface that
   // shrinks pulls its own edges in from the viewport and the page colour
   // shows up either side — the one thing a bleed is there to prevent.
-  const scaleRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, SCALE_FACTOR], {
-    clamp: true,
-  });
+  const scaleRaw = useTransform(
+    scrollY,
+    (y) => 1 - (1 - SCALE_FACTOR) * progress(y),
+  );
   const scale = useSpring(scaleRaw, SPRING);
 
-  const opacityRaw = useTransform(scrollY, [0, SCROLL_RANGE], [1, 0], {
-    clamp: true,
-  });
+  const opacityRaw = useTransform(scrollY, (y) => 1 - progress(y));
   const opacity = useSpring(opacityRaw, SPRING);
 
   // Once it has dissolved it must stop being a target. Opacity 0 still hit-tests
@@ -164,11 +184,26 @@ export function BusinessCard() {
   // dissolved it — a flash of something that should not have been there. Seed
   // both from the real scroll position before the browser paints.
   useLayoutEffect(() => {
+    // Measure first: the seed below divides by this, and on the server the
+    // band has no height at all.
+    const measure = () => {
+      const h = bandRef.current?.offsetHeight ?? 0;
+      rangeRef.current = Math.max(
+        MIN_SCROLL_RANGE,
+        Math.round(h * DISSOLVE_FRACTION),
+      );
+    };
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+
     const y = window.scrollY;
-    if (y <= 0) return;
-    const t = Math.min(y / SCROLL_RANGE, 1);
-    opacity.jump(1 - t);
-    scale.jump(1 - (1 - SCALE_FACTOR) * t);
+    if (y > 0) {
+      const t = Math.min(y / rangeRef.current, 1);
+      opacity.jump(1 - t);
+      scale.jump(1 - (1 - SCALE_FACTOR) * t);
+    }
+
+    return () => window.removeEventListener("resize", measure);
   }, [opacity, scale]);
 
   const copyEmail = async () => {
@@ -182,10 +217,21 @@ export function BusinessCard() {
   };
 
   return (
+    /* min-height, not height, and svh rather than vh. min- means the band can
+       only ever gain air, never lose content: on a landscape phone the card is
+       already taller than the screen and this rule does nothing at all. svh is
+       the viewport with the mobile address bar showing, so the band fits the
+       screen you can actually see — 100vh on iOS is the bar-hidden height, and
+       a hero sized to it starts with its own buttons below the fold.
+
+       The padding stays: it is the nav's clearance, and centring inside it
+       puts the card in the middle of the space left over rather than in the
+       middle of the band, which is where it reads as centred. */
     <motion.div
+      ref={bandRef}
       data-hero-card="true"
       style={{ opacity, visibility, willChange: "opacity" }}
-      className="hero-band relative w-full pb-14 pt-[104px] md:pb-20 md:pt-[136px]"
+      className="hero-band relative flex min-h-svh w-full flex-col justify-center pb-14 pt-[104px] md:pb-20 md:pt-[136px]"
     >
       <motion.div
         style={{

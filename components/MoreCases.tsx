@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { cases, workHref, type Work } from "@/lib/works";
@@ -15,6 +16,11 @@ const FLY_OUT = { y: 300, scale: 1, opacity: 0, zIndex: 10 };
 // flying-out FRONT card (z:10). With equal z-index, DOM-later siblings would
 // otherwise paint on top of the riser and ghost in front of it.
 const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 7 };
+
+// Link wrapped so the card can be both animated and a client-side
+// navigation. motion.a would take an href but would leave the route as a
+// full document load, which is the one thing this pass is removing.
+const MotionLink = motion.create(Link);
 
 const cardClass =
   "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-surface border-x border-t border-line/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
@@ -81,12 +87,12 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
 
         <div className="relative h-[368px] overflow-hidden md:h-[268px]">
           {list.length === 1 ? (
-            <a
+            <Link
               href={workHref(list[0])}
               className={`${cardClass} translate-y-3 transition-transform duration-200 ease-out hover:-translate-y-1`}
             >
               <CardContent c={list[0]} />
-            </a>
+            </Link>
           ) : (
             list.map((c, i) => {
               const position = order.indexOf(i);
@@ -122,7 +128,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
 
               const hoverable = isFront && phase === "idle";
               return (
-                <motion.a
+                <MotionLink
                   key={c.slug}
                   href={workHref(c)}
                   className={`${cardClass} ${hoverable ? "" : "pointer-events-none"}`}
@@ -131,7 +137,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
                   whileHover={hoverable ? { y: 4 } : undefined}
                 >
                   <CardContent c={c} />
-                </motion.a>
+                </MotionLink>
               );
             })
           )}

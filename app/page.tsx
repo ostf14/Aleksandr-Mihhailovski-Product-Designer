@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
@@ -104,7 +105,7 @@ export default function Page() {
           <div className="shell flex flex-col gap-4">
             {sections.map((s, i) => (
               <FadeIn key={s.href} delay={i * 0.05}>
-                <a
+                <Link
                   href={s.href}
                   className="group relative block rounded-2xl border border-line/60 bg-surface p-6 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:-translate-y-0.5 dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] md:p-8"
                 >
@@ -128,7 +129,7 @@ export default function Page() {
                     {/* TODO: строка-описание раздела */}
                     <PlaceholderBlock className="mt-4" label={s.hole} />
                   </div>
-                </a>
+                </Link>
               </FadeIn>
             ))}
           </div>
