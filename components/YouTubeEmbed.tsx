@@ -16,12 +16,19 @@ export function YouTubeEmbed({
   id,
   title,
   autoplay = false,
+  aspect = "video",
   className = "",
 }: {
   id: string;
   /** Read aloud by screen readers in place of the player. */
   title: string;
   autoplay?: boolean;
+  /**
+   * The frame's shape. "portrait" is 9:16 for clips shot on a phone — a
+   * vertical video in a 16:9 frame is mostly black bars, and the bars are
+   * wider than the picture.
+   */
+  aspect?: "video" | "portrait";
   className?: string;
 }) {
   const params = new URLSearchParams({
@@ -33,7 +40,9 @@ export function YouTubeEmbed({
 
   return (
     <div
-      className={`aspect-video overflow-hidden rounded-2xl border border-line bg-surface-deep ${className}`}
+      className={`overflow-hidden rounded-2xl border border-line bg-surface-deep ${
+        aspect === "portrait" ? "aspect-[9/16]" : "aspect-video"
+      } ${className}`}
     >
       <iframe
         className="h-full w-full"

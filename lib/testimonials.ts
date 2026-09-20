@@ -39,29 +39,43 @@ export type Testimonial = {
    */
   work?: string;
 
-  /** Paths under /public. */
-  video: string;
-  /** Still frame, so the page shows a face rather than a black rectangle. */
+  /**
+   * Where the clip lives. Exactly one of these.
+   *
+   * `video` is a path under /public — full control of the player, but the
+   * file has to fit in the repository. `youtube` is a video id, for clips too
+   * large to commit: it costs the player's own chrome, which is a fair trade
+   * for a talking head and would not have been for the game trailer.
+   */
+  video?: string;
+  youtube?: string;
+  /** Still frame, so a self-hosted clip opens on a face. YouTube has its own. */
   poster?: string;
   /** WebVTT track. Required whenever `lang` is not English. */
   captions?: string;
 
   /** Spoken language. */
   lang: "ru" | "en";
-  /** Human-readable, e.g. "1:12". Shown so nobody presses play blind. */
-  duration: string;
+  /**
+   * Human-readable, e.g. "1:12", so nobody presses play blind. Optional for a
+   * YouTube clip, whose player prints it on the thumbnail already.
+   */
+  duration?: string;
 };
 
 /**
- * Both clips exist — they live in the owner's Drive — but a Drive iframe puts
- * Google's player chrome in the middle of the page and cannot autoplay, so
- * they are self-hosted like every other video here.
+ * Both clips are on YouTube rather than in the repository.
  *
- * The files are NOT in the repository yet. Nothing breaks meanwhile:
- * `availableTestimonials()` below asks the filesystem which ones are actually
- * present, and a section with none renders a placeholder instead of two
- * players pointing at 404s. Drop the files at the paths named here and they
- * appear — no code to change.
+ * Not the first choice — a self-hosted file gives the player no chrome but
+ * ours. It was the right one anyway: the source files are already efficiently
+ * compressed (re-exporting one at 720p made it THREE TIMES larger, which is
+ * what an already-well-compressed file does when a consumer tool re-encodes it
+ * at a fixed bitrate), so there was no honest way to get them small enough to
+ * commit, and video in git is permanent weight in every future clone.
+ *
+ * A talking head can afford the YouTube frame in a way the game trailer could
+ * not: the clip IS the content here, where there it sat at the top of a page
+ * that had to look like ours.
  */
 export const TESTIMONIALS: Testimonial[] = [
   {
@@ -69,10 +83,8 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Pavel",
     role: "Internet marketer",
     about: "Logo design and redesign for his client",
-    video: "/testimonials/pavel.mp4",
-    poster: "/testimonials/pavel.jpg",
+    youtube: "TD6DtHNmPFs",
     lang: "ru",
-    duration: "TODO",
   },
   {
     id: "oksana",
@@ -80,10 +92,8 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Researcher, public health",
     about:
       "Productised the consultation service and designed the session cards",
-    video: "/testimonials/oksana.mp4",
-    poster: "/testimonials/oksana.jpg",
+    youtube: "Hxc1L59B7A4",
     lang: "ru",
-    duration: "TODO",
   },
 ];
 
@@ -110,7 +120,9 @@ export const testimonialsForWork = (slug: string): Testimonial[] =>
  * frame instead of a face.
  */
 export function availableTestimonials(): Testimonial[] {
-  return TESTIMONIALS.filter((t) =>
-    fs.existsSync(path.join(process.cwd(), "public", t.video)),
+  return TESTIMONIALS.filter(
+    (t) =>
+      t.youtube ||
+      (t.video && fs.existsSync(path.join(process.cwd(), "public", t.video))),
   );
 }

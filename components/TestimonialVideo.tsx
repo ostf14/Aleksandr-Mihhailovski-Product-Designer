@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { YouTubeEmbed } from "./YouTubeEmbed";
 import type { Testimonial } from "@/lib/testimonials";
 import { getWork, workHref } from "@/lib/works";
 
@@ -16,7 +17,9 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
   const work = item.work ? getWork(item.work) : undefined;
 
   // Said before anyone commits to pressing play: how long, what language,
-  // and whether they can follow it if they do not speak it.
+  // and whether they can follow it if they do not speak it. Duration is
+  // dropped when unknown rather than guessed — a YouTube thumbnail prints it
+  // anyway.
   const meta = [
     item.duration,
     item.lang.toUpperCase(),
@@ -27,29 +30,41 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
 
   return (
     <figure>
-      {/* object-contain rather than cover: the animated credits are part of
-          the composition, so nothing may be cropped off the edge. */}
-      <div className="aspect-[9/16] overflow-hidden rounded-xl border border-line bg-surface-deep">
-        <video
-          controls
-          playsInline
-          preload="none"
-          poster={item.poster}
-          lang={item.lang}
-          className="h-full w-full object-contain"
-        >
-          <source src={item.video} type="video/mp4" />
-          {item.captions && (
-            <track
-              kind="captions"
-              src={item.captions}
-              srcLang="en"
-              label="English"
-              default
-            />
-          )}
-        </video>
-      </div>
+      {item.youtube ? (
+        // No autoplay here, deliberately. The game trailer starts itself
+        // because it is the page; two testimonials starting themselves at
+        // once would be noise you have to go and switch off.
+        <YouTubeEmbed
+          id={item.youtube}
+          title={`${item.name} — ${item.about}`}
+          aspect="portrait"
+          className="rounded-xl"
+        />
+      ) : (
+        /* object-contain rather than cover: the animated credits are part of
+           the composition, so nothing may be cropped off the edge. */
+        <div className="aspect-[9/16] overflow-hidden rounded-xl border border-line bg-surface-deep">
+          <video
+            controls
+            playsInline
+            preload="none"
+            poster={item.poster}
+            lang={item.lang}
+            className="h-full w-full object-contain"
+          >
+            <source src={item.video} type="video/mp4" />
+            {item.captions && (
+              <track
+                kind="captions"
+                src={item.captions}
+                srcLang="en"
+                label="English"
+                default
+              />
+            )}
+          </video>
+        </div>
+      )}
 
       <figcaption className="mt-3">
         <div className="text-[0.95rem] leading-[1.4] text-fg">{item.name}</div>
