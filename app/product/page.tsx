@@ -7,9 +7,9 @@ import { StickyCases } from "@/components/StickyCases";
 import { pageMetadata, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Work",
+  title: "Product",
   description: SITE_DESCRIPTION,
-  path: "/work",
+  path: "/product",
   ogType: "website",
 });
 

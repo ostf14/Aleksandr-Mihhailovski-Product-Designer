@@ -17,7 +17,7 @@ const FLY_OUT = { y: 300, scale: 1, opacity: 0, zIndex: 10 };
 const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 7 };
 
 const cardClass =
-  "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-surface border-x border-t border-line/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
+  "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-surface border-x border-t border-line/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
 
 function CardContent({ c }: { c: Work }) {
   return (

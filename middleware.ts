@@ -10,7 +10,7 @@ const THIRTY_DAYS = 60 * 60 * 24 * 30;
 /**
  * Keeps unfinished routes away from visitors.
  *
- * Anything still listed in WIP_ROUTES is redirected to /work before it
+ * Anything still listed in WIP_ROUTES is redirected to /product before it
  * renders, so a half-built page is never sent to someone who just wants to
  * see the portfolio. This replaces the client-side cover screen, which still
  * shipped the page and only hid it after the fact.
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname === LOCK_PATH) {
-    const response = NextResponse.redirect(new URL("/work", request.url));
+    const response = NextResponse.redirect(new URL("/product", request.url));
     response.cookies.delete(WIP_PREVIEW_COOKIE);
     return response;
   }
@@ -50,7 +50,7 @@ export function middleware(request: NextRequest) {
 
   // Temporary: these routes come back the moment their content lands, and a
   // cached permanent redirect would be very hard to take back.
-  return NextResponse.redirect(new URL("/work", request.url));
+  return NextResponse.redirect(new URL("/product", request.url));
 }
 
 export const config = {

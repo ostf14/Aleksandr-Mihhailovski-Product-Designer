@@ -29,8 +29,8 @@ const sections: {
   hole: string;
 }[] = [
   {
-    label: "Work",
-    href: "/work",
+    label: "Product",
+    href: "/product",
     hole: "Одна строка про раздел Work — что там лежит и для кого.",
   },
   {
@@ -106,7 +106,7 @@ export default function Page() {
               <FadeIn key={s.href} delay={i * 0.05}>
                 <a
                   href={s.href}
-                  className="group relative block rounded-2xl border border-line/60 bg-white p-6 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:-translate-y-0.5 dark:bg-surface dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] md:p-8"
+                  className="group relative block rounded-2xl border border-line/60 bg-surface p-6 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:-translate-y-0.5 dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] md:p-8"
                 >
                   <ArrowUpRight
                     size={32}
@@ -120,7 +120,7 @@ export default function Page() {
                         {s.label}
                       </h2>
                       {s.badge && (
-                        <span className="rounded bg-surface px-1.5 py-1 font-mono text-[10px] leading-none tracking-[0.08em] text-muted dark:bg-surface-deep">
+                        <span className="text-muted-deep rounded bg-surface px-1.5 py-1 font-mono text-[10px] leading-none tracking-[0.08em]">
                           {s.badge}
                         </span>
                       )}

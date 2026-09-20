@@ -63,6 +63,16 @@ const nextConfig = {
       // Temporary (307) rather than permanent: a /ru index may yet appear,
       // and a cached 308 would be very hard to take back.
       { source: "/ru", destination: "/ru/lectures", permanent: false },
+
+      // /work was the portfolio's address for its whole life so far and is in
+      // circulation — in a CV, in messages, wherever it has been pasted. The
+      // page is /product now; this keeps every one of those links working.
+      //
+      // Temporary (307) rather than permanent on purpose. A 308 is cached by
+      // browsers and is very hard to take back, and this site's naming has
+      // moved more than once. Promote it to permanent once /product has
+      // settled.
+      { source: "/work", destination: "/product", permanent: false },
     ];
   },
 };

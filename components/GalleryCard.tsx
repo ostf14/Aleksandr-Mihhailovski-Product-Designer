@@ -22,18 +22,24 @@ export function GalleryCard() {
     <a
       ref={tiltRef}
       href="/other"
-      className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:bg-surface dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
+      className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
     >
       <span aria-hidden className="spot" />
 
       <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep md:aspect-video md:h-auto">
         <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
+          {/* Scaled out from the top edge. The source is a full-page
+              screenshot whose own backdrop is #0d0d0d, and the white page
+              inside it has rounded corners — so the bottom of a 16:9 crop
+              caught black wedges in both corners. 1.08 from `origin-top`
+              pushes that band below the frame and trims the dark margin at
+              the sides with it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/cases/gallery/seamm-homepage.jpg"
             alt=""
             aria-hidden
-            className="h-full w-full object-cover object-top"
+            className="h-full w-full origin-top scale-[1.08] object-cover object-top"
           />
         </div>
       </div>

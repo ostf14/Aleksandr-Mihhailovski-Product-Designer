@@ -86,7 +86,7 @@ function Panel({ work }: { work: Work }) {
       <a
         ref={tiltRef}
         href={workHref(work)}
-        className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:bg-surface dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
+        className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
       >
         {/* The spotlight. A fixed box centred on the pointer and moved by
             transform alone — see useTilt for why that matters. */}

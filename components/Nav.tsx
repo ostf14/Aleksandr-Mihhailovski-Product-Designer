@@ -10,22 +10,22 @@ type Item = { label: string; href: string; badge?: string; wip?: boolean };
 
 // Items marked `wip` point at routes middleware still redirects away from, so
 // they only appear once the preview cookie is set — otherwise the nav would
-// advertise links that bounce every visitor straight back to /work.
+// advertise links that bounce every visitor straight back to /product.
 const items: Item[] = [
-  { label: "Work", href: "/work" },
+  { label: "Product", href: "/product" },
   { label: "Graphic", href: "/graphic" },
   { label: "Testimonials", href: "/testimonials", wip: true },
   { label: "Lectures", href: "/ru/lectures", badge: "RU", wip: true },
   { label: "About", href: "/about", wip: true },
 ];
 
-// Case pages and the /other gallery are reached from /work, so they keep
+// Case pages and the /other gallery are reached from /product, so they keep
 // that tab lit rather than leaving the nav with nothing selected.
 function isItemActive(item: Item, pathname: string | null): boolean {
   if (!pathname) return false;
-  if (item.href === "/work") {
+  if (item.href === "/product") {
     return (
-      pathname === "/work" ||
+      pathname === "/product" ||
       pathname.startsWith("/case/") ||
       pathname === "/other" ||
       pathname.startsWith("/other/")

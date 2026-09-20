@@ -7,7 +7,7 @@ const LEGACY_ANCHORS = new Set(["#cases", "#other"]);
 
 /**
  * Forwards the two anchors the portfolio used to live under on "/" to their
- * new home on /work.
+ * new home on /product.
  *
  * This cannot be a next.config redirect: browsers never send the fragment to
  * the server, so /#cases arrives as a plain request for "/" and there is
@@ -20,7 +20,7 @@ export function LegacyAnchorRedirect() {
   useEffect(() => {
     const hash = window.location.hash;
     if (LEGACY_ANCHORS.has(hash)) {
-      router.replace(`/work${hash}`);
+      router.replace(`/product${hash}`);
     }
   }, [router]);
 

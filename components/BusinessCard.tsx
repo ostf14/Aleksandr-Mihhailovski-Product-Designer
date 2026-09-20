@@ -160,7 +160,7 @@ export function BusinessCard() {
   );
 
   // The springs start at 1 regardless of where the page actually is, so a
-  // reload or a Back into a scrolled /work painted a fully opaque hero and then
+  // reload or a Back into a scrolled /product painted a fully opaque hero and then
   // dissolved it — a flash of something that should not have been there. Seed
   // both from the real scroll position before the browser paints.
   useLayoutEffect(() => {

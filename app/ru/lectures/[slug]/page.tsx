@@ -97,7 +97,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   </div>
                   <a
                     href={entryHref(LECTURES, next)}
-                    className="group relative block rounded-xl border border-line bg-white p-5 transition-transform duration-200 hover:-translate-y-0.5 dark:bg-surface md:p-6"
+                    className="group relative block rounded-xl border border-line bg-surface p-5 transition-transform duration-200 hover:-translate-y-0.5 md:p-6"
                   >
                     <ArrowUpRight
                       size={24}

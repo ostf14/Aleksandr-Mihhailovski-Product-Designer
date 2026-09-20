@@ -89,7 +89,7 @@ export function LectureToc({ headings }: { headings: TocHeading[] }) {
     <>
       {/* Mobile: collapsed by default */}
       <div className="mb-10 lg:hidden">
-        <div className="overflow-hidden rounded-xl border border-line bg-white/60 dark:bg-surface">
+        <div className="overflow-hidden rounded-xl border border-line bg-surface/60 dark:bg-surface">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
