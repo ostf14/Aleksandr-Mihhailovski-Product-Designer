@@ -17,6 +17,7 @@ export function YouTubeEmbed({
   title,
   autoplay = false,
   aspect = "video",
+  framed = true,
   className = "",
 }: {
   id: string;
@@ -29,6 +30,13 @@ export function YouTubeEmbed({
    * wider than the picture.
    */
   aspect?: "video" | "portrait";
+  /**
+   * The player's own border and corners. Off when something outside already
+   * draws them — a testimonial card rounds and clips its whole self, and two
+   * radii nested one pixel apart is the sort of thing you see without being
+   * able to say what is wrong.
+   */
+  framed?: boolean;
   className?: string;
 }) {
   const params = new URLSearchParams({
@@ -40,9 +48,9 @@ export function YouTubeEmbed({
 
   return (
     <div
-      className={`overflow-hidden rounded-2xl border border-line bg-surface-deep ${
-        aspect === "portrait" ? "aspect-[9/16]" : "aspect-video"
-      } ${className}`}
+      className={`overflow-hidden bg-surface-deep ${
+        framed ? "rounded-2xl border border-line" : ""
+      } ${aspect === "portrait" ? "aspect-[9/16]" : "aspect-video"} ${className}`}
     >
       <iframe
         className="h-full w-full"

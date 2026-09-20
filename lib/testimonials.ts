@@ -51,8 +51,19 @@ export type Testimonial = {
   youtube?: string;
   /** Still frame, so a self-hosted clip opens on a face. YouTube has its own. */
   poster?: string;
-  /** WebVTT track. Required whenever `lang` is not English. */
+  /** WebVTT track for a self-hosted clip. */
   captions?: string;
+  /**
+   * The clip can be followed in English.
+   *
+   * Separate from `captions` because it is a different fact. `captions` is a
+   * file this site serves; this is a promise about the picture — subtitles
+   * burned in by whoever cut the clip, or YouTube's own track, neither of
+   * which the page can see from here. Both end up saying ENG SUB under the
+   * video, which is the only thing a visitor deciding whether to press play
+   * on a Russian clip actually needs to know.
+   */
+  subtitled?: boolean;
 
   /** Spoken language. */
   lang: "ru" | "en";
@@ -85,15 +96,17 @@ export const TESTIMONIALS: Testimonial[] = [
     about: "Logo design and redesign for his client",
     youtube: "TD6DtHNmPFs",
     lang: "ru",
+    subtitled: true,
   },
   {
     id: "oksana",
     name: "Oksana Stanevich",
-    role: "Researcher, public health",
+    role: "MD, researcher in public health",
     about:
       "Productised the consultation service and designed the session cards",
     youtube: "Hxc1L59B7A4",
     lang: "ru",
+    subtitled: true,
   },
 ];
 

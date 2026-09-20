@@ -10,9 +10,9 @@ import { availableTestimonials } from "@/lib/testimonials";
  * arrangements stacked up.
  *
  * The clips are vertical, and there is no honest way to make a 9:16 video sit
- * in a 16:9 slot, so they are shown as a row of narrow columns: at their own
- * proportion, sized by how many there are, capped so two do not turn into two
- * billboards. That is the whole trick to not making these look like an advert.
+ * in a 16:9 slot, so they are shown as a row of narrow cards: at their own
+ * proportion, capped so two do not turn into two billboards. That is the whole
+ * trick to not making these look like an advert.
  *
  * A server component — `availableTestimonials()` reads the filesystem, so the
  * section only ever renders players for files that exist.
@@ -28,9 +28,24 @@ export function TestimonialsSection({
 
   return (
     <section id={id} className="mb-32 scroll-mt-[16.6667vh]">
-      <div className="shell grid grid-cols-1 gap-10 md:grid-cols-[1fr_3fr] md:gap-14 lg:gap-20">
+      {/* minmax(0,…) rather than a bare 1fr_3fr, which is what Cases uses.
+          A fr track is floored at its content's min-content width, and
+          "Testimonials" is one unbreakable word: at 48px it wants 259px, so it
+          widened the heading column to 259 where Cases sits at 220, and this
+          section's content started 38px right of every other section on the
+          page — 157px right of it at 768. Floored at zero the columns match,
+          and the word simply overruns into the gap between them, which is 56px
+          at md and 80px at lg and holds nothing. */}
+      <div className="shell grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] md:gap-14 lg:gap-20">
         <div className="self-start">
-          <h2 className="font-sans text-4xl font-semibold tracking-tight text-fg md:text-5xl">
+          {/* Sized to the column rather than to the other headings. One
+              unbreakable 12-letter word at 48px paints 259px wide, and the
+              column is 158 at md — the glyphs overran their box far enough to
+              land on the first card between 768 and ~960. It reaches the full
+              48px by the time the column is wide enough to take it, which is
+              every desktop; below that it gives up the difference rather than
+              the alignment. */}
+          <h2 className="font-sans text-4xl font-semibold tracking-tight text-fg md:text-[clamp(2.125rem,3.6vw,3rem)]">
             {heading}
           </h2>
         </div>
