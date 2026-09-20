@@ -15,7 +15,7 @@ type Item = { label: string; href: string; badge?: string; wip?: boolean };
 const items: Item[] = [
   { label: "Product", href: "/product" },
   { label: "Graphic", href: "/graphic" },
-  { label: "Gamedev", href: "/gamedev", wip: true },
+  { label: "Gamedev", href: "/gamedev" },
   { label: "Testimonials", href: "/testimonials", wip: true },
   { label: "Lectures", href: "/ru/lectures", badge: "RU", wip: true },
   { label: "About", href: "/about", wip: true },

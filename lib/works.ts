@@ -32,8 +32,7 @@ export const WORKS: Work[] = [
   {
     slug: "dont-tread-on-cat",
     title: "Don't Tread On Cat",
-    blurb:
-      "TODO: одна строка про игру — что это и почему в неё интересно играть.",
+    blurb: "Announcement story trailer is out. In development.",
     role: "Solo Developer",
     org: "In development",
     kind: "case",
@@ -44,7 +43,7 @@ export const WORKS: Work[] = [
       alt: "Don't Tread On Cat — кот на столе среди проводов",
     },
     metaDescription:
-      "TODO: описание игры для поисковой выдачи и превью ссылки.",
+      "Don't Tread On Cat — a game in development. Announcement story trailer.",
   },
   {
     slug: "3d-puzzle",

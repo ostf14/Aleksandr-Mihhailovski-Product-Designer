@@ -6,9 +6,8 @@ import { pageMetadata } from "@/lib/site";
 import { gameCases } from "@/lib/works";
 
 export const metadata = pageMetadata({
-  // TODO: собственные title и description раздела
   title: "Gamedev",
-  description: "TODO: описание раздела для поисковой выдачи и превью ссылки.",
+  description: "Games and prototypes, in development.",
   path: "/gamedev",
   ogType: "website",
   ogSubtitle: "Gamedev",

@@ -42,8 +42,6 @@ export const links = {
 export const WIP_ROUTES = [
   "/",
   "/about",
-  "/gamedev",
-  "/gamedev/*",
   "/ru/lectures",
   "/ru/lectures/*",
   "/testimonials",
