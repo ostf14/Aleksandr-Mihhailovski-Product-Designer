@@ -4,6 +4,8 @@ import { GalleryCard } from "@/components/GalleryCard";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { StickyCases } from "@/components/StickyCases";
+import { TableOfContents, type TocItem } from "@/components/TableOfContents";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { pageMetadata, SITE_DESCRIPTION } from "@/lib/site";
 import { productCases } from "@/lib/works";
 
@@ -14,10 +16,19 @@ export const metadata = pageMetadata({
   ogType: "website",
 });
 
+// Only pages with more than one heading get one — a contents list of a single
+// entry is not a contents list. /gamedev has just Cases, so it has none.
+const toc: TocItem[] = [
+  { id: "cases", label: "Cases" },
+  { id: "other", label: "Other" },
+  { id: "testimonials", label: "Testimonials" },
+];
+
 export default function Page() {
   return (
     <>
       <Nav />
+      <TableOfContents items={toc} />
       <ScrollToTop />
 
       <main>
@@ -44,6 +55,7 @@ export default function Page() {
             <GalleryCard />
           </div>
         </section>
+        <TestimonialsSection />
       </main>
 
       <Footer />

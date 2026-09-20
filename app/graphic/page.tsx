@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { GraphicGallery } from "@/components/GraphicGallery";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { TableOfContents, type TocItem } from "@/components/TableOfContents";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { pageMetadata } from "@/lib/site";
 import { GRAPHIC_ITEMS } from "@/lib/graphic";
 
@@ -14,10 +16,16 @@ export const metadata = pageMetadata({
   ogSubtitle: "Graphic",
 });
 
+const toc: TocItem[] = [
+  { id: "gallery", label: "Gallery" },
+  { id: "testimonials", label: "Testimonials" },
+];
+
 export default function Page() {
   return (
     <>
       <Nav />
+      <TableOfContents items={toc} />
       <ScrollToTop />
 
       <main className="pt-20 md:pt-28">
@@ -37,12 +45,20 @@ export default function Page() {
 
           {/* Cases go above this once they exist — Morgenshtern, Genesis,
               Med consultations. The gallery below is the archive tier: a
-              picture, a name, a year, one line. */}
-          <section className="pb-32">
+              picture, a name, a year, one line.
+
+              It carries a heading now because the page has two sections, and a
+              contents list cannot point at something unnamed. */}
+          <section id="gallery" className="mb-32 scroll-mt-[16.6667vh]">
             <div className="shell">
+              <h2 className="mb-8 font-sans text-4xl font-semibold tracking-tight text-fg md:text-5xl">
+                Gallery
+              </h2>
               <GraphicGallery items={GRAPHIC_ITEMS} />
             </div>
           </section>
+
+          <TestimonialsSection />
         </article>
       </main>
 

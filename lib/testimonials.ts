@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+
 /**
  * Video testimonials.
  *
@@ -29,7 +32,7 @@ export type Testimonial = {
   /** Paths under /public. */
   video: string;
   /** Still frame, so the page shows a face rather than a black rectangle. */
-  poster: string;
+  poster?: string;
   /** WebVTT track. Required whenever `lang` is not English. */
   captions?: string;
 
@@ -40,13 +43,36 @@ export type Testimonial = {
 };
 
 /**
- * Empty until the files land. The page renders a placeholder rather than
- * invented filler while this is empty, so the hole stays countable by eye.
+ * Both clips exist — they live in the owner's Drive — but a Drive iframe puts
+ * Google's player chrome in the middle of the page and cannot autoplay, so
+ * they are self-hosted like every other video here.
  *
- * Coming: Oksana Stanevich (researcher, public health) and Pavel (internet
- * marketer), both speaking Russian, plus a third clip later.
+ * The files are NOT in the repository yet. Nothing breaks meanwhile:
+ * `availableTestimonials()` below asks the filesystem which ones are actually
+ * present, and a section with none renders a placeholder instead of two
+ * players pointing at 404s. Drop the files at the paths named here and they
+ * appear — no code to change.
  */
-export const TESTIMONIALS: Testimonial[] = [];
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: "pavel",
+    name: "Pavel",
+    role: "TODO: кто он и откуда знает по работе",
+    video: "/testimonials/pavel.mp4",
+    poster: "/testimonials/pavel.jpg",
+    lang: "ru",
+    duration: "TODO",
+  },
+  {
+    id: "oksana",
+    name: "Oksana Stanevich",
+    role: "TODO: кто она и откуда знает по работе",
+    video: "/testimonials/oksana.mp4",
+    poster: "/testimonials/oksana.jpg",
+    lang: "ru",
+    duration: "TODO",
+  },
+];
 
 // ---- Selectors -------------------------------------------------------------
 
@@ -56,3 +82,22 @@ export const getTestimonial = (id: string): Testimonial | undefined =>
 /** Every clip recorded about a given work. */
 export const testimonialsForWork = (slug: string): Testimonial[] =>
   TESTIMONIALS.filter((t) => t.work === slug);
+
+// ---- Availability (server only) --------------------------------------------
+
+/**
+ * The clips whose files are actually on disk.
+ *
+ * Imports `node:fs`, so server components only — which every caller is.
+ *
+ * This exists so a registry entry can be written before its file arrives. The
+ * alternative was to leave the registry empty and edit two files when the
+ * videos land; this way the video landing IS the edit. The poster is optional
+ * for the same reason: a clip plays fine without one, it just opens on a dark
+ * frame instead of a face.
+ */
+export function availableTestimonials(): Testimonial[] {
+  return TESTIMONIALS.filter((t) =>
+    fs.existsSync(path.join(process.cwd(), "public", t.video)),
+  );
+}
