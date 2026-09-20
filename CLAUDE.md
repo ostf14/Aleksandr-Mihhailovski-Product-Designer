@@ -190,6 +190,19 @@ from the state it is going to, which is how one rule per direction works. The
 per-cell jitter on top is what makes it read as pixels — without it the front
 is a clean curve and the whole thing looks like an aperture.
 
+**The two directions are not the same animation.** Going in, the squares grow.
+Coming back they do **not** shrink: they stay where they are and fade. A square
+the colour of the page is invisible, so nothing on the way out reads as a
+square retreating — all you see is what it does to the text underneath, and a
+shrinking square takes bites out of the letters it is uncovering. Captured at
+1440x900 it spelled "3D M u m uzzle" for about a fifth of a second, and that is
+what "the text is flickering" turned out to mean. Do not make the reveal
+symmetrical with the cover; on the way in the same chopping is the point.
+
+The cells sit at `scale(1.02)` and stay there through the fade. At exactly 1
+the 1fr tracks leave hairline seams, and animating the scale back to 1 for the
+fade flashes a one-pixel grid of the incoming page.
+
 The reveal waits for `pathname` to actually change, not for a timer. A timer
 reveals a page that has not rendered yet on any route Link did not prefetch.
 

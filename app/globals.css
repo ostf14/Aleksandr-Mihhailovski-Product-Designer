@@ -722,7 +722,7 @@ html:not(.dark) .theme-toggle .i-moon {
   transform: scale(0);
   transition: transform var(--t-3) var(--e-out);
   transition-delay: var(--d-out, 0ms);
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 /* 1.02, not 1. The 1fr tracks land on fractional pixels, and at exactly 1 the
@@ -733,10 +733,25 @@ html:not(.dark) .theme-toggle .i-moon {
   transition-delay: var(--d-in, 0ms);
 }
 
-/* There is deliberately no rule for the revealing phase. Dropping the one
-   above returns every cell to the scale(0) and the --d-out delay on .px-cell,
-   which is the whole mechanism: the frame closes in, then the middle opens
-   first and the opening spreads back out to the edges. */
+/* Coming back, the squares do not shrink — they stay exactly where they are
+   and fade.
+ *
+ * Shrinking them was the obvious thing and it was wrong. A square the colour
+ * of the page is invisible, so nothing on the way out reads as "a square
+ * retreating"; all anyone sees is its effect on what is underneath, and a
+ * shrinking square takes bites out of the letters it is uncovering. Captured
+ * at 1440x900 it spelled "3D M u m uzzle" for about a fifth of a second. That
+ * is the flicker, and it is only a problem in this direction: on the way IN
+ * the same chopping reads as the page being destroyed, which is the point.
+ *
+ * Fading holds the mosaic — cells still clear from the middle outwards, each
+ * on its own delay — while every glyph underneath stays a whole glyph. */
+.px-curtain[data-phase="revealing"] .px-cell {
+  transform: scale(1.02);
+  opacity: 0;
+  transition: opacity var(--t-3) var(--e-out);
+  transition-delay: var(--d-out, 0ms);
+}
 
 /* Respect OS-level reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
