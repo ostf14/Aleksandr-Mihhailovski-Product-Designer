@@ -18,8 +18,14 @@
  */
 const LAYERS = [
   { blur: 1.744, stops: "transparent 0%, #000 20%, #000 40%, transparent 60%" },
-  { blur: 3.024, stops: "transparent 20%, #000 40%, #000 60%, transparent 80%" },
-  { blur: 5.28, stops: "transparent 40%, #000 60%, #000 80%, transparent 100%" },
+  {
+    blur: 3.024,
+    stops: "transparent 20%, #000 40%, #000 60%, transparent 80%",
+  },
+  {
+    blur: 5.28,
+    stops: "transparent 40%, #000 60%, #000 80%, transparent 100%",
+  },
   { blur: 9.184, stops: "transparent 60%, #000 80%, #000 100%" },
   { blur: 16, stops: "transparent 80%, #000 100%" },
 ] as const;

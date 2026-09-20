@@ -41,26 +41,26 @@
      --------------------------------------------------------------- */
 
   /* Surfaces, lightest to deepest */
-  --bg:           255 255 255;   /* #ffffff  the page */
-  --surface:      250 250 250;   /* #fafafa  cards, the hero band */
-  --surface-deep: 242 242 242;   /* #f2f2f2  a step deeper again */
+  --bg: 255 255 255; /* #ffffff  the page */
+  --surface: 250 250 250; /* #fafafa  cards, the hero band */
+  --surface-deep: 242 242 242; /* #f2f2f2  a step deeper again */
 
   /* Hairlines */
-  --line:         235 235 235;   /* #ebebeb  card and section edges */
-  --line-strong:  224 224 224;   /* #e0e0e0  dividers that need to be seen */
+  --line: 235 235 235; /* #ebebeb  card and section edges */
+  --line-strong: 224 224 224; /* #e0e0e0  dividers that need to be seen */
 
   /* Text, strongest to quietest */
-  --fg:            23  23  23;   /* #171717  headings and body */
-  --strong:        77  77  77;   /* #4d4d4d  secondary text */
-  --muted:        102 102 102;   /* #666666  captions, blurbs */
-  --faint:        107 107 107;   /* #6b6b6b  kickers; the floor that still clears 4.5:1 */
+  --fg: 23 23 23; /* #171717  headings and body */
+  --strong: 77 77 77; /* #4d4d4d  secondary text */
+  --muted: 102 102 102; /* #666666  captions, blurbs */
+  --faint: 107 107 107; /* #6b6b6b  kickers; the floor that still clears 4.5:1 */
 
   /* Small painted marks — dots, bullets, sprite fills */
-  --mark:         143 143 143;   /* #8f8f8f */
+  --mark: 143 143 143; /* #8f8f8f */
 
   /* Emphasis. Monochrome today: the accent IS the foreground. This is the one
      line to change if the site ever wants a colour again. */
-  --accent:        23  23  23;   /* #171717 */
+  --accent: 23 23 23; /* #171717 */
 
   /* ---------------------------------------------------------------
      Motion, elevation and rhythm tokens (visual_refresh_spec step 1).
@@ -77,40 +77,40 @@
   --t-6: 640ms;
 
   /* Easings. --e-out is the default for almost everything. */
-  --e-out:    cubic-bezier(.16, 1, .3, 1);
-  --e-in:     cubic-bezier(.5, 0, .9, .3);
-  --e-both:   cubic-bezier(.65, 0, .35, 1);
-  --e-spring: cubic-bezier(.34, 1.4, .64, 1);
+  --e-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-in: cubic-bezier(0.5, 0, 0.9, 0.3);
+  --e-both: cubic-bezier(0.65, 0, 0.35, 1);
+  --e-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
 
   /* Elevation */
-  --sh-sm:   0 1px 2px rgb(0 0 0 / .05);
-  --sh-pill: 0 1px 1px rgb(0 0 0 / .03), 0 4px 12px rgb(0 0 0 / .05);
+  --sh-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --sh-pill: 0 1px 1px rgb(0 0 0 / 0.03), 0 4px 12px rgb(0 0 0 / 0.05);
 
   /* Buttons. The inset highlight sits on the TOP edge in both themes —
      that "light falls from above" cue is what makes them read physical. */
-  --btn1-bg:   linear-gradient(180deg, #2a2a2a 0%, #171717 60%);
-  --btn1-fg:   #ffffff;
+  --btn1-bg: linear-gradient(180deg, #2a2a2a 0%, #171717 60%);
+  --btn1-fg: #ffffff;
   --btn1-line: #171717;
   /* Three drops, not one: a 1px contact shadow to seat the pill, a short
      ambient one, and a wide soft cast that is what actually reads as depth.
      A single blurred shadow either looks flat or looks like a halo. */
-  --btn1-sh:   0 1px 1px rgb(0 0 0 / .18), 0 3px 8px rgb(0 0 0 / .16),
-               0 10px 24px -8px rgb(0 0 0 / .24),
-               inset 0 1px 0 rgb(255 255 255 / .16);
+  --btn1-sh:
+    0 1px 1px rgb(0 0 0 / 0.18), 0 3px 8px rgb(0 0 0 / 0.16),
+    0 10px 24px -8px rgb(0 0 0 / 0.24), inset 0 1px 0 rgb(255 255 255 / 0.16);
 
-  --btn2-bg:   linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-  --btn2-fg:   #3d3d3d;
+  --btn2-bg: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  --btn2-fg: #3d3d3d;
   /* Transparent, not removed: .btn keeps its 1px border so both variants
      measure the same. The pill is defined by its fill and the inset top
      highlight in --btn2-sh, the way the reference does it — an outline on
      top of that read as a second, competing edge. */
   --btn2-line: transparent;
-  --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .07), 0 2px 5px rgb(0 0 0 / .05),
-               0 8px 20px -8px rgb(0 0 0 / .14),
-               inset 0 1px 0 rgb(255 255 255 / .9);
+  --btn2-sh:
+    0 1px 1.5px rgb(0 0 0 / 0.07), 0 2px 5px rgb(0 0 0 / 0.05),
+    0 8px 20px -8px rgb(0 0 0 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.9);
 
   /* Frosted surface for the nav pill */
-  --glass: rgb(255 255 255 / .6);
+  --glass: rgb(255 255 255 / 0.6);
 
   /* Vertical rhythm between major sections */
   --bay: clamp(80px, 9vw, 132px);
@@ -133,49 +133,50 @@
   /* The same eleven, for dark. Note the inversion in the surfaces: in a dark
      theme, stepping away from the background means stepping UP, so
      --surface-deep is lighter than --bg rather than darker. */
-  --bg:           10  10  10;    /* #0a0a0a */
-  --surface:      17  17  17;    /* #111111 */
-  --surface-deep: 26  26  26;    /* #1a1a1a */
+  --bg: 10 10 10; /* #0a0a0a */
+  --surface: 17 17 17; /* #111111 */
+  --surface-deep: 26 26 26; /* #1a1a1a */
 
-  --line:         41  41  41;    /* #292929 */
-  --line-strong:  51  51  51;    /* #333333 */
+  --line: 41 41 41; /* #292929 */
+  --line-strong: 51 51 51; /* #333333 */
 
-  --fg:          237 237 237;    /* #ededed */
-  --strong:      161 161 161;    /* #a1a1a1 */
-  --muted:       143 143 143;    /* #8f8f8f */
-  --faint:       131 131 131;    /* #838383 */
+  --fg: 237 237 237; /* #ededed */
+  --strong: 161 161 161; /* #a1a1a1 */
+  --muted: 143 143 143; /* #8f8f8f */
+  --faint: 131 131 131; /* #838383 */
 
-  --mark:        111 111 111;    /* #6f6f6f */
+  --mark: 111 111 111; /* #6f6f6f */
 
-  --accent:      237 237 237;    /* #ededed */
+  --accent: 237 237 237; /* #ededed */
 
   /* Motion/elevation overrides. Durations and easings are theme-agnostic,
      so only the surfaces that depend on background luminance are redefined
      here. --glass is keyed to our #0a0a0a page bg, not the reference's white. */
-  --glass: rgb(10 10 10 / .6);
+  --glass: rgb(10 10 10 / 0.6);
 
-  --sh-pill: 0 1px 1px rgb(0 0 0 / .4), 0 4px 12px rgb(0 0 0 / .5);
+  --sh-pill: 0 1px 1px rgb(0 0 0 / 0.4), 0 4px 12px rgb(0 0 0 / 0.5);
 
   /* Primary inverts in dark. Left at the light theme's near-black pill it
      came out DARKER than the secondary sitting next to it on a near-black
      page — the hierarchy read backwards. Light pill on dark, dark pill on
      light: the primary is the one that contrasts most with the page. */
-  --btn1-bg:   linear-gradient(180deg, #ffffff 0%, #e8e8e8 100%);
-  --btn1-fg:   #171717;
+  --btn1-bg: linear-gradient(180deg, #ffffff 0%, #e8e8e8 100%);
+  --btn1-fg: #171717;
   --btn1-line: transparent;
   /* The wide drop is joined by a faint light cast: on near-black, a white
      pill throws light rather than shadow, and without it the button looks
      pasted on. */
-  --btn1-sh:   0 1px 1px rgb(0 0 0 / .5), 0 3px 8px rgb(0 0 0 / .45),
-               0 10px 28px -10px rgb(255 255 255 / .16),
-               inset 0 1px 0 rgb(255 255 255 / .9);
+  --btn1-sh:
+    0 1px 1px rgb(0 0 0 / 0.5), 0 3px 8px rgb(0 0 0 / 0.45),
+    0 10px 28px -10px rgb(255 255 255 / 0.16),
+    inset 0 1px 0 rgb(255 255 255 / 0.9);
 
-  --btn2-bg:   linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
-  --btn2-fg:   #ededed;
+  --btn2-bg: linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
+  --btn2-fg: #ededed;
   --btn2-line: transparent;
-  --btn2-sh:   0 1px 1.5px rgb(0 0 0 / .5), 0 2px 5px rgb(0 0 0 / .4),
-               0 8px 22px -10px rgb(0 0 0 / .6),
-               inset 0 1px 0 rgb(255 255 255 / .08);
+  --btn2-sh:
+    0 1px 1.5px rgb(0 0 0 / 0.5), 0 2px 5px rgb(0 0 0 / 0.4),
+    0 8px 22px -10px rgb(0 0 0 / 0.6), inset 0 1px 0 rgb(255 255 255 / 0.08);
 
   color-scheme: dark;
 }
@@ -199,7 +200,9 @@ body {
   /* Body copy is tracked in slightly, not just the headings — it is what keeps
      a grotesque from reading loose at paragraph size. */
   letter-spacing: -0.011em;
-  transition: background-color 200ms ease, color 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
 }
 
 ::selection {
@@ -222,8 +225,13 @@ body {
    palette, sitting next to surfaces that are now neutral. */
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 .cursor-blink {
   animation: blink 0.8s ease-in-out infinite;
@@ -231,8 +239,12 @@ body {
 
 /* Sprite-sheet animation: 12 frames × 30px tall, scaled 4× (sheet 120×1440) */
 @keyframes sprite-pushok {
-  from { background-position-y: 0px; }
-  to { background-position-y: -1440px; }
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: -1440px;
+  }
 }
 .sprite-pushok {
   animation: sprite-pushok 1.2s steps(12, end) infinite;
@@ -240,18 +252,36 @@ body {
 
 /* Walking cat: 10-frame horizontal strip 30×30 each, scaled 4× to 1200×120 */
 @keyframes sprite-walking-cat {
-  from { background-position-x: 0; }
-  to { background-position-x: -1200px; }
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1200px;
+  }
 }
 /* 16s loop: walk off-screen right, wait + flip, walk off-screen left, wait + flip */
 @keyframes sprite-walk-move {
-  0%     { transform: translateX(-120px) scaleX(1); }
-  40%    { transform: translateX(calc(100vw + 120px)) scaleX(1); }
-  40.01% { transform: translateX(calc(100vw + 120px)) scaleX(-1); }
-  50%    { transform: translateX(calc(100vw + 120px)) scaleX(-1); }
-  90%    { transform: translateX(-120px) scaleX(-1); }
-  90.01% { transform: translateX(-120px) scaleX(1); }
-  100%   { transform: translateX(-120px) scaleX(1); }
+  0% {
+    transform: translateX(-120px) scaleX(1);
+  }
+  40% {
+    transform: translateX(calc(100vw + 120px)) scaleX(1);
+  }
+  40.01% {
+    transform: translateX(calc(100vw + 120px)) scaleX(-1);
+  }
+  50% {
+    transform: translateX(calc(100vw + 120px)) scaleX(-1);
+  }
+  90% {
+    transform: translateX(-120px) scaleX(-1);
+  }
+  90.01% {
+    transform: translateX(-120px) scaleX(1);
+  }
+  100% {
+    transform: translateX(-120px) scaleX(1);
+  }
 }
 .sprite-walking-cat {
   animation: sprite-walking-cat 1s steps(10, end) infinite;
@@ -267,8 +297,12 @@ body {
    prefers-reduced-motion block at the end of this file already neutralises
    this animation, so it needs no guard of its own. */
 @keyframes wip-tape-scroll {
-  from { background-position: 0 0; }
-  to   { background-position: 39.6px 0; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 39.6px 0;
+  }
 }
 .wip-tape-scroll {
   animation: wip-tape-scroll 1.4s linear infinite;
@@ -309,15 +343,31 @@ body {
       box-shadow var(--t-2) var(--e-out),
       filter var(--t-2) var(--e-out);
   }
-  .btn:hover  { transform: translateY(-1px); }
-  .btn:active { transform: scale(0.975); }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn:active {
+    transform: scale(0.975);
+  }
 
-  .btn-sm { height: 36px; padding: 0 16px; font-size: 14px; }
-  .btn-md { height: 42px; padding: 0 22px; font-size: 15px; }
+  .btn-sm {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
+  .btn-md {
+    height: 42px;
+    padding: 0 22px;
+    font-size: 15px;
+  }
   /* Hero size. The reference's CTA pills are this much bigger than its
      in-page buttons, and at 42px ours sat too close to body text to read as
      the thing to press. */
-  .btn-lg { height: 50px; padding: 0 28px; font-size: 16px; }
+  .btn-lg {
+    height: 50px;
+    padding: 0 28px;
+    font-size: 16px;
+  }
 
   .btn-primary {
     background-image: var(--btn1-bg);
@@ -327,8 +377,12 @@ body {
   }
   /* Brighten the near-black pill; darken the near-white one. brightness(1.12)
      on a #ffffff button is a no-op, so dark mode needs its own direction. */
-  .btn-primary:hover { filter: brightness(1.12); }
-  .dark .btn-primary:hover { filter: brightness(0.93); }
+  .btn-primary:hover {
+    filter: brightness(1.12);
+  }
+  .dark .btn-primary:hover {
+    filter: brightness(0.93);
+  }
 
   .btn-secondary {
     background-image: var(--btn2-bg);
@@ -336,7 +390,9 @@ body {
     border-color: var(--btn2-line);
     box-shadow: var(--btn2-sh);
   }
-  .btn-secondary:hover { filter: brightness(0.985); }
+  .btn-secondary:hover {
+    filter: brightness(0.985);
+  }
 }
 
 /* Hero portrait, dithered, with the treatment lifting on hover.

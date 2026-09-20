@@ -16,9 +16,24 @@ export const metadata = pageMetadata({
 });
 
 const contacts = [
-  { label: "Email", href: `mailto:${links.email}`, value: links.email, Icon: Mail },
-  { label: "LinkedIn", href: links.linkedin, value: "linkedin.com/in/alexmess", Icon: ArrowUpRight },
-  { label: "GitHub", href: links.github, value: "github.com/ostf14", Icon: GithubIcon },
+  {
+    label: "Email",
+    href: `mailto:${links.email}`,
+    value: links.email,
+    Icon: Mail,
+  },
+  {
+    label: "LinkedIn",
+    href: links.linkedin,
+    value: "linkedin.com/in/alexmess",
+    Icon: ArrowUpRight,
+  },
+  {
+    label: "GitHub",
+    href: links.github,
+    value: "github.com/ostf14",
+    Icon: GithubIcon,
+  },
   { label: "CV", href: links.cv, value: "Google Drive", Icon: Download },
 ];
 
@@ -33,7 +48,7 @@ function Block({
     <section className="pb-20">
       <div className="shell">
         <FadeIn className="shell-prose">
-          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-5">
+          <div className="mb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
             {kicker}
           </div>
           {children}
@@ -51,10 +66,10 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="pt-6 md:pt-10 pb-14">
+          <header className="pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn className="shell-prose">
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   About
                 </h1>
               </FadeIn>
@@ -83,14 +98,18 @@ export default function Page() {
                   <a
                     href={href}
                     target={href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    rel={
+                      href.startsWith("mailto:")
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
                     className="group flex items-center gap-4 py-4 transition-colors hover:text-accent"
                   >
-                    <Icon className="w-4 h-4 shrink-0 text-muted transition-colors group-hover:text-accent" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted w-20 shrink-0">
+                    <Icon className="h-4 w-4 shrink-0 text-muted transition-colors group-hover:text-accent" />
+                    <span className="w-20 shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                       {label}
                     </span>
-                    <span className="text-[0.95rem] text-fg/90 truncate transition-colors group-hover:text-accent">
+                    <span className="truncate text-[0.95rem] text-fg/90 transition-colors group-hover:text-accent">
                       {value}
                     </span>
                   </a>

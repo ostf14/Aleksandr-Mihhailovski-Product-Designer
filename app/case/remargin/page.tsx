@@ -33,34 +33,31 @@ export default function Page() {
       <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
-          <header
-            id="overview"
-            className="scroll-mt-20 pt-6 md:pt-10 pb-14"
-          >
+          <header id="overview" className="scroll-mt-20 pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Self-initiated · 2026
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   ReMargin
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
-                  I wanted a reader where annotations matter as much as the text.
-                  Built one.
+                  I wanted a reader where annotations matter as much as the
+                  text. Built one.
                 </p>
               </FadeIn>
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-line bg-surface rounded-lg overflow-hidden">
-                <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+              <div className="overflow-hidden rounded-lg border border-line bg-surface">
+                <div className="grid grid-cols-1 gap-y-8 p-6 md:grid-cols-4 md:gap-y-0 md:p-8">
                   <div className="md:pr-6">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Role
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -68,8 +65,8 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div className="md:px-6 md:border-l md:border-line">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="md:border-l md:border-line md:px-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Project
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -77,8 +74,8 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div className="md:px-6 md:border-l md:border-line">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="md:border-l md:border-line md:px-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Timeline
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -86,11 +83,11 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div className="md:pl-6 md:border-l md:border-line">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="md:border-l md:border-line md:pl-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Focus
                     </div>
-                    <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
+                    <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
                       {[
                         "Product design",
                         "Frontend engineering",
@@ -99,7 +96,7 @@ export default function Page() {
                         <li key={item} className="flex items-start gap-2.5">
                           <span
                             aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
+                            className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
                           />
                           <span>{item}</span>
                         </li>
@@ -108,7 +105,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="border-t border-line px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+                <div className="flex flex-col gap-3 border-t border-line px-6 py-4 md:flex-row md:items-center md:gap-6 md:px-8">
                   <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Links
                   </span>
@@ -116,7 +113,7 @@ export default function Page() {
                     href="https://remargin-sage.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 transition-colors hover:text-accent"
                   >
                     Live app
                     <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
@@ -125,7 +122,7 @@ export default function Page() {
                     href="https://github.com/ostf14/remargin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 hover:text-accent transition-colors"
+                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 transition-colors hover:text-accent"
                   >
                     Source
                     <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
@@ -144,20 +141,23 @@ export default function Page() {
           </header>
 
           {/* Context */}
-          <div id="context" className="scroll-mt-20 mt-16 pb-32">
-            <Section kicker="01 · Context" heading="Readers handle reading, not thinking">
+          <div id="context" className="mt-16 scroll-mt-20 pb-32">
+            <Section
+              kicker="01 · Context"
+              heading="Readers handle reading, not thinking"
+            >
               <Prose>
                 <p>
-                  Every EPUB reader handles reading. None of them handle thinking.
-                  Apple Books locks your notes. Kindle makes export painful. Moon+
-                  Reader buries annotations in settings. I wanted a reader where
-                  highlights and margin notes are the point — not a feature hidden
-                  behind three taps.
+                  Every EPUB reader handles reading. None of them handle
+                  thinking. Apple Books locks your notes. Kindle makes export
+                  painful. Moon+ Reader buries annotations in settings. I wanted
+                  a reader where highlights and margin notes are the point — not
+                  a feature hidden behind three taps.
                 </p>
                 <p>
-                  The target user is someone who reads to write: researchers, PhD
-                  students, Zettelkasten practitioners. People who need their
-                  annotations to leave the app.
+                  The target user is someone who reads to write: researchers,
+                  PhD students, Zettelkasten practitioners. People who need
+                  their annotations to leave the app.
                 </p>
               </Prose>
             </Section>
@@ -168,14 +168,14 @@ export default function Page() {
             <Section kicker="02 · Core interaction" heading="The margin note">
               <Prose>
                 <p>
-                  The margin note. Not in a sidebar, not in a popup — on the page
-                  margin, connected to the highlighted text with a line. Like
-                  handwriting in a physical book. Desktop only: on mobile, the margin
-                  collapses and notes live in a bottom sheet.
+                  The margin note. Not in a sidebar, not in a popup — on the
+                  page margin, connected to the highlighted text with a line.
+                  Like handwriting in a physical book. Desktop only: on mobile,
+                  the margin collapses and notes live in a bottom sheet.
                 </p>
                 <p>
-                  Five highlight colors with keyboard shortcuts 1–5. No menu hunting.
-                  Select text, press a number. Done.
+                  Five highlight colors with keyboard shortcuts 1–5. No menu
+                  hunting. Select text, press a number. Done.
                 </p>
               </Prose>
             </Section>
@@ -195,25 +195,29 @@ export default function Page() {
             />
 
             <Callout className="mt-10" label="Design decision">
-              Highlights have no confirmation step. The color is the action. ‘Add
-              note’ is a separate explicit choice — most highlights don’t need a note,
-              and forcing the dialog kills reading flow.
+              Highlights have no confirmation step. The color is the action.
+              ‘Add note’ is a separate explicit choice — most highlights don’t
+              need a note, and forcing the dialog kills reading flow.
             </Callout>
           </div>
 
           {/* Export architecture */}
           <div id="export" className="scroll-mt-20 pb-32">
-            <Section kicker="03 · Export architecture" heading="Export shaped everything">
+            <Section
+              kicker="03 · Export architecture"
+              heading="Export shaped everything"
+            >
               <Prose>
                 <p>
-                  Every annotation exports as a standalone Markdown file with YAML
-                  frontmatter: book title, author, page number, color, date. Per-book
-                  zip, all-books zip. Drag into Obsidian — it just works.
+                  Every annotation exports as a standalone Markdown file with
+                  YAML frontmatter: book title, author, page number, color,
+                  date. Per-book zip, all-books zip. Drag into Obsidian — it
+                  just works.
                 </p>
                 <p>
-                  This was the product requirement that shaped everything else. If
-                  export is the primary output, then every annotation needs to carry
-                  enough metadata to be useful outside the app.
+                  This was the product requirement that shaped everything else.
+                  If export is the primary output, then every annotation needs
+                  to carry enough metadata to be useful outside the app.
                 </p>
               </Prose>
             </Section>
@@ -228,12 +232,15 @@ export default function Page() {
 
           {/* Library */}
           <div id="library" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Library" heading="Library as knowledge dashboard">
+            <Section
+              kicker="04 · Library"
+              heading="Library as knowledge dashboard"
+            >
               <Prose>
                 <p>
                   Two views: Grid (book cards with covers) and Notes (cross-book
-                  annotation feed). The Notes view shows all highlights across all
-                  books, grouped by source, with inline editing and search.
+                  annotation feed). The Notes view shows all highlights across
+                  all books, grouped by source, with inline editing and search.
                 </p>
               </Prose>
             </Section>
@@ -255,16 +262,20 @@ export default function Page() {
 
           {/* Technical decisions */}
           <div id="technical" className="scroll-mt-20 pb-32">
-            <Section kicker="05 · Technical decisions" heading="Technical decisions">
+            <Section
+              kicker="05 · Technical decisions"
+              heading="Technical decisions"
+            >
               <Prose>
                 <p>
-                  Local-first. IndexedDB for files, localStorage for metadata. No
-                  server, no auth. All data stays on the device.
+                  Local-first. IndexedDB for files, localStorage for metadata.
+                  No server, no auth. All data stays on the device.
                 </p>
                 <p>
-                  epub.js. rendition.on(‘selected’) fires 1 out of 20 times under
-                  rapid selection. The fix: bypass epub.js events, listen on the
-                  iframe document directly, convert ranges to CFI manually.
+                  epub.js. rendition.on(‘selected’) fires 1 out of 20 times
+                  under rapid selection. The fix: bypass epub.js events, listen
+                  on the iframe document directly, convert ranges to CFI
+                  manually.
                 </p>
                 <p>
                   Typography. Space Grotesk for UI, Newsreader for the reading
@@ -273,9 +284,10 @@ export default function Page() {
                 <p>
                   AI-assisted engineering. Built with Claude Code as the primary
                   coding tool. My role: product decisions, design direction,
-                  architecture, prompts, QA. Claude Code: implementation, debugging,
-                  iteration. This workflow let me ship a full product solo in 10
-                  days — something that would otherwise require a small team.
+                  architecture, prompts, QA. Claude Code: implementation,
+                  debugging, iteration. This workflow let me ship a full product
+                  solo in 10 days — something that would otherwise require a
+                  small team.
                 </p>
               </Prose>
             </Section>
@@ -330,18 +342,18 @@ export default function Page() {
             <Section kicker="07 · Result" heading="Result">
               <Prose>
                 <p>
-                  Solo build — design, engineering, deployment. PWA installable. Two
-                  demo books seeded on first visit (public domain from Project
-                  Gutenberg).
+                  Solo build — design, engineering, deployment. PWA installable.
+                  Two demo books seeded on first visit (public domain from
+                  Project Gutenberg).
                 </p>
               </Prose>
 
               <Callout className="mt-10" label="Key insight">
-                PDF support was built, shipped, and removed. The rendering was stable
-                but text selection, zoom, and annotations across two parallel reader
-                architectures created a maintenance surface I couldn’t sustain alone.
-                Cutting PDF and polishing EPUB was the right product decision — depth
-                over breadth.
+                PDF support was built, shipped, and removed. The rendering was
+                stable but text selection, zoom, and annotations across two
+                parallel reader architectures created a maintenance surface I
+                couldn’t sustain alone. Cutting PDF and polishing EPUB was the
+                right product decision — depth over breadth.
               </Callout>
             </Section>
           </div>

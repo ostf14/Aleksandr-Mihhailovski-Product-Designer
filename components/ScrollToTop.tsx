@@ -19,10 +19,10 @@ export function ScrollToTop() {
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll to top"
       title="Scroll to top"
-      className={`fixed bottom-20 md:bottom-6 right-6 z-40 size-10 rounded-full bg-bg/95 border border-line/70 shadow-sm flex items-center justify-center text-strong hover:text-fg transition-[opacity,transform] duration-200 ease-out ${
+      className={`fixed bottom-20 right-6 z-40 flex size-10 items-center justify-center rounded-full border border-line/70 bg-bg/95 text-strong shadow-sm transition-[opacity,transform] duration-200 ease-out hover:text-fg md:bottom-6 ${
         visible
-          ? "opacity-100 translate-y-0 pointer-events-auto"
-          : "opacity-0 translate-y-2 pointer-events-none"
+          ? "pointer-events-auto translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-2 opacity-0"
       }`}
     >
       <ArrowUp size={16} strokeWidth={1.75} aria-hidden />

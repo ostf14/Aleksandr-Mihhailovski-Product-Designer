@@ -1,0 +1,26 @@
+# Runs the same three checks `npm run verify` runs locally, on every push and
+# pull request. The point is that a broken build cannot reach main quietly —
+# this repository has form: a variable font once broke every link preview on
+# the site while the build stayed green, because nothing checked the thing
+# that broke.
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run build

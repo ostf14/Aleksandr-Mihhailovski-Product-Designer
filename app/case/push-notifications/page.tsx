@@ -53,15 +53,15 @@ export default function Page() {
       <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
-          <header id="overview" className="scroll-mt-20 pt-6 md:pt-10 pb-14">
+          <header id="overview" className="scroll-mt-20 pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Seamm · 2023
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   Push Notifications Manager
                 </h1>
               </FadeIn>
@@ -73,19 +73,20 @@ export default function Page() {
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-line bg-surface rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+              <div className="grid grid-cols-1 gap-y-8 rounded-lg border border-line bg-surface p-6 md:grid-cols-4 md:gap-y-0 md:p-8">
                 <div className="md:pr-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Overview
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
-                    Designed a push notification system that eliminated blind sending, gave
-                    marketing full autonomy, and increased campaign velocity 3.75×.
+                    Designed a push notification system that eliminated blind
+                    sending, gave marketing full autonomy, and increased
+                    campaign velocity 3.75×.
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                <div className="md:border-l md:border-line md:px-6">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     My role
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -93,12 +94,14 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                <div className="md:border-l md:border-line md:px-6">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Team
                   </div>
-                  <p className="text-[15px] text-muted mb-3">Seamm product team</p>
-                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
+                  <p className="mb-3 text-[15px] text-muted">
+                    Seamm product team
+                  </p>
+                  <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
                     {[
                       "PM",
                       "Design Lead",
@@ -108,7 +111,7 @@ export default function Page() {
                       <li key={item} className="flex items-start gap-2.5">
                         <span
                           aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
+                          className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
                         />
                         <span>{item}</span>
                       </li>
@@ -116,11 +119,11 @@ export default function Page() {
                   </ul>
                 </div>
 
-                <div className="md:pl-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                <div className="md:border-l md:border-line md:pl-6">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Impact
                   </div>
-                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
+                  <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
                     {[
                       "~30 min → 2 min creation time",
                       "3.75× campaign velocity",
@@ -128,7 +131,7 @@ export default function Page() {
                       <li key={item} className="flex items-start gap-2.5">
                         <span
                           aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
+                          className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
                         />
                         <span>{item}</span>
                       </li>
@@ -153,20 +156,23 @@ export default function Page() {
           </div>
 
           {/* Why we started */}
-          <div id="why-we-started" className="scroll-mt-20 mt-32 pb-32">
+          <div id="why-we-started" className="mt-32 scroll-mt-20 pb-32">
             <Section kicker="01 · Context" heading="Why we started">
               <Prose>
                 <p>
-                  Every push notification required marketers to message the engineering team via
-                  Slack, wait for availability, then have a developer manually query the database
-                  and send. Engineers — whose time costs significantly more — were pulled from
-                  product work to handle routine marketing tasks. Marketers had no visibility into
-                  how notifications would appear on users&rsquo; devices, and with no preview or
-                  review step, a single typo could reach thousands of users instantly.
+                  Every push notification required marketers to message the
+                  engineering team via Slack, wait for availability, then have a
+                  developer manually query the database and send. Engineers —
+                  whose time costs significantly more — were pulled from product
+                  work to handle routine marketing tasks. Marketers had no
+                  visibility into how notifications would appear on users&rsquo;
+                  devices, and with no preview or review step, a single typo
+                  could reach thousands of users instantly.
                 </p>
                 <p>
-                  But unlike content that can be unpublished, push notifications are irreversible.
-                  Once sent, there&rsquo;s no undo. A typo reaches 10,000 users instantly.
+                  But unlike content that can be unpublished, push notifications
+                  are irreversible. Once sent, there&rsquo;s no undo. A typo
+                  reaches 10,000 users instantly.
                 </p>
                 <p>Three things made this a high-anxiety task:</p>
               </Prose>
@@ -181,14 +187,16 @@ export default function Page() {
               />
 
               <Callout className="mt-10" label="The goal">
-                My goal: design an end-to-end flow that empowers non-technical admins to create,
-                target, and send push notifications with confidence — and zero code.
+                My goal: design an end-to-end flow that empowers non-technical
+                admins to create, target, and send push notifications with
+                confidence — and zero code.
               </Callout>
 
               <Callout className="mt-10" label="Key insight">
-                Push notifications sat at an expensive intersection: marketing couldn&rsquo;t send
-                without engineering, engineering had higher-priority work, and neither side had
-                tools to prevent costly mistakes.
+                Push notifications sat at an expensive intersection: marketing
+                couldn&rsquo;t send without engineering, engineering had
+                higher-priority work, and neither side had tools to prevent
+                costly mistakes.
               </Callout>
             </Section>
           </div>
@@ -205,9 +213,9 @@ export default function Page() {
             >
               <Prose>
                 <p>
-                  The core pattern was a real-time preview that updates as the admin types. I used
-                  the actual app pop-up proportions to make the preview realistic — not a generic
-                  mockup.
+                  The core pattern was a real-time preview that updates as the
+                  admin types. I used the actual app pop-up proportions to make
+                  the preview realistic — not a generic mockup.
                 </p>
               </Prose>
             </Section>
@@ -221,15 +229,16 @@ export default function Page() {
 
             <Prose className="mt-8">
               <p>
-                I considered a separate Preview step — Edit, then Save, then Preview, then Send.
-                But I chose live preview because it reduces friction, enables rapid iteration (3
-                message variants in 2 minutes), and eliminates undo anxiety.
+                I considered a separate Preview step — Edit, then Save, then
+                Preview, then Send. But I chose live preview because it reduces
+                friction, enables rapid iteration (3 message variants in 2
+                minutes), and eliminates undo anxiety.
               </p>
             </Prose>
 
             <Callout className="mt-10" label="Design decision">
-              Trade-off: More complex state management in code, but the UX benefit justified the
-              engineering cost.
+              Trade-off: More complex state management in code, but the UX
+              benefit justified the engineering cost.
             </Callout>
           </div>
 
@@ -245,11 +254,12 @@ export default function Page() {
             >
               <Prose>
                 <p>
-                  Audience targeting was the trickiest interaction design problem. The default
-                  shows total addressable audience with an &lsquo;Everyone&rsquo; button. Custom
-                  selection opens a modal for searching by username, email, or ID. The table
-                  displays metadata — registration date, last activity — so admins can verify
-                  they&rsquo;re selecting the right users.
+                  Audience targeting was the trickiest interaction design
+                  problem. The default shows total addressable audience with an
+                  &lsquo;Everyone&rsquo; button. Custom selection opens a modal
+                  for searching by username, email, or ID. The table displays
+                  metadata — registration date, last activity — so admins can
+                  verify they&rsquo;re selecting the right users.
                 </p>
               </Prose>
             </Section>
@@ -263,26 +273,28 @@ export default function Page() {
 
             <Prose className="mt-8">
               <p>
-                I considered displaying filters directly on the main screen. But I chose a modal
-                because 80% of campaigns target fewer than 50 users, simple search handles the
-                majority of cases, and it keeps the main composer clean.
+                I considered displaying filters directly on the main screen. But
+                I chose a modal because 80% of campaigns target fewer than 50
+                users, simple search handles the majority of cases, and it keeps
+                the main composer clean.
               </p>
             </Prose>
 
             <Callout className="mt-10" label="Design decision">
-              80% of campaigns targeted fewer than 50 specific users — not complex segments
-              needing multi-filter dashboards. A modal with search-by-name covers this in two
-              clicks: open, search, select, done. The main composer stays uncluttered for the
-              message itself, and the modal only appears when the admin actively chooses custom
+              80% of campaigns targeted fewer than 50 specific users — not
+              complex segments needing multi-filter dashboards. A modal with
+              search-by-name covers this in two clicks: open, search, select,
+              done. The main composer stays uncluttered for the message itself,
+              and the modal only appears when the admin actively chooses custom
               targeting.
             </Callout>
 
             {/* Zero-state subblock */}
-            <div id="zero-state" className="scroll-mt-20 mt-14">
+            <div id="zero-state" className="mt-14 scroll-mt-20">
               <div className="">
                 <div className="shell">
                   <FadeIn>
-                    <h3 className="shell-prose font-sans font-semibold text-xl md:text-2xl tracking-tight">
+                    <h3 className="shell-prose font-sans text-xl font-semibold tracking-tight md:text-2xl">
                       Zero-state
                     </h3>
                   </FadeIn>
@@ -290,9 +302,10 @@ export default function Page() {
               </div>
               <Prose className="mt-5">
                 <p>
-                  If zero users are selected, the system shows a large visual indicator: &lsquo;0
-                  Users will receive your message.&rsquo; The send button stays disabled. This
-                  sounds obvious. But without it, it&rsquo;s trivially easy to fire a campaign to
+                  If zero users are selected, the system shows a large visual
+                  indicator: &lsquo;0 Users will receive your message.&rsquo;
+                  The send button stays disabled. This sounds obvious. But
+                  without it, it&rsquo;s trivially easy to fire a campaign to
                   nobody — or worse, to everyone by accident.
                 </p>
               </Prose>
@@ -317,10 +330,11 @@ export default function Page() {
             >
               <Prose>
                 <p>
-                  This is the feature I&rsquo;m most proud of. Before the final send, a dedicated
-                  review modal shows: a summary recapping the exact audience count
-                  (&lsquo;Send to 238 users&rsquo;), one last look at the notification creative,
-                  and a clear CTA stating the action and scope — removing all ambiguity.
+                  This is the feature I&rsquo;m most proud of. Before the final
+                  send, a dedicated review modal shows: a summary recapping the
+                  exact audience count (&lsquo;Send to 238 users&rsquo;), one
+                  last look at the notification creative, and a clear CTA
+                  stating the action and scope — removing all ambiguity.
                 </p>
               </Prose>
             </Section>
@@ -333,8 +347,9 @@ export default function Page() {
             />
 
             <Callout className="mt-10" label="Key insight">
-              The confirmation modal initially felt like it was slowing users down. It became the
-              most-praised feature in the entire project. Users wanted confidence over speed.
+              The confirmation modal initially felt like it was slowing users
+              down. It became the most-praised feature in the entire project.
+              Users wanted confidence over speed.
             </Callout>
           </div>
 
@@ -346,10 +361,12 @@ export default function Page() {
                   <div className="shell-prose space-y-10">
                     {results.map((r, i) => (
                       <FadeIn key={r.h} delay={i * 0.05}>
-                        <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
+                        <h3 className="mb-3 font-sans text-xl font-semibold tracking-tight md:text-2xl">
                           {r.h}
                         </h3>
-                        <p className="text-[1.125rem] leading-[1.65] text-fg/90">{r.p}</p>
+                        <p className="text-[1.125rem] leading-[1.65] text-fg/90">
+                          {r.p}
+                        </p>
                       </FadeIn>
                     ))}
                   </div>
@@ -358,8 +375,9 @@ export default function Page() {
             </Section>
 
             <Callout className="mt-10" label="Key insight">
-              The real win wasn&rsquo;t faster notifications. It was redirecting engineering hours
-              — which cost 3–5× more than marketing hours — back to product work.
+              The real win wasn&rsquo;t faster notifications. It was redirecting
+              engineering hours — which cost 3–5× more than marketing hours —
+              back to product work.
             </Callout>
 
             {/* Under the hood — design system subblock */}
@@ -367,7 +385,7 @@ export default function Page() {
               <div className="">
                 <div className="shell">
                   <FadeIn>
-                    <h3 className="shell-prose font-sans font-semibold text-xl md:text-2xl tracking-tight">
+                    <h3 className="shell-prose font-sans text-xl font-semibold tracking-tight md:text-2xl">
                       Under the hood
                     </h3>
                   </FadeIn>
@@ -375,10 +393,11 @@ export default function Page() {
               </div>
               <Prose className="mt-5">
                 <p>
-                  The notification manager uses the Seamm Admin Design System I maintained — form
-                  inputs with validation states, button states, status indicators. A shared
-                  component library reduced development time and ensured UI consistency, so the
-                  team could focus on the harder, scarier parts of the workflow.
+                  The notification manager uses the Seamm Admin Design System I
+                  maintained — form inputs with validation states, button
+                  states, status indicators. A shared component library reduced
+                  development time and ensured UI consistency, so the team could
+                  focus on the harder, scarier parts of the workflow.
                 </p>
               </Prose>
               <ImagePlaceholder
@@ -403,14 +422,14 @@ export default function Page() {
               <div className="">
                 <div className="shell">
                   <div className="shell-prose">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
+                          <div className="group flex h-full flex-col rounded-lg bg-surface p-5 transition-all duration-200 ease-out md:p-6 md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                            <div className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-muted transition-colors duration-200 ease-out md:group-hover:text-accent">
                               {String(i + 1).padStart(2, "0")}
                             </div>
-                            <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">
+                            <h3 className="mb-3 text-base font-medium leading-snug tracking-tight md:text-[1.0625rem]">
                               {r.h}
                             </h3>
                             <p className="text-[0.9375rem] leading-[1.55] text-fg/80">

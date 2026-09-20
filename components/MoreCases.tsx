@@ -25,22 +25,22 @@ function CardContent({ c }: { c: Work }) {
       <ArrowUpRight
         size={32}
         strokeWidth={1.5}
-        className="absolute top-5 right-5 text-faint transition-colors group-hover:text-accent z-10"
+        className="absolute right-5 top-5 z-10 text-faint transition-colors group-hover:text-accent"
         aria-hidden
       />
-      <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
-        <div className="md:flex-1 md:min-w-0 flex flex-col pr-10 md:pr-10">
+      <div className="flex h-full flex-col gap-3 md:flex-row-reverse md:gap-5">
+        <div className="flex flex-col pr-10 md:min-w-0 md:flex-1 md:pr-10">
           <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
             {c.org}
           </div>
-          <h3 className="mt-2 font-sans font-semibold text-[22px] leading-tight tracking-tight">
+          <h3 className="mt-2 font-sans text-[22px] font-semibold leading-tight tracking-tight">
             {c.title}
           </h3>
-          <p className="mt-2 text-[13px] leading-[1.5] text-muted line-clamp-2">
+          <p className="mt-2 line-clamp-2 text-[13px] leading-[1.5] text-muted">
             {c.blurb}
           </p>
         </div>
-        <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-surface dark:bg-surface-deep">
+        <div className="-mx-5 -mb-5 min-h-0 flex-1 overflow-hidden rounded-none bg-surface dark:bg-surface-deep md:m-0 md:h-full md:flex-none md:shrink-0 md:basis-[38%] md:rounded-xl">
           <CaseCardMedia src={c.cover.src} />
         </div>
       </div>
@@ -75,15 +75,15 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
   return (
     <section className="pb-32">
       <div className="shell-prose">
-        <h2 className="font-sans font-semibold text-h2 tracking-tight mb-5">
+        <h2 className="mb-5 font-sans text-h2 font-semibold tracking-tight">
           More case studies
         </h2>
 
-        <div className="relative h-[368px] md:h-[268px] overflow-hidden">
+        <div className="relative h-[368px] overflow-hidden md:h-[268px]">
           {list.length === 1 ? (
             <a
               href={workHref(list[0])}
-              className={`${cardClass} translate-y-3 hover:-translate-y-1 transition-transform duration-200 ease-out`}
+              className={`${cardClass} translate-y-3 transition-transform duration-200 ease-out hover:-translate-y-1`}
             >
               <CardContent c={list[0]} />
             </a>
@@ -138,21 +138,21 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
         </div>
 
         {list.length > 1 && (
-          <div className="border-t border-line/60 mt-6 pt-6 flex justify-center">
+          <div className="mt-6 flex justify-center border-t border-line/60 pt-6">
             <button
               type="button"
               onClick={shuffle}
               disabled={phase !== "idle"}
               aria-label="Show next case"
-              className="group flex flex-col items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group flex flex-col items-center gap-1 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ChevronDown
                 size={32}
                 strokeWidth={1.75}
-                className="text-faint transition-all duration-200 group-hover:text-accent group-hover:scale-110"
+                className="text-faint transition-all duration-200 group-hover:scale-110 group-hover:text-accent"
                 aria-hidden
               />
-              <span className="text-[13px] text-muted group-hover:text-accent transition-colors">
+              <span className="text-[13px] text-muted transition-colors group-hover:text-accent">
                 next case
               </span>
             </button>

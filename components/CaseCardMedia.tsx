@@ -73,7 +73,7 @@ export function CaseCardMedia({ src }: { src: string }) {
         playsInline
         preload="none"
         aria-hidden
-        className="w-full h-full object-cover object-top"
+        className="h-full w-full object-cover object-top"
       />
     );
   }
@@ -84,7 +84,7 @@ export function CaseCardMedia({ src }: { src: string }) {
       src={src}
       alt=""
       aria-hidden
-      className="w-full h-full object-cover object-top"
+      className="h-full w-full object-cover object-top"
     />
   );
 }

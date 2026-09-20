@@ -74,10 +74,15 @@ function BrowserShot({
         <FadeIn className="shell-prose">
           <BrowserFrame url={url}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
+            <img
+              src={src}
+              alt={alt}
+              className="block h-auto w-full"
+              loading="lazy"
+            />
           </BrowserFrame>
           {caption && (
-            <figcaption className="mt-2.5 font-mono text-xs text-muted text-left">
+            <figcaption className="mt-2.5 text-left font-mono text-xs text-muted">
               {caption}
             </figcaption>
           )}
@@ -87,12 +92,18 @@ function BrowserShot({
   );
 }
 
-function SubHeading({ id, children }: { id: string; children: React.ReactNode }) {
+function SubHeading({
+  id,
+  children,
+}: {
+  id: string;
+  children: React.ReactNode;
+}) {
   return (
     <div id={id} className="scroll-mt-20">
       <div className="shell">
         <FadeIn>
-          <h3 className="shell-prose font-sans font-semibold text-xl md:text-2xl tracking-tight">
+          <h3 className="shell-prose font-sans text-xl font-semibold tracking-tight md:text-2xl">
             {children}
           </h3>
         </FadeIn>
@@ -111,98 +122,100 @@ export default function Page() {
       <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
-          <header
-            id="overview"
-            className="scroll-mt-20 pt-6 md:pt-10 pb-14"
-          >
+          <header id="overview" className="scroll-mt-20 pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   E-Commerce · Web Design · 2022
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   My Sleeping Gypsy
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
-                  How to sell heritage craftsmanship without looking like fast fashion.
+                  How to sell heritage craftsmanship without looking like fast
+                  fashion.
                 </p>
               </FadeIn>
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-line bg-surface rounded-lg overflow-hidden">
-                <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
-                <div className="md:pr-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
-                    Role
+              <div className="overflow-hidden rounded-lg border border-line bg-surface">
+                <div className="grid grid-cols-1 gap-y-8 p-6 md:grid-cols-4 md:gap-y-0 md:p-8">
+                  <div className="md:pr-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                      Role
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-fg/90">
+                      Web Designer
+                    </p>
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-fg/90">
-                    Web Designer
-                  </p>
-                </div>
 
-                <div className="md:px-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
-                    Company
-                  </div>
-                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
-                    {["UPROCK", "My Sleeping Gypsy"].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <span
-                          aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="md:px-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
-                    Timeline
-                  </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-fg/90">2022</p>
-                </div>
-
-                <div className="md:pl-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
-                    Focus
-                  </div>
-                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
-                    {["E-commerce redesign", "Design system", "UX research"].map(
-                      (item) => (
+                  <div className="md:border-l md:border-line md:px-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                      Company
+                    </div>
+                    <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
+                      {["UPROCK", "My Sleeping Gypsy"].map((item) => (
                         <li key={item} className="flex items-start gap-2.5">
                           <span
                             aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
+                            className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
                           />
                           <span>{item}</span>
                         </li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-              </div>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="border-t border-line px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                  Full case
-                </span>
-                <a
-                  href="https://www.behance.net/gallery/136903557/MY-SLEEPING-GYPSY-redesign-website"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 hover:text-accent transition-colors"
-                >
-                  View on Behance
-                  <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
-                </a>
-              </div>
+                  <div className="md:border-l md:border-line md:px-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                      Timeline
+                    </div>
+                    <p className="text-[0.95rem] leading-[1.55] text-fg/90">
+                      2022
+                    </p>
+                  </div>
+
+                  <div className="md:border-l md:border-line md:pl-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                      Focus
+                    </div>
+                    <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
+                      {[
+                        "E-commerce redesign",
+                        "Design system",
+                        "UX research",
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span
+                            aria-hidden
+                            className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 border-t border-line px-6 py-4 md:flex-row md:items-center md:gap-4 md:px-8">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                    Full case
+                  </span>
+                  <a
+                    href="https://www.behance.net/gallery/136903557/MY-SLEEPING-GYPSY-redesign-website"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 transition-colors hover:text-accent"
+                  >
+                    View on Behance
+                    <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
+                  </a>
+                </div>
               </div>
             </FadeIn>
 
@@ -216,39 +229,46 @@ export default function Page() {
           </header>
 
           {/* Context */}
-          <div id="context" className="scroll-mt-20 mt-16 pb-32">
-            <Section kicker="01 · Context" heading="A premium product on a generic-looking site">
+          <div id="context" className="mt-16 scroll-mt-20 pb-32">
+            <Section
+              kicker="01 · Context"
+              heading="A premium product on a generic-looking site"
+            >
               <Prose>
                 <p>
-                  My Sleeping Gypsy is a women’s clothing brand that makes handmade
-                  embroidered linen pieces — dresses, skirts, blouses, suits — priced at
-                  €300–800. Everything is locally produced, hand-embroidered, made to
-                  order.
+                  My Sleeping Gypsy is a women’s clothing brand that makes
+                  handmade embroidered linen pieces — dresses, skirts, blouses,
+                  suits — priced at €300–800. Everything is locally produced,
+                  hand-embroidered, made to order.
                 </p>
                 <p>
                   The existing site worked functionally, but had zero stylistic
-                  integrity. It looked like a generic marketplace, not a premium brand.
-                  The visual gap between the product quality and the site quality was
-                  massive.
+                  integrity. It looked like a generic marketplace, not a premium
+                  brand. The visual gap between the product quality and the site
+                  quality was massive.
                 </p>
               </Prose>
 
               <Callout className="mt-10" label="The goal">
-                Redesign the e-commerce experience so the site feels as premium as the
-                product — without losing existing usability.
+                Redesign the e-commerce experience so the site feels as premium
+                as the product — without losing existing usability.
               </Callout>
             </Section>
           </div>
 
           {/* Research */}
           <div id="research" className="scroll-mt-20 pb-32">
-            <Section kicker="02 · Research" heading="Three parallel analyses before any pixels">
+            <Section
+              kicker="02 · Research"
+              heading="Three parallel analyses before any pixels"
+            >
               <Prose>
                 <p>
-                  I ran three streams in parallel — competitive, audience, and visual
-                  industry analysis — before touching the design tool. The goal was to
-                  understand what makes premium fashion sites read as premium, so the
-                  redesign wouldn’t default to standard e-commerce patterns.
+                  I ran three streams in parallel — competitive, audience, and
+                  visual industry analysis — before touching the design tool.
+                  The goal was to understand what makes premium fashion sites
+                  read as premium, so the redesign wouldn’t default to standard
+                  e-commerce patterns.
                 </p>
               </Prose>
             </Section>
@@ -282,9 +302,9 @@ export default function Page() {
               />
 
               <Callout className="mt-10" label="Key insight">
-                The audience doesn’t comparison-shop on price. They compare on perceived
-                quality. The site needs to feel like a fashion editorial, not a product
-                catalog.
+                The audience doesn’t comparison-shop on price. They compare on
+                perceived quality. The site needs to feel like a fashion
+                editorial, not a product catalog.
               </Callout>
             </div>
 
@@ -305,21 +325,25 @@ export default function Page() {
               />
 
               <Callout className="mt-10" label="Design decision">
-                Based on the research: Baskerville for headings (editorial, timeless) +
-                Suisse Intl for body (clean, modern). Light pastel palette.
-                Photography-first layout. No accent colors that compete with the product.
+                Based on the research: Baskerville for headings (editorial,
+                timeless) + Suisse Intl for body (clean, modern). Light pastel
+                palette. Photography-first layout. No accent colors that compete
+                with the product.
               </Callout>
             </div>
           </div>
 
           {/* Design */}
           <div id="design" className="scroll-mt-20 pb-32">
-            <Section kicker="03 · Design" heading="Editorial pacing, end to end">
+            <Section
+              kicker="03 · Design"
+              heading="Editorial pacing, end to end"
+            >
               <Prose>
                 <p>
-                  The redesign treats the catalog like a magazine spread: large imagery,
-                  generous whitespace, and a story-first homepage that lets the brand
-                  breathe before any price tag appears.
+                  The redesign treats the catalog like a magazine spread: large
+                  imagery, generous whitespace, and a story-first homepage that
+                  lets the brand breathe before any price tag appears.
                 </p>
               </Prose>
             </Section>
@@ -392,12 +416,15 @@ export default function Page() {
 
           {/* Decisions */}
           <div id="decisions" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Decisions" heading="Four design calls that shaped the brief">
+            <Section
+              kicker="04 · Decisions"
+              heading="Four design calls that shaped the brief"
+            >
               <Prose>
                 <p>
-                  Each decision pulled the design further from default e-commerce
-                  patterns. Together they signal: this product is for someone who reads
-                  the story.
+                  Each decision pulled the design further from default
+                  e-commerce patterns. Together they signal: this product is for
+                  someone who reads the story.
                 </p>
               </Prose>
             </Section>
@@ -405,7 +432,7 @@ export default function Page() {
             <div className="mt-8 space-y-6">
               {decisions.map((d) => (
                 <Callout key={d.h} label="Design decision">
-                  <strong className="block mb-2 font-medium text-fg">
+                  <strong className="mb-2 block font-medium text-fg">
                     {d.h}
                   </strong>
                   <span className="text-fg/85">{d.p}</span>
@@ -427,14 +454,14 @@ export default function Page() {
               <div className="">
                 <div className="shell">
                   <div className="shell-prose">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
+                          <div className="group flex h-full flex-col rounded-lg bg-surface p-5 transition-all duration-200 ease-out md:p-6 md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                            <div className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-muted transition-colors duration-200 ease-out md:group-hover:text-accent">
                               {String(i + 1).padStart(2, "0")}
                             </div>
-                            <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">
+                            <h3 className="mb-3 text-base font-medium leading-snug tracking-tight md:text-[1.0625rem]">
                               {r.h}
                             </h3>
                             <p className="text-[0.9375rem] leading-[1.55] text-fg/80">

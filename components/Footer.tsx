@@ -44,14 +44,14 @@ export function Footer() {
           only blurs what is painted behind it. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 -translate-y-full pointer-events-none z-0"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 -translate-y-full"
         style={{ height: 72 }}
       >
         <ProgressiveBlur edge="bottom" height={72} />
       </div>
 
       {/* Cat — sits just above the band's top edge */}
-      <div className="absolute inset-x-0 top-0 -translate-y-full pointer-events-none z-10">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 -translate-y-full">
         <SpriteAnimation />
       </div>
 
@@ -64,7 +64,7 @@ export function Footer() {
             left-aligned against nothing looks like it lost its second column. */}
         <div className="shell grid grid-cols-1 gap-10 text-center md:grid-cols-[1fr_3fr] md:gap-14 md:text-left lg:gap-20">
           <div className="self-start">
-            <h2 className="font-sans font-medium text-[clamp(30px,5vw,52px)] leading-[1.04] tracking-[-0.036em] text-fg">
+            <h2 className="font-sans text-[clamp(30px,5vw,52px)] font-medium leading-[1.04] tracking-[-0.036em] text-fg">
               Let&rsquo;s work
               <br className="hidden md:inline" /> together
             </h2>
@@ -118,7 +118,7 @@ export function Footer() {
                 {copied ? "Copied!" : "Copy email"}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-fg px-2.5 py-1.5 text-xs font-medium text-bg opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100"
+                  className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-fg px-2.5 py-1.5 text-xs font-medium text-bg opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100"
                 >
                   {links.email}
                 </span>

@@ -22,25 +22,29 @@ export const metadata = pageMetadata({
   ogImageTitle: SITE_TAGLINE,
 });
 
-const sections: { label: string; href: string; badge?: string; hole: string }[] =
-  [
-    {
-      label: "Work",
-      href: "/work",
-      hole: "Одна строка про раздел Work — что там лежит и для кого.",
-    },
-    {
-      label: "Lectures",
-      href: "/ru/lectures",
-      badge: "RU",
-      hole: "Одна строка про лекции — курс, аудитория, о чём серия.",
-    },
-    {
-      label: "About",
-      href: "/about",
-      hole: "Одна строка про раздел About.",
-    },
-  ];
+const sections: {
+  label: string;
+  href: string;
+  badge?: string;
+  hole: string;
+}[] = [
+  {
+    label: "Work",
+    href: "/work",
+    hole: "Одна строка про раздел Work — что там лежит и для кого.",
+  },
+  {
+    label: "Lectures",
+    href: "/ru/lectures",
+    badge: "RU",
+    hole: "Одна строка про лекции — курс, аудитория, о чём серия.",
+  },
+  {
+    label: "About",
+    href: "/about",
+    hole: "Одна строка про раздел About.",
+  },
+];
 
 export default function Page() {
   return (
@@ -53,24 +57,24 @@ export default function Page() {
         <section className="mb-20 md:mb-28">
           <div className="shell">
             <FadeIn>
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-8">
+              <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
                 <div className="relative shrink-0 self-start md:self-auto">
                   <div
                     aria-hidden
-                    className="absolute inset-[-6px] md:inset-[-10px] rounded-full bg-accent/20 dark:bg-accent/15 blur-xl"
+                    className="absolute inset-[-6px] rounded-full bg-accent/20 blur-xl dark:bg-accent/15 md:inset-[-10px]"
                   />
-                  <div className="relative z-10 size-16 md:size-[120px] rounded-full overflow-hidden border-[3px] border-white shadow-lg dark:border-2 dark:border-line/20 dark:bg-surface-deep dark:shadow-none">
+                  <div className="relative z-10 size-16 overflow-hidden rounded-full border-[3px] border-white shadow-lg dark:border-2 dark:border-line/20 dark:bg-surface-deep dark:shadow-none md:size-[120px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/hero-photo.jpg"
                       alt={SITE_NAME}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                 </div>
 
-                <div className="flex-1 min-w-0">
-                  <h1 className="font-sans font-semibold text-hero tracking-tight text-fg">
+                <div className="min-w-0 flex-1">
+                  <h1 className="font-sans text-hero font-semibold tracking-tight text-fg">
                     {SITE_NAME}
                   </h1>
 
@@ -86,7 +90,7 @@ export default function Page() {
                     rel="noopener noreferrer"
                     className="mt-6"
                   >
-                    <Download className="w-4 h-4" aria-hidden />
+                    <Download className="h-4 w-4" aria-hidden />
                     Download CV
                   </Button>
                 </div>
@@ -102,21 +106,21 @@ export default function Page() {
               <FadeIn key={s.href} delay={i * 0.05}>
                 <a
                   href={s.href}
-                  className="group relative block rounded-2xl bg-white dark:bg-surface border border-line/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-6 md:p-8 transition-transform duration-200 hover:-translate-y-0.5"
+                  className="group relative block rounded-2xl border border-line/60 bg-white p-6 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:-translate-y-0.5 dark:bg-surface dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] md:p-8"
                 >
                   <ArrowUpRight
                     size={32}
                     strokeWidth={1.5}
-                    className="absolute top-6 right-6 md:top-8 md:right-8 text-faint transition-colors group-hover:text-accent"
+                    className="absolute right-6 top-6 text-faint transition-colors group-hover:text-accent md:right-8 md:top-8"
                     aria-hidden
                   />
                   <div className="pr-12">
                     <div className="flex items-center gap-2.5">
-                      <h2 className="font-sans font-semibold text-[28px] md:text-[32px] leading-[1.1] tracking-tight text-fg">
+                      <h2 className="font-sans text-[28px] font-semibold leading-[1.1] tracking-tight text-fg md:text-[32px]">
                         {s.label}
                       </h2>
                       {s.badge && (
-                        <span className="font-mono text-[10px] leading-none tracking-[0.08em] px-1.5 py-1 rounded bg-surface dark:bg-surface-deep text-muted">
+                        <span className="rounded bg-surface px-1.5 py-1 font-mono text-[10px] leading-none tracking-[0.08em] text-muted dark:bg-surface-deep">
                           {s.badge}
                         </span>
                       )}

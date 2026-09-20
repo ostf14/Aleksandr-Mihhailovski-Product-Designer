@@ -10,7 +10,8 @@ import { LECTURES, entryHref, orderedEntries } from "@/lib/lectures";
 export const metadata = pageMetadata({
   // TODO: собственные title и description индекса лекций
   title: "Лекции",
-  description: "TODO: описание лекционного курса для поисковой выдачи и превью.",
+  description:
+    "TODO: описание лекционного курса для поисковой выдачи и превью.",
   path: "/ru/lectures",
   ogType: "website",
   ogSubtitle: "Лекции",
@@ -33,10 +34,10 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="pt-6 md:pt-10 pb-12">
+          <header className="pb-12 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn className="shell-prose">
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Курс · {entries.length}{" "}
                   {entries.length === 1 ? "лекция" : "лекции"}
                 </p>
@@ -60,19 +61,19 @@ export default function Page() {
                   <FadeIn key={e.slug} delay={i * 0.05}>
                     <a
                       href={entryHref(LECTURES, e)}
-                      className="group relative block rounded-xl border border-line bg-white dark:bg-surface p-5 md:p-6 transition-transform duration-200 hover:-translate-y-0.5"
+                      className="group relative block rounded-xl border border-line bg-white p-5 transition-transform duration-200 hover:-translate-y-0.5 dark:bg-surface md:p-6"
                     >
                       <ArrowUpRight
                         size={24}
                         strokeWidth={1.5}
                         aria-hidden
-                        className="absolute top-5 right-5 md:top-6 md:right-6 text-faint transition-colors group-hover:text-accent"
+                        className="absolute right-5 top-5 text-faint transition-colors group-hover:text-accent md:right-6 md:top-6"
                       />
                       <div className="pr-10">
-                        <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-2">
+                        <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                           Лекция {e.number}
                         </div>
-                        <h2 className="font-sans font-semibold text-[20px] md:text-[24px] leading-tight tracking-tight text-fg">
+                        <h2 className="font-sans text-[20px] font-semibold leading-tight tracking-tight text-fg md:text-[24px]">
                           {e.title}
                         </h2>
                         <p className="mt-2 text-[0.95rem] leading-[1.55] text-fg/70">
@@ -94,7 +95,7 @@ export default function Page() {
           <section className="pb-32">
             <div className="shell">
               <FadeIn className="shell-prose">
-                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-5">
+                <div className="mb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Кто читает
                 </div>
                 {/* TODO: блок «кто читает» */}

@@ -7,7 +7,8 @@ type FadeInProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "section" | "article" | "figure" | "li" | "p" | "h1" | "h2" | "h3";
+  as?:
+    "div" | "section" | "article" | "figure" | "li" | "p" | "h1" | "h2" | "h3";
 };
 
 // Opacity-only reveal. Animating translateY as well meant every block that
@@ -38,7 +39,12 @@ const variants: Variants = {
  * A CSS !important declaration beats a non-important inline style, so the rule
  * in globals.css lands these whatever framer has written.
  */
-export function FadeIn({ children, delay = 0, className, as = "div" }: FadeInProps) {
+export function FadeIn({
+  children,
+  delay = 0,
+  className,
+  as = "div",
+}: FadeInProps) {
   const MotionTag = motion[as] as typeof motion.div;
 
   return (

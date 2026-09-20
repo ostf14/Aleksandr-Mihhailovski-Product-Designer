@@ -8,8 +8,7 @@ import { GRAPHIC_ITEMS } from "@/lib/graphic";
 
 export const metadata = pageMetadata({
   title: "Graphic",
-  description:
-    "Covers, social posts, editorial illustration and logo work.",
+  description: "Covers, social posts, editorial illustration and logo work.",
   path: "/graphic",
   ogType: "website",
   ogSubtitle: "Graphic",
@@ -23,17 +22,16 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="pt-6 md:pt-10 pb-12">
+          <header className="pb-12 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Graphic &amp; brand
                 </p>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   Graphic
                 </h1>
               </FadeIn>
-
             </div>
           </header>
 

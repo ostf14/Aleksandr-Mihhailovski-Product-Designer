@@ -23,7 +23,7 @@ function NavButton({
       type="button"
       onClick={onClick}
       aria-label={direction === "prev" ? "Previous" : "Next"}
-      className={`shrink-0 rounded-full text-white/60 hover:text-white transition-colors ${className}`}
+      className={`shrink-0 rounded-full text-white/60 transition-colors hover:text-white ${className}`}
     >
       <Icon size={28} strokeWidth={1.5} aria-hidden />
     </button>
@@ -43,7 +43,7 @@ function Caption({ item }: { item: GraphicItem }) {
             // The arrow shows no text, so the label is the only thing a
             // screen reader has to go on.
             aria-label={item.hrefLabel ?? "Open the source"}
-            className="ml-1.5 inline-block align-[-1px] text-accent hover:opacity-70 transition-opacity"
+            className="ml-1.5 inline-block align-[-1px] text-accent transition-opacity hover:opacity-70"
           >
             <ArrowUpRight size={14} strokeWidth={2} aria-hidden />
           </a>
@@ -130,7 +130,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
       {/* One column on a phone — at 344px two columns leave 138px a piece,
           which is a thumbnail, not a look at the work. Six columns from md up:
           a span of 3 puts two to a row, a span of 2 puts three. */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-x-5 gap-y-10">
+      <div className="grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-6">
         {items.map((item, i) => (
           <FadeIn
             key={item.src}
@@ -145,7 +145,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
                 }}
                 onClick={() => setOpenIndex(i)}
                 aria-label={`Open ${item.alt}`}
-                className="group block w-full overflow-hidden rounded-xl border border-line bg-surface dark:bg-surface-deep cursor-zoom-in"
+                className="group block w-full cursor-zoom-in overflow-hidden rounded-xl border border-line bg-surface dark:bg-surface-deep"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -153,7 +153,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
                   alt={item.alt}
                   loading={i < 2 ? "eager" : "lazy"}
                   decoding="async"
-                  className="block w-full h-auto transition-transform duration-300 ease-out md:group-hover:scale-[1.02]"
+                  className="block h-auto w-full transition-transform duration-300 ease-out md:group-hover:scale-[1.02]"
                 />
               </button>
 
@@ -176,7 +176,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
           // the arrows sitting under it.
           className="fixed inset-x-0 top-0 z-[60] flex h-[100dvh] flex-col bg-[#0a0a0a]/95 px-4 py-4 md:px-10 md:py-8"
         >
-          <div className="flex items-center justify-between gap-4 shrink-0">
+          <div className="flex shrink-0 items-center justify-between gap-4">
             <span className="font-mono text-[11px] text-white/50">
               {openIndex! + 1} / {items.length}
             </span>
@@ -185,7 +185,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
               ref={closeButtonRef}
               onClick={close}
               aria-label="Close"
-              className="rounded-full p-2 text-white/70 hover:text-white transition-colors"
+              className="rounded-full p-2 text-white/70 transition-colors hover:text-white"
             >
               <X size={20} strokeWidth={1.75} aria-hidden />
             </button>
@@ -205,7 +205,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
               <NavButton
                 direction="prev"
                 onClick={() => step(-1)}
-                className="hidden md:block p-2"
+                className="hidden p-2 md:block"
               />
             )}
 
@@ -224,7 +224,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
               <NavButton
                 direction="next"
                 onClick={() => step(1)}
-                className="hidden md:block p-2"
+                className="hidden p-2 md:block"
               />
             )}
           </div>

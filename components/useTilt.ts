@@ -28,7 +28,8 @@ export function useTilt<T extends HTMLElement>() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches)
+      return;
 
     const onMove = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();

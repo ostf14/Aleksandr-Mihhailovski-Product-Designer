@@ -83,7 +83,7 @@ export function BrowserCarousel({
                   type="button"
                   onClick={prev}
                   aria-label="Previous page"
-                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-bg/75 backdrop-blur-sm text-fg transition-colors hover:text-accent left-1.5 md:left-auto md:right-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
+                  className="absolute left-1.5 top-1/2 z-10 grid size-8 -translate-y-1/2 place-items-center rounded-full bg-bg/75 text-fg backdrop-blur-sm transition-colors hover:text-accent md:left-auto md:right-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
                 >
                   <ChevronLeft size={24} strokeWidth={1.75} aria-hidden />
                 </button>
@@ -91,7 +91,7 @@ export function BrowserCarousel({
                   type="button"
                   onClick={next}
                   aria-label="Next page"
-                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-bg/75 backdrop-blur-sm text-fg transition-colors hover:text-accent right-1.5 md:right-auto md:left-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
+                  className="absolute right-1.5 top-1/2 z-10 grid size-8 -translate-y-1/2 place-items-center rounded-full bg-bg/75 text-fg backdrop-blur-sm transition-colors hover:text-accent md:left-[calc(100%+16px)] md:right-auto md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
                 >
                   <ChevronRight size={24} strokeWidth={1.75} aria-hidden />
                 </button>
@@ -100,7 +100,7 @@ export function BrowserCarousel({
           </div>
 
           {total > 1 && (
-            <div className="mt-4 flex flex-row gap-0 w-full">
+            <div className="mt-4 flex w-full flex-row gap-0">
               {slides.map((s, i) => {
                 const isFirst = i === 0;
                 const isLast = i === total - 1;
@@ -113,7 +113,7 @@ export function BrowserCarousel({
                     className={`h-[2px] flex-1 transition-colors duration-200 ease-out ${
                       i === index
                         ? "bg-accent"
-                        : "bg-line-strong dark:bg-line-strong hover:bg-mark dark:hover:bg-mark"
+                        : "bg-line-strong hover:bg-mark dark:bg-line-strong dark:hover:bg-mark"
                     } ${isFirst ? "rounded-l-full" : ""} ${isLast ? "rounded-r-full" : ""}`}
                   />
                 );
@@ -122,7 +122,9 @@ export function BrowserCarousel({
           )}
 
           {caption && (
-            <p className="mt-4 font-mono text-xs text-muted text-left">{caption}</p>
+            <p className="mt-4 text-left font-mono text-xs text-muted">
+              {caption}
+            </p>
           )}
         </div>
       </div>

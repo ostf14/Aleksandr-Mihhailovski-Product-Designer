@@ -33,22 +33,22 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="pt-6 md:pt-10 pb-14">
+          <header className="pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Gallery · 2018–24
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   Other website design works
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
-                  A selection of websites and landing pages I&rsquo;ve designed over
-                  the years.
+                  A selection of websites and landing pages I&rsquo;ve designed
+                  over the years.
                 </p>
               </FadeIn>
             </div>

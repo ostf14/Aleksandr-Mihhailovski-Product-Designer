@@ -131,7 +131,7 @@ const components = [
 
 function SubLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted mb-5">
+    <div className="mb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
       {children}
     </div>
   );
@@ -145,7 +145,7 @@ function Note({ children }: { children: React.ReactNode }) {
 
 function TierLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-fg/70 mb-1.5">
+    <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-fg/70">
       {children}
     </div>
   );
@@ -155,14 +155,14 @@ function Swatch({ name, hex }: { name: string; hex: string }) {
   return (
     <div className="space-y-1.5">
       <div
-        className="w-14 h-14 rounded-md border border-line"
+        className="h-14 w-14 rounded-md border border-line"
         style={{ background: hex }}
       />
       <div className="space-y-0">
-        <div className="text-[10px] font-medium text-fg leading-tight truncate">
+        <div className="truncate text-[10px] font-medium leading-tight text-fg">
           {name}
         </div>
-        <div className="font-mono text-[10px] text-fg/70 leading-tight">
+        <div className="font-mono text-[10px] leading-tight text-fg/70">
           {hex}
         </div>
       </div>
@@ -180,7 +180,7 @@ function ColorRow({
   return (
     <div>
       <TierLabel>{theme}</TierLabel>
-      <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+      <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
         {colors.map((c) => (
           <Swatch key={c.name} name={c.name} hex={c.hex} />
         ))}
@@ -204,13 +204,13 @@ function HighlightRow({
       style={{ background: surface }}
     >
       {chips.map((h) => (
-        <div key={h.idx} className="rounded overflow-hidden">
+        <div key={h.idx} className="overflow-hidden rounded">
           <div
-            className="h-9 flex items-center justify-center px-2"
+            className="flex h-9 items-center justify-center px-2"
             style={{ background: h.color }}
           >
             <span
-              className="font-mono text-[11px] text-center leading-tight"
+              className="text-center font-mono text-[11px] leading-tight"
               style={{ color: ink }}
             >
               {h.idx} · {h.name}
@@ -228,259 +228,258 @@ export function DesignSystemShowcase() {
       <div className="shell">
         <div className="shell-prose overflow-hidden">
           <FadeIn>
-          <div className="space-y-14">
-            <div>
-              <SubLabel>Color tokens</SubLabel>
-              <div className="space-y-8">
-                <ColorRow theme="Dark" colors={darkColors} />
-                <ColorRow theme="Light" colors={lightColors} />
-              </div>
-            </div>
-
-            <div>
-              <SubLabel>Raw palette</SubLabel>
-              <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
-                {primitives.map((p) => (
-                  <Swatch key={p.name} name={p.name} hex={p.hex} />
-                ))}
-              </div>
-              <Note>
-                Semantic tokens point here; components never do.
-              </Note>
-            </div>
-
-            <div>
-              <SubLabel>Highlight palette</SubLabel>
-              <div className="space-y-3">
-                <div>
-                  <TierLabel>Base</TierLabel>
-                  <HighlightRow
-                    chips={highlights}
-                    surface="#f5f0eb"
-                    ink="#2b2b2b"
-                  />
-                </div>
-                <div>
-                  <TierLabel>Dark reading surface</TierLabel>
-                  <HighlightRow
-                    chips={highlightsOnDark}
-                    surface="#2b2b2b"
-                    ink="#d4d4d4"
-                  />
+            <div className="space-y-14">
+              <div>
+                <SubLabel>Color tokens</SubLabel>
+                <div className="space-y-8">
+                  <ColorRow theme="Dark" colors={darkColors} />
+                  <ColorRow theme="Light" colors={lightColors} />
                 </div>
               </div>
-              <Note>
-                The dark surface gets its own set — at base alpha these tones
-                sink into muddy patches on a near-black page.
-              </Note>
-            </div>
 
-            <div>
-              <SubLabel>Type scale</SubLabel>
-              <div className="flex items-end gap-3 overflow-x-auto pb-1">
-                {typeScale.map((t) => (
-                  <div
-                    key={t.size}
-                    className="flex flex-col items-center gap-2 shrink-0"
-                  >
-                    <div
-                      className="text-fg"
-                      style={{
-                        fontFamily:
-                          "var(--font-space-grotesk), system-ui, sans-serif",
-                        fontSize: `${t.size}px`,
-                        lineHeight: 1,
-                      }}
-                    >
-                      Aa
-                    </div>
-                    <div className="font-mono text-[10px] text-fg/70">
-                      {t.size}
-                    </div>
-                    {/* Half-steps are marked with a rule rather than by fading
-                        the label — dimming put them around 2:1 against the
-                        page, well under the WCAG floor. */}
-                    <div
-                      aria-hidden
-                      className={`h-px w-full ${
-                        t.half ? "bg-accent" : "bg-transparent"
-                      }`}
+              <div>
+                <SubLabel>Raw palette</SubLabel>
+                <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
+                  {primitives.map((p) => (
+                    <Swatch key={p.name} name={p.name} hex={p.hex} />
+                  ))}
+                </div>
+                <Note>Semantic tokens point here; components never do.</Note>
+              </div>
+
+              <div>
+                <SubLabel>Highlight palette</SubLabel>
+                <div className="space-y-3">
+                  <div>
+                    <TierLabel>Base</TierLabel>
+                    <HighlightRow
+                      chips={highlights}
+                      surface="#f5f0eb"
+                      ink="#2b2b2b"
                     />
                   </div>
-                ))}
+                  <div>
+                    <TierLabel>Dark reading surface</TierLabel>
+                    <HighlightRow
+                      chips={highlightsOnDark}
+                      surface="#2b2b2b"
+                      ink="#d4d4d4"
+                    />
+                  </div>
+                </div>
+                <Note>
+                  The dark surface gets its own set — at base alpha these tones
+                  sink into muddy patches on a near-black page.
+                </Note>
               </div>
-              <Note>
-                Steps underlined in terracotta are the half-steps added after
-                the fact — 12 between 11 and 13, 22 between 18 and 24.
-              </Note>
 
-              <div className="mt-8">
-                <TierLabel>Roles</TierLabel>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
-                  {typeRoles.map((r) => {
-                    const grows = r.mobile !== undefined && r.mobile > r.desktop;
-                    return (
+              <div>
+                <SubLabel>Type scale</SubLabel>
+                <div className="flex items-end gap-3 overflow-x-auto pb-1">
+                  {typeScale.map((t) => (
+                    <div
+                      key={t.size}
+                      className="flex shrink-0 flex-col items-center gap-2"
+                    >
                       <div
-                        key={r.token}
-                        className="flex items-baseline justify-between gap-3"
+                        className="text-fg"
+                        style={{
+                          fontFamily:
+                            "var(--font-space-grotesk), system-ui, sans-serif",
+                          fontSize: `${t.size}px`,
+                          lineHeight: 1,
+                        }}
                       >
-                        <span className="font-mono text-[10px] text-fg/70 truncate">
-                          {r.token}
-                        </span>
-                        <span className="font-mono text-[10px] tabular-nums shrink-0 text-fg">
-                          {r.desktop}
-                          {r.mobile !== undefined && (
-                            <span
-                              className={`text-fg/70 ${grows ? "font-medium" : ""}`}
-                            >
-                              {" "}
-                              {/* The glyph carries the direction, not colour:
+                        Aa
+                      </div>
+                      <div className="font-mono text-[10px] text-fg/70">
+                        {t.size}
+                      </div>
+                      {/* Half-steps are marked with a rule rather than by fading
+                        the label — dimming put them around 2:1 against the
+                        page, well under the WCAG floor. */}
+                      <div
+                        aria-hidden
+                        className={`h-px w-full ${
+                          t.half ? "bg-accent" : "bg-transparent"
+                        }`}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <Note>
+                  Steps underlined in terracotta are the half-steps added after
+                  the fact — 12 between 11 and 13, 22 between 18 and 24.
+                </Note>
+
+                <div className="mt-8">
+                  <TierLabel>Roles</TierLabel>
+                  <div className="grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2">
+                    {typeRoles.map((r) => {
+                      const grows =
+                        r.mobile !== undefined && r.mobile > r.desktop;
+                      return (
+                        <div
+                          key={r.token}
+                          className="flex items-baseline justify-between gap-3"
+                        >
+                          <span className="truncate font-mono text-[10px] text-fg/70">
+                            {r.token}
+                          </span>
+                          <span className="shrink-0 font-mono text-[10px] tabular-nums text-fg">
+                            {r.desktop}
+                            {r.mobile !== undefined && (
+                              <span
+                                className={`text-fg/70 ${grows ? "font-medium" : ""}`}
+                              >
+                                {" "}
+                                {/* The glyph carries the direction, not colour:
                                   terracotta at this size sits near 2.8:1 on the
                                   page, which would undo the contrast pass this
                                   section just had. Shape also survives being
                                   read without colour vision. */}
-                              {grows ? "↑" : "↓"} {r.mobile}
-                            </span>
-                          )}
-                        </span>
-                      </div>
-                    );
-                  })}
+                                {grows ? "↑" : "↓"} {r.mobile}
+                              </span>
+                            )}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <Note>
+                    Roles sit on top of the numeric scale — a component asks for
+                    a role, never a number. The mobile value lives inside the
+                    token.
+                  </Note>
                 </div>
-                <Note>
-                  Roles sit on top of the numeric scale — a component asks for a
-                  role, never a number. The mobile value lives inside the token.
-                </Note>
               </div>
-            </div>
 
-            <div>
-              <SubLabel>Reading surfaces</SubLabel>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                {surfaces.map((s) => (
-                  <div
-                    key={s.name}
-                    data-surface={s.name}
-                    className="rounded-lg border border-line p-5 aspect-[5/3] flex flex-col justify-between"
-                    style={{ background: s.bg, color: s.text }}
-                  >
-                    <p
-                      style={{
-                        fontFamily:
-                          "var(--font-newsreader), Georgia, serif",
-                        fontSize: 14,
-                        lineHeight: 1.55,
-                      }}
+              <div>
+                <SubLabel>Reading surfaces</SubLabel>
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+                  {surfaces.map((s) => (
+                    <div
+                      key={s.name}
+                      data-surface={s.name}
+                      className="flex aspect-[5/3] flex-col justify-between rounded-lg border border-line p-5"
+                      style={{ background: s.bg, color: s.text }}
                     >
-                      The thread on which our thoughts are strung passes
-                      through.
-                    </p>
-                    {/* Inherits each surface's own ink rather than a page
+                      <p
+                        style={{
+                          fontFamily: "var(--font-newsreader), Georgia, serif",
+                          fontSize: 14,
+                          lineHeight: 1.55,
+                        }}
+                      >
+                        The thread on which our thoughts are strung passes
+                        through.
+                      </p>
+                      {/* Inherits each surface's own ink rather than a page
                         token, so it's muted by opacity. 70% put the sepia
                         label at 3.5:1 against its own background. */}
-                    <div className="font-mono text-[10px] uppercase tracking-[0.12em] opacity-90">
-                      {s.name}
+                      <div className="font-mono text-[10px] uppercase tracking-[0.12em] opacity-90">
+                        {s.name}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <Note>
+                  The reading surface is a separate data-surface attribute — it
+                  switches independently of the interface theme.
+                </Note>
+              </div>
+
+              <div>
+                <SubLabel>Spacing · 4px grid + half-steps</SubLabel>
+                <div className="space-y-6">
+                  <div>
+                    <TierLabel>Base</TierLabel>
+                    <div className="flex items-end gap-4 overflow-x-auto pb-1 md:gap-5">
+                      {spacingBase.map((s) => (
+                        <div
+                          key={s}
+                          className="flex shrink-0 flex-col items-center gap-2"
+                        >
+                          <div
+                            className="rounded-sm bg-accent/80"
+                            style={{ width: `${s}px`, height: `${s}px` }}
+                          />
+                          <div className="font-mono text-[10px] text-fg/70">
+                            {s}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-              <Note>
-                The reading surface is a separate data-surface attribute — it
-                switches independently of the interface theme.
-              </Note>
-            </div>
-
-            <div>
-              <SubLabel>Spacing · 4px grid + half-steps</SubLabel>
-              <div className="space-y-6">
-                <div>
-                  <TierLabel>Base</TierLabel>
-                  <div className="flex items-end gap-4 md:gap-5 overflow-x-auto pb-1">
-                    {spacingBase.map((s) => (
-                      <div
-                        key={s}
-                        className="flex flex-col items-center gap-2 shrink-0"
-                      >
-                        <div
-                          className="bg-accent/80 rounded-sm"
-                          style={{ width: `${s}px`, height: `${s}px` }}
-                        />
-                        <div className="font-mono text-[10px] text-fg/70">
-                          {s}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Half-steps read as their own tier from the row label, so
+                  {/* Half-steps read as their own tier from the row label, so
                     they render at full strength — fading them was redundant
                     and pushed the labels below the WCAG contrast floor. */}
-                <div>
-                  <TierLabel>Half-steps</TierLabel>
-                  <div className="flex items-end gap-4 md:gap-5 overflow-x-auto pb-1">
-                    {spacingHalf.map((s) => (
-                      <div
-                        key={s}
-                        className="flex flex-col items-center gap-2 shrink-0"
-                      >
+                  <div>
+                    <TierLabel>Half-steps</TierLabel>
+                    <div className="flex items-end gap-4 overflow-x-auto pb-1 md:gap-5">
+                      {spacingHalf.map((s) => (
                         <div
-                          className="bg-accent/80 rounded-sm"
-                          style={{ width: `${s}px`, height: `${s}px` }}
-                        />
-                        <div className="font-mono text-[10px] text-fg/70">
-                          {s}
+                          key={s}
+                          className="flex shrink-0 flex-col items-center gap-2"
+                        >
+                          <div
+                            className="rounded-sm bg-accent/80"
+                            style={{ width: `${s}px`, height: `${s}px` }}
+                          />
+                          <div className="font-mono text-[10px] text-fg/70">
+                            {s}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <SubLabel>Border radius</SubLabel>
-              <div className="flex flex-wrap gap-5">
-                {radii.map((r) => (
-                  <div
-                    key={r.label}
-                    className="flex flex-col items-center gap-2"
-                  >
+              <div>
+                <SubLabel>Border radius</SubLabel>
+                <div className="flex flex-wrap gap-5">
+                  {radii.map((r) => (
                     <div
-                      className="w-10 h-10 border border-fg/40 bg-surface"
-                      style={{ borderRadius: r.css }}
-                    />
-                    <div className="font-mono text-[10px] text-fg/70 text-center">
-                      {r.label} · {r.css}
+                      key={r.label}
+                      className="flex flex-col items-center gap-2"
+                    >
+                      <div
+                        className="h-10 w-10 border border-fg/40 bg-surface"
+                        style={{ borderRadius: r.css }}
+                      />
+                      <div className="text-center font-mono text-[10px] text-fg/70">
+                        {r.label} · {r.css}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <SubLabel>Components</SubLabel>
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                  {components.map((c) => (
+                    <div
+                      key={c.name}
+                      className="rounded-xl border border-line p-4"
+                    >
+                      <div className="mb-1 text-xs font-bold text-fg">
+                        {c.name}
+                      </div>
+                      <div className="text-[11px] leading-[1.5] text-fg/70">
+                        {c.desc}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border-t border-line pt-4 font-mono text-[11px] text-fg/70">
+                115 → 94 tokens · 662 → 797 references
               </div>
             </div>
-
-            <div>
-              <SubLabel>Components</SubLabel>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {components.map((c) => (
-                  <div
-                    key={c.name}
-                    className="border border-line rounded-xl p-4"
-                  >
-                    <div className="text-xs font-bold text-fg mb-1">
-                      {c.name}
-                    </div>
-                    <div className="text-[11px] leading-[1.5] text-fg/70">
-                      {c.desc}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="border-t border-line pt-4 font-mono text-[11px] text-fg/70">
-              115 → 94 tokens · 662 → 797 references
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
         </div>
       </div>
     </div>

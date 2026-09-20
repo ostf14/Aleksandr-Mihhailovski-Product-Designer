@@ -155,7 +155,9 @@ export function BusinessCard() {
   // both hit-testing and the tab order; pointer-events alone would leave the
   // keyboard path open. The threshold is low enough that it only ever flips
   // once the band is already invisible.
-  const visibility = useTransform(opacity, (v) => (v < 0.02 ? "hidden" : "visible"));
+  const visibility = useTransform(opacity, (v) =>
+    v < 0.02 ? "hidden" : "visible",
+  );
 
   // The springs start at 1 regardless of where the page actually is, so a
   // reload or a Back into a scrolled /work painted a fully opaque hero and then
@@ -183,7 +185,7 @@ export function BusinessCard() {
     <motion.div
       data-hero-card="true"
       style={{ opacity, visibility, willChange: "opacity" }}
-      className="hero-band relative w-full pt-[104px] pb-14 md:pt-[136px] md:pb-20"
+      className="hero-band relative w-full pb-14 pt-[104px] md:pb-20 md:pt-[136px]"
     >
       <motion.div
         style={{
@@ -201,7 +203,7 @@ export function BusinessCard() {
             /hero-photo.jpg, the square head-and-shoulders shot, is still what
             the homepage avatar and the OG card use: both are circular, and a
             circle cut out of a wide frame is a different decision. */}
-        <div className="hero-portrait mb-8 w-[160px] md:w-[208px] aspect-video overflow-hidden rounded-xl">
+        <div className="hero-portrait mb-8 aspect-video w-[160px] overflow-hidden rounded-xl md:w-[208px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/portrait-wide.jpg" alt="Aleksandr Mihhailovski" />
           {/* The same frame again, dithered, stacked on top. Two copies
@@ -228,7 +230,7 @@ export function BusinessCard() {
             Being the same ratio at both ends, the pair holds its proportion at
             every width instead of collapsing to one size on wide screens the
             way the previous pair did. */}
-        <h2 className="font-sans font-medium text-[clamp(30px,12.8vw,72px)] leading-[1.04] tracking-[-0.036em]">
+        <h2 className="font-sans text-[clamp(30px,12.8vw,72px)] font-medium leading-[1.04] tracking-[-0.036em]">
           <span className="block whitespace-nowrap text-fg">
             Hi, I&rsquo;m Alex
           </span>
@@ -311,7 +313,7 @@ export function BusinessCard() {
                   someone who has just copied is what they now have. */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-fg px-2.5 py-1.5 text-xs font-medium text-bg opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100"
+                className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-fg px-2.5 py-1.5 text-xs font-medium text-bg opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100"
               >
                 {links.email}
               </span>

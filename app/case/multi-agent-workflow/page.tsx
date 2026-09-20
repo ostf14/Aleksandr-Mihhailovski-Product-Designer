@@ -95,25 +95,22 @@ export default function Page() {
       <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
-          <header
-            id="overview"
-            className="scroll-mt-20 pt-6 md:pt-10 pb-14"
-          >
+          <header id="overview" className="scroll-mt-20 pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Process · AI Workflow · 2024–2025
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   Multi-Agent AI Workflow
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
-                  I built an AI-orchestrated prototyping pipeline — and what it taught
-                  me about product design.
+                  I built an AI-orchestrated prototyping pipeline — and what it
+                  taught me about product design.
                 </p>
               </FadeIn>
             </div>
@@ -128,10 +125,10 @@ export default function Page() {
             </div>
 
             <FadeIn delay={0.15} className="shell mt-12">
-              <div className="border border-line bg-surface rounded-lg overflow-hidden">
-                <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+              <div className="overflow-hidden rounded-lg border border-line bg-surface">
+                <div className="grid grid-cols-1 gap-y-8 p-6 md:grid-cols-4 md:gap-y-0 md:p-8">
                   <div className="md:pr-6">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Role
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -139,20 +136,20 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div className="md:px-6 md:border-l md:border-line">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="md:border-l md:border-line md:px-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Project
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                       Internal R&amp;D
-                      <span className="block text-muted text-xs mt-1">
+                      <span className="mt-1 block text-xs text-muted">
                         sandbox: ‘Don’t Tread on Cat’ game prototype
                       </span>
                     </p>
                   </div>
 
-                  <div className="md:px-6 md:border-l md:border-line">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="md:border-l md:border-line md:px-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Timeline
                     </div>
                     <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -160,53 +157,57 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div className="md:pl-6 md:border-l md:border-line">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="md:border-l md:border-line md:pl-6">
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                       Focus
                     </div>
-                    <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
-                      {["AI orchestration", "Prototyping methodology"].map((item) => (
-                        <li key={item} className="flex items-start gap-2.5">
-                          <span
-                            aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
-                          />
-                          <span>{item}</span>
-                        </li>
-                      ))}
+                    <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
+                      {["AI orchestration", "Prototyping methodology"].map(
+                        (item) => (
+                          <li key={item} className="flex items-start gap-2.5">
+                            <span
+                              aria-hidden
+                              className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
+                            />
+                            <span>{item}</span>
+                          </li>
+                        ),
+                      )}
                     </ul>
                   </div>
                 </div>
-
               </div>
             </FadeIn>
           </header>
 
           {/* Context */}
-          <div id="context" className="scroll-mt-20 mt-16 pb-32">
-            <Section kicker="01 · Context" heading="Can AI replace specialised roles?">
+          <div id="context" className="mt-16 scroll-mt-20 pb-32">
+            <Section
+              kicker="01 · Context"
+              heading="Can AI replace specialised roles?"
+            >
               <Prose>
                 <p>
-                  Product development traditionally needs specialised teams: architects
-                  design logic, engineers write code, QA validates. For solo builders,
-                  this creates a trade-off — build fast but brittle, or build properly
-                  but slowly.
+                  Product development traditionally needs specialised teams:
+                  architects design logic, engineers write code, QA validates.
+                  For solo builders, this creates a trade-off — build fast but
+                  brittle, or build properly but slowly.
                 </p>
                 <p>
-                  I wanted to test a hypothesis: can AI agents replace these specialised
-                  roles if orchestrated correctly?
+                  I wanted to test a hypothesis: can AI agents replace these
+                  specialised roles if orchestrated correctly?
                 </p>
                 <p>
-                  I picked game development as the sandbox. High complexity, fast
-                  feedback loops, empirical validation through runtime testing. The real
-                  goal wasn’t shipping a game — it was a workflow I could bring back to
-                  product design and prototyping.
+                  I picked game development as the sandbox. High complexity,
+                  fast feedback loops, empirical validation through runtime
+                  testing. The real goal wasn’t shipping a game — it was a
+                  workflow I could bring back to product design and prototyping.
                 </p>
               </Prose>
 
               <Callout className="mt-10" label="The goal">
-                Design an AI-orchestrated pipeline where each stage plays a specialised
-                role. Prove it works by shipping something hard.
+                Design an AI-orchestrated pipeline where each stage plays a
+                specialised role. Prove it works by shipping something hard.
               </Callout>
             </Section>
           </div>
@@ -218,15 +219,16 @@ export default function Page() {
               heading="A pipeline of two AI tools and a runtime"
             >
               <Prose>
-                <p className="!text-[0.95rem] !leading-[1.6] italic text-fg/60">
-                  Note: I use ‘multi-agent’ loosely throughout — a pipeline of distinct
-                  AI tools coordinated by a human, not autonomous agent-to-agent
-                  communication.
+                <p className="!text-[0.95rem] italic !leading-[1.6] text-fg/60">
+                  Note: I use ‘multi-agent’ loosely throughout — a pipeline of
+                  distinct AI tools coordinated by a human, not autonomous
+                  agent-to-agent communication.
                 </p>
                 <p>
-                  I designed a three-role pipeline: two AI agents and the game engine
-                  itself as the validator. Each had a distinct job and clear
-                  boundaries — no overlap, no ambiguity about who owns what.
+                  I designed a three-role pipeline: two AI agents and the game
+                  engine itself as the validator. Each had a distinct job and
+                  clear boundaries — no overlap, no ambiguity about who owns
+                  what.
                 </p>
               </Prose>
             </Section>
@@ -234,20 +236,20 @@ export default function Page() {
             <div className="mt-8">
               <div className="shell">
                 <div className="shell-prose">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
                     {agents.map((a, i) => (
                       <FadeIn key={a.name} delay={i * 0.08} className="h-full">
-                        <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
-                          <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
+                        <div className="group flex h-full flex-col rounded-lg bg-surface p-5 transition-all duration-200 ease-out md:p-6 md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                          <div className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-muted transition-colors duration-200 ease-out md:group-hover:text-accent">
                             {a.kind}
                           </div>
-                          <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-1">
+                          <h3 className="mb-1 text-base font-medium leading-snug tracking-tight md:text-[1.0625rem]">
                             {a.name}
                           </h3>
-                          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                          <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                             {a.title}
                           </div>
-                          <p className="text-[0.9375rem] leading-[1.55] text-fg/80 mb-2">
+                          <p className="mb-2 text-[0.9375rem] leading-[1.55] text-fg/80">
                             <span className="font-medium text-fg">Role.</span>{" "}
                             {a.role}
                           </p>
@@ -264,20 +266,25 @@ export default function Page() {
             </div>
 
             <Callout className="mt-10" label="Key insight">
-              AI excels at structured logic but hallucinates on ‘feel.’ The validator
-              stage is where the runtime tells you what the model can’t.
+              AI excels at structured logic but hallucinates on ‘feel.’ The
+              validator stage is where the runtime tells you what the model
+              can’t.
             </Callout>
           </div>
 
           {/* In practice */}
           <div id="practice" className="scroll-mt-20 pb-32">
-            <Section kicker="03 · In practice" heading="What the loop actually looked like">
+            <Section
+              kicker="03 · In practice"
+              heading="What the loop actually looked like"
+            >
               <Prose>
                 <p>
-                  In practice the three stages ran in fast cycles: Gemini described a
-                  state-machine change, Windsurf wrote the C#, Unity ran the build, I
-                  watched the result. If the build broke or the behaviour felt wrong,
-                  the validator output became the next prompt for the architect.
+                  In practice the three stages ran in fast cycles: Gemini
+                  described a state-machine change, Windsurf wrote the C#, Unity
+                  ran the build, I watched the result. If the build broke or the
+                  behaviour felt wrong, the validator output became the next
+                  prompt for the architect.
                 </p>
               </Prose>
             </Section>
@@ -341,12 +348,15 @@ export default function Page() {
 
           {/* Decisions */}
           <div id="decisions" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Decisions" heading="Three calls that made the workflow viable">
+            <Section
+              kicker="04 · Decisions"
+              heading="Three calls that made the workflow viable"
+            >
               <Prose>
                 <p>
-                  Every decision was about preserving the empirical loop. The moment a
-                  validation step became slower than the agent reply, the whole approach
-                  lost its leverage.
+                  Every decision was about preserving the empirical loop. The
+                  moment a validation step became slower than the agent reply,
+                  the whole approach lost its leverage.
                 </p>
               </Prose>
             </Section>
@@ -354,7 +364,9 @@ export default function Page() {
             <div className="mt-8 space-y-6">
               {decisions.map((d) => (
                 <Callout key={d.h} label="Design decision">
-                  <strong className="block mb-2 font-medium text-fg">{d.h}</strong>
+                  <strong className="mb-2 block font-medium text-fg">
+                    {d.h}
+                  </strong>
                   <span className="text-fg/85">{d.p}</span>
                 </Callout>
               ))}
@@ -363,13 +375,16 @@ export default function Page() {
 
           {/* Results */}
           <div id="results" className="scroll-mt-20 pb-32">
-            <Section kicker="05 · Results" heading="What the orchestration actually bought">
+            <Section
+              kicker="05 · Results"
+              heading="What the orchestration actually bought"
+            >
               <div className="">
                 <div className="shell">
                   <div className="shell-prose space-y-10">
                     {results.map((r, i) => (
                       <FadeIn key={r.h} delay={i * 0.05}>
-                        <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
+                        <h3 className="mb-3 font-sans text-xl font-semibold tracking-tight md:text-2xl">
                           {r.h}
                         </h3>
                         <p className="text-[1.125rem] leading-[1.65] text-fg/90">
@@ -396,14 +411,14 @@ export default function Page() {
               <div className="">
                 <div className="shell">
                   <div className="shell-prose">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
+                          <div className="group flex h-full flex-col rounded-lg bg-surface p-5 transition-all duration-200 ease-out md:p-6 md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                            <div className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-muted transition-colors duration-200 ease-out md:group-hover:text-accent">
                               {String(i + 1).padStart(2, "0")}
                             </div>
-                            <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">
+                            <h3 className="mb-3 text-base font-medium leading-snug tracking-tight md:text-[1.0625rem]">
                               {r.h}
                             </h3>
                             <p className="text-[0.9375rem] leading-[1.55] text-fg/80">

@@ -24,13 +24,13 @@ export default function Page() {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="pt-6 md:pt-10 pb-12">
+          <header className="pb-12 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   In their own words
                 </p>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   Testimonials
                 </h1>
               </FadeIn>
@@ -44,7 +44,7 @@ export default function Page() {
               ) : (
                 // One column on a phone, as on /graphic — a 9:16 clip two to
                 // a row would be a stamp. Three across from md up.
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-10">
+                <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-3">
                   {TESTIMONIALS.map((item, i) => (
                     <FadeIn key={item.id} delay={(i % 3) * 0.04}>
                       <TestimonialVideo item={item} />

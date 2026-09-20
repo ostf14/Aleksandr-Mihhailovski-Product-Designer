@@ -117,9 +117,7 @@ export function pageMetadata({
     alternates: { canonical: path },
     // Derived from the path rather than passed per page, so a route can never
     // lose its tape and keep its noindex (or the other way round).
-    ...(isWipRoute(path)
-      ? { robots: { index: false, follow: false } }
-      : {}),
+    ...(isWipRoute(path) ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       title,
       description,

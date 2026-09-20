@@ -72,8 +72,14 @@ const config: Config = {
         // display size opens up, so it has to be pulled back in. Hero caps at
         // 52px (was 60px) — the weight going 400 -> 600 more than makes up the
         // difference in presence.
-        hero: ["clamp(2.25rem, 4.6vw, 3.25rem)", { lineHeight: "1.05", letterSpacing: "-0.034em" }],
-        h2: ["clamp(1.875rem, 4vw, 2.5rem)", { lineHeight: "1.15", letterSpacing: "-0.026em" }],
+        hero: [
+          "clamp(2.25rem, 4.6vw, 3.25rem)",
+          { lineHeight: "1.05", letterSpacing: "-0.034em" },
+        ],
+        h2: [
+          "clamp(1.875rem, 4vw, 2.5rem)",
+          { lineHeight: "1.15", letterSpacing: "-0.026em" },
+        ],
       },
 
       // Motion + elevation scale (visual_refresh_spec step 1). These read the

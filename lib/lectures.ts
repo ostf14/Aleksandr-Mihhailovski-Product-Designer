@@ -128,11 +128,7 @@ export const nextEntry = (
  * Imports `node:fs`, so it must only ever be called from a server component.
  */
 export function loadEntryBody(series: Series, entry: SeriesEntry): string {
-  const file = path.join(
-    process.cwd(),
-    series.contentDir,
-    `${entry.slug}.mdx`,
-  );
+  const file = path.join(process.cwd(), series.contentDir, `${entry.slug}.mdx`);
   const raw = fs.readFileSync(file, "utf8");
   const { data, content } = matter(raw);
 

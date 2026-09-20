@@ -86,7 +86,7 @@ function Panel({ work }: { work: Work }) {
       <a
         ref={tiltRef}
         href={workHref(work)}
-        className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white dark:bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
+        className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:bg-surface dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
       >
         {/* The spotlight. A fixed box centred on the pointer and moved by
             transform alone — see useTilt for why that matters. */}
@@ -98,7 +98,7 @@ function Panel({ work }: { work: Work }) {
             drifted to 3.12:1 — wider than any cinema format, which is what
             made these read as stretched. 16:9 is also the native shape of the
             screenshots most of them are. Mobile keeps its fixed 150. */}
-        <div className="relative h-[150px] md:h-auto md:aspect-video overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep">
+        <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep md:aspect-video md:h-auto">
           <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
             <CaseCardMedia src={work.cover.src} />
           </div>
@@ -115,7 +115,7 @@ function Panel({ work }: { work: Work }) {
           </div>
 
           <div className="mt-2.5 flex items-start justify-between gap-4">
-            <h3 className="font-sans text-[24px] md:text-[27px] font-semibold leading-[1.1] tracking-tight text-fg">
+            <h3 className="font-sans text-[24px] font-semibold leading-[1.1] tracking-tight text-fg md:text-[27px]">
               {work.title}
             </h3>
             <ArrowUpRight
@@ -151,7 +151,7 @@ export function StickyCases() {
         {/* Heading alone for now. The standfirst that sat here was cut — the
             sticky column is the one piece of prose visible for the whole
             scroll, so a line that only describes the section wastes it. */}
-        <h2 className="rv font-sans text-4xl md:text-5xl font-semibold tracking-tight text-fg">
+        <h2 className="rv font-sans text-4xl font-semibold tracking-tight text-fg md:text-5xl">
           Cases
         </h2>
       </div>

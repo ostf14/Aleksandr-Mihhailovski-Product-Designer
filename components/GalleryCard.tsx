@@ -22,11 +22,11 @@ export function GalleryCard() {
     <a
       ref={tiltRef}
       href="/other"
-      className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white dark:bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
+      className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:bg-surface dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
     >
       <span aria-hidden className="spot" />
 
-      <div className="relative h-[150px] md:h-auto md:aspect-video overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep">
+      <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep md:aspect-video md:h-auto">
         <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -46,7 +46,7 @@ export function GalleryCard() {
         </div>
 
         <div className="mt-2.5 flex items-start justify-between gap-4">
-          <h3 className="font-sans text-[24px] md:text-[27px] font-semibold leading-[1.1] tracking-tight text-fg">
+          <h3 className="font-sans text-[24px] font-semibold leading-[1.1] tracking-tight text-fg md:text-[27px]">
             Other website design works
           </h3>
           <ArrowUpRight

@@ -8,7 +8,9 @@ export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    const current = document.documentElement.classList.contains("dark") ? "dark" : "light";
+    const current = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
     setTheme(current);
   }, []);
 
@@ -67,7 +69,7 @@ export function ThemeToggle() {
          light, so a dark-mode visitor saw the moon for ~300ms and then watched
          the sun spin in. The state below still drives the label and the click,
          which nobody can see mid-hydration. */
-      className="theme-toggle size-9 rounded-full flex items-center justify-center text-strong hover:text-fg hover:bg-surface transition-colors"
+      className="theme-toggle flex size-9 items-center justify-center rounded-full text-strong transition-colors hover:bg-surface hover:text-fg"
     >
       {/* Both icons are always rendered and stacked. The old version swapped
           them with hidden/block, which cannot animate: there is no state to

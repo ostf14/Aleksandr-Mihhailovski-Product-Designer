@@ -17,12 +17,10 @@ export function PlaceholderBlock({
     <div
       className={`rounded-lg border border-dashed border-line-strong bg-surface px-5 py-6 ${className}`}
     >
-      <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent mb-2">
+      <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
         Placeholder
       </div>
-      <p className="font-mono text-[12px] leading-[1.6] text-fg/70">
-        {label}
-      </p>
+      <p className="font-mono text-[12px] leading-[1.6] text-fg/70">{label}</p>
     </div>
   );
 }

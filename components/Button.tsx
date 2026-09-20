@@ -1,4 +1,8 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 
 type Variant = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
@@ -70,7 +74,11 @@ export function Button({
 
   const buttonProps = rest as ButtonHTMLAttributes<HTMLButtonElement>;
   return (
-    <button {...buttonProps} type={buttonProps.type ?? "button"} className={classes}>
+    <button
+      {...buttonProps}
+      type={buttonProps.type ?? "button"}
+      className={classes}
+    >
       {children}
     </button>
   );

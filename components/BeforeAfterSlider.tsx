@@ -59,7 +59,7 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-xl select-none ${className}`}
+      className={`relative select-none overflow-hidden rounded-xl ${className}`}
       onMouseDown={(e) => startDrag(e.clientX)}
       onTouchStart={(e) => {
         const t = e.touches[0];
@@ -71,40 +71,40 @@ export function BeforeAfterSlider({
       <img
         src={afterSrc}
         alt={afterLabel}
-        className="block w-full h-auto pointer-events-none"
+        className="pointer-events-none block h-auto w-full"
         draggable={false}
       />
 
       {/* Before — absolute overlay clipped to the slider position */}
       <div
-        className="absolute inset-0 overflow-hidden pointer-events-none"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={beforeSrc}
           alt={beforeLabel}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
         />
       </div>
 
       {/* Labels */}
-      <span className="absolute top-3 left-3 font-mono text-[11px] uppercase tracking-[0.14em] bg-fg/70 text-bg rounded-full px-3 py-1 pointer-events-none">
+      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-fg/70 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-bg">
         {beforeLabel}
       </span>
-      <span className="absolute top-3 right-3 font-mono text-[11px] uppercase tracking-[0.14em] bg-fg/70 text-bg rounded-full px-3 py-1 pointer-events-none">
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-fg/70 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-bg">
         {afterLabel}
       </span>
 
       {/* Divider line + handle */}
       <div
-        className="absolute top-0 bottom-0 pointer-events-none"
+        className="pointer-events-none absolute bottom-0 top-0"
         style={{ left: `${position}%`, transform: "translateX(-50%)" }}
       >
         <div className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-accent" />
         <div
-          className="absolute top-1/2 left-1/2 size-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-bg border-2 border-accent shadow-sm flex items-center justify-center"
+          className="absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-accent bg-bg shadow-sm"
           aria-hidden
         >
           <svg

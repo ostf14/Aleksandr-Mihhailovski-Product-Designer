@@ -57,16 +57,16 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       <main className="pt-20 md:pt-28">
         <article>
-          <header className="pt-6 md:pt-10 pb-10">
+          <header className="pb-10 pt-6 md:pt-10">
             <div className="shell">
               <div className="shell-prose">
                 <a
                   href={LECTURES.basePath}
-                  className="inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3 hover:opacity-80 transition-opacity"
+                  className="mb-3 inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-accent transition-opacity hover:opacity-80"
                 >
                   Лекция {entry.number} из {total}
                 </a>
-                <h1 className="font-sans font-semibold text-hero tracking-tight text-fg">
+                <h1 className="font-sans text-hero font-semibold tracking-tight text-fg">
                   {entry.title}
                 </h1>
                 <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[12px] text-muted">
@@ -92,24 +92,24 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="pb-32">
               <div className="shell">
                 <div className="shell-prose">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted mb-4">
+                  <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                     Читать дальше
                   </div>
                   <a
                     href={entryHref(LECTURES, next)}
-                    className="group relative block rounded-xl border border-line bg-white dark:bg-surface p-5 md:p-6 transition-transform duration-200 hover:-translate-y-0.5"
+                    className="group relative block rounded-xl border border-line bg-white p-5 transition-transform duration-200 hover:-translate-y-0.5 dark:bg-surface md:p-6"
                   >
                     <ArrowUpRight
                       size={24}
                       strokeWidth={1.5}
                       aria-hidden
-                      className="absolute top-5 right-5 md:top-6 md:right-6 text-faint transition-colors group-hover:text-accent"
+                      className="absolute right-5 top-5 text-faint transition-colors group-hover:text-accent md:right-6 md:top-6"
                     />
                     <div className="pr-10">
-                      <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-2">
+                      <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                         Лекция {next.number}
                       </div>
-                      <h2 className="font-sans font-semibold text-[20px] md:text-[24px] leading-tight tracking-tight text-fg">
+                      <h2 className="font-sans text-[20px] font-semibold leading-tight tracking-tight text-fg md:text-[24px]">
                         {next.title}
                       </h2>
                       <p className="mt-2 text-[0.95rem] leading-[1.55] text-fg/70">

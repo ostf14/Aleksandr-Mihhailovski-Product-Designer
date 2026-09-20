@@ -70,15 +70,15 @@ export default function Page() {
       <main className="pt-20 md:pt-28">
         <article>
           {/* Hero */}
-          <header id="overview" className="scroll-mt-20 pt-6 md:pt-10 pb-14">
+          <header id="overview" className="scroll-mt-20 pb-14 pt-6 md:pt-10">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Chtenye · 2023
                 </p>
               </FadeIn>
               <FadeIn delay={0.05}>
-                <h1 className="font-sans font-semibold text-hero tracking-tight">
+                <h1 className="font-sans text-hero font-semibold tracking-tight">
                   Educational Platform Redesign
                 </h1>
               </FadeIn>
@@ -90,20 +90,21 @@ export default function Page() {
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-line bg-surface rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+              <div className="grid grid-cols-1 gap-y-8 rounded-lg border border-line bg-surface p-6 md:grid-cols-4 md:gap-y-0 md:p-8">
                 <div className="md:pr-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Overview
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
-                    Users failed basic navigation — not because of bad design, but because every
-                    label was misleading. Ran user testing, rebuilt the taxonomy based on real
-                    findings, and designed a scalable UI system.
+                    Users failed basic navigation — not because of bad design,
+                    but because every label was misleading. Ran user testing,
+                    rebuilt the taxonomy based on real findings, and designed a
+                    scalable UI system.
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                <div className="md:border-l md:border-line md:px-6">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     My role
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -111,8 +112,8 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                <div className="md:border-l md:border-line md:px-6">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Team
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
@@ -120,20 +121,22 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="md:pl-6 md:border-l md:border-line">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
+                <div className="md:border-l md:border-line md:pl-6">
+                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Impact
                   </div>
-                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
-                    {["+80% task success rate", "12 → 5 categories"].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <span
-                          aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
+                    {["+80% task success rate", "12 → 5 categories"].map(
+                      (item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span
+                            aria-hidden
+                            className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full bg-mark"
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
               </div>
@@ -191,25 +194,32 @@ export default function Page() {
           </div>
 
           {/* 01 · Context */}
-          <div id="context" className="scroll-mt-20 mt-32 pb-32">
-            <Section kicker="01 · Context" heading="A menu that works against its users">
+          <div id="context" className="mt-32 scroll-mt-20 pb-32">
+            <Section
+              kicker="01 · Context"
+              heading="A menu that works against its users"
+            >
               <Prose>
                 <p>
-                  Chtenye is a content platform for a popular linguistics YouTuber — a curated
-                  library of video courses, lectures, articles, and research papers across
-                  linguistics, cultural studies, and related fields.
+                  Chtenye is a content platform for a popular linguistics
+                  YouTuber — a curated library of video courses, lectures,
+                  articles, and research papers across linguistics, cultural
+                  studies, and related fields.
                 </p>
                 <p>
-                  The site had 12 content categories in the navigation. On paper, that sounds
-                  organized. In practice, users couldn&rsquo;t find anything. The category
-                  &ldquo;What We Do&rdquo; contained all video content — courses, lectures,
-                  interviews. But not a single test participant guessed that. They all expected a
-                  mission statement or a description of past projects.
+                  The site had 12 content categories in the navigation. On
+                  paper, that sounds organized. In practice, users
+                  couldn&rsquo;t find anything. The category &ldquo;What We
+                  Do&rdquo; contained all video content — courses, lectures,
+                  interviews. But not a single test participant guessed that.
+                  They all expected a mission statement or a description of past
+                  projects.
                 </p>
                 <p>
-                  Competitors like Postnauka and Arzamas scored higher on navigation despite
-                  similar content volume — they solved discovery through thematic curation, not
-                  category multiplication.
+                  Competitors like Postnauka and Arzamas scored higher on
+                  navigation despite similar content volume — they solved
+                  discovery through thematic curation, not category
+                  multiplication.
                 </p>
               </Prose>
             </Section>
@@ -222,8 +232,9 @@ export default function Page() {
             />
 
             <Callout className="mt-10" label="Key insight">
-              The navigation wasn&rsquo;t broken because of bad visual design. It was broken
-              because every label meant something different to the team than it did to users.
+              The navigation wasn&rsquo;t broken because of bad visual design.
+              It was broken because every label meant something different to the
+              team than it did to users.
             </Callout>
           </div>
 
@@ -236,19 +247,20 @@ export default function Page() {
                     href="https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
+                    className="text-accent underline underline-offset-2 transition-opacity hover:opacity-80"
                   >
-                    Nielsen Norman Group&rsquo;s research shows that 5 users uncover 85% of
-                    usability problems.
+                    Nielsen Norman Group&rsquo;s research shows that 5 users
+                    uncover 85% of usability problems.
                   </a>{" "}
-                  I needed only three — the problems were so severe that every participant hit
-                  the same walls.
+                  I needed only three — the problems were so severe that every
+                  participant hit the same walls.
                 </p>
                 <p>
-                  I tested three things: the live site on a tablet, a prototype built from the
-                  client&rsquo;s proposed structure, and my own paper prototype with a different
-                  taxonomy. Same tasks across all three: find a Polish language course, locate a
-                  research paper, browse out of curiosity.
+                  I tested three things: the live site on a tablet, a prototype
+                  built from the client&rsquo;s proposed structure, and my own
+                  paper prototype with a different taxonomy. Same tasks across
+                  all three: find a Polish language course, locate a research
+                  paper, browse out of curiosity.
                 </p>
               </Prose>
             </Section>
@@ -277,8 +289,9 @@ export default function Page() {
             />
 
             <Callout className="mt-10" label="The goal">
-              Fix the taxonomy before designing a single screen. If users can&rsquo;t predict
-              what&rsquo;s behind a menu item, no amount of visual polish will help.
+              Fix the taxonomy before designing a single screen. If users
+              can&rsquo;t predict what&rsquo;s behind a menu item, no amount of
+              visual polish will help.
             </Callout>
           </div>
 
@@ -287,17 +300,19 @@ export default function Page() {
             <Section kicker="03 · Iteration" heading="Three rounds, three days">
               <Prose>
                 <p>
-                  Three test rounds, each with a different structure. The live site and the
-                  client&rsquo;s proposed prototype reproduced the same navigation failures — the
-                  &ldquo;What We Do&rdquo; label fooled every participant.
+                  Three test rounds, each with a different structure. The live
+                  site and the client&rsquo;s proposed prototype reproduced the
+                  same navigation failures — the &ldquo;What We Do&rdquo; label
+                  fooled every participant.
                 </p>
                 <p>
-                  My prototype renamed it to &ldquo;Our Content.&rdquo; Two out of three users
-                  got it immediately. But putting raw playlists on the homepage blurred the line
-                  with the content page — one user said: &ldquo;I thought this IS the &lsquo;Our
-                  Content&rsquo; page.&rdquo; A quick follow-up round replaced playlists with
-                  preview blocks — thumbnail, description, button to the internal page — and the
-                  confusion disappeared.
+                  My prototype renamed it to &ldquo;Our Content.&rdquo; Two out
+                  of three users got it immediately. But putting raw playlists
+                  on the homepage blurred the line with the content page — one
+                  user said: &ldquo;I thought this IS the &lsquo;Our
+                  Content&rsquo; page.&rdquo; A quick follow-up round replaced
+                  playlists with preview blocks — thumbnail, description, button
+                  to the internal page — and the confusion disappeared.
                 </p>
               </Prose>
             </Section>
@@ -310,8 +325,9 @@ export default function Page() {
             />
 
             <Callout className="mt-10" label="Design decision">
-              Three rounds in three days. Each cost nothing but paper and 15 minutes per
-              participant — and prevented building the wrong interface in code.
+              Three rounds in three days. Each cost nothing but paper and 15
+              minutes per participant — and prevented building the wrong
+              interface in code.
             </Callout>
           </div>
 
@@ -336,8 +352,9 @@ export default function Page() {
 
               <Prose className="mt-8">
                 <p>
-                  The site map went from 12 overlapping categories to 5 clear entry points, each
-                  with a transparent name that users could predict the contents of.
+                  The site map went from 12 overlapping categories to 5 clear
+                  entry points, each with a transparent name that users could
+                  predict the contents of.
                 </p>
               </Prose>
             </Section>
@@ -350,9 +367,10 @@ export default function Page() {
             />
 
             <Callout className="mt-10" label="Key insight">
-              Category cards that force users to choose before seeing any content add steps and
-              delay error recognition. A filterable list lets users see immediately if
-              they&rsquo;re in the wrong place — and costs them only one step instead of three.
+              Category cards that force users to choose before seeing any
+              content add steps and delay error recognition. A filterable list
+              lets users see immediately if they&rsquo;re in the wrong place —
+              and costs them only one step instead of three.
             </Callout>
           </div>
 
@@ -364,10 +382,12 @@ export default function Page() {
                   <div className="shell-prose space-y-10">
                     {results.map((r, i) => (
                       <FadeIn key={r.h} delay={i * 0.05}>
-                        <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
+                        <h3 className="mb-3 font-sans text-xl font-semibold tracking-tight md:text-2xl">
                           {r.h}
                         </h3>
-                        <p className="text-[1.125rem] leading-[1.65] text-fg/90">{r.p}</p>
+                        <p className="text-[1.125rem] leading-[1.65] text-fg/90">
+                          {r.p}
+                        </p>
                       </FadeIn>
                     ))}
                   </div>
@@ -389,9 +409,10 @@ export default function Page() {
             </div>
 
             <Callout className="mt-10" label="Key insight">
-              The footer with expanded second-level navigation became an unexpected power
-              feature. Multiple users preferred it over the header menu for deep content —
-              especially on long pages where scrolling back to the top felt costly.
+              The footer with expanded second-level navigation became an
+              unexpected power feature. Multiple users preferred it over the
+              header menu for deep content — especially on long pages where
+              scrolling back to the top felt costly.
             </Callout>
           </div>
 
@@ -408,14 +429,14 @@ export default function Page() {
               <div className="">
                 <div className="shell">
                   <div className="shell-prose">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
+                          <div className="group flex h-full flex-col rounded-lg bg-surface p-5 transition-all duration-200 ease-out md:p-6 md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                            <div className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-muted transition-colors duration-200 ease-out md:group-hover:text-accent">
                               {String(i + 1).padStart(2, "0")}
                             </div>
-                            <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">
+                            <h3 className="mb-3 text-base font-medium leading-snug tracking-tight md:text-[1.0625rem]">
                               {r.h}
                             </h3>
                             <p className="text-[0.9375rem] leading-[1.55] text-fg/80">

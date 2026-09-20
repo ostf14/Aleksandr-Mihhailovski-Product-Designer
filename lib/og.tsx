@@ -74,69 +74,67 @@ export function renderOgImage(
   subtitle: string = OG_DEFAULT_SUBTITLE,
 ) {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        backgroundColor: PAGE_BG,
+        padding: 40,
+      }}
+    >
       <div
         style={{
+          display: "flex",
+          alignItems: "center",
           width: "100%",
           height: "100%",
-          display: "flex",
-          backgroundColor: PAGE_BG,
-          padding: 40,
+          backgroundColor: CARD_BG,
+          border: `2px solid rgba(255, 105, 54, 0.3)`,
+          borderRadius: 28,
+          padding: "0 64px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            width: "100%",
-            height: "100%",
-            backgroundColor: CARD_BG,
-            border: `2px solid rgba(255, 105, 54, 0.3)`,
-            borderRadius: 28,
-            padding: "0 64px",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 44 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={photoDataUri()}
-              alt=""
-              width={190}
-              height={190}
-              style={{
-                width: 190,
-                height: 190,
-                borderRadius: 9999,
-                objectFit: "cover",
-                border: "5px solid rgba(237, 237, 237, 0.15)",
-              }}
-            />
+        <div style={{ display: "flex", alignItems: "center", gap: 44 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={photoDataUri()}
+            alt=""
+            width={190}
+            height={190}
+            style={{
+              width: 190,
+              height: 190,
+              borderRadius: 9999,
+              objectFit: "cover",
+              border: "5px solid rgba(237, 237, 237, 0.15)",
+            }}
+          />
 
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              maxWidth: 720,
+            }}
+          >
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 10,
-                maxWidth: 720,
+                fontFamily: "Satoshi",
+                fontSize: 70,
+                color: TEXT,
+                lineHeight: 1.05,
+                letterSpacing: "-0.034em",
               }}
             >
-              <div
-                style={{
-                  fontFamily: "Satoshi",
-                  fontSize: 70,
-                  color: TEXT,
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.034em",
-                }}
-              >
-                {SITE_NAME}
-              </div>
-              <div style={{ fontSize: 32, color: MUTED }}>{subtitle}</div>
+              {SITE_NAME}
             </div>
+            <div style={{ fontSize: 32, color: MUTED }}>{subtitle}</div>
           </div>
         </div>
       </div>
-    ),
+    </div>,
     {
       ...OG_SIZE,
       fonts: [

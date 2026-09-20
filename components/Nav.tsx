@@ -41,19 +41,17 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
     <a
       href={item.href}
       data-active={isActive || undefined}
-      className={`flex shrink-0 items-center gap-1.5 px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
+      className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-[13px] transition-colors md:text-sm ${
         isActive
           ? "bg-fg text-bg"
-          : "text-muted dark:text-strong hover:bg-surface hover:text-fg"
+          : "text-muted hover:bg-surface hover:text-fg dark:text-strong"
       }`}
     >
       {item.label}
       {item.badge && (
         <span
-          className={`font-mono text-[9px] leading-none tracking-[0.08em] px-1 py-0.5 rounded ${
-            isActive
-              ? "bg-bg/20 text-bg"
-              : "bg-surface text-muted"
+          className={`rounded px-1 py-0.5 font-mono text-[9px] leading-none tracking-[0.08em] ${
+            isActive ? "bg-bg/20 text-bg" : "bg-surface text-muted"
           }`}
         >
           {item.badge}
@@ -85,7 +83,7 @@ function NavLinks({
 function NavControls() {
   return (
     <>
-      <div aria-hidden className="h-5 w-px bg-line-strong/70 mx-1 shrink-0" />
+      <div aria-hidden className="mx-1 h-5 w-px shrink-0 bg-line-strong/70" />
       <div className="shrink-0">
         <ThemeToggle />
       </div>
@@ -120,9 +118,13 @@ function Logo() {
   return (
     <a
       href="/"
-      className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-fg hover:text-accent transition-colors whitespace-nowrap"
+      className="flex items-center gap-2.5 whitespace-nowrap py-1 pl-1 pr-3 tracking-tight text-fg transition-colors hover:text-accent"
     >
       <span className="logo-mark relative size-8 shrink-0">
+        {/* A 32px pixel-art PNG rendered with image-rendering: pixelated —
+            next/image would resample it, which is the one thing it must not
+            do, and there is no bandwidth to save at this size. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logo-skull.png"
           alt=""
@@ -131,9 +133,7 @@ function Logo() {
           style={{ imageRendering: "pixelated" }}
         />
       </span>
-      <span
-        className="font-sans text-[17px] font-medium leading-none tracking-[-0.01em]"
-      >
+      <span className="font-sans text-[17px] font-medium leading-none tracking-[-0.01em]">
         Aleksandr Mihhailovski
       </span>
     </a>
@@ -149,9 +149,7 @@ export function Nav() {
   const [preview, setPreview] = useState(false);
   useEffect(() => {
     setPreview(
-      document.cookie
-        .split("; ")
-        .some((c) => c === `${WIP_PREVIEW_COOKIE}=1`),
+      document.cookie.split("; ").some((c) => c === `${WIP_PREVIEW_COOKIE}=1`),
     );
   }, [pathname]);
 
@@ -175,7 +173,7 @@ export function Nav() {
           arrangement, and this is five compositing layers. */}
       <div
         aria-hidden
-        className="hidden md:block fixed inset-x-0 top-0 z-40 pointer-events-none"
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden md:block"
         style={{ height: 90 }}
       >
         <ProgressiveBlur edge="top" height={90} />
@@ -193,16 +191,16 @@ export function Nav() {
           is deliberately absent until `scrolled`: it promotes a compositing
           layer for as long as it is set, and there is nothing to frost while the
           bar is transparent. The colour fade covers the switch. */}
-      <div className="hidden md:flex fixed inset-x-0 top-0 z-50 px-6 md:px-10 justify-center pointer-events-none">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 hidden justify-center px-6 md:flex md:px-10">
         <nav
-          className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[max-width,padding,margin,border-radius,background-color,border-color,box-shadow] duration-t5 ease-out-expo ${
+          className={`pointer-events-auto flex w-full items-center justify-between gap-4 overflow-hidden border transition-[max-width,padding,margin,border-radius,background-color,border-color,box-shadow] duration-t5 ease-out-expo will-change-transform ${
             scrolled
-              ? "max-w-[480px] mt-4 px-2 py-1.5 rounded-full bg-[var(--glass)] backdrop-blur-[20px] backdrop-saturate-[1.8] border-line/60 shadow-pill"
-              : "max-w-[var(--shell)] mt-0 px-0 py-4 rounded-none bg-transparent border-transparent shadow-none"
+              ? "mt-4 max-w-[480px] rounded-full border-line/60 bg-[var(--glass)] px-2 py-1.5 shadow-pill backdrop-blur-[20px] backdrop-saturate-[1.8]"
+              : "mt-0 max-w-[var(--shell)] rounded-none border-transparent bg-transparent px-0 py-4 shadow-none"
           }`}
         >
           <Logo />
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex shrink-0 items-center gap-1">
             <NavLinks pathname={pathname} preview={preview} />
             <NavControls />
           </div>
@@ -210,12 +208,13 @@ export function Nav() {
       </div>
 
       {/* Mobile brand pill (top) */}
-      <div className="md:hidden fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none px-4">
+      <div className="pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:hidden">
         <a
           href="/"
-          className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-bg/95 border border-line/60 shadow-sm text-fg hover:text-accent transition-colors"
+          className="pointer-events-auto flex items-center gap-2 rounded-full border border-line/60 bg-bg/95 p-1.5 pr-3 text-fg shadow-sm transition-colors hover:text-accent"
         >
           <span className="logo-mark relative size-7 shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo-skull.png"
               alt=""
@@ -224,9 +223,7 @@ export function Nav() {
               style={{ imageRendering: "pixelated" }}
             />
           </span>
-          <span
-            className="font-sans text-[14px] font-medium leading-none tracking-[-0.01em]"
-          >
+          <span className="font-sans text-[14px] font-medium leading-none tracking-[-0.01em]">
             Aleksandr Mihhailovski
           </span>
         </a>
@@ -234,8 +231,8 @@ export function Nav() {
 
       {/* Mobile nav pill (bottom) — scrolls sideways rather than bleeding off
           both edges once there are more than three items. */}
-      <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
-        <nav className="pointer-events-auto flex max-w-full items-center gap-1 p-1.5 rounded-full bg-bg/95 border border-line/60 shadow-sm">
+      <header className="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-4 md:hidden">
+        <nav className="pointer-events-auto flex max-w-full items-center gap-1 rounded-full border border-line/60 bg-bg/95 p-1.5 shadow-sm">
           {/* Only the links scroll. The theme toggle stays pinned — burying
               the one control that switches light and dark behind a swipe
               would be worse than hiding a tab. */}

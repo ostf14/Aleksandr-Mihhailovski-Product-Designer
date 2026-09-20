@@ -15,7 +15,10 @@ function parseSegments(value: string) {
   let match: RegExpExecArray | null;
   while ((match = regex.exec(value))) {
     if (match.index > lastIndex) {
-      parts.push({ text: value.slice(lastIndex, match.index), isNumber: false });
+      parts.push({
+        text: value.slice(lastIndex, match.index),
+        isNumber: false,
+      });
     }
     parts.push({ text: match[0], isNumber: true });
     lastIndex = match.index + match[0].length;
@@ -61,7 +64,9 @@ export function AnimatedNumber({ value, duration = 1.4 }: Props) {
         const target = parseFloat(seg.text);
         const hasDecimal = seg.text.includes(".");
         const current = target * progress;
-        const display = hasDecimal ? current.toFixed(2) : Math.round(current).toString();
+        const display = hasDecimal
+          ? current.toFixed(2)
+          : Math.round(current).toString();
         return <span key={i}>{display}</span>;
       })}
     </span>
