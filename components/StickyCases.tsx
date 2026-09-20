@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { CaseCardMedia } from "./CaseCardMedia";
 import { useTilt } from "./useTilt";
-import { cases, workHref, type Work } from "@/lib/works";
+import { workHref, type Work } from "@/lib/works";
 
 /** Delay between two panels that come into view in the same batch. */
 const STAGGER_MS = 70;
@@ -135,7 +135,19 @@ function Panel({ work }: { work: Work }) {
   );
 }
 
-export function StickyCases() {
+/**
+ * The cases grid, used by /product and /gamedev alike. It takes the list
+ * rather than reading one, so the two sections are the same page built from
+ * different halves of lib/works.ts — nothing is duplicated and nothing can
+ * drift apart.
+ */
+export function StickyCases({
+  works,
+  heading = "Cases",
+}: {
+  works: Work[];
+  heading?: string;
+}) {
   const gridRef = useReveal<HTMLDivElement>();
 
   return (
@@ -152,12 +164,12 @@ export function StickyCases() {
             sticky column is the one piece of prose visible for the whole
             scroll, so a line that only describes the section wastes it. */}
         <h2 className="rv font-sans text-4xl font-semibold tracking-tight text-fg md:text-5xl">
-          Cases
+          {heading}
         </h2>
       </div>
 
       <div className="flex flex-col gap-6 md:gap-8">
-        {cases.map((c) => (
+        {works.map((c) => (
           <Panel key={c.slug} work={c} />
         ))}
       </div>

@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { StickyCases } from "@/components/StickyCases";
 import { pageMetadata, SITE_DESCRIPTION } from "@/lib/site";
+import { productCases } from "@/lib/works";
 
 export const metadata = pageMetadata({
   title: "Product",
@@ -28,7 +29,7 @@ export default function Page() {
 
         {/* Case Studies */}
         <section id="cases" className="mb-32 scroll-mt-[16.6667vh]">
-          <StickyCases />
+          <StickyCases works={productCases} />
         </section>
 
         {/* Other — same grid as Cases above it, so the single card lines up

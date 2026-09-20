@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "./site";
 
-export type Discipline = "product" | "graphic" | "engineering";
+export type Discipline = "product" | "graphic" | "engineering" | "game";
 export type WorkKind = "case" | "gallery";
 
 export type Cover =
@@ -29,6 +29,23 @@ export type Work = {
  * from here — adding a new piece of work is one entry.
  */
 export const WORKS: Work[] = [
+  {
+    slug: "dont-tread-on-cat",
+    title: "Don't Tread On Cat",
+    blurb:
+      "TODO: одна строка про игру — что это и почему в неё интересно играть.",
+    role: "Solo Developer",
+    org: "In development",
+    kind: "case",
+    disciplines: ["game"],
+    cover: {
+      type: "image",
+      src: "/cases/dont-tread-on-cat/cover.jpg",
+      alt: "Don't Tread On Cat — кот на столе среди проводов",
+    },
+    metaDescription:
+      "TODO: описание игры для поисковой выдачи и превью ссылки.",
+  },
   {
     slug: "3d-puzzle",
     title: "3D Museum Puzzle",
@@ -165,6 +182,18 @@ export const WORKS: Work[] = [
 // ---- Selectors -------------------------------------------------------------
 
 export const cases = WORKS.filter((w) => w.kind === "case");
+
+/**
+ * Which section a case belongs to.
+ *
+ * /product and /gamedev are the same page built from different halves of this
+ * register — one component, one source of truth, and a case can never end up
+ * described twice or listed in both places by accident. `game` is the marker;
+ * everything without it is product work.
+ */
+export const isGame = (w: Work) => w.disciplines.includes("game");
+export const productCases = cases.filter((w) => !isGame(w));
+export const gameCases = cases.filter(isGame);
 export const galleries = WORKS.filter((w) => w.kind === "gallery");
 
 export const getWork = (slug: string): Work | undefined =>

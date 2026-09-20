@@ -5,13 +5,10 @@ import matter from "gray-matter";
 /**
  * A numbered series of MDX entries with prev/next navigation.
  *
- * Two of them exist: the lecture course and the game devlog. Everything below
- * the type definitions is parameterised by the series, so adding a third is a
- * `Series` object with its own `basePath` and `contentDir` and nothing else —
- * no page, selector or loader has to be copied.
- *
- * The file was called lectures.ts while it held only the first one. It holds
- * the machinery for all of them, so it is called what it is.
+ * The lecture course is the only one today. Everything below the type
+ * definitions is parameterised by the series, so a second is a `Series` object
+ * with its own `basePath` and `contentDir` and nothing else — no page,
+ * selector or loader has to be copied.
  */
 export type SeriesEntry = {
   slug: string;
@@ -79,31 +76,6 @@ export const LECTURES: Series = {
       title: "TODO: заголовок лекции 4",
       date: "2026-01-01",
       description: "TODO: описание лекции 4",
-      readingTime: "TODO",
-      locales: ["ru"],
-    },
-  ],
-};
-
-/**
- * The game devlog. Entries are newest-last in `number` order, the same as the
- * lectures — the index reverses them for display, because a devlog reads
- * newest-first while a course reads first-first.
- *
- * To add an entry: append one object here and drop `content/devlog/<slug>.mdx`
- * beside it. The loader below refuses to build if the two disagree.
- */
-export const DEVLOG: Series = {
-  id: "devlog",
-  basePath: "/gamedev/log",
-  contentDir: "content/devlog",
-  entries: [
-    {
-      slug: "entry-1",
-      number: 1,
-      title: "TODO: заголовок первой записи",
-      date: "2026-01-01",
-      description: "TODO: о чём запись — одна строка, её видно в списке.",
       readingTime: "TODO",
       locales: ["ru"],
     },

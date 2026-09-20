@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ProgressiveBlur } from "./ProgressiveBlur";
 import { ThemeToggle } from "./ThemeToggle";
 import { WIP_PREVIEW_COOKIE } from "@/lib/site";
+import { getWork, isGame } from "@/lib/works";
 
 type Item = { label: string; href: string; badge?: string; wip?: boolean };
 
@@ -20,18 +21,26 @@ const items: Item[] = [
   { label: "About", href: "/about", wip: true },
 ];
 
-// Case pages and the /other gallery are reached from /product, so they keep
-// that tab lit rather than leaving the nav with nothing selected.
+// A case study has no tab of its own, so it lights the section it belongs to
+// rather than leaving the nav with nothing selected. Which section that is
+// comes from the register, not from the URL: /case/<slug> is a flat namespace
+// shared by product work and games, and reading `disciplines` is the only way
+// to tell them apart. The /other gallery belongs to Product.
+function sectionFor(pathname: string): string | null {
+  if (pathname.startsWith("/case/")) {
+    const work = getWork(pathname.slice("/case/".length));
+    if (!work) return "/product";
+    return isGame(work) ? "/gamedev" : "/product";
+  }
+  if (pathname === "/other" || pathname.startsWith("/other/"))
+    return "/product";
+  return null;
+}
+
 function isItemActive(item: Item, pathname: string | null): boolean {
   if (!pathname) return false;
-  if (item.href === "/product") {
-    return (
-      pathname === "/product" ||
-      pathname.startsWith("/case/") ||
-      pathname === "/other" ||
-      pathname.startsWith("/other/")
-    );
-  }
+  const section = sectionFor(pathname);
+  if (section) return item.href === section;
   return pathname === item.href || pathname.startsWith(item.href + "/");
 }
 
