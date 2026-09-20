@@ -43,10 +43,10 @@ function Media({ src, label, aspect }: { src?: string; label: string; aspect: st
   }
   return (
     <div
-      className="w-full rounded-lg bg-stone-200 flex items-center justify-center px-6 text-center"
+      className="w-full rounded-lg bg-surface-deep flex items-center justify-center px-6 text-center"
       style={{ aspectRatio: aspect }}
     >
-      <span className="text-stone-500 text-sm md:text-base font-medium tracking-tight max-w-md">
+      <span className="text-muted text-sm md:text-base font-medium tracking-tight max-w-md">
         {label}
       </span>
     </div>
@@ -66,7 +66,7 @@ export function ImagePlaceholder({
       <FadeIn as="figure" className={`shell ${className}`}>
         <Media src={src} label={label} aspect={aspect} />
         {caption && (
-          <figcaption className="shell-prose mt-2.5 font-mono text-xs text-stone-500 text-left">
+          <figcaption className="shell-prose mt-2.5 font-mono text-xs text-muted text-left">
             {caption}
           </figcaption>
         )}
@@ -80,7 +80,7 @@ export function ImagePlaceholder({
         <FadeIn as="figure" className="shell-prose">
           <Media src={src} label={label} aspect={aspect} />
           {caption && (
-            <figcaption className="mt-2.5 font-mono text-xs text-stone-500 text-left">
+            <figcaption className="mt-2.5 font-mono text-xs text-muted text-left">
               {caption}
             </figcaption>
           )}

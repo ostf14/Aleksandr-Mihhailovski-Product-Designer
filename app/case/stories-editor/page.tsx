@@ -79,7 +79,7 @@ export default function Page() {
           <header id="overview" className="scroll-mt-20 pt-6 md:pt-10 pb-14">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
                   Seamm · 2023
                 </p>
               </FadeIn>
@@ -89,46 +89,46 @@ export default function Page() {
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
+                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
                   How I eliminated a 2-day content publishing bottleneck.
                 </p>
               </FadeIn>
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-stone-200 bg-cream-warm rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
+              <div className="border border-line bg-surface rounded-lg p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                 <div className="md:pr-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Overview
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                  <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                     Designed a no-code story editor that gave marketing full autonomy over
                     Instagram-like content creation, reducing creation time from 24-48 hours to 5
                     minutes.
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                <div className="md:px-6 md:border-l md:border-line">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     My role
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                  <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                     Product Designer — UX, UI, design system
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                <div className="md:px-6 md:border-l md:border-line">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Team
                   </div>
-                  <p className="text-[15px] text-stone-500 mb-3">Seamm product team</p>
-                  <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                  <p className="text-[15px] text-muted mb-3">Seamm product team</p>
+                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
                     {["PM", "Design Lead", "2 Engineers", "Product designer (Me 👋)"].map(
                       (item) => (
                         <li key={item} className="flex items-start gap-2.5">
                           <span
                             aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-stone-400 shrink-0 mt-[7px]"
+                            className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
                           />
                           <span>{item}</span>
                         </li>
@@ -137,16 +137,16 @@ export default function Page() {
                   </ul>
                 </div>
 
-                <div className="md:pl-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                <div className="md:pl-6 md:border-l md:border-line">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Impact
                   </div>
-                  <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
                     {["24-48h → 5 min creation time", "10× campaign velocity"].map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <span
                           aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-stone-400 shrink-0 mt-[7px]"
+                          className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
                         />
                         <span>{item}</span>
                       </li>
@@ -195,7 +195,7 @@ export default function Page() {
 
               <Callout className="mt-10" label="Key insight">
                 Content creation sat at the same expensive intersection as{" "}
-                <a href="/case/push-notifications" className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity">
+                <a href="/case/push-notifications" className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity">
                   push notifications
                 </a>
                 : marketing couldn&rsquo;t publish without engineering, and engineering had
@@ -327,7 +327,7 @@ export default function Page() {
                         <h3 className="font-sans font-semibold text-xl md:text-2xl tracking-tight mb-3">
                           {r.h}
                         </h3>
-                        <p className="text-[1.125rem] leading-[1.65] text-charcoal/90">{r.p}</p>
+                        <p className="text-[1.125rem] leading-[1.65] text-fg/90">{r.p}</p>
                       </FadeIn>
                     ))}
                   </div>
@@ -357,14 +357,14 @@ export default function Page() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-cream-warm rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-cream-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-stone-500 font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-terracotta">
+                          <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                            <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
                               {String(i + 1).padStart(2, "0")}
                             </div>
                             <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">
                               {r.h}
                             </h3>
-                            <p className="text-[0.9375rem] leading-[1.55] text-charcoal/80">
+                            <p className="text-[0.9375rem] leading-[1.55] text-fg/80">
                               {r.p}
                             </p>
                           </div>

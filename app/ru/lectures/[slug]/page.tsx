@@ -62,14 +62,14 @@ export default function Page({ params }: { params: { slug: string } }) {
               <div className="shell-prose">
                 <a
                   href={LECTURES.basePath}
-                  className="inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3 hover:opacity-80 transition-opacity"
+                  className="inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3 hover:opacity-80 transition-opacity"
                 >
                   Лекция {entry.number} из {total}
                 </a>
-                <h1 className="font-sans font-semibold text-hero tracking-tight text-charcoal">
+                <h1 className="font-sans font-semibold text-hero tracking-tight text-fg">
                   {entry.title}
                 </h1>
-                <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[12px] text-stone-500">
+                <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[12px] text-muted">
                   <span>{formatDate(entry.date)}</span>
                   <span aria-hidden>·</span>
                   <span>{entry.readingTime}</span>
@@ -92,27 +92,27 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="pb-32">
               <div className="shell">
                 <div className="shell-prose">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-4">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted mb-4">
                     Читать дальше
                   </div>
                   <a
                     href={entryHref(LECTURES, next)}
-                    className="group relative block rounded-xl border border-stone-200 bg-white dark:bg-cream-warm p-5 md:p-6 transition-transform duration-200 hover:-translate-y-0.5"
+                    className="group relative block rounded-xl border border-line bg-white dark:bg-surface p-5 md:p-6 transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <ArrowUpRight
                       size={24}
                       strokeWidth={1.5}
                       aria-hidden
-                      className="absolute top-5 right-5 md:top-6 md:right-6 text-stone-400 transition-colors group-hover:text-terracotta"
+                      className="absolute top-5 right-5 md:top-6 md:right-6 text-faint transition-colors group-hover:text-accent"
                     />
                     <div className="pr-10">
-                      <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-2">
+                      <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-2">
                         Лекция {next.number}
                       </div>
-                      <h2 className="font-sans font-semibold text-[20px] md:text-[24px] leading-tight tracking-tight text-charcoal">
+                      <h2 className="font-sans font-semibold text-[20px] md:text-[24px] leading-tight tracking-tight text-fg">
                         {next.title}
                       </h2>
-                      <p className="mt-2 text-[0.95rem] leading-[1.55] text-charcoal/70">
+                      <p className="mt-2 text-[0.95rem] leading-[1.55] text-fg/70">
                         {next.description}
                       </p>
                     </div>

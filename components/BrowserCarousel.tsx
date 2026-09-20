@@ -83,7 +83,7 @@ export function BrowserCarousel({
                   type="button"
                   onClick={prev}
                   aria-label="Previous page"
-                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-cream/75 backdrop-blur-sm text-charcoal transition-colors hover:text-terracotta left-1.5 md:left-auto md:right-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
+                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-bg/75 backdrop-blur-sm text-fg transition-colors hover:text-accent left-1.5 md:left-auto md:right-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
                 >
                   <ChevronLeft size={24} strokeWidth={1.75} aria-hidden />
                 </button>
@@ -91,7 +91,7 @@ export function BrowserCarousel({
                   type="button"
                   onClick={next}
                   aria-label="Next page"
-                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-cream/75 backdrop-blur-sm text-charcoal transition-colors hover:text-terracotta right-1.5 md:right-auto md:left-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
+                  className="absolute top-1/2 -translate-y-1/2 z-10 grid size-8 place-items-center rounded-full bg-bg/75 backdrop-blur-sm text-fg transition-colors hover:text-accent right-1.5 md:right-auto md:left-[calc(100%+16px)] md:size-auto md:rounded-none md:bg-transparent md:backdrop-blur-none"
                 >
                   <ChevronRight size={24} strokeWidth={1.75} aria-hidden />
                 </button>
@@ -112,8 +112,8 @@ export function BrowserCarousel({
                     aria-label={`Go to ${s.title}`}
                     className={`h-[2px] flex-1 transition-colors duration-200 ease-out ${
                       i === index
-                        ? "bg-terracotta"
-                        : "bg-stone-300 dark:bg-stone-600 hover:bg-stone-400 dark:hover:bg-stone-500"
+                        ? "bg-accent"
+                        : "bg-line-strong dark:bg-line-strong hover:bg-mark dark:hover:bg-mark"
                     } ${isFirst ? "rounded-l-full" : ""} ${isLast ? "rounded-r-full" : ""}`}
                   />
                 );
@@ -122,7 +122,7 @@ export function BrowserCarousel({
           )}
 
           {caption && (
-            <p className="mt-4 font-mono text-xs text-stone-500 text-left">{caption}</p>
+            <p className="mt-4 font-mono text-xs text-muted text-left">{caption}</p>
           )}
         </div>
       </div>

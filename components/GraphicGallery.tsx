@@ -33,7 +33,7 @@ function NavButton({
 function Caption({ item }: { item: GraphicItem }) {
   return (
     <>
-      <p className="text-[0.875rem] leading-[1.5] text-charcoal/70">
+      <p className="text-[0.875rem] leading-[1.5] text-fg/70">
         {item.caption}
         {item.href && (
           <a
@@ -43,7 +43,7 @@ function Caption({ item }: { item: GraphicItem }) {
             // The arrow shows no text, so the label is the only thing a
             // screen reader has to go on.
             aria-label={item.hrefLabel ?? "Open the source"}
-            className="ml-1.5 inline-block align-[-1px] text-terracotta hover:opacity-70 transition-opacity"
+            className="ml-1.5 inline-block align-[-1px] text-accent hover:opacity-70 transition-opacity"
           >
             <ArrowUpRight size={14} strokeWidth={2} aria-hidden />
           </a>
@@ -145,7 +145,7 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
                 }}
                 onClick={() => setOpenIndex(i)}
                 aria-label={`Open ${item.alt}`}
-                className="group block w-full overflow-hidden rounded-xl border border-stone-200 bg-cream-warm dark:bg-cream-deep cursor-zoom-in"
+                className="group block w-full overflow-hidden rounded-xl border border-line bg-surface dark:bg-surface-deep cursor-zoom-in"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

@@ -9,22 +9,40 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Legacy warm-cream palette — every component still reads these.
-        cream: "rgb(var(--rgb-cream) / <alpha-value>)",
-        "cream-warm": "rgb(var(--rgb-cream-warm) / <alpha-value>)",
-        "cream-deep": "rgb(var(--rgb-cream-deep) / <alpha-value>)",
-        charcoal: "rgb(var(--rgb-charcoal) / <alpha-value>)",
-        terracotta: "rgb(var(--rgb-terracotta) / <alpha-value>)",
+        /* The palette. Every colour on the site comes from here, and each
+           name says what the colour is FOR, not what it looks like — so
+           changing the look is one edit in app/globals.css and nothing has to
+           be renamed.
 
-        // Semantic tokens (portfolio_refactor_spec step 5a). Staged for
-        // per-class migration in 5b. Nothing consumes them yet.
+           These replaced a warm-cream set whose names had stopped being true:
+           "cream" was #ffffff, "charcoal" was the text colour, and
+           "terracotta" had not been terracotta since the site went
+           monochrome. Components also reached past them for raw Tailwind
+           greys — 139 stone-* classes — each of which then needed a hand
+           override in globals.css to stop it painting warm. Both are gone.
+
+           Light / dark values live in :root and .dark in app/globals.css. */
+
+        // Surfaces, lightest to deepest.
         bg: "rgb(var(--bg) / <alpha-value>)",
         surface: "rgb(var(--surface) / <alpha-value>)",
-        "surface-hover": "rgb(var(--surface-hover) / <alpha-value>)",
-        border: "rgb(var(--border) / <alpha-value>)",
+        "surface-deep": "rgb(var(--surface-deep) / <alpha-value>)",
+
+        // Hairlines.
+        line: "rgb(var(--line) / <alpha-value>)",
+        "line-strong": "rgb(var(--line-strong) / <alpha-value>)",
+
+        // Text, strongest to quietest.
         fg: "rgb(var(--fg) / <alpha-value>)",
+        strong: "rgb(var(--strong) / <alpha-value>)",
         muted: "rgb(var(--muted) / <alpha-value>)",
         faint: "rgb(var(--faint) / <alpha-value>)",
+
+        // Small painted marks — dots, bullets, sprite fills.
+        mark: "rgb(var(--mark) / <alpha-value>)",
+
+        // Emphasis. Monochrome today; this is the one value to change if the
+        // site ever wants a colour again.
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {

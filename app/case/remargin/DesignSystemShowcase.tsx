@@ -131,7 +131,7 @@ const components = [
 
 function SubLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-5">
+    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted mb-5">
       {children}
     </div>
   );
@@ -139,13 +139,13 @@ function SubLabel({ children }: { children: React.ReactNode }) {
 
 function Note({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-3 text-[12px] leading-[1.5] text-charcoal/70">{children}</p>
+    <p className="mt-3 text-[12px] leading-[1.5] text-fg/70">{children}</p>
   );
 }
 
 function TierLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/70 mb-1.5">
+    <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-fg/70 mb-1.5">
       {children}
     </div>
   );
@@ -155,14 +155,14 @@ function Swatch({ name, hex }: { name: string; hex: string }) {
   return (
     <div className="space-y-1.5">
       <div
-        className="w-14 h-14 rounded-md border border-stone-200"
+        className="w-14 h-14 rounded-md border border-line"
         style={{ background: hex }}
       />
       <div className="space-y-0">
-        <div className="text-[10px] font-medium text-charcoal leading-tight truncate">
+        <div className="text-[10px] font-medium text-fg leading-tight truncate">
           {name}
         </div>
-        <div className="font-mono text-[10px] text-charcoal/70 leading-tight">
+        <div className="font-mono text-[10px] text-fg/70 leading-tight">
           {hex}
         </div>
       </div>
@@ -200,7 +200,7 @@ function HighlightRow({
 }) {
   return (
     <div
-      className="grid grid-cols-5 gap-1.5 rounded-md border border-stone-200 p-1.5"
+      className="grid grid-cols-5 gap-1.5 rounded-md border border-line p-1.5"
       style={{ background: surface }}
     >
       {chips.map((h) => (
@@ -284,7 +284,7 @@ export function DesignSystemShowcase() {
                     className="flex flex-col items-center gap-2 shrink-0"
                   >
                     <div
-                      className="text-charcoal"
+                      className="text-fg"
                       style={{
                         fontFamily:
                           "var(--font-space-grotesk), system-ui, sans-serif",
@@ -294,7 +294,7 @@ export function DesignSystemShowcase() {
                     >
                       Aa
                     </div>
-                    <div className="font-mono text-[10px] text-charcoal/70">
+                    <div className="font-mono text-[10px] text-fg/70">
                       {t.size}
                     </div>
                     {/* Half-steps are marked with a rule rather than by fading
@@ -303,7 +303,7 @@ export function DesignSystemShowcase() {
                     <div
                       aria-hidden
                       className={`h-px w-full ${
-                        t.half ? "bg-terracotta" : "bg-transparent"
+                        t.half ? "bg-accent" : "bg-transparent"
                       }`}
                     />
                   </div>
@@ -324,14 +324,14 @@ export function DesignSystemShowcase() {
                         key={r.token}
                         className="flex items-baseline justify-between gap-3"
                       >
-                        <span className="font-mono text-[10px] text-charcoal/70 truncate">
+                        <span className="font-mono text-[10px] text-fg/70 truncate">
                           {r.token}
                         </span>
-                        <span className="font-mono text-[10px] tabular-nums shrink-0 text-charcoal">
+                        <span className="font-mono text-[10px] tabular-nums shrink-0 text-fg">
                           {r.desktop}
                           {r.mobile !== undefined && (
                             <span
-                              className={`text-charcoal/70 ${grows ? "font-medium" : ""}`}
+                              className={`text-fg/70 ${grows ? "font-medium" : ""}`}
                             >
                               {" "}
                               {/* The glyph carries the direction, not colour:
@@ -361,7 +361,7 @@ export function DesignSystemShowcase() {
                   <div
                     key={s.name}
                     data-surface={s.name}
-                    className="rounded-lg border border-stone-200 p-5 aspect-[5/3] flex flex-col justify-between"
+                    className="rounded-lg border border-line p-5 aspect-[5/3] flex flex-col justify-between"
                     style={{ background: s.bg, color: s.text }}
                   >
                     <p
@@ -402,10 +402,10 @@ export function DesignSystemShowcase() {
                         className="flex flex-col items-center gap-2 shrink-0"
                       >
                         <div
-                          className="bg-terracotta/80 rounded-sm"
+                          className="bg-accent/80 rounded-sm"
                           style={{ width: `${s}px`, height: `${s}px` }}
                         />
-                        <div className="font-mono text-[10px] text-charcoal/70">
+                        <div className="font-mono text-[10px] text-fg/70">
                           {s}
                         </div>
                       </div>
@@ -424,10 +424,10 @@ export function DesignSystemShowcase() {
                         className="flex flex-col items-center gap-2 shrink-0"
                       >
                         <div
-                          className="bg-terracotta/80 rounded-sm"
+                          className="bg-accent/80 rounded-sm"
                           style={{ width: `${s}px`, height: `${s}px` }}
                         />
-                        <div className="font-mono text-[10px] text-charcoal/70">
+                        <div className="font-mono text-[10px] text-fg/70">
                           {s}
                         </div>
                       </div>
@@ -446,10 +446,10 @@ export function DesignSystemShowcase() {
                     className="flex flex-col items-center gap-2"
                   >
                     <div
-                      className="w-10 h-10 border border-charcoal/40 bg-cream-warm"
+                      className="w-10 h-10 border border-fg/40 bg-surface"
                       style={{ borderRadius: r.css }}
                     />
-                    <div className="font-mono text-[10px] text-charcoal/70 text-center">
+                    <div className="font-mono text-[10px] text-fg/70 text-center">
                       {r.label} · {r.css}
                     </div>
                   </div>
@@ -463,12 +463,12 @@ export function DesignSystemShowcase() {
                 {components.map((c) => (
                   <div
                     key={c.name}
-                    className="border border-stone-200 rounded-xl p-4"
+                    className="border border-line rounded-xl p-4"
                   >
-                    <div className="text-xs font-bold text-charcoal mb-1">
+                    <div className="text-xs font-bold text-fg mb-1">
                       {c.name}
                     </div>
-                    <div className="text-[11px] leading-[1.5] text-charcoal/70">
+                    <div className="text-[11px] leading-[1.5] text-fg/70">
                       {c.desc}
                     </div>
                   </div>
@@ -476,7 +476,7 @@ export function DesignSystemShowcase() {
               </div>
             </div>
 
-            <div className="border-t border-stone-200 pt-4 font-mono text-[11px] text-charcoal/70">
+            <div className="border-t border-line pt-4 font-mono text-[11px] text-fg/70">
               115 → 94 tokens · 662 → 797 references
             </div>
           </div>

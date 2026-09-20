@@ -43,8 +43,8 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
       data-active={isActive || undefined}
       className={`flex shrink-0 items-center gap-1.5 px-4 py-2 rounded-full text-[13px] md:text-sm transition-colors ${
         isActive
-          ? "bg-charcoal text-cream"
-          : "text-[#666666] dark:text-stone-600 hover:bg-cream-warm hover:text-charcoal"
+          ? "bg-fg text-bg"
+          : "text-muted dark:text-strong hover:bg-surface hover:text-fg"
       }`}
     >
       {item.label}
@@ -52,8 +52,8 @@ function NavLink({ item, pathname }: { item: Item; pathname: string | null }) {
         <span
           className={`font-mono text-[9px] leading-none tracking-[0.08em] px-1 py-0.5 rounded ${
             isActive
-              ? "bg-cream/20 text-cream"
-              : "bg-cream-warm text-stone-500"
+              ? "bg-bg/20 text-bg"
+              : "bg-surface text-muted"
           }`}
         >
           {item.badge}
@@ -85,7 +85,7 @@ function NavLinks({
 function NavControls() {
   return (
     <>
-      <div aria-hidden className="h-5 w-px bg-stone-300/70 mx-1 shrink-0" />
+      <div aria-hidden className="h-5 w-px bg-line-strong/70 mx-1 shrink-0" />
       <div className="shrink-0">
         <ThemeToggle />
       </div>
@@ -120,7 +120,7 @@ function Logo() {
   return (
     <a
       href="/"
-      className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-charcoal hover:text-terracotta transition-colors whitespace-nowrap"
+      className="flex items-center gap-2.5 pl-1 pr-3 py-1 tracking-tight text-fg hover:text-accent transition-colors whitespace-nowrap"
     >
       <span className="logo-mark relative size-8 shrink-0">
         <img
@@ -197,7 +197,7 @@ export function Nav() {
         <nav
           className={`pointer-events-auto w-full flex items-center justify-between gap-4 overflow-hidden border will-change-transform transition-[max-width,padding,margin,border-radius,background-color,border-color,box-shadow] duration-t5 ease-out-expo ${
             scrolled
-              ? "max-w-[480px] mt-4 px-2 py-1.5 rounded-full bg-[var(--glass)] backdrop-blur-[20px] backdrop-saturate-[1.8] border-stone-200/60 shadow-pill"
+              ? "max-w-[480px] mt-4 px-2 py-1.5 rounded-full bg-[var(--glass)] backdrop-blur-[20px] backdrop-saturate-[1.8] border-line/60 shadow-pill"
               : "max-w-[var(--shell)] mt-0 px-0 py-4 rounded-none bg-transparent border-transparent shadow-none"
           }`}
         >
@@ -213,7 +213,7 @@ export function Nav() {
       <div className="md:hidden fixed inset-x-0 top-4 z-50 flex justify-center pointer-events-none px-4">
         <a
           href="/"
-          className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm text-charcoal hover:text-terracotta transition-colors"
+          className="pointer-events-auto flex items-center gap-2 p-1.5 pr-3 rounded-full bg-bg/95 border border-line/60 shadow-sm text-fg hover:text-accent transition-colors"
         >
           <span className="logo-mark relative size-7 shrink-0">
             <img
@@ -235,7 +235,7 @@ export function Nav() {
       {/* Mobile nav pill (bottom) — scrolls sideways rather than bleeding off
           both edges once there are more than three items. */}
       <header className="md:hidden fixed inset-x-0 bottom-4 z-50 flex justify-center pointer-events-none px-4">
-        <nav className="pointer-events-auto flex max-w-full items-center gap-1 p-1.5 rounded-full bg-cream/95 border border-stone-200/60 shadow-sm">
+        <nav className="pointer-events-auto flex max-w-full items-center gap-1 p-1.5 rounded-full bg-bg/95 border border-line/60 shadow-sm">
           {/* Only the links scroll. The theme toggle stays pinned — burying
               the one control that switches light and dark behind a swipe
               would be worse than hiding a tab. */}

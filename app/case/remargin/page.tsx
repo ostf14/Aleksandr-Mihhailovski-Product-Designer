@@ -39,7 +39,7 @@ export default function Page() {
           >
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
                   Self-initiated · 2026
                 </p>
               </FadeIn>
@@ -49,7 +49,7 @@ export default function Page() {
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
+                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
                   I wanted a reader where annotations matter as much as the text.
                   Built one.
                 </p>
@@ -57,40 +57,40 @@ export default function Page() {
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
+              <div className="border border-line bg-surface rounded-lg overflow-hidden">
                 <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                   <div className="md:pr-6">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                       Role
                     </div>
-                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                    <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                       Design Engineer
                     </p>
                   </div>
 
-                  <div className="md:px-6 md:border-l md:border-stone-200">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                  <div className="md:px-6 md:border-l md:border-line">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                       Project
                     </div>
-                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                    <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                       Self-initiated product
                     </p>
                   </div>
 
-                  <div className="md:px-6 md:border-l md:border-stone-200">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                  <div className="md:px-6 md:border-l md:border-line">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                       Timeline
                     </div>
-                    <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                    <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                       2026
                     </p>
                   </div>
 
-                  <div className="md:pl-6 md:border-l md:border-stone-200">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                  <div className="md:pl-6 md:border-l md:border-line">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                       Focus
                     </div>
-                    <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                    <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
                       {[
                         "Product design",
                         "Frontend engineering",
@@ -99,7 +99,7 @@ export default function Page() {
                         <li key={item} className="flex items-start gap-2.5">
                           <span
                             aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-stone-400 shrink-0 mt-[7px]"
+                            className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
                           />
                           <span>{item}</span>
                         </li>
@@ -108,15 +108,15 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="border-t border-stone-200 px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta">
+                <div className="border-t border-line px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                     Links
                   </span>
                   <a
                     href="https://remargin-sage.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-charcoal/90 hover:text-terracotta transition-colors"
+                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 hover:text-accent transition-colors"
                   >
                     Live app
                     <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
@@ -125,7 +125,7 @@ export default function Page() {
                     href="https://github.com/ostf14/remargin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-charcoal/90 hover:text-terracotta transition-colors"
+                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 hover:text-accent transition-colors"
                   >
                     Source
                     <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />

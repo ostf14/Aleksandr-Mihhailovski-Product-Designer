@@ -75,8 +75,8 @@ export function TableOfContents({ items = defaultItems }: { items?: TocItem[] } 
           bar that grows out of 40% height and lies exactly over that rule
           (left: -1px covers it) — no filled pill, no background, no horizontal
           shift. That restraint is the whole effect. */}
-      <nav className="border-l border-charcoal/15">
-        <div className="pl-4 mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-charcoal/50">
+      <nav className="border-l border-fg/15">
+        <div className="pl-4 mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-fg/50">
           On this page
         </div>
         <ul>
@@ -87,12 +87,12 @@ export function TableOfContents({ items = defaultItems }: { items?: TocItem[] } 
                 <a
                   href={`#${item.id}`}
                   aria-current={isActive ? "true" : undefined}
-                  className={`relative block py-1.5 pl-4 text-sm transition-colors duration-t2 ease-out-expo before:content-[''] before:absolute before:-left-px before:top-[5px] before:bottom-[5px] before:w-0.5 before:rounded-[1px] before:bg-charcoal before:transition-[opacity,transform] before:duration-t3 before:ease-out-expo ${
+                  className={`relative block py-1.5 pl-4 text-sm transition-colors duration-t2 ease-out-expo before:content-[''] before:absolute before:-left-px before:top-[5px] before:bottom-[5px] before:w-0.5 before:rounded-[1px] before:bg-fg before:transition-[opacity,transform] before:duration-t3 before:ease-out-expo ${
                       item.level === 2 ? "ml-4" : ""
                     } ${
                       isActive
-                        ? "text-charcoal before:opacity-100 before:scale-y-100"
-                        : "text-charcoal/70 hover:text-charcoal before:opacity-0 before:scale-y-[.4]"
+                        ? "text-fg before:opacity-100 before:scale-y-100"
+                        : "text-fg/70 hover:text-fg before:opacity-0 before:scale-y-[.4]"
                     }`}
                 >
                   <span className="block truncate">{item.label}</span>

@@ -17,7 +17,7 @@ const FLY_OUT = { y: 300, scale: 1, opacity: 0, zIndex: 10 };
 const RISING = { y: 12, scale: 1, opacity: 1, zIndex: 7 };
 
 const cardClass =
-  "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-cream-warm border-x border-t border-stone-200/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
+  "group absolute inset-x-0 bottom-0 h-[348px] md:h-[248px] origin-bottom rounded-t-2xl bg-white dark:bg-surface border-x border-t border-line/60 shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)] p-5 block";
 
 function CardContent({ c }: { c: Work }) {
   return (
@@ -25,22 +25,22 @@ function CardContent({ c }: { c: Work }) {
       <ArrowUpRight
         size={32}
         strokeWidth={1.5}
-        className="absolute top-5 right-5 text-stone-400 transition-colors group-hover:text-terracotta z-10"
+        className="absolute top-5 right-5 text-faint transition-colors group-hover:text-accent z-10"
         aria-hidden
       />
       <div className="flex flex-col md:flex-row-reverse gap-3 md:gap-5 h-full">
         <div className="md:flex-1 md:min-w-0 flex flex-col pr-10 md:pr-10">
-          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400">
+          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
             {c.org}
           </div>
           <h3 className="mt-2 font-sans font-semibold text-[22px] leading-tight tracking-tight">
             {c.title}
           </h3>
-          <p className="mt-2 text-[13px] leading-[1.5] text-stone-500 line-clamp-2">
+          <p className="mt-2 text-[13px] leading-[1.5] text-muted line-clamp-2">
             {c.blurb}
           </p>
         </div>
-        <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-cream-warm dark:bg-cream-deep">
+        <div className="flex-1 min-h-0 -mx-5 -mb-5 md:m-0 md:basis-[38%] md:shrink-0 md:flex-none md:h-full rounded-none md:rounded-xl overflow-hidden bg-surface dark:bg-surface-deep">
           <CaseCardMedia src={c.cover.src} />
         </div>
       </div>
@@ -138,7 +138,7 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
         </div>
 
         {list.length > 1 && (
-          <div className="border-t border-stone-200/60 mt-6 pt-6 flex justify-center">
+          <div className="border-t border-line/60 mt-6 pt-6 flex justify-center">
             <button
               type="button"
               onClick={shuffle}
@@ -149,10 +149,10 @@ export function MoreCases({ currentId }: { currentId?: string } = {}) {
               <ChevronDown
                 size={32}
                 strokeWidth={1.75}
-                className="text-stone-400 transition-all duration-200 group-hover:text-terracotta group-hover:scale-110"
+                className="text-faint transition-all duration-200 group-hover:text-accent group-hover:scale-110"
                 aria-hidden
               />
-              <span className="text-[13px] text-stone-500 group-hover:text-terracotta transition-colors">
+              <span className="text-[13px] text-muted group-hover:text-accent transition-colors">
                 next case
               </span>
             </button>

@@ -30,7 +30,7 @@ export const lectureMdxComponents: MDXComponents = {
     return (
       <h2
         id={slugifyHeading(text)}
-        className="scroll-mt-28 font-sans font-semibold text-[1.75rem] md:text-[2rem] leading-[1.2] tracking-tight text-charcoal mt-14 mb-4 first:mt-0"
+        className="scroll-mt-28 font-sans font-semibold text-[1.75rem] md:text-[2rem] leading-[1.2] tracking-tight text-fg mt-14 mb-4 first:mt-0"
       >
         {children}
       </h2>
@@ -42,7 +42,7 @@ export const lectureMdxComponents: MDXComponents = {
     return (
       <h3
         id={slugifyHeading(text)}
-        className="scroll-mt-28 font-sans font-semibold text-[1.375rem] md:text-[1.5rem] leading-[1.25] tracking-tight text-charcoal mt-10 mb-3"
+        className="scroll-mt-28 font-sans font-semibold text-[1.375rem] md:text-[1.5rem] leading-[1.25] tracking-tight text-fg mt-10 mb-3"
       >
         {children}
       </h3>
@@ -51,7 +51,7 @@ export const lectureMdxComponents: MDXComponents = {
 
   p: ({ children }) => (
     <p
-      className="text-[1.0625rem] md:text-[1.125rem] leading-[1.75] text-charcoal/90 mb-6"
+      className="text-[1.0625rem] md:text-[1.125rem] leading-[1.75] text-fg/90 mb-6"
     >
       {children}
     </p>
@@ -59,7 +59,7 @@ export const lectureMdxComponents: MDXComponents = {
 
   ul: ({ children }) => (
     <ul
-      className="mb-6 space-y-2 list-disc pl-6 marker:text-stone-400 text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
+      className="mb-6 space-y-2 list-disc pl-6 marker:text-faint text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-fg/90"
     >
       {children}
     </ul>
@@ -67,7 +67,7 @@ export const lectureMdxComponents: MDXComponents = {
 
   ol: ({ children }) => (
     <ol
-      className="mb-6 space-y-2 list-decimal pl-6 marker:text-stone-400 marker:font-mono marker:text-[0.9em] text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-charcoal/90"
+      className="mb-6 space-y-2 list-decimal pl-6 marker:text-faint marker:font-mono marker:text-[0.9em] text-[1.0625rem] md:text-[1.125rem] leading-[1.7] text-fg/90"
     >
       {children}
     </ol>
@@ -77,16 +77,16 @@ export const lectureMdxComponents: MDXComponents = {
 
   blockquote: ({ children }) => (
     <blockquote
-      className="my-8 border-l-2 border-terracotta pl-5 italic text-charcoal/80 [&>p]:mb-3 [&>p:last-child]:mb-0"
+      className="my-8 border-l-2 border-accent pl-5 italic text-fg/80 [&>p]:mb-3 [&>p:last-child]:mb-0"
     >
       {children}
     </blockquote>
   ),
 
-  hr: () => <hr className="my-12 border-0 border-t border-stone-200" />,
+  hr: () => <hr className="my-12 border-0 border-t border-line" />,
 
   code: ({ children }) => (
-    <code className="font-mono text-[0.85em] bg-cream-warm rounded px-1.5 py-0.5 text-charcoal">
+    <code className="font-mono text-[0.85em] bg-surface rounded px-1.5 py-0.5 text-fg">
       {children}
     </code>
   ),
@@ -96,14 +96,14 @@ export const lectureMdxComponents: MDXComponents = {
       href={href}
       target={href?.startsWith("http") ? "_blank" : undefined}
       rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="text-terracotta underline underline-offset-2 hover:opacity-80 transition-opacity"
+      className="text-accent underline underline-offset-2 hover:opacity-80 transition-opacity"
     >
       {children}
     </a>
   ),
 
   strong: ({ children }) => (
-    <strong className="font-semibold text-charcoal">{children}</strong>
+    <strong className="font-semibold text-fg">{children}</strong>
   ),
 
   // Wide tables scroll inside their own box rather than widening the column.
@@ -116,14 +116,14 @@ export const lectureMdxComponents: MDXComponents = {
   ),
 
   th: ({ children }) => (
-    <th className="border-b border-stone-300 pb-2 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-charcoal/70 align-bottom">
+    <th className="border-b border-line-strong pb-2 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-fg/70 align-bottom">
       {children}
     </th>
   ),
 
   td: ({ children }) => (
     <td
-      className="border-b border-stone-200 py-3 pr-4 text-[0.95rem] leading-[1.6] text-charcoal/90 align-top"
+      className="border-b border-line py-3 pr-4 text-[0.95rem] leading-[1.6] text-fg/90 align-top"
     >
       {children}
     </td>

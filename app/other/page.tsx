@@ -36,7 +36,7 @@ export default function Page() {
           <header className="pt-6 md:pt-10 pb-14">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
                   Gallery · 2018–24
                 </p>
               </FadeIn>
@@ -46,7 +46,7 @@ export default function Page() {
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
+                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
                   A selection of websites and landing pages I&rsquo;ve designed over
                   the years.
                 </p>

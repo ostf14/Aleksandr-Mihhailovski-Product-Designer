@@ -90,10 +90,10 @@ export function BeforeAfterSlider({
       </div>
 
       {/* Labels */}
-      <span className="absolute top-3 left-3 font-mono text-[11px] uppercase tracking-[0.14em] bg-charcoal/70 text-cream rounded-full px-3 py-1 pointer-events-none">
+      <span className="absolute top-3 left-3 font-mono text-[11px] uppercase tracking-[0.14em] bg-fg/70 text-bg rounded-full px-3 py-1 pointer-events-none">
         {beforeLabel}
       </span>
-      <span className="absolute top-3 right-3 font-mono text-[11px] uppercase tracking-[0.14em] bg-charcoal/70 text-cream rounded-full px-3 py-1 pointer-events-none">
+      <span className="absolute top-3 right-3 font-mono text-[11px] uppercase tracking-[0.14em] bg-fg/70 text-bg rounded-full px-3 py-1 pointer-events-none">
         {afterLabel}
       </span>
 
@@ -102,9 +102,9 @@ export function BeforeAfterSlider({
         className="absolute top-0 bottom-0 pointer-events-none"
         style={{ left: `${position}%`, transform: "translateX(-50%)" }}
       >
-        <div className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-terracotta" />
+        <div className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-accent" />
         <div
-          className="absolute top-1/2 left-1/2 size-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream border-2 border-terracotta shadow-sm flex items-center justify-center"
+          className="absolute top-1/2 left-1/2 size-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-bg border-2 border-accent shadow-sm flex items-center justify-center"
           aria-hidden
         >
           <svg
@@ -112,7 +112,7 @@ export function BeforeAfterSlider({
             height="14"
             viewBox="0 0 14 14"
             fill="none"
-            className="text-terracotta"
+            className="text-accent"
           >
             <path
               d="M3 4 L1 7 L3 10 M11 4 L13 7 L11 10"

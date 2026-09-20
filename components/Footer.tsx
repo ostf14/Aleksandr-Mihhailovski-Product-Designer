@@ -9,7 +9,7 @@ import { SpriteAnimation } from "./SpriteAnimation";
 import { links } from "@/lib/site";
 
 const TAIL_LINK =
-  "relative inline-flex items-center gap-1.5 font-sans text-sm font-medium text-[#666666] dark:text-[#8f8f8f] transition-colors duration-t2 ease-out-expo hover:text-terracotta";
+  "relative inline-flex items-center gap-1.5 font-sans text-sm font-medium text-muted transition-colors duration-t2 ease-out-expo hover:text-accent";
 const TAIL_ICON = "h-[15px] w-[15px] shrink-0";
 
 /**
@@ -64,14 +64,14 @@ export function Footer() {
             left-aligned against nothing looks like it lost its second column. */}
         <div className="shell grid grid-cols-1 gap-10 text-center md:grid-cols-[1fr_3fr] md:gap-14 md:text-left lg:gap-20">
           <div className="self-start">
-            <h2 className="font-sans font-medium text-[clamp(30px,5vw,52px)] leading-[1.04] tracking-[-0.036em] text-[#171717] dark:text-[#ededed]">
+            <h2 className="font-sans font-medium text-[clamp(30px,5vw,52px)] leading-[1.04] tracking-[-0.036em] text-fg">
               Let&rsquo;s work
               <br className="hidden md:inline" /> together
             </h2>
           </div>
 
           <div className="flex flex-col items-center gap-6 md:items-start">
-            <p className="max-w-[46ch] font-sans text-[17px] leading-[1.55] text-[#666666] dark:text-[#8f8f8f]">
+            <p className="max-w-[46ch] font-sans text-[17px] leading-[1.55] text-muted">
               I&rsquo;m open to new opportunities.
             </p>
 
@@ -118,7 +118,7 @@ export function Footer() {
                 {copied ? "Copied!" : "Copy email"}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#171717] px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100 dark:bg-[#ededed] dark:text-[#171717]"
+                  className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-fg px-2.5 py-1.5 text-xs font-medium text-bg opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100"
                 >
                   {links.email}
                 </span>

@@ -36,7 +36,7 @@ export default function Page() {
         <section id="other" className="mb-32 scroll-mt-[16.6667vh]">
           <div className="shell grid grid-cols-1 gap-10 md:grid-cols-[1fr_3fr] md:gap-14 lg:gap-20">
             <div className="self-start">
-              <h2 className="font-sans font-semibold text-4xl md:text-5xl tracking-tight text-[#171717] dark:text-[#ededed]">
+              <h2 className="font-sans font-semibold text-4xl md:text-5xl tracking-tight text-fg">
                 Other
               </h2>
             </div>

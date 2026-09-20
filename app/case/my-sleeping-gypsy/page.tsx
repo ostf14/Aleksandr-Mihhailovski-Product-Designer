@@ -77,7 +77,7 @@ function BrowserShot({
             <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
           </BrowserFrame>
           {caption && (
-            <figcaption className="mt-2.5 font-mono text-xs text-stone-500 text-left">
+            <figcaption className="mt-2.5 font-mono text-xs text-muted text-left">
               {caption}
             </figcaption>
           )}
@@ -117,7 +117,7 @@ export default function Page() {
           >
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
                   E-Commerce · Web Design · 2022
                 </p>
               </FadeIn>
@@ -127,34 +127,34 @@ export default function Page() {
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-charcoal/70">
+                <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
                   How to sell heritage craftsmanship without looking like fast fashion.
                 </p>
               </FadeIn>
             </div>
 
             <FadeIn delay={0.15} className="shell mt-10">
-              <div className="border border-stone-200 bg-cream-warm rounded-lg overflow-hidden">
+              <div className="border border-line bg-surface rounded-lg overflow-hidden">
                 <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-4 gap-y-8 md:gap-y-0">
                 <div className="md:pr-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Role
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">
+                  <p className="text-[0.95rem] leading-[1.55] text-fg/90">
                     Web Designer
                   </p>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                <div className="md:px-6 md:border-l md:border-line">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Company
                   </div>
-                  <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
                     {["UPROCK", "My Sleeping Gypsy"].map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <span
                           aria-hidden
-                          className="inline-block size-1.5 rounded-full bg-stone-400 shrink-0 mt-[7px]"
+                          className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
                         />
                         <span>{item}</span>
                       </li>
@@ -162,24 +162,24 @@ export default function Page() {
                   </ul>
                 </div>
 
-                <div className="md:px-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                <div className="md:px-6 md:border-l md:border-line">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Timeline
                   </div>
-                  <p className="text-[0.95rem] leading-[1.55] text-charcoal/90">2022</p>
+                  <p className="text-[0.95rem] leading-[1.55] text-fg/90">2022</p>
                 </div>
 
-                <div className="md:pl-6 md:border-l md:border-stone-200">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-3">
+                <div className="md:pl-6 md:border-l md:border-line">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-3">
                     Focus
                   </div>
-                  <ul className="text-xs leading-[1.55] text-charcoal/90 space-y-1.5">
+                  <ul className="text-xs leading-[1.55] text-fg/90 space-y-1.5">
                     {["E-commerce redesign", "Design system", "UX research"].map(
                       (item) => (
                         <li key={item} className="flex items-start gap-2.5">
                           <span
                             aria-hidden
-                            className="inline-block size-1.5 rounded-full bg-stone-400 shrink-0 mt-[7px]"
+                            className="inline-block size-1.5 rounded-full bg-mark shrink-0 mt-[7px]"
                           />
                           <span>{item}</span>
                         </li>
@@ -189,15 +189,15 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="border-t border-stone-200 px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta">
+              <div className="border-t border-line px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   Full case
                 </span>
                 <a
                   href="https://www.behance.net/gallery/136903557/MY-SLEEPING-GYPSY-redesign-website"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[0.95rem] text-charcoal/90 hover:text-terracotta transition-colors"
+                  className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 hover:text-accent transition-colors"
                 >
                   View on Behance
                   <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
@@ -405,10 +405,10 @@ export default function Page() {
             <div className="mt-8 space-y-6">
               {decisions.map((d) => (
                 <Callout key={d.h} label="Design decision">
-                  <strong className="block mb-2 font-medium text-charcoal">
+                  <strong className="block mb-2 font-medium text-fg">
                     {d.h}
                   </strong>
-                  <span className="text-charcoal/85">{d.p}</span>
+                  <span className="text-fg/85">{d.p}</span>
                 </Callout>
               ))}
             </div>
@@ -430,14 +430,14 @@ export default function Page() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                       {lessons.map((r, i) => (
                         <FadeIn key={r.h} delay={i * 0.08} className="h-full">
-                          <div className="group h-full bg-cream-warm rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-cream-deep md:hover:shadow-sm">
-                            <div className="text-xs uppercase tracking-[0.14em] text-stone-500 font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-terracotta">
+                          <div className="group h-full bg-surface rounded-lg p-5 md:p-6 flex flex-col transition-all duration-200 ease-out md:hover:-translate-y-1 md:hover:bg-surface-deep md:hover:shadow-sm">
+                            <div className="text-xs uppercase tracking-[0.14em] text-muted font-medium mb-3 transition-colors duration-200 ease-out md:group-hover:text-accent">
                               {String(i + 1).padStart(2, "0")}
                             </div>
                             <h3 className="text-base md:text-[1.0625rem] font-medium tracking-tight leading-snug mb-3">
                               {r.h}
                             </h3>
-                            <p className="text-[0.9375rem] leading-[1.55] text-charcoal/80">
+                            <p className="text-[0.9375rem] leading-[1.55] text-fg/80">
                               {r.p}
                             </p>
                           </div>

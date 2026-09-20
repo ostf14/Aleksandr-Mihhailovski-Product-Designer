@@ -26,14 +26,14 @@ function TocList({
                 h.level === 3 ? "pl-6" : ""
               } ${
                 isActive
-                  ? "bg-cream-warm text-charcoal font-medium"
-                  : "text-stone-500 hover:text-charcoal"
+                  ? "bg-surface text-fg font-medium"
+                  : "text-muted hover:text-fg"
               }`}
             >
               <span
                 aria-hidden
                 className={`mt-[6px] inline-block size-1.5 rounded-full shrink-0 transition-colors ${
-                  isActive ? "bg-terracotta" : "bg-transparent"
+                  isActive ? "bg-accent" : "bg-transparent"
                 }`}
               />
               <span>{h.text}</span>
@@ -89,21 +89,21 @@ export function LectureToc({ headings }: { headings: TocHeading[] }) {
     <>
       {/* Mobile: collapsed by default */}
       <div className="lg:hidden mb-10">
-        <div className="rounded-xl border border-stone-200 bg-white/60 dark:bg-cream-warm overflow-hidden">
+        <div className="rounded-xl border border-line bg-white/60 dark:bg-surface overflow-hidden">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left"
           >
-            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500">
+            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
               Содержание
             </span>
             <ChevronDown
               size={18}
               strokeWidth={1.75}
               aria-hidden
-              className={`text-stone-500 transition-transform duration-200 ${
+              className={`text-muted transition-transform duration-200 ${
                 open ? "rotate-180" : ""
               }`}
             />
@@ -125,7 +125,7 @@ export function LectureToc({ headings }: { headings: TocHeading[] }) {
         aria-label="Содержание"
         className="hidden lg:block sticky top-28 max-h-[calc(100vh-9rem)] overflow-y-auto"
       >
-        <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 mb-4">
+        <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted mb-4">
           Содержание
         </div>
         <TocList headings={headings} active={active} />

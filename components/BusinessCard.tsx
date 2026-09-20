@@ -17,7 +17,7 @@ const SCROLL_RANGE = 200; // pixels of scroll over which the card dissolves
 
 /** Shared look for the two quiet links under the pills. */
 const TAIL_LINK =
-  "relative inline-flex items-center gap-1.5 font-sans text-sm font-medium text-[#666666] dark:text-[#8f8f8f] transition-colors duration-t2 ease-out-expo hover:text-terracotta";
+  "relative inline-flex items-center gap-1.5 font-sans text-sm font-medium text-muted transition-colors duration-t2 ease-out-expo hover:text-accent";
 
 /** Icons here are lucide primitives at text size, not brand marks: a copy
  *  sheet and an out-of-page arrow read at 15px where a GitHub or LinkedIn
@@ -229,11 +229,11 @@ export function BusinessCard() {
             every width instead of collapsing to one size on wide screens the
             way the previous pair did. */}
         <h2 className="font-sans font-medium text-[clamp(30px,12.8vw,72px)] leading-[1.04] tracking-[-0.036em]">
-          <span className="block whitespace-nowrap text-[#171717] dark:text-[#ededed]">
+          <span className="block whitespace-nowrap text-fg">
             Hi, I&rsquo;m Alex
           </span>
           {/* Exactly 1.6x under the name — see the ramp on the h2. */}
-          <span className="block text-[clamp(19px,8vw,45px)] text-[#666666] dark:text-[#ededed]/40">
+          <span className="block text-[clamp(19px,8vw,45px)] text-muted dark:text-fg/40">
             Product Design Engineer
           </span>
         </h2>
@@ -311,7 +311,7 @@ export function BusinessCard() {
                   someone who has just copied is what they now have. */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#171717] px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100 dark:bg-[#ededed] dark:text-[#171717]"
+                className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-fg px-2.5 py-1.5 text-xs font-medium text-bg opacity-0 transition-opacity duration-t2 ease-out-expo group-hover/mail:opacity-100 group-focus-visible/mail:opacity-100"
               >
                 {links.email}
               </span>

@@ -22,11 +22,11 @@ export function GalleryCard() {
     <a
       ref={tiltRef}
       href="/other"
-      className="tiltable group relative block overflow-hidden rounded-2xl border border-stone-200/60 bg-white dark:bg-cream-warm shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
+      className="tiltable group relative block overflow-hidden rounded-2xl border border-line/60 bg-white dark:bg-surface shadow-[0_-2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_-2px_24px_rgba(0,0,0,0.35)]"
     >
       <span aria-hidden className="spot" />
 
-      <div className="relative h-[150px] md:h-auto md:aspect-video overflow-hidden border-b border-stone-200/60 bg-cream-warm dark:bg-cream-deep">
+      <div className="relative h-[150px] md:h-auto md:aspect-video overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep">
         <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -39,25 +39,25 @@ export function GalleryCard() {
       </div>
 
       <div className="relative z-[2] p-5 md:p-6">
-        <div className="font-sans text-[11px] uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
+        <div className="font-sans text-[11px] uppercase tracking-[0.14em] text-muted dark:text-faint">
           Gallery
-          <span className="text-stone-400/70"> · </span>
+          <span className="text-faint/70"> · </span>
           2018&ndash;24
         </div>
 
         <div className="mt-2.5 flex items-start justify-between gap-4">
-          <h3 className="font-sans text-[24px] md:text-[27px] font-semibold leading-[1.1] tracking-tight text-[#171717] dark:text-[#ededed]">
+          <h3 className="font-sans text-[24px] md:text-[27px] font-semibold leading-[1.1] tracking-tight text-fg">
             Other website design works
           </h3>
           <ArrowUpRight
             size={26}
             strokeWidth={1.5}
-            className="mt-0.5 shrink-0 text-stone-400 transition-colors duration-t2 group-hover:text-terracotta"
+            className="mt-0.5 shrink-0 text-faint transition-colors duration-t2 group-hover:text-accent"
             aria-hidden
           />
         </div>
 
-        <p className="mt-2 text-[15px] leading-[1.5] text-stone-500">
+        <p className="mt-2 text-[15px] leading-[1.5] text-muted">
           A selection of websites and landing pages I&rsquo;ve designed over the
           years.
         </p>

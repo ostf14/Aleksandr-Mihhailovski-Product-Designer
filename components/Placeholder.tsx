@@ -15,12 +15,12 @@ export function PlaceholderBlock({
 }) {
   return (
     <div
-      className={`rounded-lg border border-dashed border-stone-300 bg-cream-warm px-5 py-6 ${className}`}
+      className={`rounded-lg border border-dashed border-line-strong bg-surface px-5 py-6 ${className}`}
     >
-      <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-terracotta mb-2">
+      <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent mb-2">
         Placeholder
       </div>
-      <p className="font-mono text-[12px] leading-[1.6] text-charcoal/70">
+      <p className="font-mono text-[12px] leading-[1.6] text-fg/70">
         {label}
       </p>
     </div>
@@ -42,10 +42,10 @@ export function PlaceholderImage({
 }) {
   return (
     <div
-      className={`flex items-center justify-center rounded-lg bg-cream-deep ${className}`}
+      className={`flex items-center justify-center rounded-lg bg-surface-deep ${className}`}
       style={{ aspectRatio: `${width} / ${height}` }}
     >
-      <span className="font-mono text-[11px] text-charcoal/70">
+      <span className="font-mono text-[11px] text-fg/70">
         {width}×{height}
       </span>
     </div>

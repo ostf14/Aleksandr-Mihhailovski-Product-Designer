@@ -19,7 +19,7 @@ export function Section({
           <div className="shell">
             <FadeIn className="shell-prose">
               {kicker && (
-                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-400 mb-3">
+                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint mb-3">
                   {kicker}
                 </div>
               )}
@@ -46,7 +46,7 @@ export function Prose({
     <div className={`${className}`}>
       <div className="shell">
         <FadeIn className="shell-prose">
-          <div className="text-[1.125rem] leading-[1.7] text-charcoal/90 space-y-6">{children}</div>
+          <div className="text-[1.125rem] leading-[1.7] text-fg/90 space-y-6">{children}</div>
         </FadeIn>
       </div>
     </div>

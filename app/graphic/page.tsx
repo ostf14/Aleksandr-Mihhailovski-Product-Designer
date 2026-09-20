@@ -26,7 +26,7 @@ export default function Page() {
           <header className="pt-6 md:pt-10 pb-12">
             <div className="shell">
               <FadeIn>
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-terracotta mb-3">
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-accent mb-3">
                   Graphic &amp; brand
                 </p>
                 <h1 className="font-sans font-semibold text-hero tracking-tight">

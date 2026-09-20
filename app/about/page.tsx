@@ -33,7 +33,7 @@ function Block({
     <section className="pb-20">
       <div className="shell">
         <FadeIn className="shell-prose">
-          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-terracotta mb-5">
+          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent mb-5">
             {kicker}
           </div>
           {children}
@@ -77,20 +77,20 @@ export default function Page() {
           </Block>
 
           <Block kicker="04 · Contact">
-            <ul className="divide-y divide-stone-200 border-y border-stone-200">
+            <ul className="divide-y divide-line border-y border-line">
               {contacts.map(({ label, href, value, Icon }) => (
                 <li key={label}>
                   <a
                     href={href}
                     target={href.startsWith("mailto:") ? undefined : "_blank"}
                     rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                    className="group flex items-center gap-4 py-4 transition-colors hover:text-terracotta"
+                    className="group flex items-center gap-4 py-4 transition-colors hover:text-accent"
                   >
-                    <Icon className="w-4 h-4 shrink-0 text-stone-500 transition-colors group-hover:text-terracotta" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-500 w-20 shrink-0">
+                    <Icon className="w-4 h-4 shrink-0 text-muted transition-colors group-hover:text-accent" />
+                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted w-20 shrink-0">
                       {label}
                     </span>
-                    <span className="text-[0.95rem] text-charcoal/90 truncate transition-colors group-hover:text-terracotta">
+                    <span className="text-[0.95rem] text-fg/90 truncate transition-colors group-hover:text-accent">
                       {value}
                     </span>
                   </a>

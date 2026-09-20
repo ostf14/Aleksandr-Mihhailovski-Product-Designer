@@ -29,7 +29,7 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
     <figure>
       {/* object-contain rather than cover: the animated credits are part of
           the composition, so nothing may be cropped off the edge. */}
-      <div className="overflow-hidden rounded-xl border border-stone-200 bg-cream-deep aspect-[9/16]">
+      <div className="overflow-hidden rounded-xl border border-line bg-surface-deep aspect-[9/16]">
         <video
           controls
           playsInline
@@ -52,21 +52,21 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
       </div>
 
       <figcaption className="mt-3">
-        <div className="text-[0.95rem] leading-[1.4] text-charcoal">
+        <div className="text-[0.95rem] leading-[1.4] text-fg">
           {item.name}
         </div>
-        <p className="mt-0.5 text-[0.875rem] leading-[1.5] text-charcoal/70">
+        <p className="mt-0.5 text-[0.875rem] leading-[1.5] text-fg/70">
           {item.role}
         </p>
 
-        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-charcoal/70">
+        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-fg/70">
           {meta}
         </p>
 
         {work && (
           <a
             href={workHref(work)}
-            className="mt-2 inline-flex items-center gap-1 text-[0.875rem] text-terracotta hover:opacity-70 transition-opacity"
+            className="mt-2 inline-flex items-center gap-1 text-[0.875rem] text-accent hover:opacity-70 transition-opacity"
           >
             {work.title}
             <ArrowUpRight size={14} strokeWidth={2} aria-hidden />
