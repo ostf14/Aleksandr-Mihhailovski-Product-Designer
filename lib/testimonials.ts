@@ -24,6 +24,16 @@ export type Testimonial = {
   role: string;
 
   /**
+   * One line: what was done FOR them, in the site's own first-person voice.
+   *
+   * Without it a clip is a pleasant person saying pleasant things with no
+   * stated occasion — the viewer never learns what the work was. `work` below
+   * covers the case where there is a case page to link to; this covers the
+   * far more common one where there is not.
+   */
+  about: string;
+
+  /**
    * Slug from lib/works.ts when the clip is about a specific project.
    * Drives both the link under the video and which case page embeds it.
    */
@@ -57,7 +67,8 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "pavel",
     name: "Pavel",
-    role: "TODO: кто он и откуда знает по работе",
+    role: "Internet marketer",
+    about: "Logo design and redesign for his client",
     video: "/testimonials/pavel.mp4",
     poster: "/testimonials/pavel.jpg",
     lang: "ru",
@@ -66,7 +77,9 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "oksana",
     name: "Oksana Stanevich",
-    role: "TODO: кто она и откуда знает по работе",
+    role: "Researcher, public health",
+    about:
+      "Productised the consultation service and designed the session cards",
     video: "/testimonials/oksana.mp4",
     poster: "/testimonials/oksana.jpg",
     lang: "ru",

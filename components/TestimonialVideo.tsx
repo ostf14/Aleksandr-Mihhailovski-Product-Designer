@@ -57,6 +57,12 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
           {item.role}
         </p>
 
+        {/* What the clip is about, before the technical meta — it is the
+            reason to press play, and the duration is only the cost. */}
+        <p className="mt-2 text-[0.875rem] leading-[1.5] text-fg">
+          {item.about}
+        </p>
+
         <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-fg/70">
           {meta}
         </p>
