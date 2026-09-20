@@ -8,29 +8,37 @@ import { LectureToc } from "@/components/LectureToc";
 import { lectureMdxComponents } from "@/components/LectureMdx";
 import { pageMetadata } from "@/lib/site";
 import {
-  LECTURES,
+  DEVLOG,
   entryHref,
   getEntry,
   loadEntryBody,
-  nextEntry,
-  orderedEntries,
+  prevEntry,
 } from "@/lib/series";
 import { extractHeadings } from "@/lib/toc";
 
+/**
+ * One devlog entry. Deliberately the same page as a lecture, down to the
+ * table of contents and the MDX component map — both are a numbered series of
+ * long-form writing, and the only real difference is which way you read them.
+ * A lecture points at the NEXT one because a course goes forward; a log points
+ * at the PREVIOUS one, because arriving at the newest entry the thing you want
+ * is what came before it.
+ */
+
 export function generateStaticParams() {
-  return LECTURES.entries.map((e) => ({ slug: e.slug }));
+  return DEVLOG.entries.map((e) => ({ slug: e.slug }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
-  const entry = getEntry(LECTURES, params.slug);
+  const entry = getEntry(DEVLOG, params.slug);
   if (!entry) return {};
 
   return pageMetadata({
     title: entry.title,
     description: entry.description,
-    path: entryHref(LECTURES, entry),
+    path: entryHref(DEVLOG, entry),
     ogType: "article",
-    ogSubtitle: `Лекция ${entry.number}`,
+    ogSubtitle: `Девлог #${entry.number}`,
   });
 }
 
@@ -42,13 +50,12 @@ const formatDate = (iso: string) =>
   }).format(new Date(iso));
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const entry = getEntry(LECTURES, params.slug);
+  const entry = getEntry(DEVLOG, params.slug);
   if (!entry) notFound();
 
-  const body = loadEntryBody(LECTURES, entry);
+  const body = loadEntryBody(DEVLOG, entry);
   const headings = extractHeadings(body);
-  const total = orderedEntries(LECTURES).length;
-  const next = nextEntry(LECTURES, entry.slug);
+  const prev = prevEntry(DEVLOG, entry.slug);
 
   return (
     <>
@@ -61,10 +68,10 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="shell">
               <div className="shell-prose">
                 <a
-                  href={LECTURES.basePath}
+                  href="/gamedev#log"
                   className="mb-3 inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-accent transition-opacity hover:opacity-80"
                 >
-                  Лекция {entry.number} из {total}
+                  Девлог #{entry.number}
                 </a>
                 <h1 className="font-sans text-hero font-semibold tracking-tight text-fg">
                   {entry.title}
@@ -88,15 +95,15 @@ export default function Page({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          {next && (
+          {prev && (
             <div className="pb-32">
               <div className="shell">
                 <div className="shell-prose">
                   <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-                    Читать дальше
+                    Предыдущая запись
                   </div>
                   <a
-                    href={entryHref(LECTURES, next)}
+                    href={entryHref(DEVLOG, prev)}
                     className="group relative block rounded-xl border border-line bg-surface p-5 transition-transform duration-200 hover:-translate-y-0.5 md:p-6"
                   >
                     <ArrowUpRight
@@ -107,13 +114,13 @@ export default function Page({ params }: { params: { slug: string } }) {
                     />
                     <div className="pr-10">
                       <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                        Лекция {next.number}
+                        #{prev.number}
                       </div>
                       <h2 className="font-sans text-[20px] font-semibold leading-tight tracking-tight text-fg md:text-[24px]">
-                        {next.title}
+                        {prev.title}
                       </h2>
                       <p className="mt-2 text-[0.95rem] leading-[1.55] text-fg/70">
-                        {next.description}
+                        {prev.description}
                       </p>
                     </div>
                   </a>

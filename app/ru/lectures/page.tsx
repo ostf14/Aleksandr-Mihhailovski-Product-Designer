@@ -5,7 +5,7 @@ import { Nav } from "@/components/Nav";
 import { PlaceholderBlock } from "@/components/Placeholder";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { pageMetadata } from "@/lib/site";
-import { LECTURES, entryHref, orderedEntries } from "@/lib/lectures";
+import { LECTURES, entryHref, orderedEntries } from "@/lib/series";
 
 export const metadata = pageMetadata({
   // TODO: собственные title и description индекса лекций
