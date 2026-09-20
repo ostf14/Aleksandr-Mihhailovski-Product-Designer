@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useLayoutEffect, useRef, useState } from "react";
 
 type FadeInProps = {
   children: ReactNode;
@@ -22,6 +22,37 @@ const variants: Variants = {
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
+
+/**
+ * Was this block already on screen when the page mounted?
+ *
+ * Those blocks do not get an entrance. A fade is for something arriving as you
+ * scroll to it; the first screen is not arriving, it is just there, and fading
+ * it in means the page is blank for 600ms before it says anything.
+ *
+ * That was invisible while every navigation was a full document load — the old
+ * page stayed on screen until the new one painted, so the fade happened under
+ * cover. Client-side navigation takes the old page away at once, and the gap
+ * showed: measured at 1440x900, the whole viewport was empty white for ~190ms
+ * on the way from /product into a case page. That is the flicker.
+ *
+ * Measured in a layout effect rather than guessed at render: the server has no
+ * viewport, so it emits `hidden` as before, and the correction lands before the
+ * browser paints.
+ */
+function useAlreadyOnScreen<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [onScreen, setOnScreen] = useState(false);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const { top, bottom } = el.getBoundingClientRect();
+    if (top < window.innerHeight && bottom > 0) setOnScreen(true);
+  }, []);
+
+  return [ref, onScreen] as const;
+}
 
 /**
  * Reduced motion is handled in CSS, via the `data-fade` hook and an
@@ -46,15 +77,19 @@ export function FadeIn({
   as = "div",
 }: FadeInProps) {
   const MotionTag = motion[as] as typeof motion.div;
+  const [ref, onScreen] = useAlreadyOnScreen<HTMLDivElement>();
 
   return (
     <MotionTag
+      ref={ref}
       data-fade
       className={className}
       initial="hidden"
       whileInView="visible"
+      // The viewport margin still decides WHEN this fires; `onScreen` only
+      // decides whether what follows is an animation or a cut.
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ delay }}
+      transition={onScreen ? { duration: 0 } : { delay }}
       variants={variants}
     >
       {children}
@@ -71,8 +106,11 @@ export function FadeStagger({
   className?: string;
   stagger?: number;
 }) {
+  const [ref, onScreen] = useAlreadyOnScreen<HTMLDivElement>();
+
   return (
     <motion.div
+      ref={ref}
       data-fade
       className={className}
       initial="hidden"
@@ -80,7 +118,11 @@ export function FadeStagger({
       viewport={{ once: true, margin: "-80px" }}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: stagger } },
+        // Same rule as FadeIn: a list already on screen is not arriving, so it
+        // does not deal itself out one item at a time in front of the reader.
+        visible: {
+          transition: { staggerChildren: onScreen ? 0 : stagger },
+        },
       }}
     >
       {children}
@@ -98,8 +140,19 @@ export function FadeChild({
   as?: "div" | "li" | "p" | "figure";
 }) {
   const MotionTag = motion[as] as typeof motion.div;
+  const [ref, onScreen] = useAlreadyOnScreen<HTMLDivElement>();
+
   return (
-    <MotionTag data-fade className={className} variants={variants}>
+    <MotionTag
+      ref={ref}
+      data-fade
+      className={className}
+      variants={variants}
+      // An element-level transition beats the one inside the variant, which is
+      // how a child already on screen cuts in while its siblings further down
+      // still fade.
+      transition={onScreen ? { duration: 0 } : undefined}
+    >
       {children}
     </MotionTag>
   );

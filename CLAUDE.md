@@ -11,7 +11,7 @@ all things that have already gone wrong here once.
 
 ## The shape of it
 
-- **One palette.** Eleven CSS variables per theme at the top of
+- **One palette.** Twelve CSS variables per theme at the top of
   `app/globals.css`, exposed to Tailwind in `tailwind.config.ts`. Names say
   what a colour is *for* (`--muted`, `--line`) rather than what it looks like.
   Nothing paints a colour that is not one of them — no raw `stone-*`, no
@@ -164,6 +164,31 @@ site's CDN. They are a third-party origin on the critical path and they vanish
 the day that Framer project does. They want downloading into `public/` — it has
 not been done because the host is unreachable from the sandbox these changes
 were made in.
+
+### The page transition hides a real hole, and intercepts every click
+
+`components/PixelTransition.tsx` covers the screen with a grid of squares while
+the route changes. Two things about it are load-bearing rather than decorative.
+
+It listens for clicks on `document` in the **capture** phase and calls both
+`preventDefault` and `stopPropagation`. The second one is what keeps
+`next/link`'s own handler from navigating a frame later, out from under the
+curtain — but it also means a click on an internal link never reaches anything
+else. External links, hash links, modified clicks and downloads are all let
+through by name; anything new that needs a click on an anchor is not.
+
+`--curtain` is not `--fg`. In dark mode `--fg` is `#ededed`, and a full-screen
+sheet of it two or three times a visit is a white flash on a near-black page.
+The dark value is a grey that still reads as squares.
+
+The reveal waits for `pathname` to actually change, not for a timer. A timer
+reveals a page that has not rendered yet on any route Link did not prefetch.
+
+And it papers over something that is still true underneath: a client-side
+navigation removes the old page at once, so anything with an entrance animation
+arrives invisible. `FadeIn` no longer animates blocks that are already on
+screen when they mount, which is the actual fix — the curtain only means you do
+not see the swap. Reduced motion skips the curtain entirely and relies on that.
 
 ### Internal navigation goes through `next/link`
 

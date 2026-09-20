@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PixelTransition } from "@/components/PixelTransition";
 import { UnderConstruction } from "@/components/UnderConstruction";
 import {
   ogImagePath,
@@ -89,6 +90,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         {children}
+        <PixelTransition />
         <UnderConstruction />
       </body>
     </html>

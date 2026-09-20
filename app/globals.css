@@ -78,6 +78,11 @@
      line to change if the site ever wants a colour again. */
   --accent: 23 23 23; /* #171717 */
 
+  /* The page-transition curtain. Its own token rather than --fg, because the
+     two themes want opposite things from it. Here it is the foreground: near
+     black over a near-white page, which is the whole effect. */
+  --curtain: 23 23 23; /* #171717 */
+
   /* ---------------------------------------------------------------
      Motion, elevation and rhythm tokens (visual_refresh_spec step 1).
      Components still hold these values inline; this layer is the
@@ -166,6 +171,12 @@
   --band-lift: 31 31 31; /* #1f1f1f */
 
   --accent: 237 237 237; /* #ededed */
+
+  /* NOT --fg here. At #ededed the curtain is a full-screen white flash on a
+     near-black page, two or three times a visit — measured, and it is exactly
+     as unpleasant as it sounds. A dark grey still reads clearly as squares
+     against #0a0a0a and asks nothing of anyone's eyes at night. */
+  --curtain: 51 51 51; /* #333333 */
 
   /* Motion/elevation overrides. Durations and easings are theme-agnostic,
      so only the surfaces that depend on background luminance are redefined
@@ -681,6 +692,43 @@ html:not(.dark) .theme-toggle .i-moon {
     opacity: 1;
   }
 }
+
+/* Page transition — a grid of squares that covers the screen while the route
+   changes. See components/PixelTransition.tsx. Outside @layer for the same
+   reason as .rv and .tiltable: Tailwind never sees these names.
+
+   z-60 puts it over the nav (z-50), which is the point — the whole viewport
+   goes, not the part of it below the bar. */
+.px-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: repeat(var(--px-cols), 1fr);
+  grid-template-rows: repeat(var(--px-rows), 1fr);
+  /* Swallows clicks while it is up: a second click mid-transition would start
+     a navigation the curtain has no way to show. */
+  pointer-events: auto;
+}
+
+.px-cell {
+  background-color: rgb(var(--curtain));
+  transform: scale(0);
+  transition: transform var(--t-3) var(--e-out) var(--d, 0ms);
+  will-change: transform;
+}
+
+/* 1.02, not 1. The 1fr tracks land on fractional pixels, and at exactly 1 the
+   page shows through as hairlines between the squares. */
+.px-curtain[data-phase="covering"] .px-cell,
+.px-curtain[data-phase="covered"] .px-cell {
+  transform: scale(1.02);
+}
+
+/* There is deliberately no rule for the revealing phase. Dropping the one
+   above returns every cell to the scale(0) on .px-cell, carrying the same
+   per-cell delay — so the wave retreats in the direction it arrived from
+   rather than snapping back or running in reverse. */
 
 /* Respect OS-level reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
