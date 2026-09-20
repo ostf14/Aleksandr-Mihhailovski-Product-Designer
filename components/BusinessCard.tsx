@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { Button } from "./Button";
@@ -147,6 +147,28 @@ export function BusinessCard() {
   });
   const opacity = useSpring(opacityRaw, SPRING);
 
+  // Once it has dissolved it must stop being a target. Opacity 0 still hit-tests
+  // and still takes focus, so after ~250px of scroll there was an invisible
+  // Download CV sitting over blank page: the cursor turned into a pointer over
+  // nothing, a click opened the CV, and tabbing out of the nav landed on
+  // controls no one could see. `visibility` is what removes an element from
+  // both hit-testing and the tab order; pointer-events alone would leave the
+  // keyboard path open. The threshold is low enough that it only ever flips
+  // once the band is already invisible.
+  const visibility = useTransform(opacity, (v) => (v < 0.02 ? "hidden" : "visible"));
+
+  // The springs start at 1 regardless of where the page actually is, so a
+  // reload or a Back into a scrolled /work painted a fully opaque hero and then
+  // dissolved it — a flash of something that should not have been there. Seed
+  // both from the real scroll position before the browser paints.
+  useLayoutEffect(() => {
+    const y = window.scrollY;
+    if (y <= 0) return;
+    const t = Math.min(y / SCROLL_RANGE, 1);
+    opacity.jump(1 - t);
+    scale.jump(1 - (1 - SCALE_FACTOR) * t);
+  }, [opacity, scale]);
+
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(links.email);
@@ -160,7 +182,7 @@ export function BusinessCard() {
   return (
     <motion.div
       data-hero-card="true"
-      style={{ opacity, willChange: "opacity" }}
+      style={{ opacity, visibility, willChange: "opacity" }}
       className="hero-band relative w-full pt-[104px] pb-14 md:pt-[136px] md:pb-20"
     >
       <motion.div

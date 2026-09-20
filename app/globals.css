@@ -474,13 +474,13 @@ html:not(.dark) .border-neutral-200 {
     opacity var(--t-3) var(--e-out),
     transform var(--t-4) var(--e-spring);
 }
-.theme-toggle[data-theme="light"] .i-sun,
-.theme-toggle[data-theme="dark"] .i-moon {
+html:not(.dark) .theme-toggle .i-sun,
+.dark .theme-toggle .i-moon {
   opacity: 0;
   transform: rotate(-90deg) scale(0.6);
 }
-.theme-toggle[data-theme="dark"] .i-sun,
-.theme-toggle[data-theme="light"] .i-moon {
+.dark .theme-toggle .i-sun,
+html:not(.dark) .theme-toggle .i-moon {
   opacity: 1;
   transform: rotate(0deg) scale(1);
 }
@@ -706,5 +706,23 @@ html:not(.dark) .border-neutral-200 {
   }
   .tiltable {
     transform: none;
+  }
+
+  /* The cat's resting position lives only inside its keyframes, and the rule
+     itself declares no transform and no fill-mode — so a 0.01ms single
+     iteration discards the animated value and the transform reverts to none,
+     i.e. x=0, which is on screen. Measured with reduce-motion emulated: the
+     sprite parked at the left edge of the footer strip on every page. Landing
+     it at the keyframe's own start puts it back off-screen. */
+  .sprite-walk-move {
+    transform: translateX(-120px);
+  }
+
+  /* framer-motion writes opacity straight onto the node, so nothing short of
+     !important can land these. See the note in components/FadeIn.tsx for why
+     the reduced-motion decision cannot be made in JS at all. */
+  [data-fade] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ReactNode } from "react";
 
 type FadeInProps = {
@@ -22,17 +22,28 @@ const variants: Variants = {
   },
 };
 
+/**
+ * Reduced motion is handled in CSS, via the `data-fade` hook and an
+ * !important landing in globals.css — NOT by branching here.
+ *
+ * Branching was actively broken. useReducedMotion() returns null on the server
+ * and on the first client render, so the server always emitted the motion
+ * element with framer's inline style="opacity:0". When the hook then flipped to
+ * true, this component swapped to a plain tag — but React reconciles div-to-div
+ * as the same element and only removes props IT set, and that opacity was set
+ * imperatively by framer. The inline zero stayed on the node with nothing left
+ * running to clear it. Measured on /case/push-notifications with reduce-motion
+ * emulated: 41 of 273 blocks permanently invisible.
+ *
+ * A CSS !important declaration beats a non-important inline style, so the rule
+ * in globals.css lands these whatever framer has written.
+ */
 export function FadeIn({ children, delay = 0, className, as = "div" }: FadeInProps) {
-  const reduce = useReducedMotion();
   const MotionTag = motion[as] as typeof motion.div;
-
-  if (reduce) {
-    const Tag = as as keyof JSX.IntrinsicElements;
-    return <Tag className={className}>{children}</Tag>;
-  }
 
   return (
     <MotionTag
+      data-fade
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -54,11 +65,9 @@ export function FadeStagger({
   className?: string;
   stagger?: number;
 }) {
-  const reduce = useReducedMotion();
-  if (reduce) return <div className={className}>{children}</div>;
-
   return (
     <motion.div
+      data-fade
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -84,7 +93,7 @@ export function FadeChild({
 }) {
   const MotionTag = motion[as] as typeof motion.div;
   return (
-    <MotionTag className={className} variants={variants}>
+    <MotionTag data-fade className={className} variants={variants}>
       {children}
     </MotionTag>
   );

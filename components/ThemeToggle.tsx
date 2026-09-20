@@ -61,7 +61,12 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       title={`Switch to ${isDark ? "light" : "dark"} mode`}
-      data-theme={isDark ? "dark" : "light"}
+      /* Which icon shows is decided in CSS from html.dark — the class the boot
+         script in layout.tsx sets before first paint. Keying it to this
+         component's own state instead meant the first render always guessed
+         light, so a dark-mode visitor saw the moon for ~300ms and then watched
+         the sun spin in. The state below still drives the label and the click,
+         which nobody can see mid-hydration. */
       className="theme-toggle size-9 rounded-full flex items-center justify-center text-stone-600 hover:text-charcoal hover:bg-cream-warm transition-colors"
     >
       {/* Both icons are always rendered and stacked. The old version swapped
