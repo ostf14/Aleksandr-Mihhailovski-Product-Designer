@@ -124,6 +124,48 @@ function useCenterActiveTab(pathname: string | null, preview: boolean) {
   return ref;
 }
 
+/** gap-4 between the logo and the links. */
+const NAV_GAP = 16;
+/** px-2 plus a 1px border on each side, the collapsed pill's own chrome. */
+const NAV_CHROME = 18;
+
+/**
+ * How wide the collapsed pill has to be to hold its contents.
+ *
+ * It used to be a hard 480px, which fitted the tabs that existed when it was
+ * written. Adding Gamedev pushed the real requirement to 577 and the last tab
+ * was simply cut off by the pill's overflow — and there is no single number
+ * that works anyway, because the preview cookie adds three more tabs and takes
+ * it to 871. So it is measured instead of guessed, and a tab can be added
+ * without anyone remembering this file.
+ *
+ * Children are measured by scrollWidth, which is their unclipped content
+ * width: correct whether or not flex has squeezed them to fit the current cap.
+ */
+function usePillWidth(deps: unknown[]) {
+  const ref = useRef<HTMLElement>(null);
+  const [width, setWidth] = useState<number | null>(null);
+
+  useEffect(() => {
+    const nav = ref.current;
+    if (!nav) return;
+
+    const measure = () => {
+      const kids = Array.from(nav.children) as HTMLElement[];
+      if (!kids.length) return;
+      const content = kids.reduce((sum, k) => sum + k.scrollWidth, 0);
+      setWidth(Math.ceil(content + NAV_GAP * (kids.length - 1) + NAV_CHROME));
+    };
+
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+    return () => window.removeEventListener("resize", measure);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
+
+  return [ref, width] as const;
+}
+
 function Logo() {
   return (
     <a
@@ -164,6 +206,9 @@ export function Nav() {
   }, [pathname]);
 
   const tabStripRef = useCenterActiveTab(pathname, preview);
+  // Re-measured when the tab count changes, which is what the preview cookie
+  // does.
+  const [navRef, pillWidth] = usePillWidth([preview]);
 
   useEffect(() => {
     // Lightweight scroll listener — only drives the nav-collapse flag.
@@ -203,9 +248,15 @@ export function Nav() {
           bar is transparent. The colour fade covers the switch. */}
       <div className="pointer-events-none fixed inset-x-0 top-0 z-50 hidden justify-center px-6 md:flex md:px-10">
         <nav
+          ref={navRef}
+          // The collapsed cap comes from the measurement above; the class below
+          // is only the fallback for the frame before it lands.
+          style={
+            scrolled && pillWidth ? { maxWidth: `${pillWidth}px` } : undefined
+          }
           className={`pointer-events-auto flex w-full items-center justify-between gap-4 overflow-hidden border transition-[max-width,padding,margin,border-radius,background-color,border-color,box-shadow] duration-t5 ease-out-expo will-change-transform ${
             scrolled
-              ? "mt-4 max-w-[480px] rounded-full border-line/60 bg-[var(--glass)] px-2 py-1.5 shadow-pill backdrop-blur-[20px] backdrop-saturate-[1.8]"
+              ? "mt-4 max-w-[640px] rounded-full border-line/60 bg-[var(--glass)] px-2 py-1.5 shadow-pill backdrop-blur-[20px] backdrop-saturate-[1.8]"
               : "mt-0 max-w-[var(--shell)] rounded-none border-transparent bg-transparent px-0 py-4 shadow-none"
           }`}
         >
