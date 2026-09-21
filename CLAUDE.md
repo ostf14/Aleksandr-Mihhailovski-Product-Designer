@@ -136,6 +136,18 @@ hit-tests and still takes focus, so the gate is `visibility`, not
 also seeded from the real `scrollY` in a layout effect, or a reload into a
 scrolled page flashes the hero in at full opacity.
 
+That seed runs **three times** — once in the effect, once two frames later and
+once at 150ms — and it calls `scrollY.set()` as well as jumping the springs.
+Both are there for client-side navigation, which mounts this page while the
+window is still scrolled to wherever the last page was and resets the scroll
+afterwards. `useScroll` reads the old offset, and if the reset lands before its
+own listener is attached there is no scroll event to correct it: the motion
+value keeps the old page's number, the transform keeps returning 0, and the
+whole hero is invisible until you happen to scroll. Arriving at /product from a
+case page scrolled to 2500 it was hidden eight times out of eight, with
+`window.scrollY` reading 0 throughout. It presents as "the photo sometimes does
+not load".
+
 The band is `min-h-svh`, and the distance over which it dissolves is a fraction
 of its measured height, not a fixed number of pixels. It was a flat 200px when
 the band was 614 tall; at full viewport height that would have emptied the hero
@@ -235,6 +247,14 @@ fade flashes a one-pixel grid of the incoming page.
 
 The reveal waits for `pathname` to actually change, not for a timer. A timer
 reveals a page that has not rendered yet on any route Link did not prefetch.
+
+Which is why the click handler asks `resolvePath()` where a click will LAND,
+not where it points. The logo points at `/`, a WIP route, so for an ordinary
+visitor it lands on `/product` — and from `/product` that is not a navigation
+at all. The curtain went up, nothing ever changed, and it held a black screen
+for the full two seconds of its failsafe on every logo click made from
+/product. `resolvePath` and `WIP_FALLBACK` live in `lib/site.ts` and middleware
+uses the same ones, so the client and the server cannot drift.
 
 And it papers over something that is still true underneath: a client-side
 navigation removes the old page at once, so anything with an entrance animation

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { resolvePath, WIP_PREVIEW_COOKIE } from "@/lib/site";
 
 /**
  * The page transition: a field of squares fills the screen, the route changes
@@ -208,9 +209,18 @@ export function PixelTransition() {
 
       const url = new URL(anchor.href, window.location.href);
       if (url.origin !== window.location.origin) return;
-      // Same page: an "On this page" jump, or a link back to where you are.
-      // Covering the screen to scroll a few hundred pixels would be absurd.
-      if (url.pathname === window.location.pathname) return;
+
+      // Where this click LANDS, not where it points. The logo points at "/",
+      // which middleware bounces to /product for an ordinary visitor — from
+      // /product that is not a navigation, and a curtain raised over it would
+      // have nothing to wait for. Same for an "On this page" jump or a link
+      // back to where you already are: covering the screen to scroll a few
+      // hundred pixels would be absurd.
+      const preview = document.cookie
+        .split("; ")
+        .some((c) => c === `${WIP_PREVIEW_COOKIE}=1`);
+      if (resolvePath(url.pathname, preview) === window.location.pathname)
+        return;
 
       // Asked for less motion: navigate, say nothing. This is an event
       // handler, not a render, so reading the preference here is safe — the

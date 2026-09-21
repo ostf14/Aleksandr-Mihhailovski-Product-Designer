@@ -55,6 +55,23 @@ export const WIP_ROUTES = [
  */
 export const WIP_PREVIEW_COOKIE = "wip-preview";
 
+/** Where middleware sends anyone who asks for a route that is not finished. */
+export const WIP_FALLBACK = "/product";
+
+/**
+ * Where a click on `path` will actually land, once middleware has had its say.
+ *
+ * The client needs this as much as the server does. The logo points at "/",
+ * which is a WIP route, so for an ordinary visitor it lands on /product — and
+ * from /product that is not a navigation at all. Anything waiting for the
+ * route to change waits forever: the page transition held a black screen for
+ * two seconds on every logo click made from /product, until its failsafe
+ * fired. Asking this first is cheaper than guessing afterwards.
+ */
+export function resolvePath(path: string, preview: boolean): string {
+  return !preview && isWipRoute(path) ? WIP_FALLBACK : path;
+}
+
 export function isWipRoute(path: string | null | undefined): boolean {
   if (!path) return false;
 

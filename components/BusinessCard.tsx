@@ -196,15 +196,39 @@ export function BusinessCard() {
     measure();
     window.addEventListener("resize", measure, { passive: true });
 
-    const y = window.scrollY;
-    if (y > 0) {
+    /**
+     * Put both springs where the page actually is.
+     *
+     * `scrollY.set` is not redundant. On a client-side navigation this page
+     * mounts while the window is still scrolled to wherever the last one was,
+     * and the router resets it afterwards — so useScroll reads a large number,
+     * and if the reset lands before its own listener is attached there is no
+     * scroll event to correct it. The motion value then sits at the old page's
+     * offset for good, the transform keeps returning 0, and the hero is
+     * invisible until you happen to scroll. Measured arriving at /product from
+     * a case page scrolled to 2500: opacity 0.00, visibility hidden, eight
+     * times out of eight, with scrollY reading 0 the whole time.
+     */
+    const sync = () => {
+      const y = window.scrollY;
+      scrollY.set(y);
       const t = Math.min(y / rangeRef.current, 1);
       opacity.jump(1 - t);
       scale.jump(1 - (1 - SCALE_FACTOR) * t);
-    }
+    };
 
-    return () => window.removeEventListener("resize", measure);
-  }, [opacity, scale]);
+    sync();
+    // And again once the router's scroll reset has landed, which is after
+    // this effect. Two frames, then a late one for anything slower.
+    const raf = requestAnimationFrame(() => requestAnimationFrame(sync));
+    const late = window.setTimeout(sync, 150);
+
+    return () => {
+      window.removeEventListener("resize", measure);
+      cancelAnimationFrame(raf);
+      clearTimeout(late);
+    };
+  }, [opacity, scale, scrollY]);
 
   const copyEmail = async () => {
     try {

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { isWipRoute, WIP_PREVIEW_COOKIE } from "@/lib/site";
+import { isWipRoute, WIP_FALLBACK, WIP_PREVIEW_COOKIE } from "@/lib/site";
 
 /** Visiting this grants preview access; append /off to give it back. */
 const UNLOCK_PATH = "/underconstr";
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname === LOCK_PATH) {
-    const response = NextResponse.redirect(new URL("/product", request.url));
+    const response = NextResponse.redirect(new URL(WIP_FALLBACK, request.url));
     response.cookies.delete(WIP_PREVIEW_COOKIE);
     return response;
   }
@@ -50,7 +50,7 @@ export function middleware(request: NextRequest) {
 
   // Temporary: these routes come back the moment their content lands, and a
   // cached permanent redirect would be very hard to take back.
-  return NextResponse.redirect(new URL("/product", request.url));
+  return NextResponse.redirect(new URL(WIP_FALLBACK, request.url));
 }
 
 export const config = {
