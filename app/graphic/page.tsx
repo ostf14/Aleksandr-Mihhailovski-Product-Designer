@@ -3,20 +3,24 @@ import { Footer } from "@/components/Footer";
 import { GraphicGallery } from "@/components/GraphicGallery";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { StickyCases } from "@/components/StickyCases";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { pageMetadata } from "@/lib/site";
 import { GRAPHIC_ITEMS } from "@/lib/graphic";
+import { graphicCases } from "@/lib/works";
 
 export const metadata = pageMetadata({
   title: "Graphic",
-  description: "Covers, social posts, editorial illustration and logo work.",
+  description:
+    "Brand and content work, plus covers, social posts, editorial illustration and logo work.",
   path: "/graphic",
   ogType: "website",
   ogSubtitle: "Graphic",
 });
 
 const toc: TocItem[] = [
+  { id: "cases", label: "Cases" },
   { id: "gallery", label: "Gallery" },
   { id: "testimonials", label: "Testimonials" },
 ];
@@ -43,12 +47,17 @@ export default function Page() {
             </div>
           </header>
 
-          {/* Cases go above this once they exist — Morgenshtern, Genesis,
-              Med consultations. The gallery below is the archive tier: a
-              picture, a name, a year, one line.
+          {/* The same grid /product and /gamedev use, built from the other
+              part of the register — a case appears here because it claims the
+              graphic discipline, not because this page holds a second list of
+              them. */}
+          <section id="cases" className="mb-32 scroll-mt-[16.6667vh]">
+            <StickyCases works={graphicCases} />
+          </section>
 
-              It carries a heading now because the page has two sections, and a
-              contents list cannot point at something unnamed. */}
+          {/* The archive tier below: a picture, a name, one line. Work with an
+              argument behind it is a case above; work with only a thing to
+              look at stays here. */}
           <section id="gallery" className="mb-32 scroll-mt-[16.6667vh]">
             <div className="shell">
               <h2 className="mb-8 font-sans text-4xl font-semibold tracking-tight text-fg md:text-5xl">

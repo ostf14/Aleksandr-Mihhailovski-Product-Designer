@@ -25,13 +25,22 @@ const items: Item[] = [
 // A case study has no tab of its own, so it lights the section it belongs to
 // rather than leaving the nav with nothing selected. Which section that is
 // comes from the register, not from the URL: /case/<slug> is a flat namespace
-// shared by product work and games, and reading `disciplines` is the only way
-// to tell them apart. The /other gallery belongs to Product.
+// shared by all three sections, and reading `disciplines` is the only way to
+// tell them apart. The /other gallery belongs to Product.
+//
+// A case that claims more than one discipline lights the first one that
+// matches, in this order — a case that is both product and graphic is product
+// work with graphic in it, and that is the tab you came from. This was "game
+// or product" until a graphic-only case existed and lit Product, which is the
+// same assumption that used to list it there too.
 function sectionFor(pathname: string): string | null {
   if (pathname.startsWith("/case/")) {
     const work = getWork(pathname.slice("/case/".length));
     if (!work) return "/product";
-    return isGame(work) ? "/gamedev" : "/product";
+    if (isGame(work)) return "/gamedev";
+    if (work.disciplines.includes("product")) return "/product";
+    if (work.disciplines.includes("graphic")) return "/graphic";
+    return "/product";
   }
   if (pathname === "/other" || pathname.startsWith("/other/"))
     return "/product";

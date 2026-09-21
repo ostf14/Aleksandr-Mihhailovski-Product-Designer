@@ -104,6 +104,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "MD, researcher in public health",
     about:
       "Productised the consultation service and designed the session cards",
+    work: "med-consultations",
     youtube: "Hxc1L59B7A4",
     lang: "ru",
     subtitled: true,

@@ -143,6 +143,24 @@ export const WORKS: Work[] = [
       "Information architecture and platform redesign for an edtech product users found impossible to navigate.",
   },
   {
+    slug: "med-consultations",
+    title: "Consultation About Information",
+    blurb:
+      "A doctor who is not allowed to give medical advice. So what is she selling?",
+    role: "Brand & content",
+    org: "Oksana Stanevich",
+    year: "2025",
+    kind: "case",
+    disciplines: ["graphic"],
+    cover: {
+      type: "image",
+      src: "/cases/med-consultations/cover.webp",
+      alt: "Consultation about information — service slides for Oksana Stanevich",
+    },
+    metaDescription:
+      "Positioning, content structure and visual identity for a medical consultation service that could not legally give medical advice.",
+  },
+  {
     slug: "my-sleeping-gypsy",
     title: "My Sleeping Gypsy",
     blurb:
@@ -185,14 +203,22 @@ export const cases = WORKS.filter((w) => w.kind === "case");
 /**
  * Which section a case belongs to.
  *
- * /product and /gamedev are the same page built from different halves of this
- * register — one component, one source of truth, and a case can never end up
- * described twice or listed in both places by accident. `game` is the marker;
- * everything without it is product work.
+ * /product, /gamedev and /graphic are the same page built from different parts
+ * of this register — one component, one source of truth, and a case can never
+ * end up described twice or listed in the wrong place by accident.
+ *
+ * A case appears under every discipline it claims, so `my-sleeping-gypsy` is
+ * on both /product and /graphic, which is what it was. It used to be "product
+ * is everything that is not a game", and that only held while every case
+ * happened to be product work — the first graphic-only case would have shown
+ * up under Product with nothing marking it as wrong.
  */
 export const isGame = (w: Work) => w.disciplines.includes("game");
-export const productCases = cases.filter((w) => !isGame(w));
+const inDiscipline = (d: Discipline) => (w: Work) => w.disciplines.includes(d);
+
+export const productCases = cases.filter(inDiscipline("product"));
 export const gameCases = cases.filter(isGame);
+export const graphicCases = cases.filter(inDiscipline("graphic"));
 export const galleries = WORKS.filter((w) => w.kind === "gallery");
 
 export const getWork = (slug: string): Work | undefined =>

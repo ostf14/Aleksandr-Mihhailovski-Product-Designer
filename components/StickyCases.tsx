@@ -163,9 +163,9 @@ function Panel({ work, index }: { work: Work; index: number }) {
 }
 
 /**
- * The cases grid, used by /product and /gamedev alike. It takes the list
- * rather than reading one, so the two sections are the same page built from
- * different halves of lib/works.ts — nothing is duplicated and nothing can
+ * The cases grid, used by /product, /gamedev and /graphic alike. It takes the
+ * list rather than reading one, so the three sections are the same page built
+ * from different parts of lib/works.ts — nothing is duplicated and nothing can
  * drift apart.
  */
 export function StickyCases({

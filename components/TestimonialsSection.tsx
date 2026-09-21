@@ -1,6 +1,39 @@
 import { PlaceholderBlock } from "./Placeholder";
 import { TestimonialVideo } from "./TestimonialVideo";
-import { availableTestimonials } from "@/lib/testimonials";
+import { availableTestimonials, type Testimonial } from "@/lib/testimonials";
+
+/**
+ * A row of testimonial cards.
+ *
+ * Its own component because two places need it — this section, and the case
+ * page for the work a clip is about. The breakpoint below is a decision with a
+ * reason behind it, and a decision with a reason behind it must not exist
+ * twice: the case page was written against an earlier version of this grid and
+ * would have kept it.
+ *
+ * Two across from 441 up, one below it. The clips are 9:16, so at the width of
+ * a phone one card is the whole screen, and that is right there: a
+ * story-format video is meant to be full width on a phone. From 441 there is
+ * room for two, and two smaller cards read better than one card that has
+ * stopped being phone-sized and is not yet a desktop one — it used to hold at
+ * a single 320px column until 640, which left the right half of the screen
+ * empty.
+ *
+ * The 320 cap only exists once there are two of them. On one column it would
+ * leave a card narrower than the page it sits on, which is not what a
+ * full-width story clip should look like.
+ */
+export function TestimonialGrid({ items }: { items: Testimonial[] }) {
+  return (
+    <div className="grid grid-cols-1 gap-6 min-[441px]:grid-cols-2 min-[441px]:max-sm:gap-4 lg:gap-8">
+      {items.map((item) => (
+        <div key={item.id} className="min-[441px]:max-w-[320px]">
+          <TestimonialVideo item={item} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /**
  * The testimonials block, shared by every section page that wants one.
@@ -51,24 +84,7 @@ export function TestimonialsSection({
         </div>
 
         {items.length > 0 ? (
-          /* Two across from 441 up, one below it. The clips are 9:16, so at
-             the width of a phone one card is the whole screen, and that is
-             right there: a story-format video is meant to be full width on a
-             phone. From 441 there is room for two, and two smaller cards read
-             better than one card that has stopped being phone-sized and is
-             not yet a desktop one — it used to hold at a single 320px column
-             until 640, which left the right half of the screen empty.
-
-             The 320 cap only exists once there are two of them. On one column
-             it would leave a card narrower than the page it sits on, which is
-             not what a full-width story clip should look like. */
-          <div className="grid grid-cols-1 gap-6 min-[441px]:grid-cols-2 min-[441px]:max-sm:gap-4 lg:gap-8">
-            {items.map((item) => (
-              <div key={item.id} className="min-[441px]:max-w-[320px]">
-                <TestimonialVideo item={item} />
-              </div>
-            ))}
-          </div>
+          <TestimonialGrid items={items} />
         ) : (
           <PlaceholderBlock label="Видео-отзывы: файлы ещё не в репозитории. Положи pavel.mp4 и oksana.mp4 в public/testimonials/ — блок соберётся сам. Подписи и хронометраж правятся в lib/testimonials.ts." />
         )}
