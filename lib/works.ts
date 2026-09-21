@@ -168,7 +168,10 @@ export const WORKS: Work[] = [
     role: "Web Designer",
     org: "Freelance",
     kind: "case",
-    disciplines: ["product", "graphic"],
+    // Product only. It had brand work in it, but it is an e-commerce redesign
+    // and it belongs under Product — listing it in both places put a product
+    // case at the top of the graphic section.
+    disciplines: ["product"],
     cover: {
       type: "image",
       src: "/cases/msg/cover.webp",
@@ -207,11 +210,15 @@ export const cases = WORKS.filter((w) => w.kind === "case");
  * of this register — one component, one source of truth, and a case can never
  * end up described twice or listed in the wrong place by accident.
  *
- * A case appears under every discipline it claims, so `my-sleeping-gypsy` is
- * on both /product and /graphic, which is what it was. It used to be "product
- * is everything that is not a game", and that only held while every case
- * happened to be product work — the first graphic-only case would have shown
- * up under Product with nothing marking it as wrong.
+ * A case appears under every discipline it claims, so this list is the only
+ * place that decides where something is shown — and claiming a discipline is
+ * a statement about what the case IS, not about what skills went into it.
+ * Plenty of product work involves brand work; that does not make it a graphic
+ * case.
+ *
+ * It used to be "product is everything that is not a game", and that only held
+ * while every case happened to be product work — the first graphic-only case
+ * would have shown up under Product with nothing marking it as wrong.
  */
 export const isGame = (w: Work) => w.disciplines.includes("game");
 const inDiscipline = (d: Discipline) => (w: Work) => w.disciplines.includes(d);
