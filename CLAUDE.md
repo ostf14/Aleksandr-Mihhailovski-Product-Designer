@@ -78,12 +78,42 @@ only in a class that a transition moves away from, is left stranded. This has
 happened twice: the walking cat parked mid-screen, and `.rv` elements stuck at
 opacity 0. If you add an animation, add its landing to that block.
 
-Framer Motion writes `opacity` straight onto the node, so CSS needs
-`!important` to land it — see `[data-fade]`. **Do not** branch on
-`useReducedMotion()` in a component: it returns `null` on the server and on the
-first client render, so the server always emits the hidden element, and when
-the hook flips React does not remove a style framer set imperatively. The
-content then stays invisible forever.
+`.fade` (components/FadeIn.tsx) rests at opacity 0 and is moved off it by a
+class an observer adds, so it needs its landing in that block too — it has one,
+via `[data-fade]`. The rule is `!important` because these were framer elements
+once and framer wrote opacity onto the node; a stale inline zero must not win.
+
+**Do not** branch on `useReducedMotion()` in a component: it returns `null` on
+the server and on the first client render, so the server always emits the
+hidden element, and when the hook flips React does not remove a style that was
+set imperatively. The content then stays invisible forever.
+
+### A fade is a CSS transition, and it is not framer
+
+`FadeIn` used to be a framer-motion element and is not any more, for a reason
+that will look like a downgrade until you have seen it.
+
+Framer runs a plain opacity fade through the **Web Animations API**. For the
+duration, the element's inline style stays at the START value, because the
+WAAPI animation paints over it. At the end framer cancels the animation and
+writes the final value on the NEXT frame. In between, the element paints at its
+inline style, which is opacity 0. Captured on `/case/chtenye` at 1440x900: the
+animation is gone at t=508 with the inline style still `0`, and the committed
+`1` only lands at t=524. One frame of blank at the end of every fade, on twenty
+of that page's forty-three blocks on the way down. No prop fixes it — it is how
+the handoff works, and `whileInView` versus `animate` makes no difference.
+
+A CSS transition has no handoff: the end value is the value.
+
+The observer's root margin is `100000px 0px -80px 0px`, and the top figure is
+load-bearing. An observer reports a CROSSING and computes one per frame — with
+the root inset at the top as well, a short block scrolled past at wheel-flick
+speed is below the root on one frame and above it on the next, crosses nothing,
+and sits at opacity 0 for the life of the page. It stranded four blocks across
+three case pages, and which four changed between runs. Extending the root
+upwards means a block that has been passed is still inside it. `.rv` in
+StickyCases has the same shape of trigger and is worth the same treatment if it
+ever strands a card.
 
 ### The theme toggle kills all transitions for a frame
 

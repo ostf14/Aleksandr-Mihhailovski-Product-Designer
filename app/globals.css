@@ -608,6 +608,36 @@ html:not(.dark) .theme-toggle .i-moon {
 }
 
 /* ---------------------------------------------------------------
+   Fade-on-enter for prose blocks (components/FadeIn.tsx).
+
+   A CSS transition, not a JS animation, and that is the whole point.
+
+   These used to be framer-motion elements. Framer runs a plain opacity fade
+   through the Web Animations API and keeps the element's inline style at the
+   START value for the duration, because WAAPI paints over it — then at the end
+   it cancels the animation and writes the final value on the NEXT frame.
+   Between those two things the element paints at its inline style, which is
+   opacity 0. Captured on /case/chtenye at 1440x900: the animation is gone at
+   t=508 with the inline style still `0`, and the committed `1` only lands at
+   t=524. One frame of blank at the end of every fade, on twenty of the page's
+   forty-three blocks on the way down the page. No prop fixes it; it is how the
+   handoff works.
+
+   A CSS transition has no handoff. The end value IS the value.
+
+   Kept separate from .rv above, which also moves the element: a block wrapping
+   a full-res image or GIF had its whole layer re-composited every frame when
+   this carried a translate too, which is why the fade is alpha-only.
+   --------------------------------------------------------------- */
+.fade {
+  opacity: 0;
+  transition: opacity var(--fade-dur, var(--t-6)) var(--e-out) var(--d, 0ms);
+}
+.fade.in {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------
    Sticky-grid case panels (components/StickyCases.tsx).
 
    Deliberately outside @layer components: these names are only ever written
@@ -786,9 +816,14 @@ html:not(.dark) .theme-toggle .i-moon {
     transform: translateX(-120px);
   }
 
-  /* framer-motion writes opacity straight onto the node, so nothing short of
-     !important can land these. See the note in components/FadeIn.tsx for why
-     the reduced-motion decision cannot be made in JS at all. */
+  /* `.fade` rests at opacity 0 and is moved off it by a class the observer
+     adds, so zeroing the duration above would leave anything the observer has
+     not reached yet sitting at nothing. Land them outright.
+
+     !important because these were framer elements once and framer wrote
+     opacity straight onto the node; a stale inline zero on a cached page must
+     not win. See the note in components/FadeIn.tsx for why the reduced-motion
+     decision cannot be made in JS at all. */
   [data-fade] {
     opacity: 1 !important;
     transform: none !important;
