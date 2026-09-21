@@ -2,9 +2,8 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
-import { Button } from "./Button";
-import { GithubMark } from "./GithubMark";
+import { ArrowUpRight, Check, Copy } from "lucide-react";
+import { ActionPills } from "./ActionPills";
 import { links } from "@/lib/site";
 
 // Gentle shrink only. A big scale-down vacated a lot of its (still
@@ -319,42 +318,10 @@ export function BusinessCard() {
             Mail and LinkedIn stay reachable as the quiet tail; the footer
             carries all four in full on every page.
 
-            Icons sit on the side the eye needs them: the download glyph leads
-            "Download CV", the GitHub mark follows the word it belongs to.
-            That mark is the filled one GitHub itself draws, not the stroke
-            redraw in GithubIcon.tsx — at 17px the hairline version's
-            tentacles and face collapse into a squiggle. The footer keeps the
-            stroke version, where it sits among other lucide icons. */}
+            The pills themselves are ActionPills — shared with the footer, so
+            the two ends of the page cannot disagree about their width. */}
         <div className="mt-9 flex w-full flex-col items-center gap-5">
-          {/* Below 480 the two pills stack and stretch to one width. Left to
-              wrap on their own they came out one under another anyway but at
-              two different widths, set by their labels — which is what a
-              narrow phone like a folded Fold shows. The column is capped at
-              320 so the pair matches the brand pill above it rather than
-              running edge to edge. */}
-          <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3 min-[480px]:w-auto min-[480px]:max-w-none min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-center">
-            <Button
-              href={links.cv}
-              size="lg"
-              className="w-full min-[480px]:w-auto"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Download className="h-[17px] w-[17px] shrink-0" aria-hidden />
-              Download CV
-            </Button>
-            <Button
-              href={links.github}
-              size="lg"
-              variant="secondary"
-              className="w-full min-[480px]:w-auto"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-              <GithubMark className="h-[17px] w-[17px] shrink-0" />
-            </Button>
-          </div>
+          <ActionPills />
 
           {/* Own row under the pills. Beside them they read as a third and
               fourth option at the same moment of choosing; underneath they

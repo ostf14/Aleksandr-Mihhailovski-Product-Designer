@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Copy, Check, Download } from "lucide-react";
-import { Button } from "./Button";
-import { GithubMark } from "./GithubMark";
+import { ArrowUpRight, Copy, Check } from "lucide-react";
+import { ActionPills } from "./ActionPills";
 import { ProgressiveBlur } from "./ProgressiveBlur";
 import { SpriteAnimation } from "./SpriteAnimation";
 import { links } from "@/lib/site";
@@ -75,29 +74,7 @@ export function Footer() {
               I&rsquo;m open to new opportunities.
             </p>
 
-            <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3 min-[480px]:w-auto min-[480px]:max-w-none min-[480px]:flex-row min-[480px]:items-center">
-              <Button
-                href={links.cv}
-                size="lg"
-                className="w-full min-[480px]:w-auto"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Download className="h-[17px] w-[17px] shrink-0" aria-hidden />
-                Download CV
-              </Button>
-              <Button
-                href={links.github}
-                size="lg"
-                variant="secondary"
-                className="w-full min-[480px]:w-auto"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-                <GithubMark className="h-[17px] w-[17px] shrink-0" />
-              </Button>
-            </div>
+            <ActionPills />
 
             <div className="flex items-center justify-center gap-6">
               <button
