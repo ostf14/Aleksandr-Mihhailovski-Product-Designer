@@ -51,9 +51,20 @@ export function TestimonialsSection({
         </div>
 
         {items.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+          /* Two across from 441 up, one below it. The clips are 9:16, so at
+             the width of a phone one card is the whole screen, and that is
+             right there: a story-format video is meant to be full width on a
+             phone. From 441 there is room for two, and two smaller cards read
+             better than one card that has stopped being phone-sized and is
+             not yet a desktop one — it used to hold at a single 320px column
+             until 640, which left the right half of the screen empty.
+
+             The 320 cap only exists once there are two of them. On one column
+             it would leave a card narrower than the page it sits on, which is
+             not what a full-width story clip should look like. */
+          <div className="grid grid-cols-1 gap-6 min-[441px]:grid-cols-2 min-[441px]:max-sm:gap-4 lg:gap-8">
             {items.map((item) => (
-              <div key={item.id} className="max-w-[320px]">
+              <div key={item.id} className="min-[441px]:max-w-[320px]">
                 <TestimonialVideo item={item} />
               </div>
             ))}
