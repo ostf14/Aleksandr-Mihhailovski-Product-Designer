@@ -105,15 +105,14 @@ the handoff works, and `whileInView` versus `animate` makes no difference.
 
 A CSS transition has no handoff: the end value is the value.
 
-The observer's root margin is `100000px 0px -80px 0px`, and the top figure is
-load-bearing. An observer reports a CROSSING and computes one per frame — with
-the root inset at the top as well, a short block scrolled past at wheel-flick
-speed is below the root on one frame and above it on the next, crosses nothing,
-and sits at opacity 0 for the life of the page. It stranded four blocks across
-three case pages, and which four changed between runs. Extending the root
-upwards means a block that has been passed is still inside it. `.rv` in
-StickyCases has the same shape of trigger and is worth the same treatment if it
-ever strands a card.
+The observer's root margin comes from `revealRootMargin()` in `reveal.ts`, and
+its top figure is load-bearing. An observer reports a CROSSING and computes one
+per frame — with the root inset at the top as well, a short block scrolled past
+at wheel-flick speed is below the root on one frame and above it on the next,
+crosses nothing, and sits at opacity 0 for the life of the page. It stranded
+four blocks across three case pages, and which four changed between runs.
+Extending the root upwards means a block that has been passed is still inside
+it.
 
 ### The theme toggle kills all transitions for a frame
 
@@ -157,13 +156,27 @@ taller than the screen, is untouched, and `svh` is the viewport with the mobile
 address bar showing — sized to `vh`, the hero's own buttons start below the
 fold on iOS.
 
-### Reveal timing is tuned to card height
+### There is one reveal policy, in `components/reveal.ts`
 
-`useReveal` in `components/StickyCases.tsx` uses `threshold: 0` against a fixed
-`-48px` inset, and assigns its stagger **per batch** when the observer fires
-rather than per index. A percentage inset scales with the window and fails on
-tall screens; a per-index delay makes a card scrolled to on its own wait for a
-queue it is not in. Both were real bugs.
+Two things reveal on enter — the prose blocks (`.fade`, opacity only) and the
+case panels (`.rv`, opacity and a small move). They look different on purpose.
+**When** they fire, and whether they animate at all, is one policy and lives in
+`reveal.ts`: the root margin, the already-on-screen rule, and the `--reveal-dur`
+knob both classes read.
+
+It was two copies, and that is exactly how they went wrong. The observer race
+below was found and fixed in `.fade` while `.rv` kept the old margin, and `.rv`
+never got the already-on-screen rule at all. Neither was visibly broken, only
+because the case panels happen to be taller than the window they are measured
+against. Add a third reveal and it goes through `reveal.ts` too.
+
+What each caller keeps is its own bottom inset, because those were measured
+separately: `-48px` against a panel of 500-620px, `-80px` against a paragraph.
+A percentage inset scales with the window and failed on tall screens, which is
+what the 48 replaced. StickyCases also keeps its own observer, because its
+stagger is assigned **per batch** when the observer fires rather than per
+index — a per-index delay makes a card scrolled to on its own wait for a queue
+it is not in.
 
 ### The mobile nav is load-bearing
 

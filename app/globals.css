@@ -631,7 +631,7 @@ html:not(.dark) .theme-toggle .i-moon {
    --------------------------------------------------------------- */
 .fade {
   opacity: 0;
-  transition: opacity var(--fade-dur, var(--t-6)) var(--e-out) var(--d, 0ms);
+  transition: opacity var(--reveal-dur, var(--t-6)) var(--e-out) var(--d, 0ms);
 }
 .fade.in {
   opacity: 1;
@@ -650,13 +650,18 @@ html:not(.dark) .theme-toggle .i-moon {
 
 /* Reveal. The stagger is a per-element --d read by the transition delay, so a
    fast scroll past the section cannot strand half the panels mid-flight the
-   way a chain of timeouts can. */
+   way a chain of timeouts can.
+
+   --reveal-dur is the same knob .fade reads, and reveal.ts sets it to 0ms for
+   anything that was already on screen when the page mounted. The two classes
+   keep their own defaults on purpose: 480ms for a card that also moves, 640ms
+   for a paragraph that only fades. */
 .rv {
   opacity: 0;
   transform: translateY(24px);
   transition:
-    opacity var(--t-5) var(--e-out) var(--d, 0ms),
-    transform var(--t-5) var(--e-out) var(--d, 0ms);
+    opacity var(--reveal-dur, var(--t-5)) var(--e-out) var(--d, 0ms),
+    transform var(--reveal-dur, var(--t-5)) var(--e-out) var(--d, 0ms);
 }
 .rv-scale {
   transform: translateY(24px) scale(0.985);

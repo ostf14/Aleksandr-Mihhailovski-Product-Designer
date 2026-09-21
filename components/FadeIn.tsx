@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useLayoutEffect, useRef } from "react";
+import { ReactNode } from "react";
+import { reveal, useRevealOnEnter } from "./reveal";
 
 type Tag =
   "div" | "section" | "article" | "figure" | "li" | "p" | "h1" | "h2" | "h3";
@@ -22,8 +23,9 @@ type FadeInProps = {
  * at the END of every fade, which is a blink on an element that has just
  * finished appearing.
  *
- * What is left here is the trigger, built the same way as `useReveal` in
- * StickyCases.tsx: an observer that adds a class and disconnects.
+ * The trigger is not here either: when to show a block, and whether to animate
+ * it at all, is one policy shared with the case panels and lives in reveal.ts.
+ * What is left in this file is the markup and the stagger.
  *
  * Reduced motion is still handled in CSS, via the `data-fade` hook and an
  * !important landing in globals.css — NOT by branching here. Branching was
@@ -35,85 +37,8 @@ type FadeInProps = {
  * blocks permanently invisible.
  */
 
-/**
- * Fires once the block is 80px inside the viewport from below — and counts
- * anything above the viewport as already arrived, however far above.
- *
- * The top figure is not decoration. An observer only reports a CROSSING, and
- * it computes one per frame: with the root inset by 80px on the top edge too,
- * a 75px block scrolled past at wheel-flick speed can be below the root on one
- * frame and above it on the next, cross nothing, and never be reported at all.
- * It then sits at opacity 0 for the life of the page. Measured by scrolling
- * the case pages in 500px steps: four blocks on three pages, and which four
- * changed from run to run, which is exactly what a race looks like.
- *
- * Extending the root upwards instead means a block that has been passed is
- * still inside it, so the crossing always happens and is always seen. The
- * blocks it catches this way are off screen when they fade, which costs
- * nothing.
- */
-const ROOT_MARGIN = "100000px 0px -80px 0px";
-
-/** Block is on screen right now. */
-function onScreen(el: HTMLElement) {
-  const { top, bottom } = el.getBoundingClientRect();
-  return top < window.innerHeight && bottom > 0;
-}
-
-/**
- * Shows a block, once.
- *
- * `instant` is for a block that was already on screen when the page mounted. A
- * fade is for something arriving as you scroll to it; the first screen is not
- * arriving, it is just there, and fading it in means the page says nothing for
- * six hundred milliseconds. It matters most on a client-side navigation, which
- * takes the old page away the moment it starts.
- */
-function show(el: HTMLElement, delayMs = 0, instant = false) {
-  if (instant) el.style.setProperty("--fade-dur", "0ms");
-  else if (delayMs) el.style.setProperty("--d", `${delayMs}ms`);
-  el.classList.add("in");
-}
-
-/**
- * The trigger. In a layout effect rather than an effect so the instant case
- * lands before the browser paints — after paint, the block would show one real
- * frame of nothing first, which is the very thing this is here to avoid.
- */
-function useFade<T extends HTMLElement>(
-  reveal: (el: T, instant: boolean) => void,
-) {
-  const ref = useRef<T>(null);
-  const latest = useRef(reveal);
-  latest.current = reveal;
-
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    if (onScreen(el)) {
-      latest.current(el, true);
-      return;
-    }
-    if (!("IntersectionObserver" in window)) {
-      latest.current(el, false);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        latest.current(el, false);
-        io.disconnect();
-      },
-      { rootMargin: ROOT_MARGIN, threshold: 0 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return ref;
-}
+/** How far in a paragraph comes before it counts as arriving. */
+const BOTTOM_INSET = 80;
 
 export function FadeIn({
   children,
@@ -124,8 +49,9 @@ export function FadeIn({
   // Cast to one concrete tag so the ref type is concrete too. Every tag in the
   // union is an HTMLElement and none of them is given element-specific props.
   const Element = as as "div";
-  const ref = useFade<HTMLDivElement>((el, instant) =>
-    show(el, Math.round(delay * 1000), instant),
+  const ref = useRevealOnEnter<HTMLDivElement>(
+    (el, instant) => reveal(el, { delayMs: Math.round(delay * 1000), instant }),
+    BOTTOM_INSET,
   );
 
   return (
@@ -153,11 +79,11 @@ export function FadeStagger({
   /** Seconds between one child and the next. */
   stagger?: number;
 }) {
-  const ref = useFade<HTMLDivElement>((el, instant) => {
+  const ref = useRevealOnEnter<HTMLDivElement>((el, instant) => {
     el.querySelectorAll<HTMLElement>("[data-fade]").forEach((kid, i) =>
-      show(kid, Math.round(i * stagger * 1000), instant),
+      reveal(kid, { delayMs: Math.round(i * stagger * 1000), instant }),
     );
-  });
+  }, BOTTOM_INSET);
 
   return (
     <div ref={ref} className={className}>

@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CaseCardMedia } from "./CaseCardMedia";
+import { isOnScreen, reveal, revealRootMargin } from "./reveal";
 import { useTilt } from "./useTilt";
 import { workHref, type Work } from "@/lib/works";
 
@@ -40,13 +41,27 @@ const STAGGER_CAP_MS = 210;
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = ref.current;
     if (!root) return;
 
     const targets = Array.from(root.querySelectorAll<HTMLElement>(".rv"));
+
+    // A panel already in the window when the page mounted is not arriving —
+    // it is simply there, and animating it means an empty card for half a
+    // second. That matters on /gamedev, whose first cards sit at the top of
+    // the page, and on any client-side navigation, which takes the old page
+    // away the moment it starts. Same rule as the prose blocks; it lives in
+    // reveal.ts so the two cannot drift apart again.
+    const pending = targets.filter((t) => {
+      if (!isOnScreen(t)) return true;
+      reveal(t, { instant: true });
+      return false;
+    });
+
+    if (!pending.length) return;
     if (!("IntersectionObserver" in window)) {
-      targets.forEach((t) => t.classList.add("in"));
+      pending.forEach((t) => reveal(t));
       return;
     }
 
@@ -57,19 +72,19 @@ function useReveal<T extends HTMLElement>() {
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
         arriving.forEach((entry, i) => {
-          const el = entry.target as HTMLElement;
-          el.style.setProperty(
-            "--d",
-            `${Math.min(i * STAGGER_MS, STAGGER_CAP_MS)}ms`,
-          );
-          el.classList.add("in");
-          io.unobserve(el);
+          reveal(entry.target as HTMLElement, {
+            delayMs: Math.min(i * STAGGER_MS, STAGGER_CAP_MS),
+          });
+          io.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -48px 0px", threshold: 0 },
+      // 48px rather than the prose blocks' 80: measured against a panel of
+      // 500-620px, not a paragraph. The top of the margin is shared, and is
+      // what stops a panel being jumped clean over — see reveal.ts.
+      { rootMargin: revealRootMargin(48), threshold: 0 },
     );
 
-    targets.forEach((t) => io.observe(t));
+    pending.forEach((t) => io.observe(t));
     return () => io.disconnect();
   }, []);
 
