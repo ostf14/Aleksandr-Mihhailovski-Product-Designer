@@ -94,7 +94,7 @@ export default function Page() {
               </FadeIn>
               <FadeIn delay={0.05}>
                 <h1 className="font-sans text-hero font-semibold tracking-tight">
-                  Medical Consultations
+                  Positioning and Design for Medical Consultations
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>

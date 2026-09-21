@@ -144,8 +144,9 @@ export const WORKS: Work[] = [
   },
   {
     slug: "med-consultations",
-    title: "Medical Consultations",
-    blurb: "She is not allowed to give medical advice. So what does she sell?",
+    title: "Positioning and Design for Medical Consultations",
+    blurb:
+      "An experienced doctor with no licence to use it. So what does she sell?",
     role: "Brand & content",
     org: "Oksana Stanevich",
     year: "2025",
