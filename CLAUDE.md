@@ -238,12 +238,19 @@ a visit — and then a mid grey, which just looked like a grey sheet. Only the
 background reads as the content dissolving rather than as something arriving on
 top of it, and only the background cannot flash.
 
-Each cell carries two delays. `--d-in` is keyed on distance from the middle of
-the screen so the picture is eaten from the edges inward; `--d-out` is the
-inverse so the next page opens from the centre. A transition takes its timing
-from the state it is going to, which is how one rule per direction works. The
-per-cell jitter on top is what makes it read as pixels — without it the front
-is a clean curve and the whole thing looks like an aperture.
+**It is a canvas, and it has to be.** It was one div per square with a CSS
+transition, which is the cheaper idea right up until the squares get small. At
+64px that is 345 divs and it runs on the compositor at a steady 60fps. At 13px
+it is 7,770: measured at 1440x900 the DOM alone took 253ms to build and frames
+came every 217ms, about five a second. On a canvas the same 13px squares build
+in 18ms and hold a 16.7ms median — better than the 64px divs ever managed, and
+the square size stops mattering. Do not "simplify" this back into elements.
+
+Each square carries two delays, both keyed on its distance from the middle of
+the screen: one runs edge first, so the picture is eaten from the outside, and
+one runs middle first, so the next page opens from the centre. The scatter on
+top is what makes it read as pixels — without it the front is a clean curve and
+the whole thing looks like an aperture.
 
 **The two directions are not the same animation.** Going in, the squares grow.
 Coming back they do **not** shrink: they stay where they are and fade. A square
@@ -254,9 +261,12 @@ shrinking square takes bites out of the letters it is uncovering. Captured at
 what "the text is flickering" turned out to mean. Do not make the reveal
 symmetrical with the cover; on the way in the same chopping is the point.
 
-The cells sit at `scale(1.02)` and stay there through the fade. At exactly 1
-the 1fr tracks leave hairline seams, and animating the scale back to 1 for the
-fade flashes a one-pixel grid of the incoming page.
+Squares are drawn 2% over size. At exactly their cell the rounding leaves
+hairlines of page between them.
+
+`data-phase` on the canvas drives nothing and is not decoration either: every
+measurement written against this component reads it, and a transition you
+cannot observe from outside is one you cannot check.
 
 The reveal waits for `pathname` to actually change, not for a timer. A timer
 reveals a page that has not rendered yet on any route Link did not prefetch.

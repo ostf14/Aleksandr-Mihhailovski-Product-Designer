@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { resolvePath, WIP_PREVIEW_COOKIE } from "@/lib/site";
 
@@ -8,27 +8,38 @@ import { resolvePath, WIP_PREVIEW_COOKIE } from "@/lib/site";
  * The page transition: a field of squares fills the screen, the route changes
  * behind it, and the same wave carries the squares away again.
  *
- * It is a grid of plain divs scaling from 0 to 1, each with its own delay —
- * not a canvas and not a per-frame script. Scale is composited, so the whole
- * curtain is the compositor's problem and the main thread is free to do the
- * one thing that actually matters during a navigation, which is render the
- * next page. The delays live in a custom property per cell, the same way
- * `.rv` carries its stagger.
+ * Drawn on a canvas, not built out of elements. It was elements once, one div
+ * per square with a CSS transition, which is the cheaper idea right up until
+ * the squares get small. At 64px that is 345 divs and the whole thing runs on
+ * the compositor at a steady 60fps. At 13px it is 7,770, and measured at
+ * 1440x900 the DOM alone took 253ms to build and frames came every 217ms —
+ * about five a second. A canvas is one element whatever the square size: the
+ * cost stops being the number of nodes and becomes the number of rectangles
+ * filled, which is a different order of problem entirely.
  *
  * It also covers a real hole. A client-side navigation takes the old page away
  * the instant it starts, and the new one arrives with its entrance animations
  * still at zero — a blank screen for about 190ms on the way into a case page.
- * FadeIn no longer fades what is already on screen, which fixes that on its
- * own; the curtain then means you do not even see the swap.
+ * The trigger in reveal.ts no longer animates what is already on screen, which
+ * fixes that on its own; the curtain then means you do not even see the swap.
  */
 
-/** Target square size. The grid rounds to whole cells that tile the viewport. */
-const CELL_PX = 64;
-/** Ceiling on cells, so a 4K screen does not animate two thousand divs. */
-const MAX_CELLS = 480;
+/**
+ * Square size in CSS pixels. The grid rounds to whole squares that tile the
+ * viewport, so the drawn size is near this rather than exactly it.
+ */
+const CELL_PX = 13;
 
-/** How long one square takes to grow or shrink. Mirrors --t-3 in globals.css,
- *  which is what the transition on .px-cell actually uses. */
+/**
+ * Ceiling on the device pixel ratio the canvas is drawn at.
+ *
+ * These are axis-aligned flat-colour rectangles; there is nothing in them a
+ * third or fourth device pixel would resolve. On a 3x phone this is the
+ * difference between filling 3.0M pixels a frame and 6.8M.
+ */
+const MAX_DPR = 2;
+
+/** How long one square takes to grow, or to fade. */
 const CELL_MS = 240;
 /** Spread from the outermost square to the innermost. */
 const STAGGER_MS = 150;
@@ -39,13 +50,15 @@ const COVER_MS = CELL_MS + STAGGER_MS + JITTER_MS;
 const REVEAL_MS = COVER_MS;
 
 /**
- * If the route never arrives — an offline click, a redirect that lands back on
- * the same path — the curtain must not stay up. Nothing on this site takes
- * anything like this long once the route is prefetched.
+ * If the route never arrives — an offline click, or something this file has
+ * not thought of — the curtain must not stay up. The one case that used to
+ * land here, a link resolving to the page you are already on, is caught at the
+ * click now.
  */
 const FAILSAFE_MS = 2500;
 
-type Phase = "idle" | "covering" | "covered" | "revealing";
+/** Mirrors --e-out in globals.css, so both directions ease the same way. */
+const easeOut = (p: number) => 1 - Math.pow(1 - p, 3);
 
 /** Deterministic per-cell scatter: the wave has to retreat the way it came. */
 function jitter(i: number) {
@@ -53,39 +66,64 @@ function jitter(i: number) {
   return x - Math.floor(x);
 }
 
-function useGrid() {
-  const [grid, setGrid] = useState({ cols: 0, rows: 0 });
+type Phase = "idle" | "covering" | "covered" | "revealing";
 
-  useEffect(() => {
-    const measure = () => {
-      let cols = Math.max(1, Math.ceil(window.innerWidth / CELL_PX));
-      let rows = Math.max(1, Math.ceil(window.innerHeight / CELL_PX));
-      // Coarsen both axes together rather than clipping one, so the squares
-      // stay square.
-      while (cols * rows > MAX_CELLS) {
-        cols = Math.ceil(cols / 1.2);
-        rows = Math.ceil(rows / 1.2);
-      }
-      setGrid({ cols, rows });
-    };
-    measure();
-    window.addEventListener("resize", measure, { passive: true });
-    return () => window.removeEventListener("resize", measure);
-  }, []);
+/**
+ * The grid, as flat arrays rather than an array of objects.
+ *
+ * Eight thousand small objects is eight thousand allocations to make and then
+ * to collect, and the draw loop walks the whole thing every frame. Two typed
+ * arrays are one allocation each and stay contiguous.
+ *
+ * `dIn` runs edge first, so the picture is eaten from the outside; `dOut` runs
+ * middle first, so the next page opens from the centre. Distance is measured
+ * with each axis mapped to [-1, 1] before the hypotenuse, so the shape that
+ * closes is the shape of the window — on a wide screen the last thing left is
+ * a wide band across the middle rather than a circle.
+ */
+type Grid = {
+  cols: number;
+  rows: number;
+  cw: number;
+  ch: number;
+  dIn: Float32Array;
+  dOut: Float32Array;
+};
 
-  return grid;
+function buildGrid(w: number, h: number): Grid {
+  const cols = Math.max(1, Math.round(w / CELL_PX));
+  const rows = Math.max(1, Math.round(h / CELL_PX));
+  const dIn = new Float32Array(cols * rows);
+  const dOut = new Float32Array(cols * rows);
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      const nx = cols > 1 ? ((c + 0.5) / cols) * 2 - 1 : 0;
+      const ny = rows > 1 ? ((r + 0.5) / rows) * 2 - 1 : 0;
+      const d = Math.min(1, Math.hypot(nx, ny) / Math.SQRT2);
+      const scatter = jitter(i) * JITTER_MS;
+      dIn[i] = (1 - d) * STAGGER_MS + scatter;
+      dOut[i] = d * STAGGER_MS + scatter;
+    }
+  }
+  return { cols, rows, cw: w / cols, ch: h / rows, dIn, dOut };
+}
+
+/** The curtain colour, read from the palette so it follows the theme. */
+function curtainColor() {
+  const v = getComputedStyle(document.documentElement)
+    .getPropertyValue("--curtain")
+    .trim();
+  return v ? `rgb(${v})` : "#000";
 }
 
 export function PixelTransition() {
   const router = useRouter();
   const pathname = usePathname();
-  const { cols, rows } = useGrid();
 
   const [phase, setPhase] = useState<Phase>("idle");
-  // One frame behind `phase`, and the only thing CSS reads. The cells have to
-  // exist at rest for a frame before the class that moves them lands, or the
-  // browser has no start state to transition from and they simply appear.
-  const [painted, setPainted] = useState<Phase>("idle");
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Where we were when the click happened. The curtain comes back up when the
   // route has actually changed, not when a timer says it probably has — on a
@@ -101,38 +139,6 @@ export function PixelTransition() {
     timers.current.push(window.setTimeout(fn, ms));
   };
 
-  /**
-   * A delay pair per cell, keyed on how far it is from the middle of the
-   * screen.
-   *
-   * The distance is measured in viewport-relative units — each axis mapped to
-   * [-1, 1] before the hypotenuse — so the shape that closes is the shape of
-   * the window. On a wide screen the last thing left is a wide band across the
-   * middle, not a circle.
-   *
-   * `in` runs edge first, so the picture is eaten from the outside. `out` runs
-   * middle first, so the next page opens from the centre. The jitter on top is
-   * the same number for both, and it is the whole reason this reads as pixels
-   * rather than as an aperture: without it the front is a clean curve.
-   */
-  const cells = useMemo(() => {
-    const out: { in: number; out: number }[] = [];
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const i = r * cols + c;
-        const nx = cols > 1 ? ((c + 0.5) / cols) * 2 - 1 : 0;
-        const ny = rows > 1 ? ((r + 0.5) / rows) * 2 - 1 : 0;
-        const d = Math.min(1, Math.hypot(nx, ny) / Math.SQRT2);
-        const scatter = jitter(i) * JITTER_MS;
-        out.push({
-          in: Math.round((1 - d) * STAGGER_MS + scatter),
-          out: Math.round(d * STAGGER_MS + scatter),
-        });
-      }
-    }
-    return out;
-  }, [cols, rows]);
-
   const start = useCallback(
     (href: string) => {
       clear();
@@ -144,8 +150,6 @@ export function PixelTransition() {
         // would happen in full view through the gaps between the squares.
         router.push(href);
       }, COVER_MS);
-      // If the route never arrives, take the curtain down anyway — and take it
-      // down the way it went up, rather than cutting to whatever is behind it.
       later(() => {
         setPhase("revealing");
         later(() => setPhase("idle"), REVEAL_MS);
@@ -153,23 +157,6 @@ export function PixelTransition() {
     },
     [router],
   );
-
-  // Flip the painted phase a frame after the real one, except on the way out
-  // of "covering", where the cells are already where CSS wants them.
-  useEffect(() => {
-    if (phase !== "covering") {
-      setPainted(phase);
-      return;
-    }
-    let inner = 0;
-    const outer = requestAnimationFrame(() => {
-      inner = requestAnimationFrame(() => setPainted("covering"));
-    });
-    return () => {
-      cancelAnimationFrame(outer);
-      cancelAnimationFrame(inner);
-    };
-  }, [phase]);
 
   // The route has landed. Give it a frame to paint, then pull the curtain back.
   useEffect(() => {
@@ -188,6 +175,86 @@ export function PixelTransition() {
   }, [pathname, phase]);
 
   useEffect(() => clear, []);
+
+  /**
+   * The drawing. One rAF loop per phase, torn down when the phase changes.
+   *
+   * The grid is rebuilt when the loop starts rather than on resize: a window
+   * cannot be resized during a half-second transition, and rebuilding eight
+   * thousand delays on a resize event that will never come is work for
+   * nothing.
+   */
+  useEffect(() => {
+    if (phase === "idle") return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const { cols, rows, cw, ch, dIn, dOut } = buildGrid(w, h);
+    const fill = curtainColor();
+    const t0 = performance.now();
+    let raf = 0;
+
+    // 1.02 for the same reason the CSS version used it: whole-pixel rounding
+    // leaves hairlines of page between exactly-adjacent squares.
+    const bleed = 1.02;
+
+    const frame = () => {
+      const t = performance.now() - t0;
+      ctx.globalAlpha = 1;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = fill;
+
+      if (phase === "covered") {
+        // Nothing to animate: the screen is simply solid.
+        ctx.fillRect(0, 0, w, h);
+        return;
+      }
+
+      if (phase === "covering") {
+        for (let r = 0; r < rows; r++) {
+          const y = r * ch;
+          for (let c = 0; c < cols; c++) {
+            const p = (t - dIn[r * cols + c]) / CELL_MS;
+            if (p <= 0) continue;
+            const s = (p >= 1 ? 1 : easeOut(p)) * bleed;
+            const sw = cw * s;
+            const sh = ch * s;
+            ctx.fillRect(c * cw + (cw - sw) / 2, y + (ch - sh) / 2, sw, sh);
+          }
+        }
+      } else {
+        // Revealing. The squares do NOT shrink — they stay put and fade.
+        // Shrinking them takes bites out of the letters underneath, and since
+        // a square the colour of the page is invisible, all anyone sees is the
+        // text coming apart. See the note in globals.css.
+        const sw = cw * bleed;
+        const sh = ch * bleed;
+        for (let r = 0; r < rows; r++) {
+          const y = r * ch;
+          for (let c = 0; c < cols; c++) {
+            const p = (t - dOut[r * cols + c]) / CELL_MS;
+            if (p >= 1) continue;
+            ctx.globalAlpha = p <= 0 ? 1 : 1 - easeOut(p);
+            ctx.fillRect(c * cw, y, sw, sh);
+          }
+        }
+      }
+
+      raf = requestAnimationFrame(frame);
+    };
+
+    frame();
+    return () => cancelAnimationFrame(raf);
+  }, [phase]);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -224,7 +291,7 @@ export function PixelTransition() {
 
       // Asked for less motion: navigate, say nothing. This is an event
       // handler, not a render, so reading the preference here is safe — the
-      // trap in FadeIn.tsx is specifically about branching the TREE on it.
+      // trap in reveal.ts is specifically about branching the TREE on it.
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       // Capture phase, so this runs before next/link's own handler; stopping
@@ -239,27 +306,17 @@ export function PixelTransition() {
     return () => document.removeEventListener("click", onClick, true);
   }, [start]);
 
-  if (phase === "idle" || !cols) return null;
+  if (phase === "idle") return null;
 
+  // data-phase drives nothing — the canvas paints itself. It is here because
+  // a transition you cannot observe from outside is a transition you cannot
+  // check, and every measurement written against this component reads it.
   return (
-    <div
+    <canvas
+      ref={canvasRef}
       aria-hidden
+      data-phase={phase}
       className="px-curtain"
-      data-phase={painted}
-      style={{ "--px-cols": cols, "--px-rows": rows } as React.CSSProperties}
-    >
-      {cells.map((d, i) => (
-        <span
-          key={i}
-          className="px-cell"
-          style={
-            {
-              "--d-in": `${d.in}ms`,
-              "--d-out": `${d.out}ms`,
-            } as React.CSSProperties
-          }
-        />
-      ))}
-    </div>
+    />
   );
 }
