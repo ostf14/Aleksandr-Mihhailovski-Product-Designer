@@ -283,8 +283,8 @@ export default function Page() {
                   The screen is cold in the same way. This is a carousel in a
                   feed, read on a phone, offered by someone you will only ever
                   meet on a video call. So the paper and the pencil push against
-                  two things at once: the hospital, and the glass it is all
-                  being read through.
+                  two things at once: the hospital, and the device it is all
+                  being read on.
                 </p>
               </Prose>
             </Section>
