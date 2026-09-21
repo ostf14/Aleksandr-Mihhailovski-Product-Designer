@@ -285,6 +285,15 @@ arrives invisible. `FadeIn` no longer animates blocks that are already on
 screen when they mount, which is the actual fix — the curtain only means you do
 not see the swap. Reduced motion skips the curtain entirely and relies on that.
 
+### `lib/testimonials.ts` must never be imported by a client component
+
+It reaches `node:fs` — `availableTestimonials()` checks whether a self-hosted
+clip is actually on disk — so importing it from anything with `"use client"`
+fails the build outright with `UnhandledSchemeError: Reading from "node:fs" is
+not handled`. The error names webpack and a URI scheme and not the import that
+caused it, so it is worth knowing where to look. `TestimonialVideo` is a client
+component and only imports the TYPE, which erases.
+
 ### Internal navigation goes through `next/link`
 
 Every internal link used to be a bare `<a href>`, so switching tabs threw the

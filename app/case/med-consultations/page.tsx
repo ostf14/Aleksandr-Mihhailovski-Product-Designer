@@ -7,7 +7,7 @@ import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
-import { TestimonialBeside } from "@/components/TestimonialVideo";
+import { TestimonialGrid } from "@/components/TestimonialsSection";
 import { testimonialsForWork } from "@/lib/testimonials";
 import { workMetadata } from "@/lib/works";
 import type { GraphicItem } from "@/lib/graphic";
@@ -282,10 +282,8 @@ export default function Page() {
             <div id="testimonial" className="scroll-mt-20 pb-32">
               <Section kicker="05 · Client" heading="What Oksana says">
                 <div className="shell">
-                  <div className="shell-prose space-y-10">
-                    {testimonials.map((item) => (
-                      <TestimonialBeside key={item.id} item={item} />
-                    ))}
+                  <div className="shell-prose">
+                    <TestimonialGrid items={testimonials} />
                   </div>
                 </div>
               </Section>
