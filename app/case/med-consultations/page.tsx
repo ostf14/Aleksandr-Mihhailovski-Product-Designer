@@ -16,8 +16,8 @@ export const metadata = workMetadata("med-consultations");
 
 const toc: TocItem[] = [
   { id: "overview", label: "Overview" },
-  { id: "constraint", label: "Why not advice" },
-  { id: "positioning", label: "The one line" },
+  { id: "constraint", label: "A doctor without a licence" },
+  { id: "positioning", label: "Sell the explanation" },
   { id: "slides", label: "Five slides" },
   { id: "voice", label: "Drawn by hand" },
   { id: "testimonial", label: "What Oksana says" },
@@ -49,14 +49,14 @@ const slides: GraphicItem[] = [
     span: 3,
     alt: "Slide listing who the consultation is for",
     caption:
-      "Three situations to recognise yourself in, instead of three services to interpret.",
+      "The diagnosis is unclear. The prescriptions are in doubt. The system makes no sense.",
   },
   {
     src: "/cases/med-consultations/how-it-works.webp",
     span: 3,
     alt: "Slide explaining the four steps of the consultation",
     caption:
-      "The four steps of the session, so it has a shape before you pay for it.",
+      "Break down the plan, go through the tests one by one, compare against international standards, draw the route.",
   },
   {
     src: "/cases/med-consultations/result.webp",
@@ -99,8 +99,8 @@ export default function Page() {
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
-                  She is not allowed to give medical advice. So what does she
-                  sell?
+                  An experienced doctor with no licence to use it. So what does
+                  she sell?
                 </p>
               </FadeIn>
             </div>
@@ -154,8 +154,8 @@ export default function Page() {
                     The constraint
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
-                    She is a researcher, not the patient’s doctor. No diagnosis,
-                    no prescriptions, no instructions.
+                    An infectious disease physician, MD, with no active licence
+                    in Israel. She can explain, but she cannot treat.
                   </p>
                 </div>
               </div>
@@ -163,41 +163,54 @@ export default function Page() {
           </header>
 
           <div id="constraint" className="scroll-mt-20 pb-32">
-            <Section kicker="01 · Context" heading="Why not advice">
+            <Section kicker="01 · Context" heading="A doctor without a licence">
               <Prose>
                 <p>
-                  Oksana Stanevich researches infectious diseases. She has
-                  published in Nature, BMC and Frontiers, and worked on projects
-                  with St&nbsp;Thomas’&nbsp;Hospital in London and Médecins Sans
+                  Oksana Stanevich is an infectious disease physician with an MD
+                  and a research career behind her. She has published in Nature,
+                  BMC and Frontiers, and worked on projects with
+                  St&nbsp;Thomas’&nbsp;Hospital in London and Médecins Sans
                   Frontières.
                 </p>
                 <p>
-                  People come to her in three situations. The diagnosis is
-                  unclear or the treatment has stalled. They doubt the
-                  prescriptions and the tests they have been given. Or they
-                  cannot find their way around the healthcare system at all.
+                  Her licence is not active in Israel, where she lives now.
+                  Nothing she knows has gone anywhere, but the right to practise
+                  is granted by a country, and that country has not granted it.
+                  She cannot diagnose, prescribe or treat there.
                 </p>
                 <p>
-                  She is not their doctor. She cannot diagnose, cannot change a
-                  prescription, cannot tell anyone what to do. Every line I
-                  wrote had to stay on the right side of that.
+                  People keep asking her anyway, and they arrive in three
+                  situations. The diagnosis is unclear or the treatment has
+                  stalled. They doubt the prescriptions and the tests they have
+                  been given. Or they cannot find their way around a health
+                  system that runs in a language and a logic they do not know.
+                </p>
+                <p>
+                  She wanted to sell those conversations, and there are two ways
+                  to write that offer badly. Promise treatment and it is
+                  illegal. Hedge every sentence instead and it reads like
+                  someone selling hope. The copy had to avoid both at once.
                 </p>
               </Prose>
             </Section>
           </div>
 
           <div id="positioning" className="scroll-mt-20 pb-32">
-            <Section kicker="02 · Positioning" heading="The one line">
+            <Section
+              kicker="02 · Positioning"
+              heading="Sell the explanation, not the treatment"
+            >
               <Prose>
                 <p>
-                  The service is not a second opinion on your treatment. It is
-                  an explanation of the treatment you already have.
+                  What she can still give is the thing her patients are missing
+                  anyway. Not another opinion on what to do, but an
+                  understanding of the plan they already have.
                 </p>
               </Prose>
 
               <div className="shell mt-8">
                 <div className="shell-prose">
-                  <Callout label="Runs across the top of every slide">
+                  <Callout label="Across the top of every slide">
                     A consultation about information, not medical advice.
                   </Callout>
                 </div>
@@ -205,14 +218,17 @@ export default function Page() {
 
               <Prose className="mt-8">
                 <p>
-                  It sits at the top of each slide in the same size as
-                  everything else, not in grey at the bottom. Nothing on the
-                  slides contradicts it, so it costs nothing to say first.
+                  That sentence does both jobs. It is the legal boundary stated
+                  plainly, and it is also the description of what is for sale.
+                  Because it is the second thing and not only the first, it runs
+                  across the top of every slide at the same size as everything
+                  else, rather than in grey type at the bottom where a
+                  disclaimer normally hides.
                 </p>
                 <p>
-                  The promise is the other half. You stop being a passive
-                  patient and take part in the process with your mind, not only
-                  your body.
+                  The promise on the other side of that line is what the money
+                  actually buys. You stop being a passive patient and take part
+                  in your own treatment with your mind, not only your body.
                 </p>
               </Prose>
             </Section>
@@ -222,16 +238,23 @@ export default function Page() {
             <Section kicker="03 · Structure" heading="Five slides">
               <Prose>
                 <p>
-                  Ninety minutes of someone’s time is not a product. Five slides
-                  give it edges: the question you already have, who this is for,
-                  what happens in the session, what you are left holding, and
-                  who she is.
+                  Saying that is not the same as selling it. An appointment is
+                  not a product until someone can picture it, so the offer is
+                  five slides, published as a carousel.
                 </p>
                 <p>
-                  Credentials go last. Nature, BMC, Frontiers, St&nbsp;Thomas’
-                  and MSF are the strongest material in the brief, and on the
-                  first slide they are a CV. On the fifth, once a reader has
-                  recognised their own situation, they are proof.
+                  They run in the order a sceptical reader needs. First the
+                  question they already have and have not said out loud. Then
+                  the three situations, so they can find themselves in one. Then
+                  what happens in the ninety minutes. Then the document they are
+                  left holding. And only after that, who she is.
+                </p>
+                <p>
+                  Credentials go last on purpose. Nature, BMC, Frontiers,
+                  St&nbsp;Thomas’ and MSF are the strongest material in the
+                  brief, and on slide one they are a CV. On slide five, once
+                  someone has recognised their own situation, they are the
+                  reason to believe the rest.
                 </p>
               </Prose>
 
@@ -247,15 +270,15 @@ export default function Page() {
             <Section kicker="04 · Visual" heading="Drawn by hand">
               <Prose>
                 <p>
-                  Hand-drawn line illustrations, a washed-out coral, one
-                  typeface. A scribble inside a speech bubble for being lost in
-                  the system, two puzzle pieces for taking a plan apart, a flag
-                  at the end of a dotted path for the roadmap.
+                  Whoever reads this is usually in the middle of the thing it is
+                  about, and already has a folder of hospital paperwork. So none
+                  of it is drawn in medical style. Hand-drawn line
+                  illustrations, a washed-out coral, one typeface.
                 </p>
                 <p>
-                  Whoever is reading this is usually in the middle of the thing
-                  the service is about. A medical subject drawn in medical style
-                  is a hospital form, and they have seen enough of those lately.
+                  A scribble inside a speech bubble for being lost in the
+                  system. Two puzzle pieces for taking a plan apart. A flag at
+                  the end of a dotted path for the way through.
                 </p>
               </Prose>
             </Section>

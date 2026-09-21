@@ -101,7 +101,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "oksana",
     name: "Oksana Stanevich",
-    role: "MD, researcher in public health",
+    role: "MD, infectious disease physician and researcher",
     about: "Positioning, copy and design for her consultation service",
     work: "med-consultations",
     youtube: "Hxc1L59B7A4",
