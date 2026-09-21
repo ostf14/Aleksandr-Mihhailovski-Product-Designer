@@ -173,10 +173,8 @@ export default function Page() {
                   Frontières.
                 </p>
                 <p>
-                  Her licence is not active in Israel, where she lives now.
-                  Nothing she knows has gone anywhere, but the right to practise
-                  is granted by a country, and that country has not granted it.
-                  She cannot diagnose, prescribe or treat there.
+                  She does not hold an active medical licence in Israel, where
+                  she lives, so she cannot diagnose, prescribe or treat there.
                 </p>
                 <p>
                   People keep asking her anyway, and they arrive in three
@@ -218,17 +216,16 @@ export default function Page() {
 
               <Prose className="mt-8">
                 <p>
-                  That sentence does both jobs. It is the legal boundary stated
-                  plainly, and it is also the description of what is for sale.
-                  Because it is the second thing and not only the first, it runs
-                  across the top of every slide at the same size as everything
-                  else, rather than in grey type at the bottom where a
-                  disclaimer normally hides.
+                  That line is the legal boundary and the description of the
+                  product at the same time. A disclaimer usually hides in grey
+                  type at the bottom. This one runs across the top of every
+                  slide, in the same size as everything else, because it is also
+                  the offer.
                 </p>
                 <p>
-                  The promise on the other side of that line is what the money
-                  actually buys. You stop being a passive patient and take part
-                  in your own treatment with your mind, not only your body.
+                  The last line of the third slide says what the money buys. You
+                  stop being a passive patient and start taking part in the
+                  process, with your mind and not just your body.
                 </p>
               </Prose>
             </Section>
@@ -246,7 +243,7 @@ export default function Page() {
                   They run in the order a sceptical reader needs. First the
                   question they already have and have not said out loud. Then
                   the three situations, so they can find themselves in one. Then
-                  what happens in the ninety minutes. Then the document they are
+                  what happens in the consultation. Then the document they are
                   left holding. And only after that, who she is.
                 </p>
                 <p>
@@ -270,15 +267,10 @@ export default function Page() {
             <Section kicker="04 · Visual" heading="Drawn by hand">
               <Prose>
                 <p>
-                  Whoever reads this is usually in the middle of the thing it is
-                  about, and already has a folder of hospital paperwork. So none
-                  of it is drawn in medical style. Hand-drawn line
-                  illustrations, a washed-out coral, one typeface.
-                </p>
-                <p>
-                  A scribble inside a speech bubble for being lost in the
-                  system. Two puzzle pieces for taking a plan apart. A flag at
-                  the end of a dotted path for the way through.
+                  People read this while they are ill or frightened, and they
+                  already have a folder of hospital paperwork. So nothing here
+                  looks clinical. The drawings are made by hand, the coral is
+                  washed out, and there is one typeface.
                 </p>
               </Prose>
             </Section>
