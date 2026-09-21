@@ -1,10 +1,85 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { ArrowUpRight, Play } from "lucide-react";
 import { useTilt } from "./useTilt";
 import type { Testimonial } from "@/lib/testimonials";
 import { getWork, workHref } from "@/lib/works";
+
+/**
+ * Said before anyone commits to pressing play: how long, what language, and
+ * whether they can follow it if they do not speak it. Duration is dropped when
+ * unknown rather than guessed — a YouTube thumbnail prints it anyway.
+ */
+function metaLine(item: Testimonial) {
+  return [
+    item.duration,
+    item.lang.toUpperCase(),
+    item.captions || item.subtitled ? "ENG SUB" : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+/**
+ * The 9:16 media and nothing else — no frame, no caption.
+ *
+ * Its own component because the card is not the only place a clip appears: on
+ * the case page for the work it is about, one testimonial in a card reads as a
+ * card floating alone in a wide column. Same player either way.
+ */
+function TestimonialMedia({
+  item,
+  onStart,
+  playing,
+}: {
+  item: Testimonial;
+  onStart: () => void;
+  playing: boolean;
+}) {
+  if (!item.youtube) {
+    return (
+      /* object-contain rather than cover: the animated credits are part of
+         the composition, so nothing may be cropped off the edge. */
+      <div className="aspect-[9/16] overflow-hidden">
+        <video
+          controls
+          playsInline
+          preload="none"
+          poster={item.poster}
+          lang={item.lang}
+          className="h-full w-full object-contain"
+        >
+          <source src={item.video} type="video/mp4" />
+          {item.captions && (
+            <track
+              kind="captions"
+              src={item.captions}
+              srcLang="en"
+              label="English"
+              default
+            />
+          )}
+        </video>
+      </div>
+    );
+  }
+
+  return playing ? (
+    /* Its own player rather than YouTubeEmbed: that one draws a border and
+       corners, which whatever holds this already does — two radii nested one
+       pixel apart is the sort of thing you see without being able to say what
+       is wrong — and its autoplay means the muted, looping kind a trailer
+       wants, not this. */
+    <YouTubePlayer id={item.youtube} title={item.name} />
+  ) : (
+    <PlayFacade
+      id={item.youtube}
+      label={`Play ${item.name}’s testimonial`}
+      onStart={onStart}
+    />
+  );
+}
 
 /**
  * One vertical testimonial clip, as a card that behaves like a case card:
@@ -32,17 +107,7 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
   const work = item.work ? getWork(item.work) : undefined;
   const tiltRef = useTilt<HTMLElement>();
   const [playing, setPlaying] = useState(false);
-
-  // Said before anyone commits to pressing play: how long, what language, and
-  // whether they can follow it if they do not speak it. Duration is dropped
-  // when unknown rather than guessed — a YouTube thumbnail prints it anyway.
-  const meta = [
-    item.duration,
-    item.lang.toUpperCase(),
-    item.captions || item.subtitled ? "ENG SUB" : null,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  const meta = metaLine(item);
 
   const start = () => {
     // Flatten before the player lands. From here on the iframe eats the
@@ -68,46 +133,7 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
       <span aria-hidden className="spot" />
 
       <div className="relative border-b border-line/60 bg-surface-deep">
-        {item.youtube ? (
-          playing ? (
-            /* Its own player rather than YouTubeEmbed: that one draws a border
-               and corners, which the card already does — two radii nested one
-               pixel apart is the sort of thing you see without being able to
-               say what is wrong — and its autoplay means the muted, looping
-               kind a trailer wants, not this. */
-            <YouTubePlayer id={item.youtube} title={item.name} />
-          ) : (
-            <PlayFacade
-              id={item.youtube}
-              label={`Play ${item.name}’s testimonial`}
-              onStart={start}
-            />
-          )
-        ) : (
-          /* object-contain rather than cover: the animated credits are part of
-             the composition, so nothing may be cropped off the edge. */
-          <div className="aspect-[9/16] overflow-hidden">
-            <video
-              controls
-              playsInline
-              preload="none"
-              poster={item.poster}
-              lang={item.lang}
-              className="h-full w-full object-contain"
-            >
-              <source src={item.video} type="video/mp4" />
-              {item.captions && (
-                <track
-                  kind="captions"
-                  src={item.captions}
-                  srcLang="en"
-                  label="English"
-                  default
-                />
-              )}
-            </video>
-          </div>
-        )}
+        <TestimonialMedia item={item} onStart={start} playing={playing} />
       </div>
 
       {/* Satoshi throughout, including the two label rows — the uppercase and
@@ -146,6 +172,57 @@ export function TestimonialVideo({ item }: { item: Testimonial }) {
 }
 
 /**
+ * One testimonial on the page of the work it is about.
+ *
+ * Not the card. A card is a thing in a row of things, and on a case page there
+ * is exactly one clip, about the case you are already reading — standing alone
+ * in a wide column it read as a tall object shoved against the left edge with
+ * half the measure empty beside it.
+ *
+ * So the clip is one column and who said it is the other, on the text measure
+ * rather than the full shell, and the video is sized to what a talking head
+ * needs rather than to what the container allows. No tilt and no spotlight
+ * either: those said "this is one of several, pick one", and here there is
+ * nothing to pick.
+ *
+ * The link back to the work is dropped for the obvious reason.
+ */
+export function TestimonialBeside({ item }: { item: Testimonial }) {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    /* Centred against the clip, not aligned to its top. A 9:16 video is a tall
+       thin object and the attribution beside it is four short lines: top
+       alignment leaves the whole lower two thirds of the row empty and reads
+       as a caption that ran out. */
+    <figure className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
+      <div className="w-full max-w-[280px] shrink-0 overflow-hidden rounded-2xl border border-line/60 bg-surface-deep sm:w-[240px]">
+        <TestimonialMedia
+          item={item}
+          onStart={() => setPlaying(true)}
+          playing={playing}
+        />
+      </div>
+
+      <figcaption className="min-w-0">
+        <div className="font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-fg">
+          {item.name}
+        </div>
+        <div className="mt-1.5 font-sans text-[11px] uppercase tracking-[0.14em] text-muted dark:text-faint">
+          {item.role}
+        </div>
+        <p className="mt-4 text-[1.0625rem] leading-[1.6] text-fg/80">
+          {item.about}
+        </p>
+        <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.14em] text-faint">
+          {metaLine(item)}
+        </p>
+      </figcaption>
+    </figure>
+  );
+}
+
+/**
  * The card face before anyone has pressed play.
  *
  * The still comes from YouTube's own thumbnail host, which serves it without a
@@ -165,7 +242,30 @@ function PlayFacade({
   label: string;
   onStart: () => void;
 }) {
-  const [poster, setPoster] = useState(true);
+  /**
+   * maxresdefault first, hqdefault second, nothing third.
+   *
+   * YouTube only generates maxresdefault for uploads that had the resolution
+   * for it, so on some clips it is a 404 — and a 404 in an <img> is a broken
+   * picture glyph in the corner of the frame, which is what was there.
+   * hqdefault always exists, and at 480 wide it is still twice the 240 this is
+   * drawn at beside a case.
+   */
+  const [step, setStep] = useState(0);
+  const src = [
+    `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
+    `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+  ][step];
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // onError alone is not enough. The img is server-rendered, so it can fail
+  // before React has attached anything to it, and the handler then never runs
+  // — which is exactly how a broken glyph survives. Ask the element directly
+  // once, on mount: complete with no intrinsic width is a load that failed.
+  useLayoutEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth === 0) setStep((s) => s + 1);
+  }, [step]);
 
   return (
     <button
@@ -174,15 +274,17 @@ function PlayFacade({
       aria-label={label}
       className="relative block aspect-[9/16] w-full overflow-hidden"
     >
-      {poster && (
+      {src && (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
-          src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+          ref={imgRef}
+          key={src}
+          src={src}
           alt=""
           aria-hidden
           loading="lazy"
           decoding="async"
-          onError={() => setPoster(false)}
+          onError={() => setStep((s) => s + 1)}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]"
         />
       )}

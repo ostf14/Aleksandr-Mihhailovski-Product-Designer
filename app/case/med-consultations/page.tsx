@@ -7,7 +7,7 @@ import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
-import { TestimonialGrid } from "@/components/TestimonialsSection";
+import { TestimonialBeside } from "@/components/TestimonialVideo";
 import { testimonialsForWork } from "@/lib/testimonials";
 import { workMetadata } from "@/lib/works";
 import type { GraphicItem } from "@/lib/graphic";
@@ -21,7 +21,6 @@ const toc: TocItem[] = [
   { id: "slides", label: "Five slides" },
   { id: "voice", label: "Drawn, not diagrammed" },
   { id: "testimonial", label: "What Oksana says" },
-  { id: "lessons", label: "What I learned" },
 ];
 
 /**
@@ -29,53 +28,48 @@ const toc: TocItem[] = [
  *
  * Reusing GraphicGallery rather than laying these out by hand: it already has
  * the grid, the lightbox and the caption treatment, and these slides need all
- * three — at three to a row the type on them is too small to read, and the
- * lightbox is how you actually read one.
+ * three — the lightbox is how you actually read one.
+ *
+ * span 3 is two to a row. They sit on the text measure rather than the full
+ * shell, so the reading column does not change width halfway down the page:
+ * at three across in the wide container they stuck out past every paragraph
+ * above them, and each slide was small enough that the type on it was a
+ * texture rather than words.
  */
 const slides: GraphicItem[] = [
   {
     src: "/cases/med-consultations/hook.webp",
+    span: 3,
     alt: "Opening slide — the doctor told you what to do, and is it clear why?",
     caption:
       "The question a patient has and rarely asks out loud — with the price in plain sight, not behind a “contact for details”.",
   },
   {
     src: "/cases/med-consultations/for-you-if.webp",
+    span: 3,
     alt: "Slide listing who the consultation is for",
     caption:
       "Who it is for, written as three situations you recognise rather than three services you have to interpret.",
   },
   {
     src: "/cases/med-consultations/how-it-works.webp",
+    span: 3,
     alt: "Slide explaining the four steps of the consultation",
     caption:
       "The mechanism in four steps, so the hour has a shape before you agree to pay for it.",
   },
   {
     src: "/cases/med-consultations/result.webp",
+    span: 3,
     alt: "Slide describing the document you receive",
     caption:
       "What you leave with. Naming the document is what turns a conversation into something you receive.",
   },
   {
     src: "/cases/med-consultations/expertise.webp",
+    span: 3,
     alt: "Slide covering scientific background and international practice",
     caption: "Credentials last, once there is a reason to care about them.",
-  },
-];
-
-const lessons = [
-  {
-    h: "A legal constraint is a positioning brief.",
-    p: "I spent the first pass trying to write around the limit — hedged verbs, softened promises, a disclaimer doing the work the copy would not. Writing from the limit instead took one sentence and made the offer sharper than the hedged version had been.",
-  },
-  {
-    h: "Credentials go last.",
-    p: "Nature, BMC, Frontiers, St Thomas’, MSF — the strongest material in the whole brief, and it opens nothing. Nobody evaluates a stranger’s publication record before they have decided they have the problem she solves. Put it on slide five and it is proof; put it on slide one and it is a CV.",
-  },
-  {
-    h: "Name the deliverable.",
-    p: "“A consultation” is an hour of someone’s time and no one knows what they are buying. “A structured overview, a list of options to discuss with your doctor, and a navigation map” is a thing with edges. The service did not change; what it was possible to understand about it did.",
   },
 ];
 
@@ -256,7 +250,9 @@ export default function Page() {
               </Prose>
 
               <div className="shell mt-10">
-                <GraphicGallery items={slides} />
+                <div className="shell-prose">
+                  <GraphicGallery items={slides} />
+                </div>
               </div>
             </Section>
           </div>
@@ -285,33 +281,16 @@ export default function Page() {
           {testimonials.length > 0 && (
             <div id="testimonial" className="scroll-mt-20 pb-32">
               <Section kicker="05 · Client" heading="What Oksana says">
-                <div className="shell mt-2">
-                  <TestimonialGrid items={testimonials} />
+                <div className="shell">
+                  <div className="shell-prose space-y-10">
+                    {testimonials.map((item) => (
+                      <TestimonialBeside key={item.id} item={item} />
+                    ))}
+                  </div>
                 </div>
               </Section>
             </div>
           )}
-
-          <div id="lessons" className="scroll-mt-20 pb-32">
-            <Section kicker="06 · Lessons" heading="What I learned">
-              <div className="shell">
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-                  {lessons.map((l, i) => (
-                    <FadeIn key={l.h} delay={i * 0.08} className="h-full">
-                      <div className="h-full rounded-xl border border-line bg-surface p-6">
-                        <h3 className="font-sans text-[1.05rem] font-semibold leading-[1.35] tracking-tight">
-                          {l.h}
-                        </h3>
-                        <p className="mt-3 text-[0.95rem] leading-[1.6] text-fg/80">
-                          {l.p}
-                        </p>
-                      </div>
-                    </FadeIn>
-                  ))}
-                </div>
-              </div>
-            </Section>
-          </div>
 
           <MoreCases currentId="med-consultations" />
         </article>
