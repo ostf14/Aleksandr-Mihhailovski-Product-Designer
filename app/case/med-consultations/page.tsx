@@ -223,8 +223,8 @@ export default function Page() {
                   the offer.
                 </p>
                 <p>
-                  The last line of the third slide says what the money buys. You
-                  stop being a passive patient and start taking part in the
+                  The last line of the fourth slide says what the money buys.
+                  You stop being a passive patient and start taking part in the
                   process, with your mind and not just your body.
                 </p>
               </Prose>
@@ -234,11 +234,7 @@ export default function Page() {
           <div id="slides" className="scroll-mt-20 pb-32">
             <Section kicker="03 · Structure" heading="Five slides">
               <Prose>
-                <p>
-                  Saying that is not the same as selling it. An appointment is
-                  not a product until someone can picture it, so the offer is
-                  five slides, published as a carousel.
-                </p>
+                <p>The offer is five slides, published as a carousel.</p>
                 <p>
                   They run in the order a sceptical reader needs. First the
                   question they already have and have not said out loud. Then
@@ -247,11 +243,10 @@ export default function Page() {
                   left holding. And only after that, who she is.
                 </p>
                 <p>
-                  Credentials go last on purpose. Nature, BMC, Frontiers,
-                  St&nbsp;Thomas’ and MSF are the strongest material in the
-                  brief, and on slide one they are a CV. On slide five, once
-                  someone has recognised their own situation, they are the
-                  reason to believe the rest.
+                  Credentials go last. Nature, BMC, Frontiers, St&nbsp;Thomas’
+                  and MSF are the strongest material in the brief, and they sit
+                  on the fifth slide. You recognise your own situation first and
+                  check who is offering to help second.
                 </p>
               </Prose>
 
@@ -283,8 +278,8 @@ export default function Page() {
                   The screen is cold in the same way. This is a carousel in a
                   feed, read on a phone, offered by someone you will only ever
                   meet on a video call. So the paper and the pencil push against
-                  two things at once: the hospital, and the device it is all
-                  being read on.
+                  two equally cold things at once: the hospital, and the device
+                  it is all being read on.
                 </p>
               </Prose>
             </Section>
