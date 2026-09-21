@@ -16,10 +16,10 @@ export const metadata = workMetadata("med-consultations");
 
 const toc: TocItem[] = [
   { id: "overview", label: "Overview" },
-  { id: "constraint", label: "The line she cannot cross" },
-  { id: "positioning", label: "Selling understanding" },
+  { id: "constraint", label: "Why not advice" },
+  { id: "positioning", label: "The one line" },
   { id: "slides", label: "Five slides" },
-  { id: "voice", label: "Drawn, not diagrammed" },
+  { id: "voice", label: "Drawn by hand" },
   { id: "testimonial", label: "What Oksana says" },
 ];
 
@@ -42,34 +42,35 @@ const slides: GraphicItem[] = [
     span: 3,
     alt: "Opening slide — the doctor told you what to do, and is it clear why?",
     caption:
-      "The question a patient has and rarely asks out loud — with the price in plain sight, not behind a “contact for details”.",
+      "The opening question, and the price in plain sight rather than behind a contact form.",
   },
   {
     src: "/cases/med-consultations/for-you-if.webp",
     span: 3,
     alt: "Slide listing who the consultation is for",
     caption:
-      "Who it is for, written as three situations you recognise rather than three services you have to interpret.",
+      "Three situations to recognise yourself in, instead of three services to interpret.",
   },
   {
     src: "/cases/med-consultations/how-it-works.webp",
     span: 3,
     alt: "Slide explaining the four steps of the consultation",
     caption:
-      "The mechanism in four steps, so the hour has a shape before you agree to pay for it.",
+      "The four steps of the session, so it has a shape before you pay for it.",
   },
   {
     src: "/cases/med-consultations/result.webp",
     span: 3,
     alt: "Slide describing the document you receive",
     caption:
-      "What you leave with. Naming the document is what turns a conversation into something you receive.",
+      "The document you leave with. A structured overview, options to raise with your own doctor, and a route through the system.",
   },
   {
     src: "/cases/med-consultations/expertise.webp",
     span: 3,
     alt: "Slide covering scientific background and international practice",
-    caption: "Credentials last, once there is a reason to care about them.",
+    caption:
+      "Publications, international practice, complex cases, and how she works with you.",
   },
 ];
 
@@ -93,13 +94,13 @@ export default function Page() {
               </FadeIn>
               <FadeIn delay={0.05}>
                 <h1 className="font-sans text-hero font-semibold tracking-tight">
-                  Consultation About Information
+                  Medical Consultations
                 </h1>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <p className="mt-4 max-w-[42rem] text-[1.125rem] leading-[1.55] text-fg/70">
-                  A doctor who is not allowed to give medical advice. So what is
-                  she selling?
+                  She is not allowed to give medical advice. So what does she
+                  sell?
                 </p>
               </FadeIn>
             </div>
@@ -111,9 +112,9 @@ export default function Page() {
                     Overview
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
-                    Positioning, content structure and visual identity for a
-                    paid consultation run by an infectious-disease researcher.
-                    The whole brief turned on one legal fact.
+                    Positioning, content and visual identity for a paid
+                    consultation service. Ninety minutes, 800 shekels, sold as a
+                    five-slide carousel.
                   </p>
                 </div>
 
@@ -132,9 +133,9 @@ export default function Page() {
                   </div>
                   <ul className="space-y-1.5 text-xs leading-[1.55] text-fg/90">
                     {[
-                      "Positioning and messaging",
-                      "A five-slide service narrative",
-                      "Illustration and type treatment",
+                      "Positioning line",
+                      "Five slides, written and designed",
+                      "Illustration and type",
                       "The standing disclaimer",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
@@ -150,11 +151,11 @@ export default function Page() {
 
                 <div className="md:border-l md:border-line md:pl-6">
                   <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                    Result
+                    The constraint
                   </div>
                   <p className="text-[0.95rem] leading-[1.55] text-fg/90">
-                    A service that explains itself in five slides. Oksana’s own
-                    account of it is at the bottom of this page.
+                    She is a researcher, not the patient’s doctor. No diagnosis,
+                    no prescriptions, no instructions.
                   </p>
                 </div>
               </div>
@@ -162,90 +163,75 @@ export default function Page() {
           </header>
 
           <div id="constraint" className="scroll-mt-20 pb-32">
-            <Section kicker="01 · Context" heading="The line she cannot cross">
+            <Section kicker="01 · Context" heading="Why not advice">
               <Prose>
                 <p>
-                  Oksana Stanevich is a researcher in infectious diseases,
-                  published in Nature, BMC and Frontiers, with practice ranging
-                  from projects with St&nbsp;Thomas’&nbsp;Hospital in London to
-                  Médecins Sans Frontières. She wanted to sell an hour of her
-                  time to people who are lost: a diagnosis nobody explained, a
-                  prescription they do not understand, a healthcare system they
-                  cannot navigate.
+                  Oksana Stanevich researches infectious diseases. She has
+                  published in Nature, BMC and Frontiers, and worked on projects
+                  with St&nbsp;Thomas’&nbsp;Hospital in London and Médecins Sans
+                  Frontières.
                 </p>
                 <p>
-                  She is not their treating doctor. She cannot diagnose them,
-                  cannot change what they have been prescribed, cannot tell them
-                  what to do. Anything that reads as medical advice is both
-                  legally dangerous and, more to the point, untrue.
+                  People come to her in three situations. The diagnosis is
+                  unclear or the treatment has stalled. They doubt the
+                  prescriptions and the tests they have been given. Or they
+                  cannot find their way around the healthcare system at all.
                 </p>
                 <p>
-                  The usual way out is to hedge: marketing copy that promises
-                  what a disclaimer at the bottom quietly takes back. That is a
-                  service nobody can trust, sold to people whose whole problem
-                  is that they have stopped being able to tell who to trust.
+                  She is not their doctor. She cannot diagnose, cannot change a
+                  prescription, cannot tell anyone what to do. Every line I
+                  wrote had to stay on the right side of that.
                 </p>
               </Prose>
             </Section>
           </div>
 
           <div id="positioning" className="scroll-mt-20 pb-32">
-            <Section
-              kicker="02 · Positioning"
-              heading="Selling understanding, not advice"
-            >
+            <Section kicker="02 · Positioning" heading="The one line">
               <Prose>
                 <p>
-                  So the limit stopped being a disclaimer and became the
-                  product. She is not selling a second opinion on your
-                  treatment. She is selling an understanding of the treatment
-                  you already have.
+                  The service is not a second opinion on your treatment. It is
+                  an explanation of the treatment you already have.
                 </p>
               </Prose>
 
               <div className="shell mt-8">
                 <div className="shell-prose">
-                  <Callout label="The line the whole service hangs on">
-                    A consultation about information — not medical advice.
+                  <Callout label="Runs across the top of every slide">
+                    A consultation about information, not medical advice.
                   </Callout>
                 </div>
               </div>
 
               <Prose className="mt-8">
                 <p>
-                  It is accurate, and it is also the better offer. A second
-                  opinion you are not in a position to act on is worth little.
-                  Knowing what your own plan actually says, what each test is
-                  for, and how the same case would be treated somewhere else is
-                  worth a great deal — and it is the thing she can legitimately
-                  give.
+                  It sits at the top of each slide in the same size as
+                  everything else, not in grey at the bottom. Nothing on the
+                  slides contradicts it, so it costs nothing to say first.
                 </p>
                 <p>
-                  The same sentence fixed the other end of the funnel. What the
-                  buyer gets is not a cure, it is a change of position: you stop
-                  being a passive patient and start taking part in the process,
-                  with your mind rather than only your body. The disclaimer that
-                  would normally be set in grey 8pt at the bottom runs across
-                  the top of every slide instead, in the same weight as
-                  everything else. Nothing on the card contradicts it, so it
-                  costs nothing to say out loud.
+                  The promise is the other half. You stop being a passive
+                  patient and take part in the process with your mind, not only
+                  your body.
                 </p>
               </Prose>
             </Section>
           </div>
 
           <div id="slides" className="scroll-mt-20 pb-32">
-            <Section
-              kicker="03 · Structure"
-              heading="The service, as five slides"
-            >
+            <Section kicker="03 · Structure" heading="Five slides">
               <Prose>
                 <p>
-                  “I will explain things to you” is not a product. Five slides
-                  give it edges a stranger can hold, and the order is the order
-                  a sceptical reader needs: recognise yourself, understand the
-                  mechanism, see what you are handed, and only then check who is
-                  handing it to you.
+                  Ninety minutes of someone’s time is not a product. Five slides
+                  give it edges: the question you already have, who this is for,
+                  what happens in the session, what you are left holding, and
+                  who she is.
+                </p>
+                <p>
+                  Credentials go last. Nature, BMC, Frontiers, St&nbsp;Thomas’
+                  and MSF are the strongest material in the brief, and on the
+                  first slide they are a CV. On the fifth, once a reader has
+                  recognised their own situation, they are proof.
                 </p>
               </Prose>
 
@@ -258,21 +244,18 @@ export default function Page() {
           </div>
 
           <div id="voice" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Visual" heading="Drawn, not diagrammed">
+            <Section kicker="04 · Visual" heading="Drawn by hand">
               <Prose>
                 <p>
-                  Hand-drawn line illustration, a washed coral, one typeface. A
-                  medical service drawn in medical style is a hospital form, and
-                  someone reading this has had enough of those lately. The
-                  drawings are single-stroke and deliberately unsteady: a
-                  tangled scribble inside a speech bubble for being lost in the
-                  system, two puzzle pieces for taking a plan apart, a flag at
-                  the end of a dotted path for the roadmap.
+                  Hand-drawn line illustrations, a washed-out coral, one
+                  typeface. A scribble inside a speech bubble for being lost in
+                  the system, two puzzle pieces for taking a plan apart, a flag
+                  at the end of a dotted path for the roadmap.
                 </p>
                 <p>
-                  The coral is washed back to a watercolour rather than left at
-                  full strength. A saturated red on a medical card reads as a
-                  result you did not want.
+                  Whoever is reading this is usually in the middle of the thing
+                  the service is about. A medical subject drawn in medical style
+                  is a hospital form, and they have seen enough of those lately.
                 </p>
               </Prose>
             </Section>

@@ -102,8 +102,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: "oksana",
     name: "Oksana Stanevich",
     role: "MD, researcher in public health",
-    about:
-      "Productised the consultation service and designed the session cards",
+    about: "Positioning, copy and design for her consultation service",
     work: "med-consultations",
     youtube: "Hxc1L59B7A4",
     lang: "ru",

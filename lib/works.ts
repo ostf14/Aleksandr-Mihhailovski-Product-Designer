@@ -144,9 +144,8 @@ export const WORKS: Work[] = [
   },
   {
     slug: "med-consultations",
-    title: "Consultation About Information",
-    blurb:
-      "A doctor who is not allowed to give medical advice. So what is she selling?",
+    title: "Medical Consultations",
+    blurb: "She is not allowed to give medical advice. So what does she sell?",
     role: "Brand & content",
     org: "Oksana Stanevich",
     year: "2025",
@@ -155,10 +154,10 @@ export const WORKS: Work[] = [
     cover: {
       type: "image",
       src: "/cases/med-consultations/cover.webp",
-      alt: "Consultation about information — service slides for Oksana Stanevich",
+      alt: "Medical consultations — service slides for Oksana Stanevich",
     },
     metaDescription:
-      "Positioning, content structure and visual identity for a medical consultation service that could not legally give medical advice.",
+      "Positioning, content and visual identity for a paid medical consultation service that cannot legally give medical advice.",
   },
   {
     slug: "my-sleeping-gypsy",
