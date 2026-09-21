@@ -19,7 +19,7 @@ const toc: TocItem[] = [
   { id: "constraint", label: "A doctor without a licence" },
   { id: "positioning", label: "Sell the explanation" },
   { id: "slides", label: "Five slides" },
-  { id: "voice", label: "Drawn by hand" },
+  { id: "voice", label: "Medical, but warm" },
   { id: "testimonial", label: "What Oksana says" },
 ];
 
@@ -264,13 +264,20 @@ export default function Page() {
           </div>
 
           <div id="voice" className="scroll-mt-20 pb-32">
-            <Section kicker="04 · Visual" heading="Drawn by hand">
+            <Section kicker="04 · Visual" heading="Medical, but warm">
               <Prose>
                 <p>
-                  People read this while they are ill or frightened, and they
-                  already have a folder of hospital paperwork. So nothing here
-                  looks clinical. The drawings are made by hand, the coral is
-                  washed out, and there is one typeface.
+                  Hospital design is cold, and whoever is reading this is
+                  frightened already. So the slides use the signals of medicine
+                  and turn the temperature up on every one of them.
+                </p>
+                <p>
+                  Paper, because paper is what a doctor hands you. White and
+                  pastel, because that is what a clinic looks like. Red, because
+                  red is blood and the cross and the heart. Then the red is
+                  washed out to a coral, the paper is drawn by hand instead of
+                  printed, and the same signals read as calm rather than
+                  clinical.
                 </p>
               </Prose>
             </Section>
