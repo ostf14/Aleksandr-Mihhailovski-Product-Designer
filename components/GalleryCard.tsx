@@ -6,10 +6,14 @@ import { useTilt } from "./useTilt";
 
 /**
  * The gallery entry, built to the same pattern as a case panel in
- * StickyCases.tsx — cover on top at a fixed height, body underneath, one
- * typeface, and the same tilt and spotlight on hover. It used to be the old
- * landscape card with the image squeezed into a 38% column, which read as a
- * different kind of thing sitting under a section that had moved on.
+ * StickyCases.tsx — cover on top, body underneath, one typeface, and the same
+ * tilt and spotlight on hover. It used to be the old landscape card with the
+ * image squeezed into a 38% column, which read as a different kind of thing
+ * sitting under a section that had moved on.
+ *
+ * The cover follows the same rule as the panels' — 150px on a phone, 16:9 from
+ * 441 — and has to, or the two sit one above the other at 767 with a proper
+ * cover on every case and a strip on this one.
  *
  * Deliberately not sharing a component with Panel: that one carries the reveal
  * and a Work record, neither of which applies to a single static card, and
@@ -27,7 +31,7 @@ export function GalleryCard() {
     >
       <span aria-hidden className="spot" />
 
-      <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep md:aspect-video md:h-auto">
+      <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep min-[441px]:aspect-video min-[441px]:h-auto">
         <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
           {/* Scaled out from the top edge. The source is a full-page
               screenshot whose own backdrop is #0d0d0d, and the white page
