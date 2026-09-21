@@ -108,13 +108,20 @@ function Panel({ work, index }: { work: Work; index: number }) {
             transform alone — see useTilt for why that matters. */}
         <span aria-hidden className="spot" />
 
-        {/* viz — a ratio on the desktop, not a height. 240px was chosen when
-            the panel was 475 wide, which made the cover a reasonable 1.98:1;
-            the panel then grew to 750 and the height stayed, so the cover
-            drifted to 3.12:1 — wider than any cinema format, which is what
-            made these read as stretched. 16:9 is also the native shape of the
-            screenshots most of them are. Mobile keeps its fixed 150. */}
-        <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep md:aspect-video md:h-auto">
+        {/* viz — a ratio, not a height. 240px was chosen when the panel was 475
+            wide, which made the cover a reasonable 1.98:1; the panel then grew
+            to 750 and the height stayed, so the cover drifted to 3.12:1 —
+            wider than any cinema format, which is what made these read as
+            stretched. 16:9 is also the native shape of the screenshots most of
+            them are.
+
+            The same thing happened again below md, where a fixed 150 was kept
+            "for mobile": right at 296 wide (1.96:1), but the card runs the
+            full width of the page there, so at 767 it was 719 x 150 — 4.78:1,
+            a strip. The ratio therefore takes over at 441, the point past which
+            the card stops being phone-sized. Under it 150 still lands where it
+            always did (1.96–2.6:1), and the folded Fold at 344 is untouched. */}
+        <div className="relative h-[150px] overflow-hidden border-b border-line/60 bg-surface dark:bg-surface-deep min-[441px]:aspect-video min-[441px]:h-auto">
           <div className="h-full w-full transition-transform duration-t6 ease-out-expo group-hover:scale-[1.03]">
             {/* Only the first two covers load with the document. They are the
                 heaviest thing on the page and there are seven of them; a card
