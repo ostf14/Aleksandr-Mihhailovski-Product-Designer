@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { PixelTransition } from "@/components/PixelTransition";
 import { UnderConstruction } from "@/components/UnderConstruction";
 import {
@@ -92,6 +93,13 @@ export default function RootLayout({
         {children}
         <PixelTransition />
         <UnderConstruction />
+        {/* Vercel Web Analytics. Chosen over the alternatives for one reason
+            that matters on this site: the script is served from this domain
+            (/_vercel/insights/script.js), not from a third party. It is also
+            cookieless, so it needs no banner, and about a kilobyte. It only
+            records anything once Web Analytics is switched on for the project
+            in the Vercel dashboard; until then this renders nothing. */}
+        <Analytics />
       </body>
     </html>
   );

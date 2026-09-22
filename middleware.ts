@@ -54,7 +54,11 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Everything except Next's own assets, the OG endpoint and anything with a
-  // file extension — those must never be bounced.
-  matcher: ["/((?!_next/static|_next/image|api/|favicon.ico|.*\\.).*)"],
+  // Everything except Next's own assets, the OG endpoint, the analytics
+  // beacon and anything with a file extension — those must never be bounced.
+  //
+  // `_vercel` is here because the beacon POSTs to /_vercel/insights/event,
+  // which has no file extension and would otherwise run this middleware on
+  // every pageview for nothing.
+  matcher: ["/((?!_next/static|_next/image|_vercel|api/|favicon.ico|.*\\.).*)"],
 };
