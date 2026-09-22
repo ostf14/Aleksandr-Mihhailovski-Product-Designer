@@ -46,34 +46,37 @@ export const WORKS: Work[] = [
       "Don't Tread On Cat — a game in development. Announcement story trailer.",
   },
   {
-    slug: "3d-puzzle",
-    title: "3D Museum Puzzle",
-    blurb:
-      "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
-    role: "Design Engineer",
-    org: "Self-initiated",
+    slug: "chtenye",
+    title: "Educational Platform Redesign",
+    blurb: "Users couldn’t explain what a single menu item meant",
+    role: "Product Designer",
+    org: "Chtenye",
     kind: "case",
-    disciplines: ["engineering", "product"],
-    cover: {
-      type: "video",
-      src: "/demo-card.mp4",
-      alt: "3D museum puzzle prototype in motion",
-    },
-  },
-  {
-    slug: "remargin",
-    title: "ReMargin",
-    blurb:
-      "I wanted a reader where annotations matter as much as the text. Built one.",
-    role: "Design Engineer",
-    org: "Self-initiated",
-    kind: "case",
-    disciplines: ["engineering", "product"],
+    disciplines: ["product"],
     cover: {
       type: "image",
-      src: "/Hero.webp",
-      alt: "ReMargin reader — margin notes connected to highlighted text",
+      src: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
+      alt: "Chtenye educational platform — redesigned navigation",
     },
+    metaTitle: "Chtenye — Educational Platform Redesign",
+    metaDescription:
+      "Information architecture and platform redesign for an edtech product users found impossible to navigate.",
+  },
+  {
+    slug: "stories-editor",
+    title: "Stories Editor",
+    blurb: "How I eliminated a 2-day content publishing bottleneck",
+    role: "Product Designer",
+    org: "Seamm",
+    kind: "case",
+    disciplines: ["product"],
+    cover: {
+      type: "image",
+      src: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
+      alt: "Stories editor UI",
+    },
+    metaDescription:
+      "How I eliminated a 2-day content publishing bottleneck with a self-serve stories editor at Seamm.",
   },
   {
     slug: "push-notifications",
@@ -93,72 +96,19 @@ export const WORKS: Work[] = [
       "How to kill the send button nobody wanted to press — a self-serve push campaign manager at Seamm.",
   },
   {
-    slug: "multi-agent-workflow",
-    title: "Multi-Agent AI Workflow",
+    slug: "remargin",
+    title: "ReMargin",
     blurb:
-      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
-    role: "Solo Builder",
-    org: "Internal R&D",
+      "I wanted a reader where annotations matter as much as the text. Built one.",
+    role: "Design Engineer",
+    org: "Self-initiated",
     kind: "case",
     disciplines: ["engineering", "product"],
     cover: {
       type: "image",
-      src: "/cases/multi-agent-workflow/cover.jpg",
-      alt: "Multi-agent AI workflow — orchestrated prototyping pipeline",
+      src: "/Hero.webp",
+      alt: "ReMargin reader — margin notes connected to highlighted text",
     },
-    metaDescription:
-      "I built an AI-orchestrated prototyping pipeline — and what it taught me about product design.",
-  },
-  {
-    slug: "stories-editor",
-    title: "Stories Editor",
-    blurb: "How I eliminated a 2-day content publishing bottleneck",
-    role: "Product Designer",
-    org: "Seamm",
-    kind: "case",
-    disciplines: ["product"],
-    cover: {
-      type: "image",
-      src: "https://framerusercontent.com/images/WqXrVnU46HVuCSUfhEXwfBQyw.png",
-      alt: "Stories editor UI",
-    },
-    metaDescription:
-      "How I eliminated a 2-day content publishing bottleneck with a self-serve stories editor at Seamm.",
-  },
-  {
-    slug: "chtenye",
-    title: "Educational Platform Redesign",
-    blurb: "Users couldn’t explain what a single menu item meant",
-    role: "Product Designer",
-    org: "Chtenye",
-    kind: "case",
-    disciplines: ["product"],
-    cover: {
-      type: "image",
-      src: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
-      alt: "Chtenye educational platform — redesigned navigation",
-    },
-    metaTitle: "Chtenye — Educational Platform Redesign",
-    metaDescription:
-      "Information architecture and platform redesign for an edtech product users found impossible to navigate.",
-  },
-  {
-    slug: "med-consultations",
-    title: "Positioning and Design for Medical Consultations",
-    blurb:
-      "An experienced doctor with no licence to use it. So what does she sell?",
-    role: "Brand & content",
-    org: "Oksana Stanevich",
-    year: "2025",
-    kind: "case",
-    disciplines: ["graphic"],
-    cover: {
-      type: "image",
-      src: "/cases/med-consultations/cover.webp",
-      alt: "Medical consultations — service slides for Oksana Stanevich",
-    },
-    metaDescription:
-      "Positioning, content and visual identity for a paid medical consultation service that cannot legally give medical advice.",
   },
   {
     slug: "my-sleeping-gypsy",
@@ -179,6 +129,56 @@ export const WORKS: Work[] = [
     },
     metaDescription:
       "Selling heritage craftsmanship without looking like fast fashion — e-commerce redesign for a linen brand.",
+  },
+  {
+    slug: "multi-agent-workflow",
+    title: "Multi-Agent AI Workflow",
+    blurb:
+      "I built a 10× prototyping workflow using AI agents — and what it taught me about product design",
+    role: "Solo Builder",
+    org: "Internal R&D",
+    kind: "case",
+    disciplines: ["engineering", "product"],
+    cover: {
+      type: "image",
+      src: "/cases/multi-agent-workflow/cover.jpg",
+      alt: "Multi-agent AI workflow — orchestrated prototyping pipeline",
+    },
+    metaDescription:
+      "I built an AI-orchestrated prototyping pipeline — and what it taught me about product design.",
+  },
+  {
+    slug: "med-consultations",
+    title: "Positioning and Design for Medical Consultations",
+    blurb:
+      "An experienced doctor with no licence to use it. So what does she sell?",
+    role: "Brand & content",
+    org: "Oksana Stanevich",
+    year: "2025",
+    kind: "case",
+    disciplines: ["graphic"],
+    cover: {
+      type: "image",
+      src: "/cases/med-consultations/cover.webp",
+      alt: "Medical consultations — service slides for Oksana Stanevich",
+    },
+    metaDescription:
+      "Positioning, content and visual identity for a paid medical consultation service that cannot legally give medical advice.",
+  },
+  {
+    slug: "3d-puzzle",
+    title: "3D Museum Puzzle",
+    blurb:
+      "Applied to a casual game studio, got rejected, built a working 3D puzzle prototype instead.",
+    role: "Design Engineer",
+    org: "Self-initiated",
+    kind: "case",
+    disciplines: ["engineering", "product"],
+    cover: {
+      type: "video",
+      src: "/demo-card.mp4",
+      alt: "3D museum puzzle prototype in motion",
+    },
   },
   {
     slug: "other",
