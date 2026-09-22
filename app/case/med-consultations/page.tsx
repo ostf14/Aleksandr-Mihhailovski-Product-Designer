@@ -279,11 +279,10 @@ export default function Page() {
                   clinical.
                 </p>
                 <p>
-                  The screen is cold in the same way. This is a carousel in a
-                  feed, read on a phone, offered by someone you will only ever
-                  meet on a video call. So the paper and the pencil push against
-                  two equally cold things at once: the hospital, and the device
-                  it is all being read on.
+                  This is a carousel in a feed, read on a phone, offered by
+                  someone you will only ever meet on a video call. So the paper
+                  and the pencil push against two equally cold things at once:
+                  the hospital, and the device it is all being read on.
                 </p>
               </Prose>
             </Section>
