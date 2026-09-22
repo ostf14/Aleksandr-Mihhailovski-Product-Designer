@@ -1,7 +1,6 @@
 import { Download } from "lucide-react";
 import { Button } from "./Button";
 import { GithubMark } from "./GithubMark";
-import { links } from "@/lib/site";
 
 /**
  * Download CV and GitHub — the pair the page opens on (the hero) and closes on
@@ -22,6 +21,10 @@ import { links } from "@/lib/site";
  * pill is the widest is not written down anywhere, so a longer label on either
  * side still gives two equal pills.
  *
+ * Both point at /go/* rather than straight out. Those pages exist only to be
+ * counted — see OUTBOUND in lib/site.ts — and because these open in a new tab
+ * the visitor never waits in the tab they are reading.
+ *
  * Icons sit on the side the eye needs them: the download glyph leads "Download
  * CV", the GitHub mark follows the word it belongs to. That mark is the filled
  * one GitHub itself draws, not the stroke redraw in GithubIcon.tsx — at 17px the
@@ -31,7 +34,7 @@ export function ActionPills() {
   return (
     <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3 min-[480px]:inline-grid min-[480px]:w-auto min-[480px]:max-w-none min-[480px]:auto-cols-fr min-[480px]:grid-flow-col">
       <Button
-        href={links.cv}
+        href="/go/cv"
         size="lg"
         className="w-full"
         target="_blank"
@@ -41,7 +44,7 @@ export function ActionPills() {
         Download CV
       </Button>
       <Button
-        href={links.github}
+        href="/go/github"
         size="lg"
         variant="secondary"
         className="w-full"

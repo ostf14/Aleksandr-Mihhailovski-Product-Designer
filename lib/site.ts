@@ -30,6 +30,26 @@ export const links = {
 } as const;
 
 /**
+ * The outbound clicks worth counting, and the only reason /go/* exists.
+ *
+ * Vercel Web Analytics on the free plan records page views and no custom
+ * events, so there is no way to ask it how many people pressed Download CV.
+ * A page view it will record. So each of these gets a real page that loads,
+ * lets the analytics beacon fire, and then replaces itself with the external
+ * URL — and because both buttons already open in a new tab, the second it
+ * costs is spent in a tab that was going to be loading something anyway.
+ *
+ * A redirect in next.config.mjs cannot do this: it answers with a 307 before
+ * any HTML is served, so no script runs and nothing is counted.
+ */
+export const OUTBOUND = {
+  cv: { href: links.cv, label: "your CV", where: "Google Drive" },
+  github: { href: links.github, label: "GitHub", where: "github.com" },
+} as const;
+
+export type OutboundKey = keyof typeof OUTBOUND;
+
+/**
  * Routes still being built out.
  *
  * One list drives two things: the construction tape rendered in the root
