@@ -166,28 +166,33 @@ export default function Page() {
             <Section kicker="01 · Context" heading="A doctor without a licence">
               <Prose>
                 <p>
-                  Oksana Stanevich is an infectious disease physician with an MD
-                  and a research career behind her. She has published in Nature,
-                  BMC and Frontiers, and worked on projects with
+                  Oksana Stanevich came to me to build and sell a consultation
+                  service.
+                </p>
+                <p>
+                  She is an infectious disease physician with an MD and a
+                  research career. She has published in Nature, BMC and
+                  Frontiers, and worked on projects with
                   St&nbsp;Thomas’&nbsp;Hospital in London and Médecins Sans
-                  Frontières.
+                  Frontières. She does not hold an active medical licence in
+                  Israel, where she lives, so she cannot diagnose, prescribe or
+                  treat there.
                 </p>
                 <p>
-                  She does not hold an active medical licence in Israel, where
-                  she lives, so she cannot diagnose, prescribe or treat there.
-                </p>
-                <p>
-                  People keep asking her anyway, and they arrive in three
-                  situations. The diagnosis is unclear or the treatment has
+                  People who know that record ask her things anyway, and have
+                  done for years. The diagnosis is unclear or the treatment has
                   stalled. They doubt the prescriptions and the tests they have
                   been given. Or they cannot find their way around a health
                   system that runs in a language and a logic they do not know.
                 </p>
                 <p>
-                  She wanted to sell those conversations, and there are two ways
-                  to write that offer badly. Promise treatment and it is
-                  illegal. Hedge every sentence instead and it reads like
-                  someone selling hope. The copy had to avoid both at once.
+                  She wanted to do that regularly rather than as a favour, and
+                  to reach people who have never heard of her.
+                </p>
+                <p>
+                  There are two ways to write that offer badly. Promise
+                  treatment and it is illegal. Hedge every sentence and it reads
+                  like someone selling hope. The copy had to avoid both at once.
                 </p>
               </Prose>
             </Section>
@@ -200,9 +205,8 @@ export default function Page() {
             >
               <Prose>
                 <p>
-                  What she can still give is the thing her patients are missing
-                  anyway. Not another opinion on what to do, but an
-                  understanding of the plan they already have.
+                  So what she sells is not another opinion on what to do. It is
+                  an understanding of the plan you already have.
                 </p>
               </Prose>
 
@@ -262,16 +266,16 @@ export default function Page() {
             <Section kicker="04 · Visual" heading="Medical, but warm">
               <Prose>
                 <p>
-                  Hospital design is cold, and whoever is reading this is
-                  frightened already. So the slides use the signals of medicine
-                  and turn the temperature up on every one of them.
+                  Design that reads as hospital is cold. I wanted a warmer one
+                  without losing the connection to medicine, so the slides keep
+                  its signals and turn each of them down.
                 </p>
                 <p>
                   Paper, because paper is what a doctor hands you. White and
                   pastel, because that is what a clinic looks like. Red, because
                   red is blood and the cross and the heart. Then the red is
-                  washed out to a coral, the paper is drawn by hand instead of
-                  printed, and the same signals read as calm rather than
+                  washed out to a coral and the paper is drawn by hand instead
+                  of printed, and the same signals read as calm rather than
                   clinical.
                 </p>
                 <p>
