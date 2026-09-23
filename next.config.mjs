@@ -46,11 +46,13 @@ const nextConfig = {
     outputFileTracingIncludes: {
       "/api/og": [
         "./node_modules/next/dist/compiled/@vercel/og/**",
-        // The card's own assets, read off disk in lib/og.tsx. `public/` is
-        // served from the CDN and is not otherwise present in the lambda
-        // filesystem, so the photo has to be named here too.
+        // The card's own assets, read off disk in lib/og.tsx. Both live under
+        // lib/ rather than public/ for this reason: `public/` is served from
+        // the CDN and is not otherwise present in the lambda filesystem, so
+        // anything the route reads has to be named here by hand or it is
+        // simply absent at request time — with a green build, as ever.
         "./lib/fonts/**",
-        "./public/hero-photo.jpg",
+        "./lib/og-assets/**",
       ],
     },
   },

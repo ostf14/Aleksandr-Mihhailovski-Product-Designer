@@ -52,8 +52,23 @@ has shipped broken with a completely green build more than once.
   file, made with `python -m fontTools.varLib.instancer Satoshi-Variable.ttf
   wght=600`. Pointing it at the variable file breaks every link preview on the
   site.
+- Satori supports **no CSS or SVG filters**. It lays out flexbox and paints; a
+  `filter` is silently ignored. The card shows the hero portrait with its
+  dither, so that picture is baked in a real browser and committed —
+  `lib/og-assets/portrait-dithered.png`, made by `scripts/bake-og-portrait.mjs`.
+  That script drives the actual `/product` page rather than a copy of the
+  filter, so the treatment has one definition. Change `#hero-dither`,
+  `/portrait-wide.jpg` or `PORTRAIT_W` and **re-run it**, or the preview quietly
+  keeps the old face. It is baked at the width it is painted at, because
+  `/api/og` rasterises at 1200x630 with no retina scaling and grain resampled
+  from another size turns to mush.
+- Anything the route reads off disk must be named in that
+  `outputFileTracingIncludes` block, which is why both its assets live under
+  `lib/` — `public/` is served from the CDN and is not in the lambda at all.
 - After any change near it, and always after a Next major upgrade:
   `npm run check:og` (hits production — it cannot be run against localhost).
+  The card itself you can just look at: the route answers on localhost, and
+  `curl "localhost:3000/api/og?title=x" -o og.png` is the whole test.
 
 ### Tailwind purges classes it cannot see as literal strings
 
