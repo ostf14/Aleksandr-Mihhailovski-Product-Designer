@@ -46,23 +46,6 @@ export const WORKS: Work[] = [
       "Don't Tread On Cat — a game in development. Announcement story trailer.",
   },
   {
-    slug: "chtenye",
-    title: "Educational Platform Redesign",
-    blurb: "Users couldn’t explain what a single menu item meant",
-    role: "Product Designer",
-    org: "Chtenye",
-    kind: "case",
-    disciplines: ["product"],
-    cover: {
-      type: "image",
-      src: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
-      alt: "Chtenye educational platform — redesigned navigation",
-    },
-    metaTitle: "Chtenye — Educational Platform Redesign",
-    metaDescription:
-      "Information architecture and platform redesign for an edtech product users found impossible to navigate.",
-  },
-  {
     slug: "stories-editor",
     title: "Stories Editor",
     blurb: "How I eliminated a 2-day content publishing bottleneck",
@@ -94,6 +77,23 @@ export const WORKS: Work[] = [
     },
     metaDescription:
       "iOS purchase flow for fashion items sold as digital-only or as a physical piece with a digital twin.",
+  },
+  {
+    slug: "chtenye",
+    title: "Educational Platform Redesign",
+    blurb: "Users couldn’t explain what a single menu item meant",
+    role: "Product Designer",
+    org: "Chtenye",
+    kind: "case",
+    disciplines: ["product"],
+    cover: {
+      type: "image",
+      src: "https://framerusercontent.com/images/aMajMUWlnqMZzKjWE2RnsGDhKo.jpg",
+      alt: "Chtenye educational platform — redesigned navigation",
+    },
+    metaTitle: "Chtenye — Educational Platform Redesign",
+    metaDescription:
+      "Information architecture and platform redesign for an edtech product users found impossible to navigate.",
   },
   {
     slug: "push-notifications",
