@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { OUTBOUND, type OutboundKey } from "@/lib/site";
+import { COUNT_OUTBOUND_CLICKS, OUTBOUND, type OutboundKey } from "@/lib/site";
 import { Bounce } from "./Bounce";
 
-/** Both keys are known at build time, and nothing else is a valid target. */
+/**
+ * Both keys are known at build time, and nothing else is a valid target.
+ *
+ * With the switch off this returns nothing, so no page is built and /go/cv is
+ * a 404 — the feature is out of the way without being out of the repository.
+ */
 export function generateStaticParams() {
+  if (!COUNT_OUTBOUND_CLICKS) return [];
   return Object.keys(OUTBOUND).map((target) => ({ target }));
 }
 export const dynamicParams = false;

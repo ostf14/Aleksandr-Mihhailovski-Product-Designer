@@ -50,6 +50,27 @@ export const OUTBOUND = {
 export type OutboundKey = keyof typeof OUTBOUND;
 
 /**
+ * OFF.
+ *
+ * The /go/* pages work and are tested, and the reason they are switched off is
+ * not technical. Download CV is the most valuable click on this site, and this
+ * puts a step in front of it. Whatever the measured delay is, some share of
+ * people meet a page that is not what they asked for and close the tab, and
+ * trading away real clicks to find out how many clicks there were is the wrong
+ * way round.
+ *
+ * A switch rather than commented-out code, so it still typechecks and still
+ * builds. Set this to true and both buttons route through /go/* again and the
+ * two pages come back; nothing else needs touching.
+ */
+export const COUNT_OUTBOUND_CLICKS = false;
+
+/** Where an outbound button points, given the switch above. */
+export function outboundHref(key: OutboundKey): string {
+  return COUNT_OUTBOUND_CLICKS ? `/go/${key}` : OUTBOUND[key].href;
+}
+
+/**
  * Routes still being built out.
  *
  * One list drives two things: the construction tape rendered in the root
