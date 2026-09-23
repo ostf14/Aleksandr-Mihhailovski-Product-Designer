@@ -79,6 +79,23 @@ export const WORKS: Work[] = [
       "How I eliminated a 2-day content publishing bottleneck with a self-serve stories editor at Seamm.",
   },
   {
+    slug: "phygital-purchase",
+    title: "Phygital Purchase",
+    blurb:
+      "iOS purchase flow for fashion items sold as digital-only or as a physical piece with a digital twin",
+    role: "Product Designer",
+    org: "Seamm",
+    kind: "case",
+    disciplines: ["product"],
+    cover: {
+      type: "image",
+      src: "/cases/phygital-purchase/cover.webp",
+      alt: "Choosing between a digital-only item and a physical piece with a digital twin",
+    },
+    metaDescription:
+      "iOS purchase flow for fashion items sold as digital-only or as a physical piece with a digital twin.",
+  },
+  {
     slug: "push-notifications",
     title: "Push Notifications",
     blurb: "How to kill the send button nobody wanted to press",
