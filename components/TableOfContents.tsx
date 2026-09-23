@@ -43,10 +43,32 @@ export function TableOfContents({
     return () => observer.disconnect();
   }, [items]);
 
+  /**
+   * When the aside appears — and what it must never appear over.
+   *
+   * It is a fixed overlay pinned to the left gutter, and the gutter is not
+   * wide enough to hold it: measured at 1280 its right edge lands at 288 with
+   * `.shell` starting at 160. Everything laid out on the prose measure clears
+   * it, everything laid out on the full shell — the hero, the meta grid, a
+   * `wide` figure — does not. So the whole arrangement rests on the aside
+   * being absent while the header is on screen.
+   *
+   * Which is why the trigger is the first item that is NOT the header's own
+   * entry. It used to be simply `items[0]`, and that held only for as long as
+   * no page listed its header in the contents. Two do — they open with an
+   * "Overview" row pointing at `<header id="overview">` — and on those the
+   * trigger was the header itself, at the very top of the document and
+   * therefore past the halfway mark before a single pixel had been scrolled.
+   * The aside came up at rest, across the h1: 128px of it at 1280.
+   *
+   * Skipping the header rather than dropping the row keeps "Overview"
+   * clickable, and keeps the rule in one place instead of as a thing every
+   * future case page has to remember not to do.
+   */
   useEffect(() => {
-    const firstId = items[0]?.id;
-    if (!firstId) return;
-    const target = document.getElementById(firstId);
+    const target = items
+      .map((i) => document.getElementById(i.id))
+      .find((el): el is HTMLElement => el !== null && !el.closest("header"));
     if (!target) return;
 
     const check = () => {
