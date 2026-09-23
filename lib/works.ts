@@ -21,6 +21,19 @@ export type Work = {
   href?: string;
   metaTitle?: string;
   metaDescription?: string;
+  /**
+   * Off the site, without being deleted from it.
+   *
+   * The entry and the page both stay — the card simply stops being listed
+   * anywhere, because every list is built from `cases` below. Pair it with an
+   * entry in WIP_ROUTES (lib/site.ts) and the URL bounces and goes noindex
+   * too, so the case is properly away rather than merely unlinked; that is
+   * also what keeps it reachable for review behind /underconstr.
+   *
+   * Taking a case off the site is therefore two lines, and putting it back is
+   * deleting them. Nothing about the case itself has to be touched either way.
+   */
+  hidden?: boolean;
 };
 
 /**
@@ -64,6 +77,9 @@ export const WORKS: Work[] = [
   {
     slug: "phygital-purchase",
     title: "Phygital Purchase",
+    // Off the site for now. See `hidden` on the Work type, and the matching
+    // line in WIP_ROUTES.
+    hidden: true,
     blurb:
       "iOS purchase flow for fashion items sold as digital-only or as a physical piece with a digital twin",
     role: "Product Designer",
@@ -218,7 +234,15 @@ export const WORKS: Work[] = [
 
 // ---- Selectors -------------------------------------------------------------
 
-export const cases = WORKS.filter((w) => w.kind === "case");
+/**
+ * Every case that is actually on the site.
+ *
+ * `hidden` is filtered out here rather than at each call site, because there
+ * are four of them — the three discipline grids and the "More cases" strip —
+ * and a case that is off the site but still showing in one of those is the
+ * failure this exists to prevent.
+ */
+export const cases = WORKS.filter((w) => w.kind === "case" && !w.hidden);
 
 /**
  * Which section a case belongs to.

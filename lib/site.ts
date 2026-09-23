@@ -83,6 +83,12 @@ export function outboundHref(key: OutboundKey): string {
 export const WIP_ROUTES = [
   "/",
   "/about",
+  // Finished and off the site for now, rather than half-built. Paired with
+  // `hidden: true` on its entry in lib/works.ts, which is what takes the card
+  // out of the grids — this line is what takes the URL away as well, so the
+  // page cannot be walked into or indexed while it is out. Delete both to put
+  // the case back.
+  "/case/phygital-purchase",
   "/ru/lectures",
   "/ru/lectures/*",
   "/testimonials",
