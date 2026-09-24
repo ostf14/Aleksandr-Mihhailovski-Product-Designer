@@ -638,6 +638,53 @@ html:not(.dark) .theme-toggle .i-moon {
 }
 
 /* ---------------------------------------------------------------
+   Browser-carousel slides (components/BrowserCarousel.tsx).
+
+   Every mounted slide sits stacked in the frame and the swap is a cross-fade
+   between two of them. It used to be a framer AnimatePresence in `mode="wait"`,
+   which is two separate animations with a gap between, and both ends of that
+   gap flashed — see the note in the component for the frame-by-frame capture.
+
+   Also outside @layer, for the same reason as the rules above.
+
+   Only ONE of the two moves, and it is the one leaving: the arriving slide
+   lands at full opacity at once, underneath, and the old one dissolves off it.
+   Fading both at the same time is the obvious idea and it is wrong — two
+   stacked layers at 0.5 let a quarter of the frame background through between
+   them, so the middle of every swap is a pale dip. The same asymmetry as the
+   page curtain, for the same reason: what you want to watch is the old picture
+   leaving, not a blend of two.
+
+   That is also what the z-index is for. The slide on its way out has to be the
+   one on top, or it dissolves behind the new one and nothing reads at all —
+   and which of the two sits higher in DOM order depends on whether you pressed
+   Next or Previous.
+
+   `visibility` and not `pointer-events`: a slide at opacity 0 still scrolls
+   under the wheel and still takes tab focus, and this carousel's whole point
+   is that each slide scrolls. Its transition is a zero-length step DELAYED by
+   the fade, so the outgoing slide stays hittable for exactly as long as it is
+   still visible, and not a frame longer.
+   --------------------------------------------------------------- */
+.cslide {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+  transition:
+    opacity var(--t-4) var(--e-out),
+    visibility 0s linear var(--t-4);
+}
+.cslide.on {
+  opacity: 1;
+  visibility: visible;
+  z-index: 0;
+  transition: none;
+}
+
+/* ---------------------------------------------------------------
    Sticky-grid case panels (components/StickyCases.tsx).
 
    Deliberately outside @layer components: these names are only ever written
@@ -780,6 +827,14 @@ html:not(.dark) .theme-toggle .i-moon {
   }
   .tiltable {
     transform: none;
+  }
+
+  /* The rule above zeroes every transition DURATION and leaves the delays
+     alone, and the outgoing carousel slide hides itself on a delayed step —
+     so without this it would keep taking the wheel and the tab key for 320ms
+     after it had gone. Land it at once instead. */
+  .cslide {
+    transition-delay: 0s !important;
   }
 
   /* The cat's resting position lives only inside its keyframes, and the rule

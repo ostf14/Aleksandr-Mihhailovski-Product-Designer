@@ -1,14 +1,21 @@
+import { ArrowUpRight } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { Footer } from "@/components/Footer";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
+import { CAT_DEV_MEDIA_SHARED } from "@/lib/cat-dev-media";
 import { workMetadata } from "@/lib/works";
 
 export const metadata = workMetadata("dont-tread-on-cat");
 
 /** The announcement story trailer. */
 const TRAILER_ID = "t_y_m4gaKAc";
+
+/** Where the game is wishlisted. */
+const STEAM_URL =
+  "https://store.steampowered.com/app/3504010/Dont_Tread_On_Cat/";
 
 /**
  * An announcement page, not a case study yet.
@@ -67,6 +74,25 @@ export default function Page() {
                     </p>
                   </div>
                 </div>
+
+                {/* Same strip the other self-initiated cases carry along the
+                    bottom of their meta card — see ReMargin and the 3D puzzle.
+                    A page about a game that is on Steam and says so nowhere is
+                    asking the reader to go and search for it. */}
+                <div className="flex flex-col gap-3 border-t border-line px-6 py-4 md:flex-row md:items-center md:gap-6 md:px-8">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                    Links
+                  </span>
+                  <a
+                    href={STEAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[0.95rem] text-fg/90 transition-colors hover:text-accent"
+                  >
+                    Steam page
+                    <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
+                  </a>
+                </div>
               </div>
             </FadeIn>
           </header>
@@ -84,6 +110,25 @@ export default function Page() {
                 </p>
               </FadeIn>
             </div>
+
+            {/* Build footage, shared with /case/multi-agent-workflow rather
+                than copied — the list and the reasoning are in
+                lib/cat-dev-media.ts. Five of its eight frames read on their
+                own; the other three only mean anything next to that case's
+                argument about compile times, so they stay there.
+
+                Still no heading over them. The page carries what is true and
+                nothing else, and "Development" over five pictures of the
+                development is a label telling you what you can already see. */}
+            {CAT_DEV_MEDIA_SHARED.map((m) => (
+              <ImagePlaceholder
+                key={m.src}
+                className="mt-12"
+                src={m.src}
+                label={m.label}
+                caption={m.caption}
+              />
+            ))}
           </div>
         </article>
       </main>

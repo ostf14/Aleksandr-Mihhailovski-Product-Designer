@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BrowserFrame } from "./BrowserFrame";
 
@@ -25,13 +24,31 @@ export function BrowserCarousel({
 }: Props) {
   const [index, setIndex] = useState(0);
 
+  /**
+   * Which slides are in the DOM. A slide joins the first time it is asked for
+   * and never leaves.
+   *
+   * The cross-fade needs both slides present at once, but that is not a reason
+   * to mount all five up front: these are full-page screenshots, two to a
+   * slide, and the carousel sits in the header of the page. Mounting on demand
+   * means a visit that never touches the arrows costs exactly what it costs
+   * today — and a second visit to a slide is instant, with its scroll position
+   * where it was left.
+   */
+  const [mounted, setMounted] = useState<number[]>([0]);
+
   if (slides.length === 0) return null;
 
   const total = slides.length;
   const current = slides[index];
 
-  const prev = () => setIndex((i) => (i - 1 + total) % total);
-  const next = () => setIndex((i) => (i + 1) % total);
+  const go = (i: number) => {
+    setMounted((m) => (m.includes(i) ? m : [...m, i]));
+    setIndex(i);
+  };
+
+  const prev = () => go((index - 1 + total) % total);
+  const next = () => go((index + 1) % total);
 
   return (
     <div className={`${className}`}>
@@ -40,34 +57,54 @@ export function BrowserCarousel({
           <div className="relative">
             <BrowserFrame url={current.title}>
               {/* Fixed stage — 300px on mobile, prop height on desktop; long slides scroll inside */}
+              {/* The slides are stacked and cross-faded, in CSS — see `.cslide`
+                  in globals.css.
+
+                  This was a framer AnimatePresence in `mode="wait"`, and
+                  "wait" means exactly that: the outgoing slide finishes before
+                  the incoming one starts, so the frame stood empty in between
+                  and every change took twice the stated duration. Both ends of
+                  that also flashed, because framer runs a plain opacity fade
+                  through the Web Animations API and hands the value back to
+                  the inline style a frame late — the same handoff written up
+                  in CLAUDE.md and in FadeIn.tsx.
+
+                  Captured at 1440x900, sampling computed opacity every frame
+                  through one press of Next: the outgoing slide ran down to
+                  0.001 at t=308 and then painted a full 1 at t=325, a
+                  single-frame flash of the page you were leaving; the incoming
+                  one reached 1 at t=575 and painted 0 at t=592 before settling.
+                  Two flashes per press, 600ms apart, which is what "мигают при
+                  перелистывании" was.
+
+                  A cross-fade has no gap and a CSS transition has no handoff. */}
               <div
                 className="relative h-[300px] md:h-[var(--carousel-h)]"
                 style={{ ["--carousel-h" as never]: `${height}px` }}
               >
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
-                    key={index}
-                    className="absolute inset-0 overflow-y-auto"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeInOut" }}
-                  >
-                    <div className="flex flex-col gap-0">
-                      {current.images.map((src, i) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          key={i}
-                          src={src}
-                          alt={`${current.title} — section ${i + 1}`}
-                          className="block w-full"
-                          loading="lazy"
-                          draggable={false}
-                        />
-                      ))}
+                {slides.map((slide, i) =>
+                  mounted.includes(i) ? (
+                    <div
+                      key={i}
+                      className={`cslide ${i === index ? "on" : ""}`}
+                      aria-hidden={i !== index}
+                    >
+                      <div className="flex flex-col gap-0">
+                        {slide.images.map((src, j) => (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            key={j}
+                            src={src}
+                            alt={`${slide.title} — section ${j + 1}`}
+                            className="block w-full"
+                            loading="lazy"
+                            draggable={false}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </motion.div>
-                </AnimatePresence>
+                  ) : null,
+                )}
               </div>
             </BrowserFrame>
 
@@ -108,7 +145,7 @@ export function BrowserCarousel({
                   <button
                     key={i}
                     type="button"
-                    onClick={() => setIndex(i)}
+                    onClick={() => go(i)}
                     aria-label={`Go to ${s.title}`}
                     className={`h-[2px] flex-1 transition-colors duration-200 ease-out ${
                       i === index

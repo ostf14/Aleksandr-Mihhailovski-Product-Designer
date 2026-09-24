@@ -7,6 +7,7 @@ import { Callout } from "@/components/Callout";
 import { Section, Prose } from "@/components/Section";
 import { TableOfContents, type TocItem } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { CAT_DEV_MEDIA } from "@/lib/cat-dev-media";
 import { workMetadata } from "@/lib/works";
 
 export const metadata = workMetadata("multi-agent-workflow");
@@ -289,61 +290,19 @@ export default function Page() {
               </Prose>
             </Section>
 
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/demo-1.gif"
-              label="Side-by-side: code in Windsurf, runtime in Unity"
-              caption="Side-by-side: code in Windsurf, runtime in Unity."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/demo-2.gif"
-              label="Gameplay prototype"
-              caption="Gameplay prototype."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/unity-editor.png"
-              label="Unity editor showing the running state machine"
-              caption="Unity editor: state machine running."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/demo-3.gif"
-              label="Iteration cycle in the editor"
-              caption="Early prototype."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/screenshot-1.jpg"
-              label="Runtime view of the prototype"
-              caption="Runtime view."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/blueprint.png"
-              label="Unreal Blueprint architecture from the earlier attempt"
-              caption="Before convenient code-first with Windsurf, the early version sat on these heavy Unreal Blueprints."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/blueprint-runtime.png"
-              label="Unreal compile times that killed iteration speed"
-              caption="Why Unreal didn’t work: 10-min compile times killed iteration loops."
-            />
-
-            <ImagePlaceholder
-              className="mt-8"
-              src="/cases/multi-agent-workflow/discord.png"
-              label="Sharing progress with the dev community"
-              caption="Sharing progress with the dev community."
-            />
+            {/* The footage is in lib/cat-dev-media.ts, because the game's own
+                page shows five of these frames too — see the note there. The
+                order and the captions are unchanged; what used to be eight
+                hand-written blocks is now the same eight from one list. */}
+            {CAT_DEV_MEDIA.map((m) => (
+              <ImagePlaceholder
+                key={m.src}
+                className="mt-8"
+                src={m.src}
+                label={m.label}
+                caption={m.caption}
+              />
+            ))}
           </div>
 
           {/* Decisions */}
