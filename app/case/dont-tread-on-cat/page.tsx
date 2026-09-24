@@ -1,11 +1,13 @@
 import { ArrowUpRight } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { Footer } from "@/components/Footer";
+import { GraphicGallery } from "@/components/GraphicGallery";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { CAT_DEV_MEDIA_SHARED } from "@/lib/cat-dev-media";
+import type { GraphicItem } from "@/lib/graphic";
 import { workMetadata } from "@/lib/works";
 
 export const metadata = workMetadata("dont-tread-on-cat");
@@ -16,6 +18,57 @@ const TRAILER_ID = "t_y_m4gaKAc";
 /** Where the game is wishlisted. */
 const STEAM_URL =
   "https://store.steampowered.com/app/3504010/Dont_Tread_On_Cat/";
+
+/**
+ * The Steam screenshots, laid out the way the graphic archive is — same
+ * component, so the same grid, the same caption treatment and the same
+ * lightbox. No heading over them: on /graphic "Gallery" separates the archive
+ * tier from the cases above it, and here there is nothing to separate it from.
+ *
+ * `span: 3` is two to a row, which is what the other 16:9 pieces on the site
+ * use.
+ *
+ * Kept at the source 1920, against the usual rule of twice the drawn width.
+ * Two reasons, both about this art in particular. The lightbox is the point of
+ * a gallery and it paints these near full screen, so the tile is not the size
+ * that matters; and pixel art is the one thing that cannot be resampled
+ * politely — halving to 960 lands cleanly on the game's own pixel grid, but
+ * the browser then blows that back up by about 1.45 in the lightbox and the
+ * grid goes soft. At webp they are 128-141 KB each against 450 KB of source
+ * JPEG, and nothing here loads until it is scrolled to.
+ */
+const SCREENSHOTS: GraphicItem[] = [
+  {
+    src: "/cases/dont-tread-on-cat/01-hack.webp",
+    span: 3,
+    alt: "A guard with a glowing blade, a HACK prompt above him, the cat lying on the floor behind",
+    caption: "A guard with a plasma blade, and a HACK prompt.",
+  },
+  {
+    src: "/cases/dont-tread-on-cat/02-leap.webp",
+    span: 3,
+    alt: "The cat mid-jump above warehouse shelving stacked with crates",
+    caption: "Mid-jump over the warehouse shelves.",
+  },
+  {
+    src: "/cases/dont-tread-on-cat/03-horizon.webp",
+    span: 3,
+    alt: "The cat in a room of dead monitors, a huge tentacled shape standing over the skyline outside",
+    caption: "The thing on the skyline, from a room of dead monitors.",
+  },
+  {
+    src: "/cases/dont-tread-on-cat/04-shield.webp",
+    span: 3,
+    alt: "The cat behind a blue shield arc, facing a walking drone with a single orange eye",
+    caption: "A shield up against a walking drone.",
+  },
+  {
+    src: "/cases/dont-tread-on-cat/05-laundromat.webp",
+    span: 3,
+    alt: "The cat outside a lit laundromat at night, a KILL prompt over a rat further down the street",
+    caption: "Outside the laundromat, a KILL prompt on a rat.",
+  },
+];
 
 /**
  * An announcement page, not a case study yet.
@@ -109,6 +162,12 @@ export default function Page() {
                   Don&rsquo;t Tread On Cat | Announcement Story Trailer
                 </p>
               </FadeIn>
+            </div>
+
+            {/* Straight under the trailer: what the game looks like, before
+                anything about how it is made. */}
+            <div className="shell mt-12">
+              <GraphicGallery items={SCREENSHOTS} />
             </div>
 
             {/* Build footage, shared with /case/multi-agent-workflow rather
