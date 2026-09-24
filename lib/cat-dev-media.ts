@@ -22,6 +22,15 @@
  */
 export type DevMedia = {
   src: string;
+  /**
+   * The file's own pixel dimensions, carried so the tiled version of this list
+   * can declare a ratio before the bytes land — without one an unloaded image
+   * is zero pixels tall, the whole grid sits inside the viewport, and
+   * `loading="lazy"` fetches everything at once. Which on this list is 7.3 MB
+   * of GIF. See the note on GraphicItem in lib/graphic.ts.
+   */
+  width: number;
+  height: number;
   /** Doubles as the img alt. */
   label: string;
   caption: string;
@@ -32,34 +41,46 @@ export type DevMedia = {
 export const CAT_DEV_MEDIA: DevMedia[] = [
   {
     src: "/cases/multi-agent-workflow/demo-1.gif",
+    width: 540,
+    height: 304,
     label: "Side-by-side: code in Windsurf, runtime in Unity",
     caption: "Side-by-side: code in Windsurf, runtime in Unity.",
     shared: true,
   },
   {
     src: "/cases/multi-agent-workflow/demo-2.gif",
+    width: 480,
+    height: 270,
     label: "Gameplay prototype",
     caption: "Gameplay prototype.",
   },
   {
     src: "/cases/multi-agent-workflow/unity-editor.png",
+    width: 2048,
+    height: 1180,
     label: "Unity editor showing the running state machine",
     caption: "Unity editor: state machine running.",
     shared: true,
   },
   {
     src: "/cases/multi-agent-workflow/demo-3.gif",
+    width: 540,
+    height: 540,
     label: "Iteration cycle in the editor",
     caption: "Early prototype.",
     shared: true,
   },
   {
     src: "/cases/multi-agent-workflow/screenshot-1.jpg",
+    width: 2048,
+    height: 1153,
     label: "Runtime view of the prototype",
     caption: "Runtime view.",
   },
   {
     src: "/cases/multi-agent-workflow/blueprint.png",
+    width: 2048,
+    height: 1454,
     label: "Unreal Blueprint architecture from the earlier attempt",
     caption:
       "Before convenient code-first with Windsurf, the early version sat on these heavy Unreal Blueprints.",
@@ -67,12 +88,16 @@ export const CAT_DEV_MEDIA: DevMedia[] = [
   },
   {
     src: "/cases/multi-agent-workflow/blueprint-runtime.png",
+    width: 2048,
+    height: 1501,
     label: "Unreal compile times that killed iteration speed",
     caption:
       "Why Unreal didn’t work: 10-min compile times killed iteration loops.",
   },
   {
     src: "/cases/multi-agent-workflow/discord.png",
+    width: 2048,
+    height: 1024,
     label: "Sharing progress with the dev community",
     caption: "Sharing progress with the dev community.",
     shared: true,

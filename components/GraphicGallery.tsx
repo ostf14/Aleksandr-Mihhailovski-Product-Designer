@@ -53,7 +53,22 @@ function Caption({ item }: { item: GraphicItem }) {
   );
 }
 
-export function GraphicGallery({ items }: { items: GraphicItem[] }) {
+export function GraphicGallery({
+  items,
+  /**
+   * How many tiles load with the document.
+   *
+   * Two, because on /graphic the gallery starts near the top of the page and
+   * the first row is on screen before anything is scrolled. A gallery sitting
+   * further down wants 0 — and on the game case it is not optional: the first
+   * tile there is a 3.7 MB GIF, which eager would fetch on every visit to a
+   * page whose first screen is a video.
+   */
+  eagerCount = 2,
+}: {
+  items: GraphicItem[];
+  eagerCount?: number;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const isOpen = openIndex !== null;
 
@@ -148,18 +163,29 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
                 className="group block w-full cursor-zoom-in overflow-hidden rounded-xl border border-line bg-surface dark:bg-surface-deep"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
+                {/* width/height are the file's own, and they are what makes
+                    `loading="lazy"` mean anything here — see the note on
+                    GraphicItem. With `h-auto w-full` over them the browser
+                    keeps the ratio and the tile is still the grid cell. */}
                 <img
                   src={item.src}
                   alt={item.alt}
-                  loading={i < 2 ? "eager" : "lazy"}
+                  width={item.width}
+                  height={item.height}
+                  loading={i < eagerCount ? "eager" : "lazy"}
                   decoding="async"
                   className="block h-auto w-full transition-transform duration-300 ease-out md:group-hover:scale-[1.02]"
                 />
               </button>
 
-              <figcaption className="mt-3">
-                <Caption item={item} />
-              </figcaption>
+              {/* No caption and no source link means no figcaption at all —
+                  an empty one still takes its margin and its line box, which
+                  on a two-up grid is a ragged gap under every tile. */}
+              {(item.caption || item.href) && (
+                <figcaption className="mt-3">
+                  <Caption item={item} />
+                </figcaption>
+              )}
             </figure>
           </FadeIn>
         ))}
@@ -231,11 +257,13 @@ export function GraphicGallery({ items }: { items: GraphicItem[] }) {
 
           <div
             onClick={(event) => event.stopPropagation()}
-            className="shrink-0 pt-4"
+            className="shrink-0 pt-4 empty:hidden"
           >
-            <div className="text-center text-[0.875rem] text-white/70">
-              {current.caption}
-            </div>
+            {current.caption && (
+              <div className="text-center text-[0.875rem] text-white/70">
+                {current.caption}
+              </div>
+            )}
 
             {items.length > 1 && (
               <div className="mt-4 flex items-center justify-center gap-8 md:hidden">

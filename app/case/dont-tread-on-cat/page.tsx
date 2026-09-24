@@ -2,7 +2,6 @@ import { ArrowUpRight } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { Footer } from "@/components/Footer";
 import { GraphicGallery } from "@/components/GraphicGallery";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Nav } from "@/components/Nav";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
@@ -21,12 +20,18 @@ const STEAM_URL =
 
 /**
  * The Steam screenshots, laid out the way the graphic archive is — same
- * component, so the same grid, the same caption treatment and the same
- * lightbox. No heading over them: on /graphic "Gallery" separates the archive
- * tier from the cases above it, and here there is nothing to separate it from.
+ * component, so the same grid and the same lightbox. No heading over them: on
+ * /graphic "Gallery" separates the archive tier from the cases above it, and
+ * here there is nothing to separate it from.
  *
- * `span: 3` is two to a row, which is what the other 16:9 pieces on the site
- * use.
+ * No captions either. A line under a screenshot can only describe the frame
+ * you are already looking at. `alt` still carries the description, because a
+ * screen reader has nothing else to go on.
+ *
+ * Spans 3, 3, 2, 2, 2 — two across then three across, which is 6 and 6 out of
+ * the grid's six columns and so two full rows. Five at the same span would
+ * have left the last one alone beside half an empty row. The archive on
+ * /graphic groups itself the same way and for the same reason.
  *
  * Kept at the source 1920, against the usual rule of twice the drawn width.
  * Two reasons, both about this art in particular. The lightbox is the point of
@@ -40,35 +45,69 @@ const STEAM_URL =
 const SCREENSHOTS: GraphicItem[] = [
   {
     src: "/cases/dont-tread-on-cat/01-hack.webp",
+    width: 1920,
+    height: 1080,
     span: 3,
     alt: "A guard with a glowing blade, a HACK prompt above him, the cat lying on the floor behind",
-    caption: "A guard with a plasma blade, and a HACK prompt.",
   },
   {
     src: "/cases/dont-tread-on-cat/02-leap.webp",
+    width: 1920,
+    height: 1080,
     span: 3,
     alt: "The cat mid-jump above warehouse shelving stacked with crates",
-    caption: "Mid-jump over the warehouse shelves.",
   },
   {
     src: "/cases/dont-tread-on-cat/03-horizon.webp",
-    span: 3,
+    width: 1920,
+    height: 1080,
+    span: 2,
     alt: "The cat in a room of dead monitors, a huge tentacled shape standing over the skyline outside",
-    caption: "The thing on the skyline, from a room of dead monitors.",
   },
   {
     src: "/cases/dont-tread-on-cat/04-shield.webp",
-    span: 3,
+    width: 1920,
+    height: 1080,
+    span: 2,
     alt: "The cat behind a blue shield arc, facing a walking drone with a single orange eye",
-    caption: "A shield up against a walking drone.",
   },
   {
     src: "/cases/dont-tread-on-cat/05-laundromat.webp",
-    span: 3,
+    width: 1920,
+    height: 1080,
+    span: 2,
     alt: "The cat outside a lit laundromat at night, a KILL prompt over a rat further down the street",
-    caption: "Outside the laundromat, a KILL prompt on a rat.",
   },
 ];
+
+/**
+ * The build footage, in the same grid.
+ *
+ * Same list and same order as on the workflow case, only tiled instead of run
+ * full width — see lib/cat-dev-media.ts. These keep their captions, where the
+ * screenshots above lose theirs, and the difference is not an oversight: a
+ * screenshot's caption can only name what is already in the frame, while
+ * "the early version sat on these heavy Unreal Blueprints" is the only thing
+ * that tells you why a picture of a node graph is on this page at all.
+ *
+ * Two of these are GIFs 540px wide. They land in the tile at 468 and the
+ * lightbox leaves them at their own size rather than blowing them up, because
+ * its image is `w-auto` under a cap, not stretched to it.
+ *
+ * Spans 3, 3, 2, 2, 2, same as above and with a second reason here. These five
+ * are not one shape — 1.78, 1.74, 1.00, 1.41 and 2.00 — and at one span the
+ * square GIF stood beside the blueprint and left a hole under it as deep as
+ * itself. The two that match go across the top; the three that do not are
+ * narrower, where the same ratios differ by fewer pixels.
+ */
+const DEV_TILES: GraphicItem[] = CAT_DEV_MEDIA_SHARED.map((m, i) => ({
+  src: m.src,
+  alt: m.label,
+  caption: m.caption,
+  width: m.width,
+  height: m.height,
+  span: i < 2 ? 3 : 2,
+}));
 
 /**
  * An announcement page, not a case study yet.
@@ -165,9 +204,15 @@ export default function Page() {
             </div>
 
             {/* Straight under the trailer: what the game looks like, before
-                anything about how it is made. */}
+                anything about how it is made.
+
+                eagerCount 0 on both grids. The default of two is for
+                /graphic, whose gallery starts near the top of the page; here
+                the first screen is a video and everything below it can wait
+                until it is scrolled to. On the second grid that is not a
+                preference — its first tile is a 3.7 MB GIF. */}
             <div className="shell mt-12">
-              <GraphicGallery items={SCREENSHOTS} />
+              <GraphicGallery items={SCREENSHOTS} eagerCount={0} />
             </div>
 
             {/* Build footage, shared with /case/multi-agent-workflow rather
@@ -179,15 +224,9 @@ export default function Page() {
                 Still no heading over them. The page carries what is true and
                 nothing else, and "Development" over five pictures of the
                 development is a label telling you what you can already see. */}
-            {CAT_DEV_MEDIA_SHARED.map((m) => (
-              <ImagePlaceholder
-                key={m.src}
-                className="mt-12"
-                src={m.src}
-                label={m.label}
-                caption={m.caption}
-              />
-            ))}
+            <div className="shell mt-16">
+              <GraphicGallery items={DEV_TILES} eagerCount={0} />
+            </div>
           </div>
         </article>
       </main>
